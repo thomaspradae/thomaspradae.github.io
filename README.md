@@ -17,3 +17,5 @@ Ad Astra...
 -T
 
 Btw, I kinda might-a owe u a guitar. So if u ever want to hear the half-ass song I learned and pick it up (or don't ;) ) just let me know. 
+https://www.youtube.com/watch?v=gPjqWwkAymg&ab_channel=TheWorstTaste
+
