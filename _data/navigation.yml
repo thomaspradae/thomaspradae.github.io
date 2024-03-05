@@ -5,10 +5,9 @@ links:
   url: /about
 - title: Search
   url: /search
+- title: Github
+  url: https://github.com/thomaspradae
+- title: Twitter
+  url: https://twitter.com/thomas__prada
 - title: Rss
   url: /atom.xml
-- title: Github
-  url: /https://github.com/thomaspradae
-- title: Twitter
-  url: /https://twitter.com/thomas__prada
-
