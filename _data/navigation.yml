@@ -1,8 +1,16 @@
 links:
-- title: Ideas
-  url: /
+- title: If you're new here
+  url: /newhere.html
 - title: About
   url: /about
+- title: Building
+  url: /building.html
+- title: Writing
+  url: /writing.html
+- title: Notes
+  url: /notes.html
+- title: Miscellaneous
+  url: /misc.html
 - title: Search
   url: /search
 - title: Github
@@ -11,3 +19,6 @@ links:
   url: https://twitter.com/thomas__prada
 - title: Rss
   url: /atom.xml
+- title: FOR
+  url: /misc.html
+  

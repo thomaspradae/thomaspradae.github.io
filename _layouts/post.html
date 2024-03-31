@@ -2,11 +2,37 @@
 layout: default
 ---
 
-<section class="post">
-  <h2>{{ page.title }}</h2>
-  {{ content }}
-  <span class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time> &middot; {% for tag in page.tags %}
-    <a href="/tag/{{tag}}">{{tag}}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
-</section>
+<!DOCTYPE html>
+<html lang="en">
 
+<body>
+  <section class="breadcrumbs">
+    {% case page.collection %}
+      {% when 'building' %}
+        <a href="/building.html">Building</a> / <a href="{{ page.url }}">{{ page.title }}</a>
+      {% when 'writing' %}
+        <a href="/writing.html">Writing</a> / <a href="{{ page.url }}">{{ page.title }}</a>
+      {% when 'notes' %}
+        <a href="/notes.html">Notes</a> / <a href="{{ page.url }}">{{ page.title }}</a>
+      {% else %}
+        <a href="/">Home</a>
+    {% endcase %}
+  </section>
+
+  <section class="post">
+    <h1 class="page-title">{{ page.title }}</h1>
+
+    {{ content }}
+
+    <div class="meta">
+      <div><time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></div>
+      <div class="tags-holder">
+        {% for tag in page.tags %}
+          <a class="internal-link" href="/tag/{{tag}}">{{tag}}</a>{% unless forloop.last %} /{% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+    
+  </section>
+</body>
 

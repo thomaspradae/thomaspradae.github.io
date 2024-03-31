@@ -39,8 +39,17 @@ collections:
     permalink: /:name
   posts:
     output: true
-    permalink: /:year/:month/:day/:slug
-  
+    permalink: /building/:slug
+  writing:
+    output: true
+    permalink: /writing/:slug
+  building:
+    output: true
+    permalink: /building/:slug
+  notes:
+    output: true
+    permalink: /notes/:slug
+
 defaults:
   -
     scope:
