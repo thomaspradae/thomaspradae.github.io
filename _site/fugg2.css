@@ -627,6 +627,7 @@ footer {
     font-family: 'GeistMono', sans-serif;  
     font-weight: 500;
     font-size: 14px;
+    text-transform: lowercase;
     color: var(--contrast-color);
      text-align: left;
     margin-top: 0;
