@@ -13,8 +13,12 @@ The code is pretty straight forward, we start off our simulation once a new poin
 
 ![tripz](../assets/images/posts/tripz.jpg)
 
+![tripz](../assets/images/posts/tripz.jpg)
 
-![chair](../assets/images/posts/chair.png)
+
+![chair](../assets/images/posts/chair.png){:width="100%"}
+
+![chair](../assets/images/posts/chair.png){:width="50%"}
 
 
 ![ center | 300](chair%201.png)

@@ -378,6 +378,16 @@ footer {
     /* max-width: 760px; */
 }
 
+.page-content img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8vh;
+    margin-top: 8vh;
+}
+
 
 .page-title {
     font-size: 50px;
@@ -406,12 +416,23 @@ footer {
     margin-bottom: 10vh;
 }
 
-.page-icon {
+.content-header img{
     max-width: 100%;
     height: auto;
     display: block;
+    margin-top: 0;
     margin-bottom: 20px;
+    margin-right: 0;
+    margin-left: 0;
     width: 80px;
+}
+
+.page-icon {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin-bottom: 20px !important;
+    width: 80px !important;
 }
 
 
