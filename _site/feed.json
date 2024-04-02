@@ -139,6 +139,27 @@
         },
     
         {
+            "id": "http://localhost:4000/building/hello-world",
+            "title": "Hello World",
+            "summary": null,
+            "content_text": "I like making things with Ruby on Rails and React Native.",
+            "content_html": "<p>I like making things with Ruby on Rails and React Native.</p>",
+            "url": "http://localhost:4000/building/hello-world",
+            
+            
+            
+            "tags": ["React Native","Ruby on Rails"],
+            
+            "date_published": "2022-10-01T00:00:00-05:00",
+            "date_modified": "2022-10-01T00:00:00-05:00",
+            
+                "author": 
+                "{"twitter"=>nil, "name"=>nil, "avatar"=>nil, "email"=>nil, "url"=>nil}"
+                
+            
+        },
+    
+        {
             "id": "http://localhost:4000/building/creating-navigation-menu-in-jekyll",
             "title": "Creating navigation menu in Jekyll",
             "summary": "Using data folder to build Jekyll navigation",

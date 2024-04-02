@@ -1,4 +1,4 @@
-site: Sidey
+site: 
 url: #yoururl
 title: Thomas Prada
 twitter:
@@ -50,6 +50,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:slug
+  misc: 
+    output: true
+    permalink: /misc/:slug
 
 defaults:
   -

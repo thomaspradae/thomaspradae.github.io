@@ -20,7 +20,6 @@ module Jekyll
         site.pages << TagPage.new(site, site.source, tag)
       end
     end
-    
   end
 
   class TagPage < Page
