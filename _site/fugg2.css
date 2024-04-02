@@ -787,6 +787,11 @@ code {
 
 @media (max-width: 600px) {
 
+    body {
+        /* background-color: var(--main-accent); */
+        background-color: var(--background-color);
+    }
+
     .stickysidebar {
         position: fixed;
         top: 50%;
