@@ -788,7 +788,8 @@ code {
 @media (max-width: 600px) {
 
     body {
-        background-color: var(--main-accent);
+        background-color: var(--background-color);
+        /* background-color: var(--main-accent); */
     }
 
     .stickysidebar {
