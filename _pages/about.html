@@ -56,7 +56,7 @@ layout: compress
             <div class="section-tags">
             {% for tag in sorted_tags %}
                 {% unless forloop.first %}<span class="muted">/</span>{% endunless %}
-                <a href="/topics/{{ tag | slugify }}" class="internal-link">{{ tag }}</a>
+                <a href="/tag/{{ tag | slugify }}" class="internal-link">{{ tag }}</a>
             {% endfor %}
             </div>
 

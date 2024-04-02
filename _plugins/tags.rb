@@ -3,11 +3,24 @@ module Jekyll
     safe true
 
     def generate(site)
-      tags = site.posts.docs.flat_map { |post| post.data['tags'] || [] }.to_set
+      # Initialize an empty array to hold all documents
+      all_docs = []
+    
+      # Add posts
+      all_docs.concat(site.posts.docs)
+    
+      # Add documents from each specified collection
+      site.collections.each do |name, collection|
+        all_docs.concat(collection.docs) if ['building', 'writing', 'notes'].include?(name)
+      end
+    
+      # Now `all_docs` contains all the posts and documents from specified collections
+      tags = all_docs.flat_map { |doc| doc.data['tags'] || [] }.to_set
       tags.each do |tag|
         site.pages << TagPage.new(site, site.source, tag)
       end
     end
+    
   end
 
   class TagPage < Page

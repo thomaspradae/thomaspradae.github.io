@@ -569,7 +569,7 @@ footer {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
-  }
+}
 
 .posts-ul {
     padding: 0;
@@ -861,6 +861,12 @@ code {
          opacity: 0;
     }
 
+    .content {
+        margin-top: 30vh;
+        min-height: 100vh;
+        text-align: left;
+    }
+
     .content-header img{
         max-width: 100%;
         height: auto;
@@ -888,7 +894,7 @@ code {
     }
 
     .page-title {
-        font-size: 30px;
+        font-size: 25px;
         margin: 0;
         color: var(--contrast-color);
     }
@@ -899,7 +905,6 @@ code {
 
     p{
         font-size: 12px;
-        margin: 0;
     }
 
     .subhome-description {
@@ -968,6 +973,14 @@ code {
         font-size: 12px;
     }
 
+    .posts li {
+        align-items: flex-start;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
     .all-post-item-title {
         font-size: 12px;
         text-decoration: none;
@@ -977,6 +990,7 @@ code {
     }
     
     .all-post-time{
+        align-self: flex-start;
         font-size: 12px;
         padding-left: 1rem;
         white-space: nowrap;
@@ -989,5 +1003,61 @@ code {
       width: 100%;
       height: auto;
     }
+
+    h1 {
+        font-size: 25px;
+        margin: 0;
+        color: var(--contrast-color);
+    }
+    
+    h2 {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: 'GeistMono', sans-serif;
+        text-transform: uppercase;
+        margin-top: 8vh;
+        color: var(--contrast-color);
+    }
+    
+    h3 {
+        font-size: 16px;
+        font-family: 'GeistMono', sans-serif;
+        font-weight: 300;
+        text-transform: uppercase;
+        margin-top: 5vh;
+        color: var(--contrast-color);
+    }
+    
+    h4 {
+        font-size: 14px;
+        font-weight: 300;
+        font-family: 'GeistMono', sans-serif;
+        text-transform: uppercase;
+        margin-top: 5vh;
+        color: var(--contrast-color);
+    }
+    
+    h5 {
+        font-size: 12px;
+        font-weight: 300;
+        font-family: 'GeistMono', sans-serif;
+        text-transform: uppercase;
+        margin-top: 5vh;
+        color: var(--contrast-color);
+    }
+    
+    h6 {
+        font-size: 10px;
+        font-weight: 300;
+        font-family: 'GeistMono', sans-serif;
+        text-transform: uppercase;
+        margin-top: 5vh;
+        color: var(--contrast-color);
+    }
+
+    li {
+        font-size: 12px;
+    }
+    
 }
   
