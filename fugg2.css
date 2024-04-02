@@ -789,7 +789,6 @@ code {
 
     body {
         background-color: var(--background-color);
-        /* background-color: var(--main-accent); */
     }
 
     .stickysidebar {
@@ -873,7 +872,7 @@ code {
     }
 
     .content {
-        margin-top: 40vh;
+        margin-top: 10vh;
         min-height: 100vh;
         text-align: left;
     }
