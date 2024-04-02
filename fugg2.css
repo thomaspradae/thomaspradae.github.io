@@ -116,6 +116,10 @@
 /* --------------------- */
 
 
+
+
+
+
 body {
     background-color: var(--background-color);
     font-family: 'Inter', sans-serif;
@@ -777,9 +781,15 @@ code {
 
 /* --------------------- */
 /* Mobile */
+/* FUCKING HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL */
+
 
 
 @media (max-width: 600px) {
+
+    body {
+        background-color: var(--main-accent);
+    }
 
     .stickysidebar {
         position: fixed;
@@ -862,7 +872,7 @@ code {
     }
 
     .content {
-        margin-top: 30vh;
+        margin-top: 40vh;
         min-height: 100vh;
         text-align: left;
     }
