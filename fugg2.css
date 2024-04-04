@@ -798,8 +798,30 @@ code {
         display: block;
         margin-left: auto;    
         margin-right: auto;  
-        margin-top: 40vh;
+        margin-top: 35vh;
         margin-bottom: 0;  
+    }
+
+    .home-sidebar-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 12px;
+        height: 12px;
+        background-image: var(--empty-ball);
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .home-sidebar-item {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        color: rgb(144, 144, 144);
+        transition: background-color 0.3s, color 0.3s;
     }
 
     .stickysidebar {
