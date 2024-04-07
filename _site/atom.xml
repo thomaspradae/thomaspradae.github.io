@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Thomas Prada</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2024-04-03T23:45:03-05:00</updated>
- <id>http://localhost:4000</id>
+ <link href="/atom.xml" rel="self"/>
+ <link href="/"/>
+ <updated>2024-04-07T14:20:53-05:00</updated>
+ <id></id>
  <author>
    <name></name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>On Becoming an Adult</title>
-   <link href="http://localhost:4000/building/on-becoming-an-adult"/>
+   <link href="/building/on-becoming-an-adult"/>
    <updated>2024-03-24T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/on-becoming-an-adult</id>
+   <id>/building/on-becoming-an-adult</id>
    <content type="html">&lt;p&gt;Becoming an adult is fucking hard. Becoming an adult is realizing I’m prone to running away from myself. From the piercing silence. Prone to run back into someone’s or something’s arms because the thought of being alone, in this very instance, neither past nor future, but this, this very instance. This one. is a little too unbearable. Because one hates oneself, and one’s thoughts, one’s sharp edges and ugly protuberances. Because one is coming out of a shell.&lt;/p&gt;
 
 &lt;p&gt;One now realizes that one searches for that familiar embrace not for it’s own sake, not for healthy company or being a part of something bigger, but because one feels broken, and seeks to be fixed by someone/something (or is there even a difference (?), I at least like to believe so). But you wont find it. Not a hug warm enough, or praise loud enough.&lt;/p&gt;
@@ -33,9 +33,9 @@
  
  <entry>
    <title>You&apos;ll never be this young again, and how to be okay with that.</title>
-   <link href="http://localhost:4000/building/youll-never-be-this-young"/>
+   <link href="/building/youll-never-be-this-young"/>
    <updated>2024-02-23T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/youll-never-be-this-young</id>
+   <id>/building/youll-never-be-this-young</id>
    <content type="html">&lt;h1 id=&quot;youll-never-be-this-young-again-and-how-to-be-okay-with-that&quot;&gt;You’ll never be this young again, and how to be okay with that.&lt;/h1&gt;
 
 &lt;p&gt;I can’t remember what I did on this day two years ago and I don’t know how to feel about that. In fact, I can barely recall what I did last Monday. And that which I can recall is just a small glimpse at what happened that day. I joked with a friend this past week that (this I do remember) ‘The past doesn’t exist.’ Our minds can’t be held accountable to remember each and every frame that flashes before our eyes. There are days, weeks, or maybe even complete years of my life that have completely disappeared, forever. You might argue, if it wasn’t important, then there was no reason to remember it. Or that, in forgetting, we leave room only for that which is crucial, meant to be remembered. But how do you make peace with the fact that, so much of your life, is gone.&lt;/p&gt;
@@ -59,9 +59,9 @@
  
  <entry>
    <title>Sixth Attempt Github Update</title>
-   <link href="http://localhost:4000/building/sixthattempt"/>
+   <link href="/building/sixthattempt"/>
    <updated>2024-02-23T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/sixthattempt</id>
+   <id>/building/sixthattempt</id>
    <content type="html">&lt;p&gt;Hey.&lt;/p&gt;
 
 </content>
@@ -69,9 +69,9 @@
  
  <entry>
    <title>Another Attempt lol</title>
-   <link href="http://localhost:4000/building/anotherattempt"/>
+   <link href="/building/anotherattempt"/>
    <updated>2024-02-03T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/anotherattempt</id>
+   <id>/building/anotherattempt</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;layout: post
 share: True
@@ -91,9 +91,9 @@ tags: [atempting]
  
  <entry>
    <title>DoubleAttemptFix</title>
-   <link href="http://localhost:4000/building/anotherbuild"/>
+   <link href="/building/anotherbuild"/>
    <updated>2024-01-04T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/anotherbuild</id>
+   <id>/building/anotherbuild</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;layout: post
 share: true
@@ -112,9 +112,9 @@ tags: [brr]
  
  <entry>
    <title>Fifth Attempt</title>
-   <link href="http://localhost:4000/building/attemptno5"/>
+   <link href="/building/attemptno5"/>
    <updated>2024-01-01T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/attemptno5</id>
+   <id>/building/attemptno5</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;layout: post
 share: true
@@ -130,9 +130,9 @@ tags: [brr]
  
  <entry>
    <title>Hello World</title>
-   <link href="http://localhost:4000/building/hello-world"/>
+   <link href="/building/hello-world"/>
    <updated>2022-10-01T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/hello-world</id>
+   <id>/building/hello-world</id>
    <content type="html">&lt;p&gt;I like making things with Ruby on Rails and React Native.&lt;/p&gt;
 
 </content>
@@ -140,9 +140,9 @@ tags: [brr]
  
  <entry>
    <title>Creating navigation menu in Jekyll</title>
-   <link href="http://localhost:4000/building/creating-navigation-menu-in-jekyll"/>
+   <link href="/building/creating-navigation-menu-in-jekyll"/>
    <updated>2017-01-03T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/creating-navigation-menu-in-jekyll</id>
+   <id>/building/creating-navigation-menu-in-jekyll</id>
    <content type="html">&lt;p&gt;Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.&lt;/p&gt;
 
 &lt;p&gt;Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.&lt;/p&gt;
@@ -157,9 +157,9 @@ tags: [brr]
  
  <entry>
    <title>Places where you can learn how to code</title>
-   <link href="http://localhost:4000/building/places-where-you-can-learn-how-to-code"/>
+   <link href="/building/places-where-you-can-learn-how-to-code"/>
    <updated>2015-07-31T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/places-where-you-can-learn-how-to-code</id>
+   <id>/building/places-where-you-can-learn-how-to-code</id>
    <content type="html">&lt;p&gt;Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.&lt;/p&gt;
 
 &lt;p&gt;Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.&lt;/p&gt;
@@ -174,9 +174,9 @@ tags: [brr]
  
  <entry>
    <title>Something Cooler</title>
-   <link href="http://localhost:4000/building/css-hacks-you-may-not-know"/>
+   <link href="/building/css-hacks-you-may-not-know"/>
    <updated>2014-05-12T00:00:00-05:00</updated>
-   <id>http://localhost:4000/building/css-hacks-you-may-not-know</id>
+   <id>/building/css-hacks-you-may-not-know</id>
    <content type="html">&lt;p&gt;Hi&lt;/p&gt;
 </content>
  </entry>

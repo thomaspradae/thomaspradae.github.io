@@ -585,7 +585,7 @@ footer {
 
 .all-post-item-title {
     text-decoration: none;
-    list-style: none;
+    list-style-type: none;
     color: #9b9b9b;
     transition: color 0.3s ease;
 }
@@ -775,6 +775,14 @@ code {
     overflow-x: auto; 
     white-space: pre-wrap; 
     word-wrap: break-word; 
+}
+
+
+.testing {
+    text-decoration: none;
+    list-style-type: none;
+    color: #9b9b9b;
+    transition: color 0.3s ease;
 }
 
 

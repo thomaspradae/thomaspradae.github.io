@@ -1,11 +1,11 @@
 {
     "version": "https://jsonfeed.org/version/1",
     "title": "Thomas Prada",
-    "home_page_url": "http://localhost:4000/",
-    "feed_url": "http://localhost:4000/feed.json",
+    "home_page_url": "/",
+    "feed_url": "/feed.json",
     "description": null,
-    "icon": "http://localhost:4000/apple-touch-icon.png",
-    "favicon": "http://localhost:4000/favicon.ico",
+    "icon": "/apple-touch-icon.png",
+    "favicon": "/favicon.ico",
     "expired": false,
     
     "author": "{"twitter"=>nil, "name"=>nil, "avatar"=>nil, "email"=>nil, "url"=>nil}",
@@ -13,12 +13,12 @@
 "items": [
     
         {
-            "id": "http://localhost:4000/building/on-becoming-an-adult",
+            "id": "/building/on-becoming-an-adult",
             "title": "On Becoming an Adult",
             "summary": "Lesgoh 6",
             "content_text": "Becoming an adult is fucking hard. Becoming an adult is realizing I’m prone to running away from myself. From the piercing silence. Prone to run back into someone’s or something’s arms because the thought of being alone, in this very instance, neither past nor future, but this, this very instance. This one. is a little too unbearable. Because one hates oneself, and one’s thoughts, one’s sharp edges and ugly protuberances. Because one is coming out of a shell.One now realizes that one searches for that familiar embrace not for it’s own sake, not for healthy company or being a part of something bigger, but because one feels broken, and seeks to be fixed by someone/something (or is there even a difference (?), I at least like to believe so). But you wont find it. Not a hug warm enough, or praise loud enough.This too can seem troubling. A life spent too much in one’s own head. Half of it in the past. Half of it in the future. Always seeking. Always measuring. Always comparing. Living somewhere else. Enacting future encounters and re-writing past scenarios in one’s head. Waiting to find one’s solution, A theory of everything, and all at one’s ripe 20 years of age. How funny we are. How foolish.And this too, is no different. As I wish to sound smart. Be well written. As if someday this were to be read. It all means nothing. This is one of those nights when the absurd is a little too loud, but maybe a little too much, enough that it has given me a headache. How funny, that one becomes upset with one’s self because one thinks too much about thinking too much about having these desires to be better. Perhaps one day one shall sit in a room with one’s self and say, at least I can sit with myself, my thoughts might be not be the best, and I despite the fact I still mess up often, I try. I get up, push the boulder and smile. I do not much more. And I used to push it because I waited to get to the top and appreciate the view, but nowadays I just push it. Because I am waiting for death, but until then, at least I shall push. At least I shall make it fun. Find the joke in it. And laugh a little. For this miracle might be a little too rare, not to laugh once in a while.I am now born. I can choose now.-T",
             "content_html": "<p>Becoming an adult is fucking hard. Becoming an adult is realizing I’m prone to running away from myself. From the piercing silence. Prone to run back into someone’s or something’s arms because the thought of being alone, in this very instance, neither past nor future, but this, this very instance. This one. is a little too unbearable. Because one hates oneself, and one’s thoughts, one’s sharp edges and ugly protuberances. Because one is coming out of a shell.</p><p>One now realizes that one searches for that familiar embrace not for it’s own sake, not for healthy company or being a part of something bigger, but because one feels broken, and seeks to be fixed by someone/something (or is there even a difference (?), I at least like to believe so). But you wont find it. Not a hug warm enough, or praise loud enough.</p><p>This too can seem troubling. A life spent too much in one’s own head. Half of it in the past. Half of it in the future. Always seeking. Always measuring. Always comparing. Living somewhere else. Enacting future encounters and re-writing past scenarios in one’s head. Waiting to find one’s solution, A theory of everything, and all at one’s ripe 20 years of age. How funny we are. How foolish.</p><p>And this too, is no different. As I wish to sound smart. Be well written. As if someday this were to be read. It all means nothing. This is one of those nights when the absurd is a little too loud, but maybe a little too much, enough that it has given me a headache. How funny, that one becomes upset with one’s self because one thinks too much about thinking too much about having these desires to be better. Perhaps one day one shall sit in a room with one’s self and say, at least I can sit with myself, my thoughts might be not be the best, and I despite the fact I still mess up often, I try. I get up, push the boulder and smile. I do not much more. And I used to push it because I waited to get to the top and appreciate the view, but nowadays I just push it. Because I am waiting for death, but until then, at least I shall push. At least I shall make it fun. Find the joke in it. And laugh a little. For this miracle might be a little too rare, not to laugh once in a while.</p><p>I am now born. I can choose now.</p><p>-T</p>",
-            "url": "http://localhost:4000/building/on-becoming-an-adult",
+            "url": "/building/on-becoming-an-adult",
             
             
             
@@ -34,12 +34,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/youll-never-be-this-young",
+            "id": "/building/youll-never-be-this-young",
             "title": "You'll never be this young again, and how to be okay with that.",
             "summary": "Lesgoh 4",
             "content_text": "You’ll never be this young again, and how to be okay with that.I can’t remember what I did on this day two years ago and I don’t know how to feel about that. In fact, I can barely recall what I did last Monday. And that which I can recall is just a small glimpse at what happened that day. I joked with a friend this past week that (this I do remember) ‘The past doesn’t exist.’ Our minds can’t be held accountable to remember each and every frame that flashes before our eyes. There are days, weeks, or maybe even complete years of my life that have completely disappeared, forever. You might argue, if it wasn’t important, then there was no reason to remember it. Or that, in forgetting, we leave room only for that which is crucial, meant to be remembered. But how do you make peace with the fact that, so much of your life, is gone.For those who are busy, and will forget about these very words in a few minutes, I urge you one thing before you go: Live fully. Live like this very second, yes that one, the one that just passed, was rich enough in of itself. No one is watching you, no one is carefully directing your life as it flashes on a silver screen somewhere in some other reality - or if it is, I’ll take this time to greet the audience: stick tight, I’ll try to make the rest of the movie a lot better than what you’ve seen up to this point.If we are to lose all perception of time when we die, then the universe might as well have ended the very instant you die, reaching its terminal state at once. Every single moment after your death, from your funeral, to the very last time someone murmurs your name, to the birth and death of the last human there ever was, will be the same to you. There is no legacy, there is no building an everlasting kingdom. Sure, you will live on in the hearts of a minute few, those are the ones that count I wish to argue. The textbooks, history books - cook books if you’re lucky - let others wish to be included in these. I don’t mean to not dream big, if you know anything about me, you know that am I’ll for that, what I’m trying to say is that don’t live for others, don’t live to build a following or to have statues built in your memory. Focus on what you have now. The consciousness that flows through you, the seconds that will make up tomorrow morning, that despite your best effort, you won’t remember in ten years. And while you won’t remember this at all times, please take a time, every now and then, to remember that today won’t go into a history book, it only existed now, it was only witnessed by you: a cosmological miracle, that woke up one day in the cosmos, and felt, lived, and was.Stop giving up your life to things you don’t want or need. There’s nothing new I presenting to you. Nothing you haven’t heard before, but consider me a reminder, that you’ll never be this young again, you’ll never have a second chance at living today. So pls, as a promise to the young you, the dreamer in you, stop doing the shit you’re not supposed to. And go give every day 110% of what you have. I love you dearly.            ![[./93.png      93]]      ",
             "content_html": "<h1 id=\"youll-never-be-this-young-again-and-how-to-be-okay-with-that\">You’ll never be this young again, and how to be okay with that.</h1><p>I can’t remember what I did on this day two years ago and I don’t know how to feel about that. In fact, I can barely recall what I did last Monday. And that which I can recall is just a small glimpse at what happened that day. I joked with a friend this past week that (this I do remember) ‘The past doesn’t exist.’ Our minds can’t be held accountable to remember each and every frame that flashes before our eyes. There are days, weeks, or maybe even complete years of my life that have completely disappeared, forever. You might argue, if it wasn’t important, then there was no reason to remember it. Or that, in forgetting, we leave room only for that which is crucial, meant to be remembered. But how do you make peace with the fact that, so much of your life, is gone.</p><p>For those who are busy, and will forget about these very words in a few minutes, I urge you one thing before you go: <strong>Live fully.</strong> Live like this very second, yes that one, the one that just passed, was rich enough in of itself. No one is watching you, no one is carefully directing your life as it flashes on a silver screen somewhere in some other reality - or if it is, I’ll take this time to greet the audience: stick tight, I’ll try to make the rest of the movie a lot better than what you’ve seen up to this point.</p><p>If we are to lose all perception of time when we die, then the universe might as well have ended the very instant you die, reaching its terminal state at once. Every single moment after your death, from your funeral, to the very last time someone murmurs your name, to the birth and death of the last human there ever was, will be the same to you. There is no legacy, there is no building an everlasting kingdom. Sure, you will live on in the hearts of a minute few, those are the ones that count I wish to argue. The textbooks, history books - cook books if you’re lucky - let others wish to be included in these. I don’t mean to not dream big, if you know anything about me, you know that am I’ll for that, what I’m trying to say is that don’t live for others, don’t live to build a following or to have statues built in your memory. Focus on what you have now. The consciousness that flows through you, the seconds that will make up tomorrow morning, that despite your best effort, you won’t remember in ten years. And while you won’t remember this at all times, please take a time, every now and then, to remember that today won’t go into a history book, it only existed now, it was only witnessed by you: a cosmological miracle, that woke up one day in the cosmos, and felt, lived, and was.</p><p>Stop giving up your life to things you don’t want or need. There’s nothing new I presenting to you. Nothing you haven’t heard before, but consider me a reminder, that you’ll never be this young again, you’ll never have a second chance at living today. So pls, as a promise to the young you, the dreamer in you, stop doing the shit you’re not supposed to. And go give every day 110% of what you have. I love you dearly.</p><table>  <tbody>    <tr>      <td>![[./93.png</td>      <td>93]]</td>    </tr>  </tbody></table>",
-            "url": "http://localhost:4000/building/youll-never-be-this-young",
+            "url": "/building/youll-never-be-this-young",
             
             
             
@@ -55,12 +55,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/sixthattempt",
+            "id": "/building/sixthattempt",
             "title": "Sixth Attempt Github Update",
             "summary": "Lesgoh 3",
             "content_text": "Hey.",
             "content_html": "<p>Hey.</p>",
-            "url": "http://localhost:4000/building/sixthattempt",
+            "url": "/building/sixthattempt",
             
             
             
@@ -76,12 +76,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/anotherattempt",
+            "id": "/building/anotherattempt",
             "title": "Another Attempt lol",
             "summary": "Lesgoh",
             "content_text": "layout: postshare: Truetitle: Another Attempt loldescription: Lesgohsummary: Another Attempttags: [atempting]—brrThis is another attemptReferences",
             "content_html": "<hr /><p>layout: postshare: Truetitle: Another Attempt loldescription: Lesgohsummary: Another Attempttags: [atempting]—</p><h2 id=\"brr\">brr</h2><p>This is another attempt</p><hr /><h2 id=\"references\">References</h2>",
-            "url": "http://localhost:4000/building/anotherattempt",
+            "url": "/building/anotherattempt",
             
             
             
@@ -97,12 +97,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/anotherbuild",
+            "id": "/building/anotherbuild",
             "title": "DoubleAttemptFix",
             "summary": "Lesgoh 3",
             "content_text": "layout: postshare: truetitle: DoubleAttemptFixdescription: Lesgoh 3summary: Another Attempt No. 2tags: [brr]—Henlo.This should be a H1",
             "content_html": "<hr /><p>layout: postshare: truetitle: DoubleAttemptFixdescription: Lesgoh 3summary: Another Attempt No. 2tags: [brr]—</p><p>Henlo.</p><h1 id=\"this-should-be-a-h1\">This should be a H1</h1>",
-            "url": "http://localhost:4000/building/anotherbuild",
+            "url": "/building/anotherbuild",
             
             
             
@@ -118,12 +118,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/attemptno5",
+            "id": "/building/attemptno5",
             "title": "Fifth Attempt",
             "summary": "Lesgoh 2",
             "content_text": "layout: postshare: truetitle: Fifth Attemptdescription: Lesgoh 2summary: Another Attempt No. 2tags: [brr]—Hola. Mi bro.",
             "content_html": "<hr /><p>layout: postshare: truetitle: Fifth Attempt<br />description: Lesgoh 2summary: Another Attempt No. 2tags: [brr]—</p><p>Hola. Mi bro.</p>",
-            "url": "http://localhost:4000/building/attemptno5",
+            "url": "/building/attemptno5",
             
             
             
@@ -139,12 +139,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/hello-world",
+            "id": "/building/hello-world",
             "title": "Hello World",
             "summary": null,
             "content_text": "I like making things with Ruby on Rails and React Native.",
             "content_html": "<p>I like making things with Ruby on Rails and React Native.</p>",
-            "url": "http://localhost:4000/building/hello-world",
+            "url": "/building/hello-world",
             
             
             
@@ -160,12 +160,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/creating-navigation-menu-in-jekyll",
+            "id": "/building/creating-navigation-menu-in-jekyll",
             "title": "Creating navigation menu in Jekyll",
             "summary": "Using data folder to build Jekyll navigation",
             "content_text": "Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.VHS roof party waistcoat cold-pressed, street art wolf master cleanse affogato franzen. Shaman iceland pour-over intelligentsia typewriter tilde, pitchfork copper mug. Wayfarers kickstarter adaptogen vinyl beard kombucha. Organic pinterest master cleanse, mixtape fam gentrify lo-fi kogi.Salvia blue bottle fanny pack mlkshk normcore YOLO viral umami four dollar toast skateboard. Chambray taxidermy slow-carb street art chartreuse. Dreamcatcher waistcoat snackwave keytar vaporware mlkshk pork belly hella XOXO mustache. Tattooed semiotics edison bulb, disrupt polaroid craft beer vape enamel pin bespoke flannel letterpress brooklyn subway tile copper mug. Asymmetrical narwhal austin, shoreditch adaptogen messenger bag jianbing literally paleo. Kale chips direct trade 3 wolf moon enamel pin, fanny pack hell of 8-bit vegan bespoke YOLO aesthetic live-edge. Retro succulents before they sold out whatever bushwick.Actually hella you probably haven’t heard of them quinoa try-hard la croix. Street art schlitz actually hell of pour-over air plant. Post-ironic franzen brunch mumblecore readymade. Food truck photo booth polaroid, gochujang vegan street art yr before they sold out man bun. Tilde selfies chia pitchfork everyday carry post-ironic mumblecore sartorial VHS master cleanse activated charcoal biodiesel williamsburg cronut jean shorts. Poutine helvetica keffiyeh butcher pop-up.",
             "content_html": "<p>Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.</p><p>Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.</p><p>VHS roof party waistcoat cold-pressed, street art wolf master cleanse affogato franzen. Shaman iceland pour-over intelligentsia typewriter tilde, pitchfork copper mug. Wayfarers kickstarter adaptogen vinyl beard kombucha. Organic pinterest master cleanse, mixtape fam gentrify lo-fi kogi.</p><p>Salvia blue bottle fanny pack mlkshk normcore YOLO viral umami four dollar toast skateboard. Chambray taxidermy slow-carb street art chartreuse. Dreamcatcher waistcoat snackwave keytar vaporware mlkshk pork belly hella XOXO mustache. Tattooed semiotics edison bulb, disrupt polaroid craft beer vape enamel pin bespoke flannel letterpress brooklyn subway tile copper mug. Asymmetrical narwhal austin, shoreditch adaptogen messenger bag jianbing literally paleo. Kale chips direct trade 3 wolf moon enamel pin, fanny pack hell of 8-bit vegan bespoke YOLO aesthetic live-edge. Retro succulents before they sold out whatever bushwick.</p><p>Actually hella you probably haven’t heard of them quinoa try-hard la croix. Street art schlitz actually hell of pour-over air plant. Post-ironic franzen brunch mumblecore readymade. Food truck photo booth polaroid, gochujang vegan street art yr before they sold out man bun. Tilde selfies chia pitchfork everyday carry post-ironic mumblecore sartorial VHS master cleanse activated charcoal biodiesel williamsburg cronut jean shorts. Poutine helvetica keffiyeh butcher pop-up.</p>",
-            "url": "http://localhost:4000/building/creating-navigation-menu-in-jekyll",
+            "url": "/building/creating-navigation-menu-in-jekyll",
             
             
             
@@ -181,12 +181,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/places-where-you-can-learn-how-to-code",
+            "id": "/building/places-where-you-can-learn-how-to-code",
             "title": "Places where you can learn how to code",
             "summary": "There many different options to learn to code online, so in this article, find places you can learn to code",
             "content_text": "Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.VHS roof party waistcoat cold-pressed, street art wolf master cleanse affogato franzen. Shaman iceland pour-over intelligentsia typewriter tilde, pitchfork copper mug. Wayfarers kickstarter adaptogen vinyl beard kombucha. Organic pinterest master cleanse, mixtape fam gentrify lo-fi kogi.Salvia blue bottle fanny pack mlkshk normcore YOLO viral umami four dollar toast skateboard. Chambray taxidermy slow-carb street art chartreuse. Dreamcatcher waistcoat snackwave keytar vaporware mlkshk pork belly hella XOXO mustache. Tattooed semiotics edison bulb, disrupt polaroid craft beer vape enamel pin bespoke flannel letterpress brooklyn subway tile copper mug. Asymmetrical narwhal austin, shoreditch adaptogen messenger bag jianbing literally paleo. Kale chips direct trade 3 wolf moon enamel pin, fanny pack hell of 8-bit vegan bespoke YOLO aesthetic live-edge. Retro succulents before they sold out whatever bushwick.Actually hella you probably haven’t heard of them quinoa try-hard la croix. Street art schlitz actually hell of pour-over air plant. Post-ironic franzen brunch mumblecore readymade. Food truck photo booth polaroid, gochujang vegan street art yr before they sold out man bun. Tilde selfies chia pitchfork everyday carry post-ironic mumblecore sartorial VHS master cleanse activated charcoal biodiesel williamsburg cronut jean shorts. Poutine helvetica keffiyeh butcher pop-up.",
             "content_html": "<p>Lorem ipsum dolor amet tousled viral art party blue bottle single-origin coffee cardigan, selvage man braid helvetica. Banh mi taxidermy meditation microdosing. Selvage cornhole YOLO, small batch vexillologist raclette VHS prism sustainable 8-bit ugh semiotics letterpress disrupt pop-up. Celiac shabby chic ugh, jianbing whatever kitsch tattooed edison bulb kogi irony etsy.</p><p>Franzen polaroid hammock iceland blue bottle woke disrupt tilde kale chips raw denim ramps vaporware before they sold out irony. Narwhal vaporware offal shaman celiac kinfolk activated charcoal salvia lomo irony readymade normcore. Yr activated charcoal kombucha, man braid whatever biodiesel hella crucifix adaptogen bicycle rights small batch skateboard mixtape. Hot chicken sustainable green juice 90’s. Ennui kickstarter hella pug, meggings man bun shaman messenger bag. Chambray adaptogen kombucha pug affogato, kogi green juice distillery ugh banh mi.</p><p>VHS roof party waistcoat cold-pressed, street art wolf master cleanse affogato franzen. Shaman iceland pour-over intelligentsia typewriter tilde, pitchfork copper mug. Wayfarers kickstarter adaptogen vinyl beard kombucha. Organic pinterest master cleanse, mixtape fam gentrify lo-fi kogi.</p><p>Salvia blue bottle fanny pack mlkshk normcore YOLO viral umami four dollar toast skateboard. Chambray taxidermy slow-carb street art chartreuse. Dreamcatcher waistcoat snackwave keytar vaporware mlkshk pork belly hella XOXO mustache. Tattooed semiotics edison bulb, disrupt polaroid craft beer vape enamel pin bespoke flannel letterpress brooklyn subway tile copper mug. Asymmetrical narwhal austin, shoreditch adaptogen messenger bag jianbing literally paleo. Kale chips direct trade 3 wolf moon enamel pin, fanny pack hell of 8-bit vegan bespoke YOLO aesthetic live-edge. Retro succulents before they sold out whatever bushwick.</p><p>Actually hella you probably haven’t heard of them quinoa try-hard la croix. Street art schlitz actually hell of pour-over air plant. Post-ironic franzen brunch mumblecore readymade. Food truck photo booth polaroid, gochujang vegan street art yr before they sold out man bun. Tilde selfies chia pitchfork everyday carry post-ironic mumblecore sartorial VHS master cleanse activated charcoal biodiesel williamsburg cronut jean shorts. Poutine helvetica keffiyeh butcher pop-up.</p>",
-            "url": "http://localhost:4000/building/places-where-you-can-learn-how-to-code",
+            "url": "/building/places-where-you-can-learn-how-to-code",
             
             
             
@@ -202,12 +202,12 @@
         },
     
         {
-            "id": "http://localhost:4000/building/css-hacks-you-may-not-know",
+            "id": "/building/css-hacks-you-may-not-know",
             "title": "Something Cooler",
             "summary": "This is a collection of short CSS snippets I thought might be useful for beginners",
             "content_text": "Hi",
             "content_html": "<p>Hi</p>",
-            "url": "http://localhost:4000/building/css-hacks-you-may-not-know",
+            "url": "/building/css-hacks-you-may-not-know",
             
             
             
