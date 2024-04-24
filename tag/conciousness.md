@@ -4,11 +4,24 @@ layout: default
 
 {% assign tag = "conciousness" %}
 {% assign tagged_posts = "" | split: "" %}
-{% for post in site.posts %}
-  {% if post.tags contains tag %}
-    {% assign tagged_posts = tagged_posts | push: post %}
-  {% endif %}
+{% assign collections = 'posts,building,writing,notes,misc' | split: ',' %}
+
+{% for collection_name in collections %}
+  {% assign current_collection = site[collection_name] %}
+  {% for post in current_collection %}
+    {% if post.tags contains tag %}
+      {% assign tagged_posts = tagged_posts | push: post %}
+    {% endif %}
+  {% endfor %}
 {% endfor %}
+
+
+{% assign page.title = tag %}
+
+<head>
+  <title>{{ tag | downcase }} / thomasprada</title>
+</head>
+
 
 
 <h1>{{ tag }}</h1>

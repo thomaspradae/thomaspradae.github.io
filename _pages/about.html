@@ -36,31 +36,7 @@ layout: compress
             <div class="subhome-description">
                 <p>
                     This is some sample text. About what I what I want to write here, not sure what but  something.  Maybe about a small open to what I want to say and make of this space. And maybe you could have something here to talk about what I’ll be talking about. Feel free to explore and find something 
-                </p>
-            </div>
-            <h2 class="subtitle">LATEST</h2>    
-            <h2 class="subtitle">SEARCH BY TOPIC</h2>    
-
-            {% assign all_tags = "" | split: "," %}
-
-            {% for post in site.posts %}
-            {% for tag in post.tags %}
-                {% unless all_tags contains tag %}
-                {% assign all_tags = all_tags | push: tag %}
-                {% endunless %}
-            {% endfor %}
-            {% endfor %}
-
-            {% assign sorted_tags = all_tags | sort %}
-
-            <div class="section-tags">
-            {% for tag in sorted_tags %}
-                {% unless forloop.first %}<span class="muted">/</span>{% endunless %}
-                <a href="/tag/{{ tag | slugify }}" class="internal-link">{{ tag }}</a>
-            {% endfor %}
-            </div>
-
-            <h2 class="subtitle">ALL WRITING</h2> 
+                </p>  
         </div>
     </main> 
 

@@ -7,9 +7,6 @@ summary: Another Full Note attempt
 tags: [attempting, torevise, incomplete]
 ---
 
-# You'll never be this young again, and how to be okay with that. 
-
-
 I can't remember what I did on this day two years ago and I don't know how to feel about that. In fact, I can barely recall what I did last Monday. And that which I can recall is just a small glimpse at what happened that day. I joked with a friend this past week that (this I do remember) 'The past doesn't exist.' Our minds can't be held accountable to remember each and every frame that flashes before our eyes. There are days, weeks, or maybe even complete years of my life that have completely disappeared, forever. You might argue, if it wasn't important, then there was no reason to remember it. Or that, in forgetting, we leave room only for that which is crucial, meant to be remembered. But how do you make peace with the fact that, so much of your life, is gone. 
 
 For those who are busy, and will forget about these very words in a few minutes, I urge you one thing before you go: **Live fully.** Live like this very second, yes that one, the one that just passed, was rich enough in of itself. No one is watching you, no one is carefully directing your life as it flashes on a silver screen somewhere in some other reality - or if it is, I'll take this time to greet the audience: stick tight, I'll try to make the rest of the movie a lot better than what you've seen up to this point.

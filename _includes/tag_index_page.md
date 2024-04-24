@@ -2,6 +2,14 @@
 layout: default
 ---
 
+{% assign page.title = tag %}
+
+<head>
+  <title>{{ tag | downcase }} / thomasprada</title>
+</head>
+
+
+
 <h1>{{ tag }}</h1>
  
 <section class="posts">

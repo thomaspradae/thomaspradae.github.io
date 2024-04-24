@@ -38,7 +38,7 @@ layout: compress
             </div>
             <h2 class="subtitle">LATEST</h2> 
             {% assign sorted_building = site.building | sort: 'date' | reverse %}
-            {% if sorted_building%}
+            {% if sorted_building %}
                 {% assign latest_post = sorted_building.first %}
                 <div class="latest-post">
                     <a class="latest-post-title" href="{{ latest_post.url | prepend: site.baseurl }}">{{ latest_post.title }}</a>

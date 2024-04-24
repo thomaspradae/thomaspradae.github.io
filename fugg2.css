@@ -3,7 +3,7 @@
 :root {
     --text-color: #9b9b99;
     --lighter-text-color: #bcbcbc;
- 
+
     --background-color-light: #ffffff;
     --main-accent-light: #260090;
     --secondary-accentlight: #B296FF;
@@ -133,14 +133,27 @@ li {
     color: #9b9b9b;
 }
 
+a:-webkit-any-link {
+    color: var(--secondary-accent);
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+a:-webkit-any-link:hover {
+    color: var(--main-accent);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .gif-home {
     max-width: 100%;
     max-height: 80vh;
     height: auto;
     display: block;
-    margin-left: auto;    
-    margin-right: auto;   
-    margin-bottom: 30vh;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30vh;
 }
 
 .sidebar {
@@ -165,9 +178,14 @@ li {
 }
 
 /* a */
-.home-sidebar-item-a {
+.home-sidebar-item a{
     text-decoration: none;
-    color: inherit;
+    color: #9b9b99;
+}
+
+.home-sidebar-item a:hover{
+    text-decoration: underline;
+    color: var(--contrast-color);
 }
 
 .home-sidebar-item::before {
@@ -376,7 +394,7 @@ footer {
 }
 
 .page-content img {
-    display: block; 
+    display: block;
     max-width: 100%;
     height: auto;
     margin-left: auto;
@@ -495,12 +513,26 @@ footer {
     margin-bottom: 15vh;
 }
 
+.latest-post a{
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--contrast-color);
+    transition: color 0.3s ease;
+}
+
+.latest-post a:hover{
+    color: var(--main-accent);
+    text-decoration: none;
+}
+
 .latest-post-title {
     text-decoration: none;
     font-weight: bold;
     color: var(--contrast-color);
     transition: color 0.3s ease;
 }
+
+
 
 .latest-post:hover .latest-post-title {
     color: var(--main-accent);
@@ -514,7 +546,7 @@ footer {
     color: #bcbcbc;
     font-size: 12px;
     text-transform: uppercase;
-    transition: color 0.3s ease;  
+    transition: color 0.3s ease;
 }
 
 .latest-post-time{
@@ -555,6 +587,11 @@ footer {
     margin-bottom: 15vh;
 }
 
+.section-tags a{
+    color: #9b9b9b;
+    transition: color 0.3s ease;
+}
+
 .internal-link {
     color: #9b9b9b;
     transition: color 0.3s ease;
@@ -574,6 +611,18 @@ footer {
     justify-content: space-between;
     margin-bottom: 0.5rem;
 }
+
+.posts a{
+    color: #9b9b9b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.posts a:hover {
+    color: var(--main-accent);
+    text-decoration: underline;
+}
+
 
 .posts-ul {
     padding: 0;
@@ -612,25 +661,25 @@ footer {
 }
 
 #theme-toggle {
-    position: fixed;  
-    bottom: 0vh;  
-    left: 0vw; 
-    z-index: 1000;  
-    padding: 10px 20px 10px 20px;  
-    cursor: pointer;  
+    position: fixed;
+    bottom: 0vh;
+    left: 0vw;
+    z-index: 1000;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
     background-color: transparent;
     color: var(--text-color);
-    border: none; 
-    font-family: 'GeistMono', sans-serif;  
-    font-size: 10px; 
+    border: none;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 10px;
     text-decoration: underline;
-    text-transform: uppercase; 
-    overflow: hidden; 
-    background-image: var(--ball); 
+    text-transform: uppercase;
+    overflow: hidden;
+    background-image: var(--ball);
     background-size: 5px 5px;
-    background-repeat: no-repeat; 
-    background-position: 10px center; 
-    border-radius: 5px; 
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    border-radius: 5px;
 }
 
 #theme-toggle:hover {
@@ -638,7 +687,7 @@ footer {
 }
 
 .contact{
-    font-family: 'GeistMono', sans-serif;  
+    font-family: 'GeistMono', sans-serif;
     font-weight: 500;
     font-size: 14px;
     text-transform: lowercase;
@@ -653,7 +702,7 @@ footer {
 
 
 .breadcrumbs{
-    font-family: 'GeistMono', sans-serif;  
+    font-family: 'GeistMono', sans-serif;
     font-weight: 500;
     font-size: 12px;
     color: var(--lightest-text);
@@ -672,7 +721,7 @@ footer {
   }
 
 .footnote{
-    font-family: 'GeistMono', sans-serif;  
+    font-family: 'GeistMono', sans-serif;
     font-weight: 300;
     font-size: 14px;
     color: var(--main-accent);
@@ -711,6 +760,12 @@ footer {
 }
 
 .tags-holder{
+    color: #9b9b9b;
+    align-items: right;
+}
+
+
+.tags-holder a{
     color: #9b9b9b;
     align-items: right;
 }
@@ -770,11 +825,11 @@ h6 {
 
 code {
     color: var(--contrast-color);
-    display: block; 
-    max-width: 100%; 
-    overflow-x: auto; 
-    white-space: pre-wrap; 
-    word-wrap: break-word; 
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 
@@ -804,10 +859,10 @@ code {
         max-height: 80vh;
         height: auto;
         display: block;
-        margin-left: auto;    
-        margin-right: auto;  
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 35vh;
-        margin-bottom: 0;  
+        margin-bottom: 0;
     }
 
     .home-sidebar-item::before {
@@ -838,14 +893,14 @@ code {
         transform: translateY(-50%);
         margin-left: 1vw;
     }
-    
+
     /* ul */
     .stickysidebar-list {
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
-    
+
     /* li */
     .stickysidebar-list-item {
         font-size: 8px;
@@ -855,12 +910,12 @@ code {
         color: rgb(144, 144, 144);
         transition: background-color 0.3s, color 0.3s;
     }
-    
+
     .stickysidebar-list-item a{
         color: inherit;
         text-decoration: none;
     }
-    
+
     .stickysidebar-list-item::before {
         content: '';
         position: absolute;
@@ -874,26 +929,26 @@ code {
         opacity: 0;
         transition: opacity 0.3s ease, transform 0.3s ease;
     }
-    
+
     .stickysidebar-list-item:hover::before {
         opacity: 1;
         transform: translateY(-50%) scale(1);
     }
-    
+
     .stickysidebar-list-item:hover {
          color: var(--contrast-color)
     }
-    
+
     .stickysidebar-list-item a:hover {
         text-decoration: underline;
          color: var(--contrast-color);
     }
-    
+
     .stickysidebar-list-item a.active {
         font-weight: bold;
         color: var(--contrast-color);
     }
-    
+
     .stickysidebar ul li a.active::before {
         content: '';
         position: absolute;
@@ -907,7 +962,7 @@ code {
         transition: opacity 0.4s ease;
         opacity: 1;
     }
-    
+
     .stickysidebar ul li a.active:hover::before {
          opacity: 0;
     }
@@ -1002,7 +1057,7 @@ code {
         color: #bcbcbc;
         font-size: 8px;
         text-transform: uppercase;
-        transition: color 0.3s ease;  
+        transition: color 0.3s ease;
     }
 
     .latest-post-read-more a{
@@ -1012,13 +1067,13 @@ code {
         transition: color 0.3s ease;
         font-size: 12px;
     }
-    
+
     .internal-link {
         color: #9b9b9b;
         transition: color 0.3s ease;
         font-size: 12px;
     }
-    
+
     .muted{
         color: #bcbcbc;
         font-size: 12px;
@@ -1039,7 +1094,7 @@ code {
         color: #9b9b9b;
         transition: color 0.3s ease;
     }
-    
+
     .all-post-time{
         align-self: flex-start;
         font-size: 12px;
@@ -1049,7 +1104,7 @@ code {
         color: #9b9b9b;
         transition: color 0.3s ease;
     }
-    
+
     .page-content img {
       width: 100%;
       height: auto;
@@ -1060,7 +1115,7 @@ code {
         margin: 0;
         color: var(--contrast-color);
     }
-    
+
     h2 {
         font-size: 18px;
         font-weight: 400;
@@ -1069,7 +1124,7 @@ code {
         margin-top: 8vh;
         color: var(--contrast-color);
     }
-    
+
     h3 {
         font-size: 16px;
         font-family: 'GeistMono', sans-serif;
@@ -1078,7 +1133,7 @@ code {
         margin-top: 5vh;
         color: var(--contrast-color);
     }
-    
+
     h4 {
         font-size: 14px;
         font-weight: 300;
@@ -1087,7 +1142,7 @@ code {
         margin-top: 5vh;
         color: var(--contrast-color);
     }
-    
+
     h5 {
         font-size: 12px;
         font-weight: 300;
@@ -1096,7 +1151,7 @@ code {
         margin-top: 5vh;
         color: var(--contrast-color);
     }
-    
+
     h6 {
         font-size: 10px;
         font-weight: 300;
@@ -1109,6 +1164,5 @@ code {
     li {
         font-size: 12px;
     }
-    
+
 }
-  
