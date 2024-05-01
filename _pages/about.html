@@ -25,13 +25,22 @@ layout: compress
         }
       </script>
 
-    {% include nav.html %}
+    <div id="menu-overlay">
+
+      {% include nav.html %}
+
+      <div class="menu-content">
+      </div>
+
+    </div>
+
+    <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
     
     <main class="content">
         <div class="page-content">
             <div class="content-header">
-                <img src="/assets/images/resources/about.png" alt="Cube" class="page-icon">
                 <h1 class="page-title">about.</h1>
+                <img src="/assets/images/resources/about.png" alt="Cube" class="page-icon">
             </div>
             <div class="subhome-description">
                 <p>
@@ -139,6 +148,7 @@ layout: compress
         initializeTheme();
       </script>
 
+      <script src="mobilemenu.js"></script>
       <script src="weather.js"></script>
 
 

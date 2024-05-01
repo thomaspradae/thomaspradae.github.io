@@ -22,19 +22,40 @@ layout: compress
         }
       </script>
 
-    {% include nav.html %}
+
+    <div id="menu-overlay">
+
+      {% include nav.html %}
+
+      <div class="menu-content">
+      </div>
+
+    </div>
+
+    <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
+
+
     
     <main class="content">
         <div class="page-content">
+          <div class="subpage-intro">
             <div class="content-header">
-                <img src="/assets/images/resources/writing.png" alt="Cabinet" class="page-icon">
                 <h1 class="page-title">writing.</h1>
+                <img src="/assets/images/resources/writing.png" alt="Cabinet" class="page-icon">
             </div>
+
             <div class="subhome-description">
-                <p>
-                    This is some sample text. About what I what I want to write here, not sure what but  something.  Maybe about a small open to what I want to say and make of this space. And maybe you could have something here to talk about what I’ll be talking about. Feel free to explore and find something 
+                <p class="subhome-description-p">
+                    By an idiot, for idiots. This is some sample text. I tend to write what comes to mind. About what I what I want to write here, not sure what but  something.  Maybe about a small open to what I want to say and make of this space. And maybe you could have something here to talk about what I’ll be talking about. Feel free to explore and find something 
                 </p>
             </div>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
+
+          <div class="latest">
+            <div class="line inv"></div>
+
             <h2 class="subtitle">LATEST</h2> 
             {% assign sorted_writing = site.writing | sort: 'date' | reverse %}
             {% if sorted_writing%}
@@ -46,6 +67,12 @@ layout: compress
                     <p class="latest-post-read-more"><a href="{{ latest_post.url | prepend: site.baseurl }}">Read more ↩</a></p>
                 </div>
             {% endif %}
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
+
+          <div class="topics">
+            <div class="line inv"></div>
   
             <h2 class="subtitle">SEARCH BY TOPIC</h2>   
   
@@ -67,10 +94,13 @@ layout: compress
                 <a href="/tag/{{ tag | slugify }}" class="internal-link">{{ tag }}</a>
             {% endfor %}
             </div>
-            
-            
-  
-            <h2 class="subtitle">ALL PROJECTS</h2>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
+
+          <div class="all">
+            <div class="line inv"></div>
+            <h2 class="subtitle">ALL WRITING</h2>
                 <section class="posts">
                     <ul class="posts-ul">
                       {% assign sorted_writing = site.writing | sort: 'date' | reverse %}
@@ -82,6 +112,9 @@ layout: compress
                       {% endfor %}  
                     </ul>
                 </section>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
         </div>
     </main> 
   
@@ -106,7 +139,7 @@ layout: compress
       </div>
   </footer>
 
-    <button id="theme-toggle">Dark Mode</button>
+    <button id="theme-toggle">DARK MODE</button>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -182,7 +215,7 @@ layout: compress
 
       initializeTheme();
     </script>
-
+    <script src="mobilemenu.js"></script>
     <script src="weather.js"></script>
 
 </body>

@@ -22,7 +22,16 @@ layout: compress
         }
       </script>
 
-    {% include nav.html %}
+    <div id="menu-overlay">
+
+      {% include nav.html %}
+
+      <div class="menu-content">
+      </div>
+
+    </div>
+
+    <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
 
     <main class="content">
         <div class="page-content">
@@ -127,6 +136,7 @@ layout: compress
       initializeTheme();
     </script>
 
+    <script src="mobilemenu.js"></script>
     <script src="weather.js"></script>
 
 

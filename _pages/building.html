@@ -20,22 +20,39 @@ layout: compress
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.querySelector('body').classList.add('theme-dark')
         }
-      </script>
+    </script>
 
-    {% include nav.html %}
+    <div id="menu-overlay">
+
+      {% include nav.html %}
+
+      <div class="menu-content">
+      </div>
+
+    </div>
+
+    <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
     
     <main class="content">
         <div class="page-content">
+          <div class="subpage-intro">
             <div class="content-header">
-                <img src="/assets/images/resources/building.png" alt="Cube" class="page-icon">
-                <h1 class="page-title">building.</h1>
+              <h1 class="page-title">building.</h1>
+              <img src="/assets/images/resources/building.png" alt="Cube" class="page-icon">
             </div>
 
             <div class="subhome-description">
-                <p>
-                    This is some sample text. About what I what I want to write here, not sure what but  something.  Maybe about a small open to what I want to say and make of this space. And maybe you could have something here to talk about what I’ll be talking about. Feel free to explore and find something 
-                </p>
+              <p class="subhome-description-p">
+                  This is some sample text. About what I what I want to write here, not sure what but  something.  Maybe about a small open to what I want to say and make of this space. And maybe you could have something here to talk about what I’ll be talking about. Feel free to explore and find something 
+              </p>
             </div>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
+
+          <div class="latest">
+            <div class="line inv"></div>
+
             <h2 class="subtitle">LATEST</h2> 
             {% assign sorted_building = site.building | sort: 'date' | reverse %}
             {% if sorted_building %}
@@ -43,11 +60,18 @@ layout: compress
                 <div class="latest-post">
                     <a class="latest-post-title" href="{{ latest_post.url | prepend: site.baseurl }}">{{ latest_post.title }}</a>
                     <time class="latest-post-time" datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: "%B %d, %Y" }}</time>
+                    <!-- <time class="latest-post-time" datetime="{{ latest_post.date | date_to_xmlschema }}">algorithm ({{ latest_post.date | date: "%d  %m  %Y"  }})</time> -->
                     <p class="latest-post-p">{{ latest_post.excerpt | strip_html | truncatewords: 50, "..." }}</p>
                     <p class="latest-post-read-more"><a href="{{ latest_post.url | prepend: site.baseurl }}">Read more ↩</a></p>
                 </div>
             {% endif %}
-  
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
+
+          <div class="topics">
+            <div class="line inv"></div>
+
             <h2 class="subtitle">SEARCH BY TOPIC</h2>   
   
             {% assign all_tags = "" | split: "," %}
@@ -68,9 +92,12 @@ layout: compress
                 <a href="/tag/{{ tag | slugify }}" class="internal-link">{{ tag }}</a>
             {% endfor %}
             </div>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
             
-            
-  
+          <div class="all">
+            <div class="line inv"></div>
             <h2 class="subtitle">ALL PROJECTS</h2>
                 <section class="posts">
                     <ul class="posts-ul">
@@ -83,6 +110,9 @@ layout: compress
                       {% endfor %}  
                     </ul>
                 </section>
+            <div class="line sub"></div>
+            <div class="line dark"></div>
+          </div>
         </div>
     </main> 
 
@@ -184,7 +214,8 @@ layout: compress
 
         initializeTheme();
       </script>
-
+      
+    <script src="mobilemenu.js"></script>
     <script src="weather.js"></script>
 
 
