@@ -1156,7 +1156,7 @@ code {
         left: -100%; /* Off-screen initially */
         width: 100%;
         height: 200%;
-        background-color: var(--secondary-accent); /* Semi-transparent background */
+        background-color: var(--background-color); /* Semi-transparent background */
         transition: left 0.3s ease; 
         z-index: 999; /* Make sure it's on top */
     }
@@ -1263,7 +1263,7 @@ code {
     }
 
     p{
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .subhome-description {
@@ -1272,33 +1272,34 @@ code {
         margin-bottom: 5vh;
     }
 
+    .subhome-description-p {
+        text-align: justify;
+        color: var(--backup-text-color);
+        margin-bottom: 0vh;
+    }
+
     .subtitle {
         font-family: 'GeistMono', sans-serif;
         font-weight: 500;
-        font-size: 12px;
+        font-size: 14px;
         color: var(--contrast-color);
         text-align: left;
         margin-top: 5vh;
         margin-bottom: 1vh;
     }
 
-    .section-tags{
-        margin-bottom: 5vh;
-    }
-
-    .latest-post-title {
-        font-size: 12px;
+    .latest-post .latest-post-title {
+        font-size: 14px;
         text-decoration: none;
-        font-weight: bold;
         color: var(--contrast-color);
         transition: color 0.3s ease;
         line-height: 0px;
     }
 
     .latest-post-time{
-        font-size: 12px;
+        font-size: 10px;
         display: block;
-        color: var(--contrast-color);
+        color: var(--secondary-accent);
         transition: color 0.3s ease;
         margin-bottom: 1vh;
     }
@@ -1306,11 +1307,9 @@ code {
     .latest-post-p {
         margin-top: 1vh;
         margin-bottom: 1vh;
-        font-family: 'GeistMono', sans-serif;
         font-weight: 300;
-        color: #bcbcbc;
-        font-size: 8px;
-        text-transform: uppercase;
+        color: var(--backup-text-color);
+        font-size: 10px;
         transition: color 0.3s ease;
     }
 
@@ -1322,14 +1321,25 @@ code {
         font-size: 12px;
     }
 
+    .section-tags{
+        margin-bottom: 5vh;
+        font-size: 14px;
+    }
+
+    .section-tags a{
+        color: var(--backup-text-color);
+        transition: color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .muted {
+        color: var(--backup-text-color);
+        font-size: 14px;
+    }
+
     .internal-link {
         color: #9b9b9b;
         transition: color 0.3s ease;
-        font-size: 12px;
-    }
-
-    .muted{
-        color: #bcbcbc;
         font-size: 12px;
     }
 
@@ -1341,21 +1351,28 @@ code {
         margin-bottom: 0.5rem;
     }
 
+    .posts-ul {
+        margin-bottom: 5vh;
+    }
+
+    .all-post-item a{
+        color: var(--backup-text-color);
+    }
+
     .all-post-item-title {
-        font-size: 12px;
+        font-size: 14px;
         text-decoration: none;
         list-style: none;
-        color: #9b9b9b;
         transition: color 0.3s ease;
     }
 
     .all-post-time{
         align-self: flex-start;
-        font-size: 12px;
+        font-size: 14px;
         padding-left: 1rem;
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
-        color: #9b9b9b;
+        color: var(--backup-text-color);
         transition: color 0.3s ease;
     }
 
