@@ -2,7 +2,7 @@
 layout: post
 share: true
 title: You'll never be this young again, and how to be okay with that.
-description: Lesgoh 4
+description: A rant on the passage of time
 summary: Another Full Note attempt
 tags: [attempting, torevise, incomplete]
 ---

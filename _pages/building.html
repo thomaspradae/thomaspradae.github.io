@@ -99,17 +99,23 @@ layout: compress
           <div class="all">
             <div class="line inv"></div>
             <h2 class="subtitle">ALL PROJECTS</h2>
-                <section class="posts">
-                    <ul class="posts-ul">
-                      {% assign sorted_building = site.building | sort: 'date' | reverse %}
-                      {% for post in sorted_building %}
-                      <li class = "all-post-item">
-                        <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
-                        <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
-                      </li>
-                      {% endfor %}  
-                    </ul>
-                </section>
+            <section class="posts">
+              <ul class="posts-ul">
+                  {% assign sorted_building = site.building | sort: 'date' | reverse %}
+                  {% for post in sorted_building %}
+                  <li class="all-post-item">
+                      <div class="post-meta">
+                          <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+                      </div>
+                      <div class="post-content">
+                          <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
+                          <p class="all-post-description">{{ post.description | strip_html | truncatewords: 50, "..." }}</p>
+                      </div>
+                  </li>
+                  {% endfor %}
+              </ul>
+          </section>
+          
             <div class="line sub"></div>
             <div class="line dark"></div>
           </div>

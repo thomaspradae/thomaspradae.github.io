@@ -96,7 +96,6 @@ layout: compress
             <div class="line dark"></div>
           </div>
             
-            
           <div class="all">
             <div class="line inv"></div>
             <h2 class="subtitle">ALL NOTES</h2>
@@ -105,8 +104,13 @@ layout: compress
                       {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
                       {% for post in sorted_notes %}
                       <li class = "all-post-item">
-                        <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
-                        <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+                        <div class="post-meta">
+                          <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+                        </div>
+                        <div class="post-content">
+                          <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
+                          <p class="all-post-description">{{ post.description | strip_html | truncatewords: 50, "..." }}</p>
+                        </div>
                       </li>
                       {% endfor %}  
                     </ul>

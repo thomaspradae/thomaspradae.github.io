@@ -11,8 +11,20 @@
     --text-color: #9b9b99;
     --lighter-text-color: #bcbcbc;
 
-    --backup-text-color-light: #9b9b9b;
-    --backup-text-color-light-v2: #bcbcbc;
+    /* --backup-text-color-light: #757575;
+    --backup-text-color-light-v2: #9b9b9b;
+    --backup-text-color-light-v3: #bcbcbc;
+    --backup-text-color-light-v4: #dedede; */
+
+    --backup-text-color-light: #676767;
+    --backup-text-color-light-v2: #8D8D8D;
+    --backup-text-color-light-v3: #B3B3B3;
+    --backup-text-color-light-v4: #E0E0E0;
+
+    /* --backup-text-color-light: #9b9b9b; */
+    /* --backup-text-color-light-v2: #bcbcbc;
+    --backup-text-color-light-v3: #DEDEDE; */
+
     --background-color-light: #ffffff;
     --main-accent-light: #260090;   
     --secondary-accentlight: #B296FF;
@@ -23,8 +35,13 @@
     --ball-light: url('assets/images/resources/blackball.svg');
 
 
-    --backup-text-color-dark: #595A5A;
-    --backup-text-color-dark-v2: #414242;
+    --backup-text-color-dark: #8C8B8B;
+    --backup-text-color-dark-v2: #6D6D6D;
+    --backup-text-color-dark-v3: #4E4E4E;
+    --backup-text-color-dark-v4: #2F2F2F;
+
+    /* --backup-text-color-dark: #595A5A;
+    --backup-text-color-dark-v2: #414242; */
     --background-color-dark: #0F0F0F;
     --text-color-dark: #ffffff;
     --main-accent-dark: #FF6B00;
@@ -47,6 +64,8 @@
     --text-color: var(--text-color-light);
     --backup-text-color: var(--backup-text-color-light);
     --backup-text-color-v2: var(--backup-text-color-light-v2);
+    --backup-text-color-v3: var(--backup-text-color-light-v3);
+    --backup-text-color-v4: var(--backup-text-color-light-v4);
     --main-accent: var(--main-accent-light);
     --secondary-accent: var(--secondary-accentlight);
     --contrast-color: var(--contrast-color-light);
@@ -61,6 +80,8 @@
     --text-color: var(--text-color-dark);
     --backup-text-color: var(--backup-text-color-dark);
     --backup-text-color-v2: var(--backup-text-color-dark-v2);
+    --backup-text-color-v3: var(--backup-text-color-dark-v3);
+    --backup-text-color-v4: var(--backup-text-color-dark-v4);
     --main-accent: var(--main-accent-dark);
     --secondary-accent: var(--secondary-accent-dark);
     --contrast-color: var(--contrast-color-dark);
@@ -473,14 +494,12 @@ footer {
 
 .subhome-description {
     text-align: justify;
-    color: #9B9B9B;
     margin-bottom: 15vh;
 }
 
 .subhome-description-p{
     text-align: justify;
-    color: var(--backup-text-color);
-    /* color: #9B9B9B; */
+    color: var(--backup-text-color-v2);
     margin-bottom: 15vh;
     transition: color 0.3s ease;
 }
@@ -491,6 +510,7 @@ footer {
     font-size: 16px;
     color: var(--backup-text-color);
     text-align: left;
+    transition: color 0.3s ease;
 }
 
 .content-header {
@@ -606,7 +626,7 @@ footer {
 
 .latest-post a{
     text-decoration: none;
-    color: var(--backup-text-color);
+    color: var(--backup-text-color-v2);
     transition: color 0.3s ease;
 }
 
@@ -638,7 +658,7 @@ footer {
     /* font-family: 'GeistMono', sans-serif; */
     /* font-family: 'Crimson Pro', serif; */
     font-weight: 400;
-    color: var(--backup-text-color-v2);
+    color: var(--backup-text-color-v3);
     font-size: 14px;
     /* text-transform: uppercase; */
     transition: color 0.3s ease;
@@ -650,7 +670,7 @@ footer {
     font-size: 12px;
     text-transform: uppercase;
     display: block;
-    color: var(--backup-text-color-v2);
+    color: var(--backup-text-color-v3);
     transition: color 0.3s ease;
     margin-bottom: 2vh;
 }
@@ -725,27 +745,26 @@ footer {
     color: var(--backup-text-color-v2);
 }
 
-.posts li {
+/* .posts li {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+} */
+
+.posts li {
+    display: flex;
+    justify-content: space-between;
 }
 
-/* .posts a{
-    color: var(--backup-text-color-v2);
-    text-decoration: none;
-    transition: color 0.3s ease;
-} */
-
-/* .posts a:hover {
-    color: var(--contrast-color);
-    text-decoration: underline;
-} */
+.post-content {
+    flex-grow: 1;
+}
 
 .posts-ul {
     padding: 0;
-    margin-bottom: 15vh;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
 }
 
 .all-post-item{
@@ -755,6 +774,7 @@ footer {
 
 .all-post-item a{
     color: var(--backup-text-color-v2);
+    margin-left: auto;
 }
 
 .all-post-item-title {
@@ -764,10 +784,18 @@ footer {
 }
 
 .all-post-time{
-    padding-left: 1rem;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 12px;
+    color: var(--backup-text-color-v4);
+    padding-right: 1rem;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
     transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.post-meta {
+    text-align: left; /* Aligns the content within post-meta to the left */
 }
 
 .all-post-item-title:hover {
@@ -779,6 +807,12 @@ footer {
 .all-post-item:hover .all-post-time{
     /* color: var(--main-accent); */
     color: var(--secondary-accent);
+}
+
+.all-post-item:hover .all-post-description{
+    color: var(--backup-text-color);
+    /* color: red;
+    color: var(--contrast-color); */
 }
 
 .all-post-item:hover .all-post-item-title{
@@ -801,6 +835,15 @@ footer {
 
 .posts-ul .all-post-item:hover a {
     color: var(--contrast-color);
+}
+
+.all-post-description {
+    font-size: 12px;
+    color: var(--backup-text-color-v3);
+    display: block;
+    margin-top: 0.5vh;
+    margin-bottom: 6vh;
+    transition: color 0.3s ease;
 }
 
 .contact{
@@ -1307,7 +1350,6 @@ code {
     .latest-post-p {
         margin-top: 1vh;
         margin-bottom: 1vh;
-        font-weight: 300;
         color: var(--backup-text-color);
         font-size: 10px;
         transition: color 0.3s ease;
@@ -1345,7 +1387,6 @@ code {
 
     .posts li {
         align-items: flex-start;
-        align-items: center;
         display: flex;
         justify-content: space-between;
         margin-bottom: 0.5rem;
@@ -1356,7 +1397,7 @@ code {
     }
 
     .all-post-item a{
-        color: var(--backup-text-color);
+        color: var(--contrast-color);
     }
 
     .all-post-item-title {
@@ -1369,11 +1410,20 @@ code {
     .all-post-time{
         align-self: flex-start;
         font-size: 14px;
-        padding-left: 1rem;
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
-        color: var(--backup-text-color);
+        color: var(--secondary-accent);
         transition: color 0.3s ease;
+    }
+
+    .all-post-description {
+        font-size: 10px;
+        color: var(--backup-text-color);
+        /* color: var(--backup-text-color-v3);
+        display: block;
+        margin-top: 0.5vh;
+        margin-bottom: 6vh;
+        transition: color 0.3s ease; */
     }
 
     .page-content img {
