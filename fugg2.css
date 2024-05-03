@@ -222,6 +222,19 @@ color: var(--background-color);
 background: var(--main-accent);
 } */
 
+.fourofour-text p{
+    text-align: center;
+    color: var(--contrast-color);
+}
+
+.page-content .fourofour-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0vh;
+}
 
 body {
     background-color: var(--background-color);
@@ -243,8 +256,6 @@ a:-webkit-any-link {
     cursor: pointer;
     transition: color 0.3s ease;
 } 
-
-
 
 a:-webkit-any-link:hover {
     color: var(--main-accent);

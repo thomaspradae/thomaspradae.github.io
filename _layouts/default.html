@@ -65,7 +65,25 @@ layout: compress
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <!-- <script src="/click.js"></script> -->
-  <script src="/gsapscroll.js"></script>
+  <!-- <script src="/gsapscroll.js"></script> -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    if (window.innerWidth > 600) {
+      console.log("Screen width is greater than 600px, animation active");
+      gsap.to(".stickysidebar", {
+        scrollTrigger: {
+          trigger: ".footer-line",
+          start: "top 100%",
+          end: "bottom 10%",
+          scrub: 1,
+        },
+        y: -500,
+      });
+    } else {
+      console.log("Screen width is less than 600px, animation inactive");
+    }
+  </script>
 
   <script>
       var darkModeToggle = document.querySelector("#theme-toggle");
