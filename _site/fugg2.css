@@ -570,10 +570,6 @@ footer {
     transition: transform 0.6s ease-in-out; 
 }
 
-.latest:hover .dark{
-    transform: scaleX(1);
-}
-
 .topics .subtitle{
     transition: color 0.3s ease;
 }
@@ -595,15 +591,6 @@ footer {
 }
 
 .section-tags a:hover{
-    color: var(--contrast-color);
-}
-
-
-.all:hover .dark{
-    transform: scaleX(1);
-}
-
-.all:hover .subtitle{
     color: var(--contrast-color);
 }
 
@@ -630,6 +617,10 @@ footer {
     transition: color 0.3s ease;
 }
 
+.latest:hover .dark{
+    transform: scaleX(1);
+}
+
 .latest:hover .subtitle{
     color: var(--contrast-color);
 }
@@ -638,10 +629,13 @@ footer {
     color: var(--contrast-color);
 }
 
-/* .latest-post a:hover{
-    color: var(--contrast-color);
-    text-decoration: none;
-} */
+.latest:hover p {
+    color: var(--backup-text-color);
+}
+
+.latest:hover .latest-post-time {
+    color: var(--secondary-accent);
+}
 
 .latest-post-title {
     text-decoration: none;
@@ -649,7 +643,6 @@ footer {
     color: var(--backup-text-color-v2);
     transition: color 0.3s ease;
 }
-
 
 .latest-post-p {
     text-align: justify;
@@ -675,15 +668,6 @@ footer {
     margin-bottom: 2vh;
 }
 
-
-.latest:hover p {
-    color: var(--backup-text-color);
-}
-
-.latest:hover .latest-post-time {
-    color: var(--secondary-accent);
-}
-
 .latest-post-read-more {
     text-decoration: none;
     color: var(--contrast-color);
@@ -692,8 +676,7 @@ footer {
 }
 
 .latest-post-read-more a{
-    text-decoration: underover;
-    color: #bcbcbc;
+    color: var(--backup-text-color-v2);
     font-weight: bold;
     transition: color 0.3s ease;
     font-size: 14px;
@@ -827,6 +810,14 @@ footer {
 .all:hover .all-post-item{
     color: var(--backup-text-color);
 
+}
+
+.all:hover .dark{
+    transform: scaleX(1);
+}
+
+.all:hover .subtitle{
+    color: var(--contrast-color);
 }
 
 /* .posts-ul .all-post-item a:hover {
@@ -1301,6 +1292,26 @@ code {
         color: var(--contrast-color);
     }
 
+    .latest:hover .dark{
+        transform: scaleX(0);
+    }
+    
+    .latest:hover .subtitle{
+        color: var(--contrast-color);
+    }
+    
+    .latest:hover .latest-post a{
+        color: var(--contrast-color);
+    }
+    
+    .latest:hover p {
+        color: var(--backup-text-color);
+    }
+    
+    .latest:hover .latest-post-time {
+        color: var(--secondary-accent);
+    }
+
     .latest-post{
         margin-bottom: 5vh;
     }
@@ -1319,6 +1330,14 @@ code {
         text-align: justify;
         color: var(--backup-text-color);
         margin-bottom: 0vh;
+    }
+
+    .subpage-intro:hover .dark{
+        transform: scaleX(0);
+    }
+    
+    .subpage-intro:hover .subhome-description-p{
+        color: var(--backup-text-color);
     }
 
     .subtitle {
@@ -1356,8 +1375,7 @@ code {
     }
 
     .latest-post-read-more a{
-        text-decoration: underline;
-        color: #bcbcbc;
+        color: var(--contrast-color);
         font-weight: bold;
         transition: color 0.3s ease;
         font-size: 12px;
@@ -1372,6 +1390,22 @@ code {
         color: var(--backup-text-color);
         transition: color 0.3s ease;
         font-size: 14px;
+    }
+
+    .topics:hover .dark{
+        transform: scaleX(0); 
+    }
+    
+    .topics:hover .subtitle{
+        color: var(--contrast-color);
+    }
+    
+    .topics:hover .muted{
+        color: var(--backup-text-color);
+    }
+    
+    .topics:hover .section-tags a{
+        color: var(--backup-text-color);
     }
 
     .muted {
@@ -1396,6 +1430,23 @@ code {
         margin-bottom: 5vh;
     }
 
+    .all:hover .all-post-item a{
+        color: var(--contrast-color);
+    }
+    
+    .all:hover .all-post-item{
+        color: var(--contrast-color);
+    
+    }
+    
+    .all:hover .dark{
+        transform: scaleX(0);
+    }
+    
+    .all:hover .subtitle{
+        color: var(--contrast-color);
+    }
+
     .all-post-item a{
         color: var(--contrast-color);
     }
@@ -1409,7 +1460,7 @@ code {
 
     .all-post-time{
         align-self: flex-start;
-        font-size: 14px;
+        font-size: 10px;
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
         color: var(--secondary-accent);
