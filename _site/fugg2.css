@@ -26,7 +26,7 @@
     --backup-text-color-light-v3: #DEDEDE; */
 
     --background-color-light: #ffffff;
-    --main-accent-light: #260090;   
+    --main-accent-light: #B296FF;   
     --secondary-accentlight: #B296FF;
     --contrast-color-light: #000000;
     --lightest-text-light: #E0E0E0;
@@ -44,7 +44,7 @@
     --backup-text-color-dark-v2: #414242; */
     --background-color-dark: #0F0F0F;
     --text-color-dark: #ffffff;
-    --main-accent-dark: #FF6B00;
+    --main-accent-dark: #B296FF;
     /* --secondary-accent-dark: #FFC592; */
     /* --secondary-accent-dark: #FDFF82; */
     --secondary-accent-dark: #B296FF;
@@ -212,7 +212,7 @@ nav.sidebar .home-sidebar-item a {
 /* (002) - DESIGN BASICS */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* ::-moz-selection { 
+::-moz-selection { 
     color: red;
     background: yellow;
   }
@@ -220,7 +220,65 @@ nav.sidebar .home-sidebar-item a {
 ::selection {
 color: var(--background-color);
 background: var(--main-accent);
-} */
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* Move Later */
+
+
+.post-header {
+    margin-bottom: 8vh;
+    margin-top: 5vh;
+}
+
+.post-meta-container {
+    display: flex;
+    margin-top: 1vh;
+}
+
+.post-meta-container-left-side {
+    flex: 1;
+    align-self: flex-end;
+    padding-right: 20px;
+}
+
+.post-meta-container-right-side {
+    flex: 2;
+    align-self: flex-end;
+    padding-right: 20px;
+    padding-left: 20px;
+    /* background-color: #f0f0f0; */
+}
+
+.vertical-line {
+    border-left: 1px solid var(--lightest-text); /* Adjust thickness and color as needed */
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.post-meta-date {
+    margin-bottom: 2vh;
+}
+
+.title-post-meta-p{
+    text-align: justify;
+    margin-top: 0;
+    margin-bottom: 0;
+    /* font-family: 'GeistMono', sans-serif; */
+    /* font-family: 'Crimson Pro', serif; */
+    font-weight: 400;
+    color: var(--backup-text-color-v4);
+    font-size: 14px;
+    /* text-transform: uppercase; */
+    transition: color 0.3s ease;
+}
+
+/* Yes */
 
 .fourofour-text p{
     text-align: center;
@@ -570,6 +628,12 @@ footer {
     height: 0.1px;
 }
 
+.contrast {
+    border-bottom: 0.1px solid var(--lightest-text);
+    height: 0.1px;
+    margin-top: 12px;
+}
+
 .inv {
     border-bottom: 0.5px solid var(--background-color);
     height: 0.1px;
@@ -749,6 +813,7 @@ footer {
 .posts li {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .post-content {
@@ -867,15 +932,13 @@ footer {
     font-family: 'GeistMono', sans-serif;
     font-weight: 500;
     font-size: 12px;
-    color: var(--lightest-text);
+    color: var(--backup-text-color-v3);
     text-transform: uppercase;
     text-align: left;
-    margin-top: 0;
-    margin-bottom: 10vh;
 }
 
 .breadcrumbs a{
-    color: var(--lightest-text);
+    color: var(--backup-text-color-v3);
 }
 
 .breadcrumbs a:hover {
@@ -910,25 +973,32 @@ footer {
     text-decoration: underline;
 }
 
-.meta{
-    margin-top: 12vh;
+/* .meta{
     margin-bottom: 0vh;
     display: block;
     align-items: right;
-}
+} */
+
+/* .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+} */
 
 .date-post{
-    color: var(--lightest-text);
+    font-size: 14px;
+    color: var(--backup-text-color-v3);
 }
 
 .tags-holder{
-    color: #9b9b9b;
+    font-size: 14px;
+    color: var(--backup-text-color-v3);
     align-items: right;
 }
 
-
 .tags-holder a{
-    color: #9b9b9b;
+    font-size: 14px;
+    color: var(--backup-text-color-v3);
     align-items: right;
 }
 
