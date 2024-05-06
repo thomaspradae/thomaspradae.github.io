@@ -33,14 +33,21 @@ layout: default
 
 <p>{{ tagged_posts.size }} {{tag}} entr{% if tagged_posts.size != 1 %}ies{% else %}y{% endif %}</p>
 
-{% for post in tagged_posts %}
+{% assign sorted_posts = tagged_posts | sort: 'date' | reverse %}
+{% for post in sorted_posts %}
   <li class = "all-post-item">
-    <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
-    <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+    <div class="post-meta">
+      <time class="all-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time>
+    </div>
+    <div class="post-content">
+      <a class="all-post-item-title" href="{{ post.url }}">{{ post.title }}</a>
+      <p class="all-post-description">{{ post.description | strip_html | truncatewords: 50, "..." }}</p>
+    </div>
   </li>
 {% endfor %}
 
 </ul>
 </section>
 
+<p>dang</p>
 
