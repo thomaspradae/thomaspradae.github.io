@@ -34,5 +34,22 @@ Reinforcement learning is based on the *reward hypothesis*:
 
 In other words, we can express the agent's goal as a maximization problem, the maximization of its reward. This entails that we'd have to make sure our environment is set up / expressed in such a way that it's able to capture this dynamic. For instance, consider we're trying to teach our agent how to score a goal[^2]. To do so, we'd have to make sure our agent has access to a set of actions that can allow it to satisfy such a goal (say, moving in a given direction, kicking, etc.), and that it receives information (a new state and a reward) based on the action it takes. Furthermore, this information is specified, such that, if the agent attempts to choose reward maximizing actions, it will lead closer to the completion of the goal (hopefully up to the full completion of the goal). Enough with the abstractions, let's get back to our football example. In this case, since we want our agent to score a goal, we might reward it when the ball is closer to goal and punish it when its further away. In this sense, as our agent is trying to maximize the reward, it might try strategies (such as kicking the ball when its facing the goal) that result in the ball being as close to goal as possible (until it's ultimately in goal). 
 
+### (0.0.2) - MARKOV PROPERTY, MARKOV DECISION PROCESS
+This RL process we've just discussed is called a **[Markov Decision Process (MDP)](https://en.wikipedia.org/wiki/Markov_decision_process)**[^3]. A MDP is a discrete time stochastic control process 
+
+[Hi](Pasted image 20240530180557.png)
+There can be quite a bit of terminology to unpack 
+
+
+I'l try and delve into this deeper myself 
+
+The RL process
+
+
+[stochastic](obsidian://open?vault=Origin%20OS&file=Screenshot%202024-05-30%20180322.png)
+
+![Screenshot 2024-05-30 180322](../assets/images/posts/Screenshot%202024-05-30%20180322.png)
+
 [^1]: In the case where it's the first interaction, the state $S_0$ would also have a reward, $R_0$, which tends to be 0. 
 [^2]: [Football](https://www.youtube.com/watch?v=6TnKvlQ2h7s&ab_channel=Super6), or Soccer, for those from the states. 
+[^3]: The course says it delves deeper into this later on, so we'll see, however, I wish to do so myself as well, so for now we'll have just a quick overview, and later on, depending on what the course covers, we'll see what needs to be specified further. 
