@@ -44,7 +44,7 @@ There can be quite a bit of terminology to unpack
 I'l try and delve into this deeper myself 
 
 The RL process
-
+yes
 
 [stochastic](obsidian://open?vault=Origin%20OS&file=Screenshot%202024-05-30%20180322.png)
 
