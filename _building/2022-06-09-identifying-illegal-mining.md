@@ -11,9 +11,9 @@ excerpt: The code is pretty straight forward, we start off our simulation once a
 
 
 
-ML Implementation - v.3
+(THIS IS JUST A TRIAL NOTE TO TEST OUT THE WEBSITE)
 
-## Overview
+## (TRIAL NOTE)
 
 **Objective**
 Intercept the missile that's fired from the "Attack" coordinates before it reaches the "Target" coordinates.

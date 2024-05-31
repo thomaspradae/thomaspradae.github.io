@@ -308,7 +308,7 @@ li {
 }
 
 a:-webkit-any-link {
-    color: var(--secondary-accent);
+    color: var(--contrast-color);
     cursor: pointer;
     transition: color 0.3s ease;
 } 

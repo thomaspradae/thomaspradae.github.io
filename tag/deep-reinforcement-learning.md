@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% assign tag = "attempting" %}
+{% assign tag = "deep reinforcement learning" %}
 {% assign tagged_posts = "" | split: "" %}
 {% assign collections = 'posts,building,writing,notes,misc' | split: ',' %}
 

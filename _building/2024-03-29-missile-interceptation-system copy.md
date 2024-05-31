@@ -2,18 +2,18 @@
 layout: post
 path: /_building/2024-03-29-missile-interceptation-system.md
 share: true
-title: Building an automated missile interceptation algorithm
+title: Building an automated missile interceptation algorithm (ongoing)
 description: Learning reinforcement learning from scratch by building an iron dome-like system. Creating policy gradients from scratch. And learning how to implement a simple physics engine.
 summary: Another Full Note attempt
-tags: [ml, defense tech, physics, projectile physics, reinforcement learning, tag 1, tag 2, tag 3, tag 4, tag 5, long-ass-tag, tag 6, tag 7, tag 8, tag 9, tag 10, tag 11, tag 12, tag 13, tag 14, tag 15, tag 16, tag 17, tag 19, tag 20]
+tags: [ml, defense tech, physics, projectile physics, reinforcement learning]
 excerpt: The code is pretty straight forward, we start off our simulation once a new point is generated, and we keep some track of time, I'm not sure how to fucking do this lol, as, I think we could maybe try and have discrete values, but the question might be how discrete, meaning, with each pass of time, and also, wondering, how time will pass, u see, when looking at the slider, this is basically what we need, but the thing is that how I see it, is that this is some sort of loop, and you keep it moving.
 ---
 
 
 
-ML Implementation - v.3
+(THIS IS JUST A TRIAL NOTE TO TEST OUT THE WEBSITE)
 
-## Overview
+## (TRIAL NOTE)
 
 **Objective**
 Intercept the missile that's fired from the "Attack" coordinates before it reaches the "Target" coordinates.
