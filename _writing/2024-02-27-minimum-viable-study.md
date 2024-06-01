@@ -2,7 +2,7 @@
 layout: post
 share: true
 title: Minimum Viable Studying
-description: Lesgoh 5
+description: 
 summary: Another Full Note attempt
 tags: [rant]
 excerpt: A huge thanks to Andrej Karpathy and MJ. If there's some class you really don't like, and you recognize that the opportunity cost is too high (to the point where your head hurts each time you think about wasting just another second stuck in that chair, set apart some time that counts as a minimum viable study session. 
