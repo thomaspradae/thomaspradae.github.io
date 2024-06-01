@@ -35,7 +35,20 @@ Reinforcement learning is based on the *reward hypothesis*:
 In other words, we can express the agent's goal as a maximization problem, the maximization of its reward. This entails that we'd have to make sure our environment is set up / expressed in such a way that it's able to capture this dynamic. For instance, consider we're trying to teach our agent how to score a goal[^2]. To do so, we'd have to make sure our agent has access to a set of actions that can allow it to satisfy such a goal (say, moving in a given direction, kicking, etc.), and that it receives information (a new state and a reward) based on the action it takes. Furthermore, this information is specified, such that, if the agent attempts to choose reward maximizing actions, it will lead closer to the completion of the goal (hopefully up to the full completion of the goal). Enough with the abstractions, let's get back to our football example. In this case, since we want our agent to score a goal, we might reward it when the ball is closer to goal and punish it when its further away. In this sense, as our agent is trying to maximize the reward, it might try strategies (such as kicking the ball when its facing the goal) that result in the ball being as close to goal as possible (until it's ultimately in goal). 
 
 ### (0.0.2) - MARKOV PROPERTY, MARKOV DECISION PROCESS
-This RL process we've just discussed is called a **[Markov Decision Process (MDP)](https://en.wikipedia.org/wiki/Markov_decision_process)**[^3]. A MDP is a discrete time stochastic control process 
+This RL process we've just discussed is called a [Markov Decision Process (MDP)](https://en.wikipedia.org/wiki/Markov_decision_process)[^3]. A MDP is a discrete time stochastic control process. Let's unpack that: 
+- *Discrete-time*: instead of thinking of time as continuous (say, the way in which an hour can be divided into minutes, and seconds, and each second can be divided into even smaller divisions, meaning, that between any two points in time there are infinitely more points in time), think of there being 'separate points in time', for example $t = 1, 2, 3, \dots n$ where each value of t is a point in time. Time "jumps" from one to the next. 
+- *Stochastic*: stochasticity (from the Greek (stokhos) which means to aim or guess) is commonly used interchangeably with 'randomness'. The wiki page for stochasticity defines it as the 'property of being well-described by a random probability distribution'. A probability distribution is a mathematical function that tells us the probability of occurrence of different outcomes of a given phenomenon / experiment / process.[^4] For example 
+- 
+- 
+- interchanged with 'randomness'. The wiki page for stochasticity says that it is 'the property of being well-described by a random probability distribution'. A probability distribution is simply a mathematical function that tells us the probability of occurrence of different outcomes of a given phenomena / experiment. Now, just to avoid confusion, in case it's needed, 
+- 
+- 
+- A *random* probability distribution 
+- *Control*: 
+- 
+- in a way that ultimately, there are no 'jumps' so to speak between units of time)
+
+
 
 [Hi](Pasted image 20240530180557.png)
 There can be quite a bit of terminology to unpack 
@@ -53,3 +66,4 @@ yes
 [^1]: In the case where it's the first interaction, the state $S_0$ would also have a reward, $R_0$, which tends to be 0. 
 [^2]: [Football](https://www.youtube.com/watch?v=6TnKvlQ2h7s&ab_channel=Super6), or Soccer, for those from the states. 
 [^3]: The course says it delves deeper into this later on, so we'll see, however, I wish to do so myself as well, so for now we'll have just a quick overview, and later on, depending on what the course covers, we'll see what needs to be specified further. 
+[^4]: I promise to dive deeper into this elsewhere on this page, so there should probably be a link here, if I haven't, maybe I forgot to link it so it might be somewhere in `notes`
