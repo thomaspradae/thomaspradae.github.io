@@ -68,4 +68,4 @@ yes
 [^1]: In the case where it's the first interaction, the state $S_0$ would also have a reward, $R_0$, which tends to be 0. 
 [^2]: [Football](https://www.youtube.com/watch?v=6TnKvlQ2h7s&ab_channel=Super6), or Soccer, for those from the states. 
 [^3]: The course says it delves deeper into this later on, so we'll see, however, I wish to do so myself as well, so for now we'll have just a quick overview, and later on, depending on what the course covers, we'll see what needs to be specified further. 
-[^4]: I promise to dive deeper into this elsewhere on this page, so there should probably be a link here, if I haven't, maybe I forgot to link it so it might be somewhere in `notes`
+[^4]: I promise to dive deeper into this elsewhere, so there should probably be a link here, if there isn't, maybe I forgot to link it so it might be somewhere in `notes`
