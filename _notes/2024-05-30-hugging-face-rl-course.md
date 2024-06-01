@@ -37,7 +37,9 @@ In other words, we can express the agent's goal as a maximization problem, the m
 ### (0.0.2) - MARKOV PROPERTY, MARKOV DECISION PROCESS
 This RL process we've just discussed is called a [Markov Decision Process (MDP)](https://en.wikipedia.org/wiki/Markov_decision_process)[^3]. A MDP is a discrete time stochastic control process. Let's unpack that: 
 - *Discrete-time*: instead of thinking of time as continuous (say, the way in which an hour can be divided into minutes, and seconds, and each second can be divided into even smaller divisions, meaning, that between any two points in time there are infinitely more points in time), think of there being 'separate points in time', for example $t = 1, 2, 3, \dots n$ where each value of t is a point in time. Time "jumps" from one to the next. 
-- *Stochastic*: stochasticity (from the Greek (stokhos) which means to aim or guess) is commonly used interchangeably with 'randomness'. The wiki page for stochasticity defines it as the 'property of being well-described by a random probability distribution'. A probability distribution is a mathematical function that tells us the probability of occurrence of different outcomes of a given phenomenon / experiment / process.[^4] For example 
+
+- *Stochastic*: stochasticity (from the Greek (stokhos) which means to aim or guess) is commonly used interchangeably with 'randomness'. The wiki page for stochasticity defines it as the 'property of being well-described by a random probability distribution'. A probability distribution is a mathematical function that tells us the probability of occurrence of different outcomes of a given phenomenon / experiment / process.[^4] For example, imagine a fair dice
+
 - 
 - 
 - interchanged with 'randomness'. The wiki page for stochasticity says that it is 'the property of being well-described by a random probability distribution'. A probability distribution is simply a mathematical function that tells us the probability of occurrence of different outcomes of a given phenomena / experiment. Now, just to avoid confusion, in case it's needed, 
