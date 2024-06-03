@@ -70,12 +70,12 @@ $100 and $100
 
 And now here is some latex: 
 
-$$ e^{something} + 1$$
+\\[  e^{something} + 1 \\]
 
 
-$$ 100 \cdot 100 1$$
+\\[  100 \cdot 100 1 \\]
 
-And now some inline $t_0$
+And now some inline \\( t_0 \\)
 
 
 
