@@ -319,6 +319,18 @@ a:-webkit-any-link:hover {
     text-decoration: underline;
 }
 
+a:any-link{
+    color: var(--contrast-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+a:any-link:hover{
+    color: var(--main-accent);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .content {
     margin-top: 10vh;
     min-height: 100vh;
