@@ -28,7 +28,7 @@ def convert_file(file_path):
 
 def main():
     base_path = os.getcwd()
-    folders = ['building', 'notes', 'writing']
+    folders = ['_building', '_notes', '_writing', '_misc']
     print(f"Base path: {base_path}")
     for folder in folders:
         full_path = os.path.join(base_path, folder)
