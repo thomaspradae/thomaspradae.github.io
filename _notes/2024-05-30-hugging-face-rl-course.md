@@ -60,6 +60,23 @@ Here is an inline equation \\( e^{i\pi} + 1 = 0 \\)
 
 Here is an dosplay equation \\[ e^{i\pi} + 1 = 0 \ \\]
 
+<!-- noconvert -->
+
+This is some shit that needs no converting you see like this $100 USD or maybe something like 
+
+$100 and $100 
+
+<!-- /noconvert -->
+
+And now here is some latex: 
+
+$$ e^{something} + 1$$
+
+
+$$ 100 \cdot 100 1$$
+
+And now some inline $t_0$
+
 
 
 
