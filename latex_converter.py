@@ -2,7 +2,7 @@ import re
 import os
 
 def convert_file(file_path):
-    print(f"Processing file: {file_path}")  # Print which file is being processed
+    print(f"Processing file: {file_path}")  
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 

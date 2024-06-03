@@ -1,0 +1,33 @@
+name: Process Markdown Files (LaTeX)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.md'
+
+jobs:
+  process-markdown:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run Script
+      run: python latex_converter.py
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.email "thomaspradae@gmail.com"
+        git config --global user.name "thomaspradae"
+        git add -A
+        git commit -m "Update Markdown files via GitHub Actions (LaTeX)" || echo "No changes to commit"
+        git push
+
+    - name: List modified files
+      run: git status
