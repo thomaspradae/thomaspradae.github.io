@@ -57,10 +57,10 @@ In other words, an MDP models decision making where:
 - Time is discrete
 - Outcomes are stochastic 
 
-This relates to [ggs](../_writing/2024-06-09-sickness-unto-death.md#)
+This relates to [ggs](/writing/sickness-unto-death)
 
-
-Other shit like this entry [about](../_writing/2024-05-08-no-one-is-coming-to-save-you.md#)
+hh
+Other shit like this entry [about](/writing/no-one-is-coming-to-save-you)
 
 and other shit like
 
