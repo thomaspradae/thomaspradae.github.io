@@ -60,6 +60,13 @@ In other words, an MDP models decision making where:
 This relates to [ggs](../_writing/2024-06-09-sickness-unto-death.md#)
 
 
+Other shit like this entry [about](../_writing/2024-05-08-no-one-is-coming-to-save-you.md#)
+
+and other shit like
+
+
+
+
 
 [Hi](Pasted image 20240530180557.png)
 There can be quite a bit of terminology to unpack 
