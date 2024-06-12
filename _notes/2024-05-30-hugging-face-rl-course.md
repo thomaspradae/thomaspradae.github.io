@@ -27,7 +27,7 @@ The process described above can be modeled as follows:
 ![RL_process](../assets/images/posts/RL_process.jpg)
 *Source: Hugging Face Deep RL Course - Unit 1 - "RL Framework"*
 
-We encounter a loop: An agent interacts with a given state (say, the world a specific moment in time / with a specific organization (set of information)), which is related to (or involves / or comes with) a reward[^1]. The agent then takes a decision based on these, thereby changing the environment through its action, resulting in a new state and a new reward. This ultimately ends up being a loop involving an agent, states (\\( S_t \\), \\( S_{t+1} \\), \\( \dots \\), \\( S_n \\) ), actions (\\( A_t \\), \\( A_{t+1} \\), \\( \dots \\), \\( A_n \\) ) and rewards (\\( R_t \\), \\( R_{t+1} \\), \\( \dots \\), \\( R_n \\) ).
+We encounter a loop: An agent interacts with a given state (say, the world a specific moment in time / with a specific organization (set of information)), which is related to (or involves / or comes with) a reward[^1]. The agent then takes a decision based on these, thereby changing the environment through its action, resulting in a new state and a new reward. This ultimately ends up being a loop involving an agent, states ($S_t$, $S_{t+1}$, $\dots$, $S_n$ ), actions ($A_t$, $A_{t+1}$, $\dots$, $A_n$ ) and rewards ($R_t$, $R_{t+1}$, $\dots$, $R_n$ ).
 
 Reinforcement learning is based on the *reward hypothesis*: 
 
@@ -44,7 +44,7 @@ This RL process we've just discussed is called a [Markov Decision Process (MDP)]
 
 A MDP is a discrete time stochastic control process. Let's unpack that: 
 
-- *Discrete-time*: instead of thinking of time as continuous (say, the way in which an hour can be divided into minutes, and seconds, and each second can be divided into even smaller divisions, meaning, that between any two points in time there are infinitely more points in time), think of there being 'separate points in time', for example \\( t = 1, 2, 3, \dots n \\) where each value of \\( t \\) is a point in time. Time "jumps" from one to the next. 
+- *Discrete-time*: instead of thinking of time as continuous (say, the way in which an hour can be divided into minutes, and seconds, and each second can be divided into even smaller divisions, meaning, that between any two points in time there are infinitely more points in time), think of there being 'separate points in time', for example $t = 1, 2, 3, \dots n$ where each value of $t$ is a point in time. Time "jumps" from one to the next. 
 
 - *Stochastic:* stochasticity[^4] is often used interchangeably with 'randomness'. The wiki page for 'stochastic' defines it as the 'property of being well described by a random probability distribution'. Let's break that down as well: a probability distribution is a mathematical function that tells us the probability of occurrence for different outcomes of a given phenomenon / experiment / process (just as its name states: it tells us how *probabilities* of occurrence are *distributed* for a given p/e/p[^5]. When something is stochastic, it can be expressed as a probability distribution, in turn this gives us information about the nature of the phenomenon, without exactly knowing what outcome we'll get. For example, consider a fair dice with six sides. We can model our dice rolls with a probability distribution, but that doesn't mean we can predict what face we'll get for any given dice roll (but we can, thanks to our probability distribution, have some idea about the nature of the phenomenon (as seen below))
 
@@ -59,7 +59,7 @@ In other words, an MDP models decision making where:
 
 This relates to [ggs](../_writing/2024-06-09-sickness-unto-death.md#)
 
-
+hh
 Other shit like this entry [about](../_writing/2024-05-08-no-one-is-coming-to-save-you.md#)
 
 and other shit like
@@ -74,18 +74,18 @@ I'll try and delve into this deeper myself
 The RL process
 yes
 
-\\( text \\) 
+$text$ 
 
 
-\\( hi \\)
+$hi$
 100
-\\( 100 \\)
+$100$
 
 [stochastic](obsidian://open?vault=Origin%20OS&file=Screenshot%202024-05-30%20180322.png)
 
 ![Screenshot 2024-05-30 180322](../assets/images/posts/Screenshot%202024-05-30%20180322.png)
 
-[^1]: In the case where it's the first interaction, the state \\( S_0 \\) would also have a reward, \\( R_0 \\), which tends to be 0. 
+[^1]: In the case where it's the first interaction, the state $S_0$ would also have a reward, $R_0$, which tends to be 0. 
 [^2]: [Football](https://www.youtube.com/watch?v=6TnKvlQ2h7s&ab_channel=Super6), or Soccer, for those from the states. 
 [^3]: The course says it delves deeper into this later on, so we'll see, however, I wish to do so myself as well, so for now we'll have just a quick overview, and later on, depending on what the course covers, we'll see what needs to be specified further. 
 [^4]: From the Greek (stokhos) which means to aim or guess
