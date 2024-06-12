@@ -3,7 +3,7 @@ import re
 import os
 
 def convert_links(text):
-    pattern = r'\[([^\]]+)\]\(\.\.\/_(\w+)\/\d{4}-\d{2}-\d{2}-(.+?)\.md\)'
+    pattern = r'\[([^\]]+)\]\(\.\.\/_(\w+)\/\d{4}-\d{2}-\d{2}-(.+?)\.md#?\)'
     def replace_link(match):
         text = match.group(1)  
         folder = match.group(2)  
