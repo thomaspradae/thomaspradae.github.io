@@ -116,10 +116,10 @@
 }
 
 blockquote {
-    border-left: 0.2px solid var(--lightest-text); /* This is the thin line on the left side, you can change the color */
-    padding-left: 20px; /* Add some padding to move the text away from the line */
-    color: red !important; /* This is the text color, you can change it to whatever you like */
-    margin: 20px 0; /* Optional: Add some margin to space out the blockquotes */
+    border-left: 0.2px solid var(--lightest-text);
+    padding-left: 20px; 
+    color: var(--backup-text-color-v3);
+    margin: 20px 0; 
 }
 
 blockquote p{
