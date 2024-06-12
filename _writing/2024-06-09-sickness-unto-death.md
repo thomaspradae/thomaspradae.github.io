@@ -22,9 +22,6 @@ I've been sick for the last few days. This doesn't happen too often, so when it 
 
 [^1]: I guess I don't really get sick that often, must be because I'm a pristine specimen (heavy sarcasm) 
 
-
----
-
 Forget the audience for a second. Forget the timeline. Just the two of us right now, we need to talk. I'm not sure I'll publish this one because I don't want you editing right now, I just want a good ol' consciousness spew, a good ol' 11pm rant, a good ol' it's a little too late for this one, but I need to get it out. I haven't been feeling it
 
 

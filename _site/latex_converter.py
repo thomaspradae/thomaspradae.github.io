@@ -1,13 +1,23 @@
+#stuckz
 import re
 import os
 
+def convert_links(text):
+    pattern = r'\[([^\]]+)\]\(\.\.\/_(\w+)\/\d{4}-\d{2}-\d{2}-(.+?)\.md#?\)'
+    def replace_link(match):
+        text = match.group(1)  
+        folder = match.group(2)  
+        filename = match.group(3)  
+        new_link = f"[{text}](/{folder}/{filename})"
+        return new_link
+    return re.sub(pattern, replace_link, text)
+
 def convert_file(file_path):
-    print(f"Processing file: {file_path}")  
+    print(f"Processing file: {file_path}")
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 
     noconvert_sections = []
-
     def extract_noconvert(match):
         noconvert_sections.append(match.group(0))
         return f"<!-- noconvert_placeholder_{len(noconvert_sections)-1} -->"
@@ -16,6 +26,8 @@ def convert_file(file_path):
 
     content = re.sub(r'\$\$(.+?)\$\$', r'\\\\[ \1 \\\\]', content)
     content = re.sub(r'\$(.+?)\$', r'\\\\( \1 \\\\)', content)
+
+    content = convert_links(content)
 
     def insert_noconvert(match):
         index = int(match.group(1))

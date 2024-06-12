@@ -11,51 +11,38 @@
     --text-color: #9b9b99;
     --lighter-text-color: #bcbcbc;
 
-    /* --backup-text-color-light: #757575;
-    --backup-text-color-light-v2: #9b9b9b;
-    --backup-text-color-light-v3: #bcbcbc;
-    --backup-text-color-light-v4: #dedede; */
-
     --backup-text-color-light: #676767;
     --backup-text-color-light-v2: #8D8D8D;
     --backup-text-color-light-v3: #B3B3B3;
     --backup-text-color-light-v4: #E0E0E0;
-
-    /* --backup-text-color-light: #9b9b9b; */
-    /* --backup-text-color-light-v2: #bcbcbc;
-    --backup-text-color-light-v3: #DEDEDE; */
+    --backup-text-color-light-v5: #F5F5F5;
 
     --background-color-light: #ffffff;
     --main-accent-light: #B296FF;   
-    --secondary-accentlight: #B296FF;
+    --secondary-accent-light: #B296FF;
     --contrast-color-light: #000000;
     --lightest-text-light: #E0E0E0;
-    --welcome-gif-light: url('assets/images/resources/FINAL_V4.gif');
-    --empty-ball-light: url('assets/images/resources/emptyblackball.svg');
-    --ball-light: url('assets/images/resources/blackball.svg');
+    --welcome-gif-light: url('/assets/images/resources/FINAL_V4.gif');
+    --empty-ball-light: url('/assets/images/resources/emptyblackball.svg');
+    --ball-light: url('/assets/images/resources/blackball.svg');
 
 
     --backup-text-color-dark: #8C8B8B;
     --backup-text-color-dark-v2: #6D6D6D;
     --backup-text-color-dark-v3: #4E4E4E;
     --backup-text-color-dark-v4: #2F2F2F;
+    --backup-text-color-dark-v5: #1A1A1A;
 
-    /* --backup-text-color-dark: #595A5A;
-    --backup-text-color-dark-v2: #414242; */
     --background-color-dark: #0F0F0F;
     --text-color-dark: #ffffff;
     --main-accent-dark: #B296FF;
-    /* --secondary-accent-dark: #FFC592; */
-    /* --secondary-accent-dark: #FDFF82; */
     --secondary-accent-dark: #B296FF;
-    /* --secondary-accent-dark: #B25D38; */
-    /* --secondary-accent-dark: #FF6F59; */
     --contrast-color-dark: #FFFFFF;
     --lightest-text-dark: #232323;
 
-    --welcome-gif-dark: url('assets/images/resources/FINAL_V1_DARK.gif');
-    --empty-ball-dark: url('assets/images/resources/emptywhiteball.svg');
-    --ball-dark: url('assets/images/resources/whiteball.svg');
+    --welcome-gif-dark: url('/assets/images/resources/FINAL_V1_DARK.gif');
+    --empty-ball-dark: url('/assets/images/resources/emptywhiteball.svg');
+    --ball-dark: url('/assets/images/resources/whiteball.svg');
 
 }
 
@@ -66,8 +53,9 @@
     --backup-text-color-v2: var(--backup-text-color-light-v2);
     --backup-text-color-v3: var(--backup-text-color-light-v3);
     --backup-text-color-v4: var(--backup-text-color-light-v4);
+    --backup-text-color-v5: var(--backup-text-color-light-v5);
     --main-accent: var(--main-accent-light);
-    --secondary-accent: var(--secondary-accentlight);
+    --secondary-accent: var(--secondary-accent-light);
     --contrast-color: var(--contrast-color-light);
     --lightest-text: var(--lightest-text-light);
     --welcome-gif: var(--welcome-gif-light);
@@ -82,6 +70,7 @@
     --backup-text-color-v2: var(--backup-text-color-dark-v2);
     --backup-text-color-v3: var(--backup-text-color-dark-v3);
     --backup-text-color-v4: var(--backup-text-color-dark-v4);
+    --backup-text-color-v5: var(--backup-text-color-dark-v5);
     --main-accent: var(--main-accent-dark);
     --secondary-accent: var(--secondary-accent-dark);
     --contrast-color: var(--contrast-color-dark);
@@ -124,6 +113,17 @@
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
+}
+
+blockquote {
+    border-left: 0.2px solid var(--lightest-text); /* This is the thin line on the left side, you can change the color */
+    padding-left: 20px; /* Add some padding to move the text away from the line */
+    color: red !important; /* This is the text color, you can change it to whatever you like */
+    margin: 20px 0; /* Optional: Add some margin to space out the blockquotes */
+}
+
+blockquote p{
+    color: var(--backup-text-color-v3)
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
@@ -303,8 +303,8 @@ p {
     color: var(--backup-text-color)
 }
 
-li {
-    color: #9b9b9b;
+li {    
+    color: var(--backup-text-color);
 }
 
 a:-webkit-any-link {
@@ -719,7 +719,7 @@ footer {
 }
 
 .latest:hover .latest-post-time {
-    color: var(--secondary-accent);
+    color: var(--main-accent);
 }
 
 .latest-post-title {
@@ -953,7 +953,17 @@ footer {
 
 .breadcrumbs a:hover {
     color: var(--main-accent);
-  }
+}
+
+.footnotes{
+    border-top: 0.2px solid var(--lightest-text);
+    margin-top: 5vh;
+}
+
+.footnotes ol{
+    margin-top: 5vh;
+}
+
 
 .footnote{
     font-family: 'GeistMono', sans-serif;
@@ -1029,7 +1039,7 @@ h2 {
 h3 {
     font-size: 25px;
     font-family: 'GeistMono', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     text-transform: uppercase;
     margin-top: 8vh;
     color: var(--contrast-color);
@@ -1037,7 +1047,7 @@ h3 {
 
 h4 {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
     margin-top: 8vh;
@@ -1046,7 +1056,7 @@ h4 {
 
 h5 {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
     margin-top: 8vh;
@@ -1055,21 +1065,44 @@ h5 {
 
 h6 {
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
     margin-top: 8vh;
     color: var(--contrast-color);
 }
 
-
-code {
+/* code {
     color: var(--contrast-color);
     display: block;
     max-width: 100%;
     overflow-x: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+} */
+
+/* Style for inline code */
+code {
+    color: var(--contrast-color); /* Inline code text color */
+    background-color: var(--backup-text-color-v4); /* Inline code background color */
+    padding: 2px 4px; /* Padding for inline code */
+    border-radius: 4px; /* Rounded corners for inline code */
+    font-size: 90%; /* Slightly smaller font size */
+}
+
+/* Style for code blocks */
+pre code {
+    display: block; /* Ensure it takes full width */
+    padding: 10px; /* Padding for code block */
+    color: var(--contrast-color); /* Code block text color */
+    background-color: var(--backup-text-color-v5); /* Code block background color */
+    border-radius: 6px; /* Rounded corners for code block */
+    overflow-x: auto; /* Horizontal scroll for long lines */
+    font-size: 85%; /* Adjust font size */
 }
 
 .testing {
@@ -1621,7 +1654,7 @@ code {
     h3 {
         font-size: 16px;
         font-family: 'GeistMono', sans-serif;
-        font-weight: 300;
+        font-weight: 400;
         text-transform: uppercase;
         margin-top: 5vh;
         color: var(--contrast-color);
@@ -1629,7 +1662,7 @@ code {
 
     h4 {
         font-size: 14px;
-        font-weight: 300;
+        font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
         margin-top: 5vh;
@@ -1638,7 +1671,7 @@ code {
 
     h5 {
         font-size: 12px;
-        font-weight: 300;
+        font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
         margin-top: 5vh;
@@ -1647,7 +1680,7 @@ code {
 
     h6 {
         font-size: 10px;
-        font-weight: 300;
+        font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
         margin-top: 5vh;
