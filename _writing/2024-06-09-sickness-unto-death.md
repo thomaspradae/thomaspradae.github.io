@@ -11,5 +11,6 @@ tags:
 excerpt: 
 ---
 
-Brb
+![violencia absoluta](../assets/images/posts/violencia%20absoluta.png)
+
 
