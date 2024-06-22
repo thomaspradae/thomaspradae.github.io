@@ -15,4 +15,4 @@ excerpt: The code is pretty straight forward, we start off our simulation once a
 ## (0.0.0) - OVERVIEW
 
 ## (1.0.0) - LOG AND NOTES
-A set of unfiltered notes + a log of the project can be found [here](../_notes/2024-06-22-missile-interception-system-log-and-notes.md#)
+A set of unfiltered notes + a log of the project can be found [here](/notes/missile-interception-system-log-and-notes)
