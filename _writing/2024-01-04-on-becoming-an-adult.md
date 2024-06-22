@@ -3,7 +3,7 @@ layout: post
 path: /_writing/
 share: true
 title: On becoming an adult
-description: 
+description: Learning to take on responsibility. Sure, not figuring it out, who has it figured out, but at least, falling more gracefully.
 summary: 
 tags:
   - rant
