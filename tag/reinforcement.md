@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% assign tag = "unrevised" %}
+{% assign tag = "reinforcement" %}
 {% assign tagged_posts = "" | split: "" %}
 {% assign collections = 'posts,building,writing,notes,misc' | split: ',' %}
 

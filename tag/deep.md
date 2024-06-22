@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% assign tag = "unedited" %}
+{% assign tag = "deep" %}
 {% assign tagged_posts = "" | split: "" %}
 {% assign collections = 'posts,building,writing,notes,misc' | split: ',' %}
 
