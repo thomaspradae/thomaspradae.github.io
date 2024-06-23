@@ -42,3 +42,11 @@ excerpt:
 
 **2024-05-22**
 - What if you just start dude, what if you just start. Yes, you're 'not ready', your model might not even be ready, but so what? So what dude? Just start. Just start and see how far you can get to when you go to bed tonight. 
+
+**2024-06-22**
+- Dang, was sick, busy with some stuff, but didn't realize it had been a month. Back to the log
+- Let's try and scale it back a bit while we learn how to deal with gym and all of this other stuff, let's try and adjust our environment such that the only decisions our agent has to worry about are:
+	- Whether to fire a missile or not
+	- Firing angle
+- So let's dive back into our code. 
+- I'm not locked in, gotta lock in. 
