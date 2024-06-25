@@ -50,3 +50,14 @@ excerpt:
 	- Firing angle
 - So let's dive back into our code. 
 - I'm not locked in, gotta lock in. 
+- I'm terrible with file names
+	- Code is slop, gotta get better at that too
+
+**2024-06-23**
+- Massive lolz, turns out, in research at least, RL problems are normally expressed in terms of *either* a discrete action space or a continuous action space, I tried reducing the "complexity" of our problem by giving our agent only two actions: firing and choosing a firing angle. However, this means we have a hybrid action space. Since I'm new to this, I'm not sure if there's simply some work around, but I'm kinda deep in the rabbit hole now, and I'm [reading this paper about](https://arxiv.org/pdf/2001.00449) hybrid action spaces from Deepmind, so I think we'll stick to this for now, try and read it, take notes, and see what type of gaps we have. Time to lock in. Here are my notes
+
+**2024-06-24**
+- Training PPO while reading about hybrid action spaces, going to take a quick break to do uni work. When I come back I'm not sure what to work on. 
+
+2024-06-25
+- We'll gettem tomorrow (today, it's 1am)
