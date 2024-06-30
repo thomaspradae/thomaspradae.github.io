@@ -59,5 +59,9 @@ excerpt:
 **2024-06-24**
 - Training PPO while reading about hybrid action spaces, going to take a quick break to do uni work. When I come back I'm not sure what to work on. 
 
-2024-06-25
+**2024-06-25**
 - We'll gettem tomorrow (today, it's 1am)
+
+**2024-06-30**
+- Wrote something [here](../_writing/30-06-2024-god-forbid-you-get-everything-right-on-the-first-try.md#)
+- Reps dawg, reps. 
