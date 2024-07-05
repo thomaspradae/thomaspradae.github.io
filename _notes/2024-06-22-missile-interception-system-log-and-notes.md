@@ -65,3 +65,12 @@ excerpt:
 **2024-06-30**
 - Wrote something [here](../_writing/30-06-2024-god-forbid-you-get-everything-right-on-the-first-try.md#)
 - Reps dawg, reps. 
+
+**2024-07-01**
+- ![Pasted image 20240701134721](../assets/images/posts/Pasted%20image%2020240701134721.png)
+- Knew this lol but did the complete opposite
+
+**2024-07-04**
+- There's in interesting position where I don't know if the model needs help with the specification of the environment or with some model parameter
+- ![episode_11](../assets/images/posts/episode_11.gif)
+- Not perfect, but the rocks are learning
