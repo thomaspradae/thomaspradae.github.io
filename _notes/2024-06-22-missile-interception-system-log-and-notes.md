@@ -74,3 +74,10 @@ excerpt:
 - There's in interesting position where I don't know if the model needs help with the specification of the environment or with some model parameter
 - ![episode_11](../assets/images/posts/episode_11.gif)
 - Not perfect, but the rocks are learning
+
+**2024-07-05**
+- 5pm, what's it going to be? We're so back, or it's so over?
+- It seems the performance was better training in an environment from scratch compared to training, and then tweaking the env, dunno what the magic is behind this ---> soon 
+- The out of bounds values should be solved tho, however, if the boundaries were pushed back I wonder if the solution would be found anyway (?), dunno
+- Create something on the page that indicates the last change, as our current sites only support (latest post, not latest update)
+- Consistency, gotta trust the 10000h
