@@ -14,6 +14,33 @@ excerpt:
 ---
 
 ## (0) - NOTES
+### (0.1) - v.3 - 3d model with rudimentary physics
+#### (0.1.0) Background info
+##### (0.1.0.1) - Theoretical Minimum Notes
+Classical physics refers to physics before quantum mechanics. So stuff like Newton's equations of motion, Maxwell-Faraday theory of electromagnetic fields, the theory of general relativity. But it's more than just a few theories, it's rather, according to Susskind and Hrabovsky, a set of principles and rules, "a governing logic". An important characteristic of classical physics is the fact that if you know everything about a system at some instant of time, including the equations that govern the system (and how it changes), then it's possible to predict the future: 
+> The classical laws of physics are *deterministic*
+
+##### (0.1.0.2) 4 Forces of Aerodynamics
+Back to basic physics for a second. There are 4 forces acting on our missile, these are:
+
+1. [Thrust](https://en.wikipedia.org/wiki/Thrust)
+	- The "driving force" produced by propulsion system or engine. The direction of thrust will indicate the direction in which the missile will move. It's a reaction force (newton's third law (action-reaction)). When a system expels or accelerates mass in one direction, the accelerated mass will cause a force of equal magnitude but opposite direction to be applied to the system. 
+	- Imagine a balloon that's inflated, but not tied. When you let go of the balloon, the air will flow out of the balloon making it travel in the opposite direction, imagine that the same is happening to the missile, fuel and oxidizer react (burn) in the combustion chamber, high pressure, high temperature gasses are forced out of the missile and you get your thrust. We'll most likely start out with constant thrust, and then adjust it to resemble an actual missile further on. 
+2. [Lift](https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/rocket-aerodynamics/)
+	- When fluid flows around an object, in other words, when an object, such as our missile changes a moving flow of a fluid, the fluid exerts force on the object, and flows in some direction. Lift is considered to be the *perpendicular* component to the oncoming flow direction. If we were talking about an airplane, it would be easiest to think that lift is what is used to overcome the weight of the aircraft:
+	- ![Airfoil_lift_and_drag.svg](../assets/images/posts/Airfoil_lift_and_drag.svg.png)
+	- However, when talking about missiles and rockets, thrust is normally used in opposition to weight. Since the center of pressure is not normally at the center of gravity, aerodynamic forces can cause rotation, which is where lift kicks in. It's normally used as a force that can stabilize the direction of flight. For example: 
+	- ![missiles](../assets/images/posts/missiles.png)
+	- Imagine the air pushing on the missile's tail, eventually stabilizing it (or even potentially overshooting). Note that the missile's nose cone will also have lift, but to avoid our missile tilting too much, the lift of our tail has to be greater than that of our nose. 
+
+3. Drag
+- Drag can be thought as "aerodynamic friction" or fluid resistance. It's the force that will act opposite to the relative motion of the missile. 
+4. Weight
+
+
+Just as we did with our 2D model, it's time to build our minimum viable representation of our environment. For this we'll start off with assuming the following:
+- No aerodynamic forces
+
 
 ## (1) - LOG
 (Wasn't really consistent with the log lol - Thomas (22 jun, 2024))
@@ -44,7 +71,7 @@ excerpt:
 - What if you just start dude, what if you just start. Yes, you're 'not ready', your model might not even be ready, but so what? So what dude? Just start. Just start and see how far you can get to when you go to bed tonight. 
 
 **2024-06-22**
-- Dang, was sick, busy with some stuff, but didn't realize it had been a month. Back to the log
+- Dang, was sick (fr like 20 days), busy with some stuff, but didn't realize it had been a month. Back to the log
 - Let's try and scale it back a bit while we learn how to deal with gym and all of this other stuff, let's try and adjust our environment such that the only decisions our agent has to worry about are:
 	- Whether to fire a missile or not
 	- Firing angle
@@ -80,3 +107,31 @@ excerpt:
 - It seems the performance was better training in an environment from scratch compared to training, and then tweaking the env, dunno what the magic is behind this ---> soon 
 - The out of bounds values should be solved tho, however, if the boundaries were pushed back I wonder if the solution would be found anyway (?), dunno
 - Create something on the page that indicates the last change, as our current sites only support (latest post, not latest update)
+- Consistency, gotta trust the 10000h
+- hmmmm, look at this:
+- ![episode_13_v8_dqn_bone_angle](../assets/images/posts/episode_13_v8_dqn_bone_angle.gif)
+	- is this just a fuck up? or there a problem with my thetas? Need to figure this out before we continue
+	- writing functions ---> methods, slop? not returning anything, only receiving self as an input, no outputs? slop?
+
+**2024-07-06**
+**NOTES FOR TOMORROW (TODAY):**
+- Function at 500K --- 700 K seems good? 
+- Started seeing weird stuff after (?)
+
+**2024-07-23**
+- **Running (v2.4.2.5)**
+	- 20K episodes: 
+		- Out of bounds: 0 (0.0)
+		- Interceptions: 19924 (99.62%)
+		- Reached max steps: 0 (0.0)
+		- Enemy impacts: 76 (0.38%)
+	- 50K episodes:
+		- Out of bounds: 0 (0.0)
+		- Interceptions: 49806 (99.612%)
+		- Reached max steps: 0 (0.0)
+		- Enemy impacts: 194 (0.388%)
+
+**2024-07-24**
+v2.4.2.5 got to 99.6% acc with one missile and to 100% acc with two missiles
+
+
