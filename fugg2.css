@@ -11,73 +11,20 @@
     --text-color: #9b9b99;
     --lighter-text-color: #bcbcbc;
 
-    --backup-text-color-light: #676767;
-    --backup-text-color-light-v2: #8D8D8D;
-    --backup-text-color-light-v3: #B3B3B3;
-    --backup-text-color-light-v4: #E0E0E0;
-    --backup-text-color-light-v5: #F5F5F5;
+    --backup-text-color: #676767;
+    --backup-text-color-v2: #8D8D8D;
+    --backup-text-color-v3: #B3B3B3;
+    --backup-text-color-v4: #E0E0E0;
+    --backup-text-color-v5: #F5F5F5;
 
-    --background-color-light: #ffffff;
-    --main-accent-light: #B296FF;   
-    --secondary-accent-light: #B296FF;
-    --contrast-color-light: #000000;
-    --lightest-text-light: #E0E0E0;
-    --welcome-gif-light: url('/assets/images/resources/FINAL_V4.gif');
-    --empty-ball-light: url('/assets/images/resources/emptyblackball.svg');
-    --ball-light: url('/assets/images/resources/blackball.svg');
-
-
-    --backup-text-color-dark: #8C8B8B;
-    --backup-text-color-dark-v2: #6D6D6D;
-    --backup-text-color-dark-v3: #4E4E4E;
-    --backup-text-color-dark-v4: #2F2F2F;
-    --backup-text-color-dark-v5: #1A1A1A;
-
-    --background-color-dark: #0F0F0F;
-    --text-color-dark: #ffffff;
-    --main-accent-dark: #B296FF;
-    --secondary-accent-dark: #B296FF;
-    --contrast-color-dark: #FFFFFF;
-    --lightest-text-dark: #232323;
-
-    --welcome-gif-dark: url('/assets/images/resources/FINAL_V1_DARK.gif');
-    --empty-ball-dark: url('/assets/images/resources/emptywhiteball.svg');
-    --ball-dark: url('/assets/images/resources/whiteball.svg');
-
-}
-
-:root,.theme-light{
-    --background-color: var(--background-color-light);
-    --text-color: var(--text-color-light);
-    --backup-text-color: var(--backup-text-color-light);
-    --backup-text-color-v2: var(--backup-text-color-light-v2);
-    --backup-text-color-v3: var(--backup-text-color-light-v3);
-    --backup-text-color-v4: var(--backup-text-color-light-v4);
-    --backup-text-color-v5: var(--backup-text-color-light-v5);
-    --main-accent: var(--main-accent-light);
-    --secondary-accent: var(--secondary-accent-light);
-    --contrast-color: var(--contrast-color-light);
-    --lightest-text: var(--lightest-text-light);
-    --welcome-gif: var(--welcome-gif-light);
-    --empty-ball: var(--empty-ball-light);
-    --ball: var(--ball-light);
-}
-
-.theme-dark {
-    --background-color: var(--background-color-dark);
-    --text-color: var(--text-color-dark);
-    --backup-text-color: var(--backup-text-color-dark);
-    --backup-text-color-v2: var(--backup-text-color-dark-v2);
-    --backup-text-color-v3: var(--backup-text-color-dark-v3);
-    --backup-text-color-v4: var(--backup-text-color-dark-v4);
-    --backup-text-color-v5: var(--backup-text-color-dark-v5);
-    --main-accent: var(--main-accent-dark);
-    --secondary-accent: var(--secondary-accent-dark);
-    --contrast-color: var(--contrast-color-dark);
-    --lightest-text: var(--lightest-text-dark);
-    --welcome-gif: var(--welcome-gif-dark);
-    --empty-ball: var(--empty-ball-dark);
-    --ball: var(--ball-dark);
+    --background-color: #ffffff;
+    --main-accent: #B296FF;   
+    --secondary-accent: #B296FF;
+    --contrast-color: #000000;
+    --lightest-text: #E0E0E0;
+    --welcome-gif: url('/assets/images/resources/FINAL_V4.gif');
+    --empty-ball: url('/assets/images/resources/emptyblackball.svg');
+    --ball: url('/assets/images/resources/blackball.svg');
 }
 
 @font-face{
@@ -111,7 +58,7 @@
 .crimson-pro {
     font-family: "Crimson Pro", serif;
     font-optical-sizing: auto;
-    font-weight: <weight>;
+    font-weight: 400;
     font-style: normal;
 }
 
