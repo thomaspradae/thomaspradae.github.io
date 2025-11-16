@@ -1059,10 +1059,10 @@ pre code {
     transition: color 0.3s ease;
 }
 
-.layout-post {
+/* .layout-post {
     margin-right: 30vw;
     margin-left: 30vw;
-}
+} */
 
 .layout-post .page-content {
     margin-left: auto;
