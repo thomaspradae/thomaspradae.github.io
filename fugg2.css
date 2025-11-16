@@ -116,10 +116,10 @@
 }
 
 blockquote {
-    border-left: 0.2px solid var(--lightest-text);
-    padding-left: 20px; 
+    border-left: 0.0125rem solid var(--lightest-text);
+    padding-left: 1.25rem; 
     color: var(--backup-text-color-v3);
-    margin: 20px 0; 
+    margin: 1.25rem 0; 
 }
 
 blockquote p{
@@ -147,7 +147,7 @@ blockquote p{
 }
 
 .sidebar {
-    width: 200px;
+    width: 12.5rem;
     margin-left: 8vw;
 }
 
@@ -162,14 +162,14 @@ nav.sidebar .home-sidebar-item a {
     padding: 0;
     margin: 0;
     font-family: 'GeistMono', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     text-transform: uppercase;
 }
 
 /* li */
 .home-sidebar-item {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     color: rgb(144, 144, 144);
     transition: background-color 0.3s, color 0.3s;
 }
@@ -190,8 +190,8 @@ nav.sidebar .home-sidebar-item a {
     left: 5.2%; 
     top: 50%;
     transform: translateY(-50%) scale(0);
-    width: 8px;
-    height: 8px;
+    width: 0.5rem;
+    height: 0.5rem;
     background-image: var(--empty-ball);
     background-size: cover;
     opacity: 0;
@@ -239,18 +239,18 @@ background: var(--main-accent);
 .post-meta-container-left-side {
     flex: 1;
     align-self: flex-end;
-    padding-right: 20px;
+    padding-right: 1.25rem;
 }
 
 .post-meta-container-right-side {
     flex: 2;
     align-self: flex-end;
-    padding-left: 20px;
+    padding-left: 1.25rem;
     /* background-color: #f0f0f0; */
 }
 
 .vertical-line {
-    border-left: 1px solid var(--lightest-text); /* Adjust thickness and color as needed */
+    border-left: 0.0625rem solid var(--lightest-text); /* Adjust thickness and color as needed */
 }
 
 .post-meta {
@@ -271,7 +271,7 @@ background: var(--main-accent);
     /* font-family: 'Crimson Pro', serif; */
     font-weight: 400;
     color: var(--backup-text-color-v4);
-    font-size: 14px;
+    font-size: 0.875rem;
     /* text-transform: uppercase; */
     transition: color 0.3s ease;
 }
@@ -300,7 +300,7 @@ body {
 p {
     font-weight: 400;
     /* color: #9b9b9b; */
-    color: var(--backup-text-color)
+    color: var(--backup-text-color);
     font-size: 0.9rem;
 }
 
@@ -339,7 +339,7 @@ a:any-link:hover{
 }
 
 footer {
-    padding-top: 20px;
+    padding-top: 1.25rem;
     margin-top: 35vh;
 }
 
@@ -347,7 +347,7 @@ footer {
     margin-left: 8vw;
     margin-right: 8vw;
     margin-bottom: 1vh;
-    height: 0.5px;
+    height: 0.0312rem;
     background-color: var(--lightest-text);
 }
 
@@ -358,7 +358,7 @@ footer {
 .footer-info{
     margin-left: 8vw;
     text-align: left;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--contrast-color);
 }
 
@@ -371,7 +371,7 @@ footer {
 }
 
 .footer-image {
-    width: 35px;
+    width: 2.1875rem;
     height: auto;
     margin-left: 8vw;
 }
@@ -381,7 +381,7 @@ footer {
     display: flex;
     flex-direction: column;
     margin-right: 8vw;
-    font-size: 10px;
+    font-size: 0.625rem;
     color: var(--lightest-text);
 }
 
@@ -400,15 +400,15 @@ footer {
 }
 
 .info-icon_1 {
-    margin-right: 5px;
-    width: 10px;
-    height: 10px;
+    margin-right: 0.3125rem;
+    width: 0.625rem;
+    height: 0.625rem;
 }
 
 .info-icon_2 {
-    margin-right: 5px;
-    width: 10px;
-    height: 10px;
+    margin-right: 0.3125rem;
+    width: 0.625rem;
+    height: 0.625rem;
 }
 
 .info-item p {
@@ -424,21 +424,21 @@ footer {
     bottom: 0vh;
     left: 0vw;
     z-index: 1000;
-    padding: 10px 20px 10px 20px;
+    padding: 0.625rem 1.25rem 0.625rem 1.25rem;
     cursor: pointer;
     background-color: transparent;
     color: var(--text-color);
     border: none;
     font-family: 'GeistMono', sans-serif;
-    font-size: 10px;
+    font-size: 0.625rem;
     text-decoration: underline;
     text-transform: uppercase;
     overflow: hidden;
     background-image: var(--ball);
-    background-size: 5px 5px;
+    background-size: 0.3125rem 0.3125rem;
     background-repeat: no-repeat;
-    background-position: 10px center;
-    border-radius: 5px;
+    background-position: 0.625rem center;
+    border-radius: 0.3125rem;
 }
 
 #theme-toggle:hover {
@@ -464,14 +464,14 @@ footer {
     padding: 0;
     margin: 0;
     font-family: 'GeistMono', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     text-transform: uppercase;
 }
 
 /* li */
 .stickysidebar-list-item {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     color: rgb(144, 144, 144);
     transition: background-color 0.3s, color 0.3s;
 }
@@ -487,10 +487,10 @@ footer {
     left: 6.4%; 
     top: 50%;
     transform: translateY(-50%) scale(0);
-    /* width: 16px;
-    height: 16px; */
-    width: 8px;
-    height: 8px;
+    /* width: 1rem;
+    height: 1rem; */
+    width: 0.5rem;
+    height: 0.5rem;
     background-image: var(--empty-ball);
     background-size: cover;
     opacity: 0;
@@ -523,10 +523,10 @@ footer {
     left: 6.4%; 
     top: 50%;
     transform: translateY(-50%);
-    /* width: 16px;
-    height: 16px; */
-    width: 8px;
-    height: 8px;
+    /* width: 1rem;
+    height: 1rem; */
+    width: 0.5rem;
+    height: 0.5rem;
     background: var(--ball) center center;
     background-size: cover;
     transition: opacity 0.4s ease;
@@ -542,7 +542,7 @@ footer {
     margin-right: 8vw;
     margin-left: 30vw;
     padding-top: 8vh;
-    padding-bottom: 20px;
+    padding-bottom: 1.25rem;
 }
 
 .page-content img {
@@ -586,7 +586,7 @@ footer {
 .subtitle {
     font-family: 'GeistMono', sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--backup-text-color);
     text-align: left;
     transition: color 0.3s ease;
@@ -604,24 +604,24 @@ footer {
     height: auto;
     display: block;
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     margin-right: 0;
     margin-left: 0;
-    width: 80px;
+    width: 5rem;
 }
 
 .page-icon {
     max-width: 100% !important;
     height: auto !important;
     display: block !important;
-    margin-bottom: 20px !important;
-    width: 70px !important;
+    margin-bottom: 1.25rem !important;
+    width: 4.375rem !important;
 }
 
 .div-line {
-    border-bottom: 1.4px dotted var(--lightest-text);
+    border-bottom: 0.0875rem dotted var(--lightest-text);
     margin-bottom: 8vh;
-    height: 0.1px;
+    height: 0.0063rem;
 }
 
 .line {
@@ -634,23 +634,23 @@ footer {
 }
 
 .sub {
-    border-bottom: 0.1px solid var(--lightest-text);
-    height: 0.1px;
+    border-bottom: 0.0063rem solid var(--lightest-text);
+    height: 0.0063rem;
 }
 
 .contrast {
-    border-bottom: 0.1px solid var(--lightest-text);
-    height: 0.1px;
-    margin-top: 12px;
+    border-bottom: 0.0063rem solid var(--lightest-text);
+    height: 0.0063rem;
+    margin-top: 0.75rem;
 }
 
 .inv {
-    border-bottom: 0.5px solid var(--background-color);
-    height: 0.1px;
+    border-bottom: 0.0312rem solid var(--background-color);
+    height: 0.0063rem;
 }
 
 .dark {
-    border-bottom: 0.3px solid var(--contrast-color);
+    border-bottom: 0.0187rem solid var(--contrast-color);
     transform: scaleX(0); 
     transition: transform 0.6s ease-in-out; 
 }
@@ -686,8 +686,8 @@ footer {
 }
 
 .post-list-item {
-    padding-left: 0px;
-    margin-bottom: 10px;
+    padding-left: 0rem;
+    margin-bottom: 0.625rem;
     background-color: white;
     color: rgb(144, 144, 144);
 }
@@ -737,7 +737,7 @@ footer {
     /* font-family: 'Crimson Pro', serif; */
     font-weight: 400;
     color: var(--backup-text-color-v3);
-    font-size: 14px;
+    font-size: 0.875rem;
     /* text-transform: uppercase; */
     transition: color 0.3s ease;
 }
@@ -745,7 +745,7 @@ footer {
 .latest-post-time{
     /* font-weight: 400; */
     font-family: 'GeistMono', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     text-transform: uppercase;
     display: block;
     color: var(--backup-text-color-v3);
@@ -764,7 +764,7 @@ footer {
     color: var(--backup-text-color-v2);
     font-weight: bold;
     transition: color 0.3s ease;
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .latest-post-read-more:hover a{
@@ -854,7 +854,7 @@ footer {
 
 .all-post-time{
     font-family: 'GeistMono', sans-serif;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--backup-text-color-v4);
     padding-right: 1rem;
     white-space: nowrap;
@@ -915,7 +915,7 @@ footer {
 }
 
 .all-post-description {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--backup-text-color-v3);
     display: block;
     margin-top: 0.5vh;
@@ -926,7 +926,7 @@ footer {
 .contact{
     font-family: 'GeistMono', sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.875rem;
     text-transform: lowercase;
     color: var(--contrast-color);
     text-align: left;
@@ -941,7 +941,7 @@ footer {
 .breadcrumbs{
     font-family: 'GeistMono', sans-serif;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--backup-text-color-v3);
     text-transform: uppercase;
     text-align: left;
@@ -956,7 +956,7 @@ footer {
 }
 
 .footnotes{
-    border-top: 0.2px solid var(--lightest-text);
+    border-top: 0.0125rem solid var(--lightest-text);
     margin-top: 5vh;
 }
 
@@ -968,11 +968,11 @@ footer {
 .footnote{
     font-family: 'GeistMono', sans-serif;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--main-accent);
     transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
     text-decoration: none;
-    padding-left: 2px;
+    padding-left: 0.125rem;
 }
 
 .footnote:hover{
@@ -982,7 +982,7 @@ footer {
 
 .reversefootnote{
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--main-accent);
     text-decoration: none;
     transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
@@ -1006,29 +1006,29 @@ footer {
 } */
 
 .date-post{
-    font-size: 14px;
+    font-size: 0.875rem;
     margin: 0;
     color: var(--backup-text-color-v3);
 }
 
 .tags-holder{
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--backup-text-color-v3);
 }
 
 .tags-holder a{
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--backup-text-color-v3);
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 3.125rem;
     margin: 0;
     color: var(--contrast-color);
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 1.875rem;
     font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
@@ -1037,7 +1037,7 @@ h2 {
 }
 
 h3 {
-    font-size: 25px;
+    font-size: 1.5625rem;
     font-family: 'GeistMono', sans-serif;
     font-weight: 400;
     text-transform: uppercase;
@@ -1046,7 +1046,7 @@ h3 {
 }
 
 h4 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
@@ -1055,7 +1055,7 @@ h4 {
 }
 
 h5 {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
@@ -1064,7 +1064,7 @@ h5 {
 }
 
 h6 {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
@@ -1080,8 +1080,8 @@ h6 {
     white-space: pre-wrap;
     word-wrap: break-word;
     background-color: #f0f0f0;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 0.3125rem;
+    border-radius: 0.3125rem;
     display: inline-block;
 } */
 
@@ -1089,18 +1089,18 @@ h6 {
 code {
     color: var(--contrast-color); /* Inline code text color */
     background-color: var(--backup-text-color-v4); /* Inline code background color */
-    padding: 2px 4px; /* Padding for inline code */
-    border-radius: 4px; /* Rounded corners for inline code */
+    padding: 0.125rem 0.25rem; /* Padding for inline code */
+    border-radius: 0.25rem; /* Rounded corners for inline code */
     font-size: 90%; /* Slightly smaller font size */
 }
 
 /* Style for code blocks */
 pre code {
     display: block; /* Ensure it takes full width */
-    padding: 10px; /* Padding for code block */
+    padding: 0.625rem; /* Padding for code block */
     color: var(--contrast-color); /* Code block text color */
     background-color: var(--backup-text-color-v5); /* Code block background color */
-    border-radius: 6px; /* Rounded corners for code block */
+    border-radius: 0.375rem; /* Rounded corners for code block */
     overflow-x: auto; /* Horizontal scroll for long lines */
     font-size: 85%; /* Adjust font size */
 }
@@ -1127,7 +1127,7 @@ pre code {
 
 /* The actual text column for the post */
 .post {
-    max-width: 42rem;     /* ~672px, comfy reading width */
+    max-width: 42rem;     /* ~42rem, comfy reading width */
     margin: 0 auto;       /* center inside page-content */
     padding: 2rem 1.5rem; /* breathing room */
 }
@@ -1137,7 +1137,7 @@ pre code {
     margin-right: auto;
     max-width: 60rem;   /* outside width of the post area */
     padding-top: 8vh;
-    padding-bottom: 20px;
+    padding-bottom: 1.25rem;
 }
 
 
@@ -1185,8 +1185,8 @@ pre code {
 /* (005) - MOBILE */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-@media (min-width: 601px) {
-    /* Styles for screens with a minimum width of 601px (devices larger than phones) */
+@media (min-width: 37.5625rem) {
+    /* Styles for screens with a minimum width of 37.5625rem (devices larger than phones) */
     /* #menu-overlay   {
         display: none;
     } */
@@ -1200,7 +1200,7 @@ pre code {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
 
     body {
         background-color: var(--background-color);
@@ -1235,8 +1235,8 @@ pre code {
         left: 5.2%;
         top: 50%;
         transform: translateY(-50%) scale(0);
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         background-image: var(--empty-ball);
         background-size: cover;
         opacity: 0;
@@ -1245,7 +1245,7 @@ pre code {
 
     .home-sidebar-item {
         position: relative;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
         color: rgb(144, 144, 144);
         transition: background-color 0.3s, color 0.3s;
     }
@@ -1263,14 +1263,14 @@ pre code {
         padding: 0;
         margin: 0;
         font-family: 'GeistMono', sans-serif;
-        font-size: 12px;
+        font-size: 0.75rem;
         text-transform: uppercase;
     }
 
     /* li */
     .stickysidebar-list-item {
         position: relative;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
         color: rgb(144, 144, 144);
         transition: background-color 0.3s, color 0.3s;
     }
@@ -1286,8 +1286,8 @@ pre code {
         left: 6.2%;
         top: 50%;
         transform: translateY(-50%) scale(0);
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         background-image: var(--empty-ball);
         background-size: cover;
         opacity: 0;
@@ -1319,8 +1319,8 @@ pre code {
         left: 6.2%;
         top: 50%;
         transform: translateY(-50%);
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         background: var(--ball) center center;
         background-size: cover;
         transition: opacity 0.4s ease;
@@ -1357,8 +1357,8 @@ pre code {
     
     .close-btn {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 1.25rem;
+        right: 1.25rem;
         cursor: pointer;
         color: white;
     }
@@ -1368,35 +1368,35 @@ pre code {
         bottom: 0vh;
         left: 0vw;
         z-index: 1000;
-        padding: 10px 20px 10px 20px;
+        padding: 0.625rem 1.25rem 0.625rem 1.25rem;
         cursor: pointer;
         background-color: var(--background-color);
         color: var(--text-color);
         border: none;
         font-family: 'GeistMono', sans-serif;
-        font-size: 10px;
+        font-size: 0.625rem;
         text-decoration: underline;
         text-transform: uppercase;
         overflow: hidden;
         background-image: var(--ball);
-        background-size: 5px 5px;
+        background-size: 0.3125rem 0.3125rem;
         background-repeat: no-repeat;
-        background-position: 10px center;
-        border-radius: 5px;
+        background-position: 0.625rem center;
+        border-radius: 0.3125rem;
     }
 
     .menu-button {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 1.25rem;
+        right: 1.25rem;
         z-index: 1000;
-        padding: 10px 20px 10px 20px;
+        padding: 0.625rem 1.25rem 0.625rem 1.25rem;
         cursor: pointer;
         background-color: var(--background-color);
         color: var(--text-color);
         border: none;
         font-family: 'GeistMono', sans-serif;
-        font-size: 12px;
+        font-size: 0.75rem;
         text-transform: uppercase;
         overflow: hidden;
     }
@@ -1416,18 +1416,18 @@ pre code {
         height: auto;
         display: block;
         margin-top: 0;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         margin-right: 0;
         margin-left: 0;
-        width: 80px;
+        width: 5rem;
     }
 
     .page-icon {
         max-width: 60% !important;
         height: auto !important;
         display: block !important;
-        margin-bottom: 20px !important;
-        width: 40px !important;
+        margin-bottom: 1.25rem !important;
+        width: 2.5rem !important;
     }
 
     .content-header {
@@ -1438,7 +1438,7 @@ pre code {
     }
 
     .page-title {
-        font-size: 25px;
+        font-size: 1.5625rem;
         margin: 0;
         color: var(--contrast-color);
     }
@@ -1468,7 +1468,7 @@ pre code {
     }
 
     p{
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .subhome-description {
@@ -1494,7 +1494,7 @@ pre code {
     .subtitle {
         font-family: 'GeistMono', sans-serif;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: var(--contrast-color);
         text-align: left;
         margin-top: 5vh;
@@ -1502,15 +1502,15 @@ pre code {
     }
 
     .latest-post .latest-post-title {
-        font-size: 14px;
+        font-size: 0.875rem;
         text-decoration: none;
         color: var(--contrast-color);
         transition: color 0.3s ease;
-        line-height: 0px;
+        line-height: 0rem;
     }
 
     .latest-post-time{
-        font-size: 10px;
+        font-size: 0.625rem;
         display: block;
         color: var(--secondary-accent);
         transition: color 0.3s ease;
@@ -1521,7 +1521,7 @@ pre code {
         margin-top: 1vh;
         margin-bottom: 1vh;
         color: var(--backup-text-color);
-        font-size: 10px;
+        font-size: 0.625rem;
         transition: color 0.3s ease;
     }
 
@@ -1529,18 +1529,18 @@ pre code {
         color: var(--contrast-color);
         font-weight: bold;
         transition: color 0.3s ease;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .section-tags{
         margin-bottom: 5vh;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .section-tags a{
         color: var(--backup-text-color);
         transition: color 0.3s ease;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .topics:hover .dark{
@@ -1561,13 +1561,13 @@ pre code {
 
     .muted {
         color: var(--backup-text-color);
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     .internal-link {
         color: #9b9b9b;
         transition: color 0.3s ease;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .posts li {
@@ -1603,7 +1603,7 @@ pre code {
     }
 
     .all-post-item-title {
-        font-size: 14px;
+        font-size: 0.875rem;
         text-decoration: none;
         list-style: none;
         transition: color 0.3s ease;
@@ -1611,7 +1611,7 @@ pre code {
 
     .all-post-time{
         align-self: flex-start;
-        font-size: 10px;
+        font-size: 0.625rem;
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
         color: var(--secondary-accent);
@@ -1619,7 +1619,7 @@ pre code {
     }
 
     .all-post-description {
-        font-size: 10px;
+        font-size: 0.625rem;
         color: var(--backup-text-color);
         /* color: var(--backup-text-color-v3);
         display: block;
@@ -1631,31 +1631,31 @@ pre code {
     .breadcrumbs{
         font-family: 'GeistMono', sans-serif;
         font-weight: 500;
-        font-size: 10px;
+        font-size: 0.625rem;
         color: var(--backup-text-color-v3);
         text-transform: uppercase;
         text-align: left;
     }
 
     .tags-holder{
-        font-size: 10px;
+        font-size: 0.625rem;
         color: var(--backup-text-color-v3);
     }
 
     .tags-holder a{
-        font-size: 10px;
+        font-size: 0.625rem;
         color: var(--backup-text-color-v3);
     }
 
     .title-post-meta-p {
         font-weight: 400;
         color: var(--backup-text-color-v4);
-        font-size: 10px;
+        font-size: 0.625rem;
         transition: color 0.3s ease;
     }
 
     .date-post{
-        font-size: 10px;
+        font-size: 0.625rem;
         color: var(--backup-text-color-v3);
     }
 
@@ -1665,13 +1665,13 @@ pre code {
     }
 
     h1 {
-        font-size: 25px;
+        font-size: 1.5625rem;
         margin: 0;
         color: var(--contrast-color);
     }
 
     h2 {
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
@@ -1680,7 +1680,7 @@ pre code {
     }
 
     h3 {
-        font-size: 16px;
+        font-size: 1rem;
         font-family: 'GeistMono', sans-serif;
         font-weight: 400;
         text-transform: uppercase;
@@ -1689,7 +1689,7 @@ pre code {
     }
 
     h4 {
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
@@ -1698,7 +1698,7 @@ pre code {
     }
 
     h5 {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
@@ -1707,7 +1707,7 @@ pre code {
     }
 
     h6 {
-        font-size: 10px;
+        font-size: 0.625rem;
         font-weight: 400;
         font-family: 'GeistMono', sans-serif;
         text-transform: uppercase;
@@ -1716,7 +1716,7 @@ pre code {
     }
 
     li {
-        font-size: 12px;
+        font-size: 0.75rem;
     }
 
     .layout-post {
@@ -1734,7 +1734,7 @@ pre code {
     
     /* The actual text column for the post */
     .post {
-        max-width: 42rem;     /* ~672px, comfy reading width */
+        max-width: 42rem;     /* ~42rem, comfy reading width */
         margin: 0 auto;       /* center inside page-content */
         padding: 2rem 1.5rem; /* breathing room */
     }
