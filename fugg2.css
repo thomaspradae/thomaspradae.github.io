@@ -1694,6 +1694,8 @@ pre code {
         margin-left: auto;
         margin-right: auto;
         max-width: 60rem;     /* outer container width */
+        margin-right: 30vw;
+        margin-left: 30vw;
     }
     
     /* The actual text column for the post */
