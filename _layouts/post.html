@@ -2,57 +2,47 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>{{ page.title | downcase }} / thomasprada</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
-
-<body>
-  <div class="post-header">
-    <!-- <div class="line contrast"></div> -->
-    <div class="post-meta-container">
-      <div class="post-meta-container-left-side">
-        <!-- <p class="title-post-meta-p">nav</p> -->
-        <section class="breadcrumbs">
-          {% case page.collection %}
-              {% when 'building' %}
-              <a href="/building.html">Building</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-              {% when 'writing' %}
-              <a href="/writing.html">Writing</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-              {% when 'notes' %}
-              <a href="/notes.html">Notes</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-              {% when 'misc' %}
-              <a href="/misc.html">Misc</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-              {% else %}
-              <a href="/">Home</a>
-          {% endcase %}
-        </section>
-      </div>
-      <div class="vertical-line"></div>
-      <div class="post-meta-container-right-side">
-        <div class="meta">
-          <div class="post-meta-date">
-            <p class="title-post-meta-p">Published on</p>
-            <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-          </div>
-          <p class="title-post-meta-p">Tags</p>
-          <div class="tags-holder">
-              {% for tag in page.tags %}
-              <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
-              {% endfor %}
-          </div>
+<div class="post-header">
+  <!-- <div class="line contrast"></div> -->
+  <div class="post-meta-container">
+    <div class="post-meta-container-left-side">
+      <!-- <p class="title-post-meta-p">nav</p> -->
+      <section class="breadcrumbs">
+        {% case page.collection %}
+            {% when 'building' %}
+            <a href="/building.html">Building</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+            {% when 'writing' %}
+            <a href="/writing.html">Writing</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+            {% when 'notes' %}
+            <a href="/notes.html">Notes</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+            {% when 'misc' %}
+            <a href="/misc.html">Misc</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+            {% else %}
+            <a href="/">Home</a>
+        {% endcase %}
+      </section>
+    </div>
+    <div class="vertical-line"></div>
+    <div class="post-meta-container-right-side">
+      <div class="meta">
+        <div class="post-meta-date">
+          <p class="title-post-meta-p">Published on</p>
+          <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+        </div>
+        <p class="title-post-meta-p">Tags</p>
+        <div class="tags-holder">
+            {% for tag in page.tags %}
+            <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
+            {% endfor %}
         </div>
       </div>
     </div>
-    <div class="line contrast"></div>
   </div>
-  <section class="post">
-    <h1 class="page-title">{{ page.title }}</h1>
+  <div class="line contrast"></div>
+</div>
 
-    {{ content }}
-  </section>
-</body>
+<section class="post">
+  <h1 class="page-title">{{ page.title }}</h1>
 
+  {{ content }}
+</section>
