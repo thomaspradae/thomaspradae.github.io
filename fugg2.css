@@ -1065,8 +1065,6 @@ pre code {
 } */
 
 .layout-post .page-content {
-    margin-left: auto;
-    margin-right: auto;
     max-width: 60rem;     /* outer container width */
     margin-right: 30vw;
     margin-left: 30vw;
@@ -1079,8 +1077,6 @@ pre code {
 }
 
 .layout-post .page-content {
-    margin-left: auto;
-    margin-right: auto;
     max-width: 60rem;   /* outside width of the post area */
     padding-top: 8vh;
     padding-bottom: 1.25rem;
@@ -1671,8 +1667,6 @@ pre code {
     }
 
     .layout-post .page-content {
-        margin-left: auto;
-        margin-right: auto;
         max-width: 60rem;     /* outer container width */
         margin-right: 30vw;
         margin-left: 30vw;
