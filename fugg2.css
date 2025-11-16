@@ -1076,7 +1076,6 @@ pre code {
 .post {
     max-width: 42rem;     /* ~42rem, comfy reading width */
     margin: 0 auto;       /* center inside page-content */
-    padding: 2rem 1.5rem; /* breathing room */
 }
 
 .layout-post .page-content {
