@@ -3,46 +3,57 @@ layout: default
 ---
 
 <div class="post-header">
-  <!-- <div class="line contrast"></div> -->
   <div class="post-meta-container">
     <div class="post-meta-container-left-side">
-      <!-- <p class="title-post-meta-p">nav</p> -->
       <section class="breadcrumbs">
         {% case page.collection %}
-            {% when 'building' %}
+          {% when 'building' %}
             <a href="/building.html">Building</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-            {% when 'writing' %}
+          {% when 'writing' %}
             <a href="/writing.html">Writing</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-            {% when 'notes' %}
+          {% when 'notes' %}
             <a href="/notes.html">Notes</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-            {% when 'misc' %}
+          {% when 'misc' %}
             <a href="/misc.html">Misc</a> > <a href="{{ page.url }}">{{ page.title }}</a>
-            {% else %}
+          {% else %}
             <a href="/">Home</a>
         {% endcase %}
       </section>
     </div>
+
     <div class="vertical-line"></div>
+
     <div class="post-meta-container-right-side">
       <div class="meta">
         <div class="post-meta-date">
           <p class="title-post-meta-p">Published on</p>
-          <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+          <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%B %-d, %Y" }}
+          </time>
         </div>
+
         <p class="title-post-meta-p">Tags</p>
         <div class="tags-holder">
-            {% for tag in page.tags %}
+          {% for tag in page.tags %}
             <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
-            {% endfor %}
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
+
   <div class="line contrast"></div>
 </div>
 
-<section class="post">
-  <h1 class="page-title">{{ page.title }}</h1>
+<section class="post-wrapper">
+  <div id="main" class="post">
+    <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
+    <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
 
-  {{ content }}
+    <!-- MAIN ARTICLE COLUMN -->
+    <article class="post-body">
+      <h1 class="page-title">{{ page.title }}</h1>
+      {{ content }}
+    </article>
+  </div>
 </section>

@@ -1081,6 +1081,136 @@ pre code {
     padding-bottom: 1.25rem;
 }
 
+#main.post {
+    position: relative;
+    margin: 0 auto;
+    max-width: 42rem;               /* text column width */
+    padding: 0 1.5rem;
+
+    /* side columns */
+    --toc-width: 12rem;
+    --toc-gap: 3rem;
+    --margin-note-width: 12rem;
+    --margin-note-gap: 3rem;
+
+    counter-reset: sidenote-counter;
+}
+
+/* LEFT TOC */
+
+#main.post .left-toc {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--toc-width) - var(--toc-gap));
+    width: var(--toc-width);
+    margin: 0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--backup-text-color-v2);
+}
+
+#main.post .left-toc .toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#main.post .left-toc .toc-item {
+    margin: 0 0 0.35rem 0;
+}
+
+#main.post .left-toc a {
+    color: var(--backup-text-color-v2);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+#main.post .left-toc a:hover {
+    color: var(--contrast-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+#main.post .left-toc .toc-level-2 {
+    padding-left: 0.75rem;
+    margin-top: 0.35rem;
+}
+
+#main.post .left-toc .toc-level-3 {
+    padding-left: 1.25rem;
+}
+
+/* SIDENOTES (margin notes on right) */
+
+#main.post .sidenote,
+#main.post .marginnote {
+    float: right;
+    clear: right;
+    width: var(--margin-note-width);
+    margin-right: calc(-1 * var(--margin-note-width) - var(--margin-note-gap));
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--backup-text-color-v3);
+}
+
+/* numbering */
+
+#main.post .sidenote-number {
+    counter-increment: sidenote-counter;
+    pointer-events: none;
+}
+
+#main.post .sidenote-number::after {
+    content: counter(sidenote-counter);
+    font-size: 0.75rem;
+    vertical-align: super;
+    margin-left: 0.1rem;
+    color: var(--backup-text-color-v3);
+}
+
+#main.post .sidenote::before {
+    content: counter(sidenote-counter);
+    font-size: 0.75rem;
+    display: inline-block;
+    margin-right: 0.25rem;
+    color: var(--backup-text-color-v3);
+}
+
+/* blockquotes + margin notes */
+#main.post blockquote .sidenote,
+#main.post blockquote .marginnote {
+    text-align: left;
+}
+
+/* Smooth scroll for TOC links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive: hide TOC and inline sidenotes on narrow screens */
+@media (max-width: 1024px) {
+    #main.post .left-toc {
+        display: none;
+    }
+
+    #main.post .sidenote,
+    #main.post .marginnote {
+        float: none;
+        clear: both;
+        margin: 0.75rem 0;
+        width: 100%;
+    }
+
+    #main.post .sidenote-number::after {
+        /* optional: hide superscript numbers on mobile */
+        display: none;
+    }
+}
+
+
+
+
 
 /* --------------------- */
 /* newhere.html*/

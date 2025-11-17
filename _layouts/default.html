@@ -3,153 +3,90 @@ layout: compress
 ---
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/fugg2.css">  
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="/fugg2.css">
+
+  <!-- GSAP + ScrollTrigger -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Polyfill + MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-  <body class="layout-{{ page.layout }}">
+<body class="layout-{{ page.layout }}">
 
-    {% unless page.layout == "post" %}
-    <div id="menu-overlay">
+  {% unless page.layout == "post" %}
+  <div id="menu-overlay">
+    {% include nav.html %}
+    <div class="menu-content"></div>
+  </div>
 
-      {% include nav.html %}
+  <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
+  {% endunless %}
 
-      <div class="menu-content">
-      </div>
-
+  <main class="content">
+    <div class="page-content">
+      {{ content }}
     </div>
+  </main>
 
-    <button id="menu-button" class="menu-button" onclick="toggleMenu()">[ MENU ]</button>
-    {% endunless %}
-
-    <main class="content">
-      <div class="page-content">
-
-        {{ content }}
-
+  <footer>
+    <div class="footer-line"></div>
+    <div class="footer-info">
+      <div class="info-item">
+        <img src="/assets/images/resources/lightestemptyball.svg" alt="Icon" class="info-icon_1">
+        <p>4°36'17.8"N 74°03'16.9"W</p>
       </div>
-    </main>
-
-    <footer>
-      <div class="footer-line"></div> <!-- Line at the top of the footer -->
-      <div class="footer-info">
-          <div class="info-item">
-              <img src="/assets/images/resources/lightestemptyball.svg" alt="Icon" class="info-icon_1">
-              <p>4°36'17.8"N 74°03'16.9"W</p>
-          </div>
-          <div class="info-item">
-              <img src="/assets/images/resources/lightestball.svg" alt="Icon" class="info-icon_2">
-              <p id="bogota-weather">Bogotá --°C, --:--</p>
-          </div> 
+      <div class="info-item">
+        <img src="/assets/images/resources/lightestball.svg" alt="Icon" class="info-icon_2">
+        <p id="bogota-weather">Bogotá --°C, --:--</p>
       </div>
-      <div class="footer-bottom">
-          <img src="/assets/images/resources/POSLIGHTGREY.png" alt="Pattern" class="footer-image">
-          <div class="footer-text">
-              <span class="year">mmxxiv</span>
-              <span class="name">ThomasPrada.</span>
-          </div>
+    </div>
+    <div class="footer-bottom">
+      <img src="/assets/images/resources/POSLIGHTGREY.png" alt="Pattern" class="footer-image">
+      <div class="footer-text">
+          <span class="year">mmxxiv</span>
+          <span class="name">ThomasPrada.</span>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <!-- <script src="/click.js"></script> -->
-    <!-- <script src="/gsapscroll.js"></script> -->
-    <script>
-      gsap.registerPlugin(ScrollTrigger);
-      
-      if (window.innerWidth > 600) {
-        console.log("Screen width is greater than 600px, animation active");
-        gsap.to(".stickysidebar", {
-          scrollTrigger: {
-            trigger: ".footer-line",
-            start: "top 100%",
-            end: "bottom 10%",
-            scrub: 1,
-          },
-          y: -500,
-        });
-      } else {
-        console.log("Screen width is less than 600px, animation inactive");
-      }
-    </script>
+  <!-- GSAP scroll animation for .stickysidebar -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-    <script>
-        var darkModeToggle = document.querySelector("#theme-toggle");
+    if (window.innerWidth > 600) {
+      console.log("Screen width is greater than 600px, animation active");
+      gsap.to(".stickysidebar", {
+        scrollTrigger: {
+          trigger: ".footer-line",
+          start: "top 100%",
+          end: "bottom 10%",
+          scrub: 1,
+        },
+        y: -500,
+      });
+    } else {
+      console.log("Screen width is less than 600px, animation inactive");
+    }
+  </script>
 
-        const lightThemeImages = {
-          "icon1": "/assets/images/resources/lightestemptyball.svg",
-          "icon2": "/assets/images/resources/lightestball.svg",
-          "footericon": "/assets/images/resources/POSLIGHTGREY.png",
-        };
+  <!-- Your own scripts -->
+  <script src="/mobilemenu.js"></script>
+  <script src="/weather.js"></script>
 
-        const darkThemeImages = {
-          "icon1": "/assets/images/resources/darkestemptyball.svg",
-          "icon2": "/assets/images/resources/darkestball.svg",
-          "footericon": "/assets/images/resources/POSDARKGREY2.png",
-        };
+  <!-- TOC builder (for posts) -->
+  <script src="/assets/js/toc.js"></script>
 
-        function toggleTheme() {
-          document.body.classList.toggle("theme-dark");
-          updateThemeState();
-          updateButtonLabel();
+  <!-- Footnotes -> margin sidenotes (for posts) -->
+  <script src="/assets/js/sidenotes.js"></script>
 
-          const isDarkMode = document.body.classList.contains("theme-dark");
-          const themeImages = isDarkMode ? darkThemeImages : lightThemeImages;
-          document.querySelector('.info-icon_1').src = themeImages.icon1;
-          document.querySelector('.info-icon_2').src = themeImages.icon2;
-          document.querySelector('.footer-image').src = themeImages.footericon;
-          console.log("Theme toggled:", document.body.classList.contains("theme-dark") ? "Dark Mode" : "Light Mode");
-        }
-
-        function updateThemeState() {
-          let isDarkMode = document.body.classList.contains("theme-dark");
-          let theme = isDarkMode ? "dark" : "light";
-          localStorage.setItem("theme", theme);
-          darkModeToggle.setAttribute("aria-checked", isDarkMode.toString());
-          console.log("Theme updated in localStorage to:", theme);
-        }
-
-        function updateButtonLabel() {
-          darkModeToggle.textContent = `${document.body.classList.contains("theme-dark") ? 'Light' : 'Dark'} Mode`;
-        }
-
-        function initializeTheme() {
-          let isDarkMode = document.body.classList.contains("theme-dark");
-          darkModeToggle.setAttribute("aria-checked", isDarkMode.toString());
-          updateButtonLabel();
-
-          const themeImages = isDarkMode ? darkThemeImages : lightThemeImages;
-          document.querySelector('.info-icon_1').src = themeImages.icon1;
-          document.querySelector('.info-icon_2').src = themeImages.icon2;
-          document.querySelector('.footer-image').src = themeImages.footericon;
-          console.log("Theme initialized:", isDarkMode ? "Dark Mode" : "Light Mode");
-        }
-
-        darkModeToggle.addEventListener("click", toggleTheme);
-        document.addEventListener('DOMContentLoaded', initializeTheme);
-
-        window.addEventListener('keydown', function(e) {
-            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
-              return;
-            }
-            if (e.key === 'd' || e.key === 'D') {
-              toggleTheme();
-            }
-        });
-
-        initializeTheme();
-      </script>
-
-      <script src="/mobilemenu.js"></script>
-      <script src="/weather.js"></script>
-
-  </body>
+</body>
 </html>
