@@ -1073,7 +1073,6 @@ pre code {
 /* The actual text column for the post */
 .post {
     max-width: 42rem;     /* ~42rem, comfy reading width */
-    margin: 0 auto;       /* center inside page-content */
 }
 
 .layout-post .page-content {
