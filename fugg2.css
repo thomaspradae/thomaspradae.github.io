@@ -1083,9 +1083,9 @@ pre code {
 
 #main.post {
     position: relative;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     max-width: 42rem;               /* text column width */
-    padding: 0 1.5rem;
+    /* padding: 0 1.5rem; */
 
     /* side columns */
     --toc-width: 12rem;
@@ -1799,6 +1799,7 @@ html {
         max-width: 60rem;     /* outer container width */
         margin-right: 30vw;
         margin-left: 30vw;
+        padding: 0 1.5rem;
     }
     
     /* The actual text column for the post */
