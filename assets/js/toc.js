@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const article = main.querySelector(".post-body") || main;
   console.log("[TOC] article node:", article);
 
-  const headings = article.querySelectorAll("h2, h3, h4");
+  const headings = article.querySelectorAll("h2, h3, h4, h5, h6");
   console.log("[TOC] headings found:", headings.length, headings);
 
   if (!headings.length) {
