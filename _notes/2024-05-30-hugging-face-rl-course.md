@@ -15,12 +15,6 @@ tags:
 excerpt: 
 ---
 
-## TABLE OF CONTENTS
-
-- [(0.0.0) - The big picture and RL Learning Framework](2024-05-30-hugging-face-rl-course.md#000-the-big-picture-and-rl-learning-framework)
-	- [(0.0.1) - RL Process](2024-05-30-hugging-face-rl-course.md#000-the-big-picture-and-rl-learning-framework)
-	- [(0.0.2) - Markov Property, Markov Decision Process](2024-05-30-hugging-face-rl-course.md#000-the-big-picture-and-rl-learning-framework)
-
 ## (0.0.0) - Introduction to Deep RL
 
 ### (0.1.0) - The Big Picture and RL Learning Framework
