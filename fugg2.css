@@ -1200,7 +1200,7 @@ pre code {
 
 #main.post .sidenote::before {
     content: counter(sidenote-counter);
-    font-size: 0.75rem;
+    font-size: 1rem;
     display: inline-block;
     margin-right: 0.25rem;
     color: var(--backup-text-color-v3);
