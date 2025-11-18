@@ -989,8 +989,7 @@ h1 {
 h2 {
     font-size: 1.875rem;
     font-weight: 400;
-    font-family: 'GeistMono', sans-serif;
-    text-transform: uppercase;
+    font-family: Inter, sans-serif;
     margin-top: 12vh;
     color: var(--contrast-color);
 }
