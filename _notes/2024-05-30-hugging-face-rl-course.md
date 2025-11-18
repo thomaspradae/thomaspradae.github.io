@@ -21,13 +21,13 @@ excerpt:
 	- [(0.0.1) - RL Process](2024-05-30-hugging-face-rl-course.md#000-the-big-picture-and-rl-learning-framework)
 	- [(0.0.2) - Markov Property, Markov Decision Process](2024-05-30-hugging-face-rl-course.md#000-the-big-picture-and-rl-learning-framework)
 
-## (0.0.0) - INTRODUCTION TO DEEP RL
+## (0.0.0) - Introduction to Deep RL
 
-### (0.1.0) - THE BIG PICTURE AND RL LEARNING FRAMEWORK
+### (0.1.0) - The Big Picture and RL Learning Framework
 
 The big idea behind reinforcement learning is that an agent will be able to learn from an environment by *interacting with it*. Interaction leads to rewards (which can either be negative (punishment) or positive) that serve as *feedback*, informing future decisions. For example, imagine you have a little brother and you sit him in front of a videogame he's never seen nor played. He'll probably start off by figuring his way around the controls. Maybe he manages to collect a prize which increases his score, or, on the contrary, comes into contact with an enemy, thereby reducing his score. Through interaction, he learns about the environment. 
 
-#### (0.1.1) - RL PROCESS
+#### (0.1.1) - RL Process
 The process described above can be modeled as follows: 
 ![RL_process](../assets/images/posts/RL_process.jpg)
 *Source: Hugging Face Deep RL Course - Unit 1 - "RL Framework"*
@@ -42,20 +42,20 @@ Reinforcement learning is based on the *reward hypothesis*:
 
 In other words, we can express the agent's goal as a maximization problem, the maximization of its reward. This entails that we'd have to make sure our environment is set up / expressed in such a way that it's able to capture this dynamic. For instance, consider we're trying to teach our agent how to score a goal[^2]. To do so, we'd have to make sure our agent has access to a set of actions that can allow it to satisfy such a goal (say, moving in a given direction, kicking, etc.), and that it receives information (a new state and a reward) based on the action it takes. Furthermore, this information is specified, such that, if the agent attempts to choose reward maximizing actions, it will lead closer to the completion of the goal (hopefully up to the full completion of the goal). Enough with the abstractions, back to our football example. In this case, since we want our agent to score a goal, we might reward it when the ball is closer to goal and punish it when it's further away. In this sense, as our agent is trying to maximize the reward, it might try strategies (such as kicking the ball when its facing the goal) that result in the ball being as close to goal as possible (until it's ultimately in goal). 
 
-#### (0.1.2) - MARKOV DECISION PROCESS
+#### (0.1.2) - Markov Decision Process
 This RL process we've just discussed is called a [Markov Decision Process (MDP)](https://en.wikipedia.org/wiki/Markov_decision_process)[^3]. An MDP is a framework used to describe sequential decision making. We'll have enough time to get into the nitty gritty later on[^7], for now, let's dive a little deeper into the formalization of a MDP. 
 
-#### (0.1.3) - OBSERVATION/STATE SPACES
+#### (0.1.3) - Observation/State Spaces
 Observations/States are the information that represents the 'world/environment' at a given moment in time[^8], this could be a given frame in a video game, in our football example, it might be a slice of time with a set of corresponding variables at certain variables, say for instance, our first possible state might be kickoff where both our agent and ball have a certain position. The collection of all possible states (imagine, the universe of possible states) is called the state space \\( S \\). Now, there's a slight distinction between states and observations. A state is a complete description of the world (there is no hidden information), like a chessboard for instance, at a given slice in time you know where every piece is and who's turn it is. On the other hand, an observation is a partial description of the state of the world, it's a partially observed environment. Imagine you're playing a game of fog chess / fog of war, at a given moment in time, you probably don't have all the information about the world (where each piece is). 
 
 ![phpPUAyXc](../assets/images/posts/phpPUAyXc.png)
 
-#### (0.1.4) - ACTION SPACES
+#### (0.1.4) - Action Spaces
 The action space \\( A \\) is the set of all possible actions. Not all actions will be equally available in all states, but all actions must still be a part of the action space, we can denote that the actions available for a given state \\( s \\) are \\( A(s) \\) and a subset \\( \subseteq \\) of \\( A \\). Actions can be either discrete or continuous. A discrete action space means that the total number of possible actions is finite (imagine how u can only move left, right, up and down in Mario), while in a continuous space it's infinite (imagine ur action is the angle at which u face the ball to kick it, without further specification, the angle could be 50°, or 50.1° or 50.12° and so on). 
 
 Whether an action space is discrete or continuous is important as it influences the RL algorithm we choose (we'll talk about this later on).
 
-#### (0.1.5)- REWARDS AND DISCOUNTING
+#### (0.1.5)- Rewards and Discounting
 As we mentioned before, rewards are crucial for RL as they serve as our feedback. The cumulative reward can be written as: 
 
 \\[ R(\tau) = r_{t+1} + r_{t+2} + r_{t+3} + r_{t+4} + \cdots \\]
@@ -125,7 +125,7 @@ I didn't really get what they meant by this, as I reckoned it had to be \\( y^k 
 
 As can be seen, if \\( \gamma = 0 \\), then all rewards except for \\( r_{t+1} \\) are discarded. On the other hand, if \\( \gamma = 1 \\), then future rewards are valued just as much as present rewards. Now, if \\( 0 \leq \gamma \leq 1 \\), then our cumulative will converge towards some value. 
 
-### (0.2.0) - TYPE OF TASKS
+### (0.2.0) - Type of Tasks
 
 
 
@@ -134,12 +134,8 @@ As can be seen, if \\( \gamma = 0 \\), then all rewards except for \\( r_{t+1} \
 
 
 
-## (1.0.0) - INTRODUCTION TO Q LEARNING
-## (2.0.0) - DEEP Q LEARNING WITH ATARI GAMES
-
-
-### (0.1.0) - THE BIG PICTURE AND RL LEARNING FRAMEWORK
-
+## (1.0.0) - Introduction to Q Learning
+## (2.0.0) - Deep Q Learning with Atari Games
 
 
 A MDP is a discrete time stochastic control process. Let's unpack that: 
