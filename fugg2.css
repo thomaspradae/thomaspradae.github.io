@@ -922,6 +922,14 @@ footer {
     padding-left: 0.125rem;
 }
 
+.footnotes ol li p {
+    font-family: 'Crimson Pro', serif; /* or GeistMono if you prefer */
+    font-size: 0.75rem;                /* smaller than main body */
+    line-height: 1.5;
+    color: var(--backup-text-color-v2);
+    margin: 0 0 0.75rem 0;
+}
+
 .footnote:hover{
     color: var(--secondary-accent);
     text-decoration: underline;
