@@ -1213,6 +1213,9 @@ html {
     scroll-behavior: smooth;
 }
 
+
+
+
 /* Responsive: hide TOC and inline sidenotes on narrow screens */
 @media (max-width: 1024px) {
     #main.post .left-toc {
@@ -1234,7 +1237,26 @@ html {
 }
 
 
+#main.post .sidenote,
+#main.post .marginnote {
+    float: right;
+    clear: right;
+    width: var(--margin-note-width);
+    margin-right: calc(-1 * var(--margin-note-width) - var(--margin-note-gap));
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--backup-text-color-v3);
+}
 
+/* NEW: override <p> inside margin notes */
+#main.post .sidenote p,
+#main.post .marginnote p {
+    font-family: 'Crimson Pro', serif;   /* or GeistMono if you prefer */
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--backup-text-color-v2);
+    margin: 0;                           /* remove extra paragraph margin */
+}
 
 
 /* --------------------- */
