@@ -1178,7 +1178,7 @@ pre code {
     clear: right;
     width: var(--margin-note-width);
     margin-right: calc(-1 * var(--margin-note-width) - var(--margin-note-gap));
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1.4;
     color: var(--backup-text-color-v3);
 }
