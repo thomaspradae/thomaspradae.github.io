@@ -1113,7 +1113,7 @@ pre code {
     left: calc(-1 * var(--toc-width) - var(--toc-gap));
     width: var(--toc-width);
     margin: 0;
-    font-family: 'Crimson Pro', serif;
+    font-family: 'GeistMono', sans-serif;
     font-size: 0.9rem;
     line-height: 1.4;
     color: var(--backup-text-color-v2);
