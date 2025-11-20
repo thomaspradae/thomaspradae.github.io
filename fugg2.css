@@ -188,6 +188,11 @@ background: var(--main-accent);
     justify-content: space-between;
 }
 
+.post-metadata-container {
+    display: flex;
+    align-items: flex-end;
+}
+
 .post-meta-container-left-side {
     flex: 0 1 auto;
     align-self: flex-end;
