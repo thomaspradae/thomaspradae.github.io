@@ -184,6 +184,7 @@ background: var(--main-accent);
 
 .post-meta-container {
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
@@ -191,7 +192,7 @@ background: var(--main-accent);
     flex: 0 1 auto;
     align-self: flex-end;
     padding-right: 1.25rem;
-    margin-left: auto;
+    margin-left: 0;
     text-align: left;
 }
 
