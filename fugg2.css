@@ -179,6 +179,7 @@ background: var(--main-accent);
 .post-header {
     margin-bottom: 8vh;
     margin-top: 5vh;
+    max-width: 42rem;
 }
 
 .post-meta-container {
