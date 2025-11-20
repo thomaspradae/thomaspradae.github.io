@@ -914,6 +914,16 @@ footer {
     text-align: left;
 }
 
+.internal-link{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    color: var(--backup-text-color-v3);
+    text-align: left;
+}
+
+
+
 .breadcrumbs a{
     color: var(--backup-text-color-v3);
 }
