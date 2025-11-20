@@ -189,6 +189,8 @@ background: var(--main-accent);
     flex: 1;
     align-self: flex-end;
     padding-right: 1.25rem;
+    margin-left: auto;
+    text-align: left;
 }
 
 .post-meta-container-right-side {
