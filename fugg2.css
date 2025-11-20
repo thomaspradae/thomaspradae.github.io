@@ -183,7 +183,6 @@ background: var(--main-accent);
 
 .post-meta-container {
     display: flex;
-    align-items: flex-end;
 }
 
 .post-meta-container-left-side {
