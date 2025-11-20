@@ -24,10 +24,8 @@ layout: default
   
       <div class="post-meta-container-right-side">
         <div class="meta">
-          <div class="tags-holder">
-            {% for tag in page.tags %}
-              <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
-            {% endfor %}
+          <div class="post-meta-container-right-side">
+            <a class="internal-link" href="https://thomaspradae.github.io">[home]</a>
           </div>
         </div>
       </div>
