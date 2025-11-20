@@ -187,15 +187,15 @@ background: var(--main-accent);
 }
 
 .post-meta-container-left-side {
-    flex: 0 1 auto;
+    flex: 1;
     align-self: flex-end;
     padding-right: 1.25rem;
-    margin-left: 0;
+    margin-left: auto;
     text-align: left;
 }
 
 .post-meta-container-right-side {
-    flex: 0 1 auto;
+    flex: 2;
     align-self: flex-end;
     padding-left: 1.25rem;
     margin-left: auto;
