@@ -184,7 +184,7 @@ background: var(--main-accent);
 
 .post-meta-container {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
