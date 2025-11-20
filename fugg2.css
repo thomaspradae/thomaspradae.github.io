@@ -205,6 +205,14 @@ background: var(--main-accent);
     /* background-color: #f0f0f0; */
 }
 
+.post-metadata {
+    flex: 0 1 auto;
+    align-self: flex-end;
+    text-align: left;
+    /* background-color: #f0f0f0; */
+}
+
+
 .vertical-line {
     border-left: 0.0625rem solid var(--lightest-text); /* Adjust thickness and color as needed */
 }
