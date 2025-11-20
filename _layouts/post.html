@@ -23,13 +23,6 @@ layout: default
 
     <div class="post-meta-container-right-side">
       <div class="meta">
-        <div class="post-meta-date">
-          <p class="title-post-meta-p">Published on</p>
-          <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date: "%B %-d, %Y" }}
-          </time>
-        </div>
-
         <p class="title-post-meta-p">Tags</p>
         <div class="tags-holder">
           {% for tag in page.tags %}
