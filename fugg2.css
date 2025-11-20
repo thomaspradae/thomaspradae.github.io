@@ -195,6 +195,8 @@ background: var(--main-accent);
     flex: 2;
     align-self: flex-end;
     padding-left: 1.25rem;
+    margin-left: auto;
+    text-align: left;
     /* background-color: #f0f0f0; */
 }
 
