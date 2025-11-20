@@ -240,7 +240,6 @@ background: var(--main-accent);
     font-weight: 400;
     color: var(--backup-text-color-v4);
     font-size: 0.875rem;
-    text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
