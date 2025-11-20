@@ -24,7 +24,6 @@ layout: default
   
       <div class="post-meta-container-right-side">
         <div class="meta">
-          <p class="title-post-meta-p">Tags</p>
           <div class="tags-holder">
             {% for tag in page.tags %}
               <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
