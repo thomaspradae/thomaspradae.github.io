@@ -183,18 +183,19 @@ background: var(--main-accent);
 
 .post-meta-container {
     display: flex;
+    align-items: flex-end;
 }
 
 .post-meta-container-left-side {
-    flex: 1;
+    flex: 0 1 auto;
     align-self: flex-end;
     padding-right: 1.25rem;
-    margin-left: auto;
+    margin-left: 0;
     text-align: left;
 }
 
 .post-meta-container-right-side {
-    flex: 2;
+    flex: 0 1 auto;
     align-self: flex-end;
     padding-left: 1.25rem;
     margin-left: auto;
