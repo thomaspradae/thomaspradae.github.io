@@ -911,6 +911,7 @@ footer {
 
 .post-meta-container-right-side .internal-link {
     margin: 0;
+    margin-left: 1rem;
 }
 
 .internal-link{
