@@ -768,10 +768,6 @@ footer {
     /* Additional styles */
 }
 
-.internal-link {
-    transition: color 0.3s ease;
-}
-
 .internal-link:hover {
     color: var(--main-accent);
 }
@@ -920,9 +916,8 @@ footer {
     font-size: 0.75rem;
     color: var(--backup-text-color-v3);
     text-align: left;
+    transition: color 0.3s ease;
 }
-
-
 
 .breadcrumbs a{
     color: var(--backup-text-color-v3);
