@@ -195,7 +195,6 @@ background: var(--main-accent);
 
 .post-meta-container-left-side {
     flex: 0 1 auto;
-    align-self: flex-end;
     padding-right: 20rem;
     margin-left: 0;
     text-align: left;
@@ -203,7 +202,6 @@ background: var(--main-accent);
 
 .post-meta-container-right-side {
     flex: 0 1 auto;
-    align-self: flex-end;
     padding-left: 1.25rem;
     margin-left: auto;
     text-align: left;
@@ -902,12 +900,17 @@ footer {
 /* (004) - POST PAGE & MARKDOWN BASICS (THINK OBSIDIAN SETTINGS) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-.breadcrumbs{
+.breadcrumbs {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 0.75rem;
     color: var(--backup-text-color-v3);
     text-align: left;
+    margin: 0;
+}
+
+.post-meta-container-right-side .internal-link {
+    margin: 0;
 }
 
 .internal-link{
