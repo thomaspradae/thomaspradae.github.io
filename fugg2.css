@@ -919,6 +919,12 @@ footer {
     transition: color 0.3s ease;
 }
 
+.post-meta-container-left-side,
+.post-meta-container-right-side {
+  display: flex;
+  align-items: flex-start;
+}
+
 .breadcrumbs a{
     color: var(--backup-text-color-v3);
 }
