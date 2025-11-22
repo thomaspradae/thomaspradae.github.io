@@ -3,6 +3,7 @@ layout: default
 ---
 
 <section class="post-wrapper">
+  <!-- TOP NAV + BREADCRUMBS -->
   <div class="post-header">
     <div class="post-meta-container">
       <div class="post-meta-container-left-side">
@@ -29,16 +30,13 @@ layout: default
     </div>
   </div>
 
-  <div id="main" class="post">
-    <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
-    <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
-
-    <!-- MAIN ARTICLE COLUMN -->
+  <!-- BLOCK 1: TITLE + META + DIVIDING LINE -->
+  <div class="post-intro post">
     <article class="post-body">
       <h1 class="page-title">{{ page.title }}</h1>
-    
+
       <div class="post-header">
-        <div class="post-metadata-container">           
+        <div class="post-metadata-container">
           <div class="post-metadata">
             <div class="meta">
               <div class="post-meta-date">
@@ -47,7 +45,7 @@ layout: default
                   {{ page.date | date: "%B %-d, %Y" }}
                 </time>
               </div>
-      
+
               <p class="title-post-meta-p">Tags</p>
               <div class="tags-holder">
                 {% for tag in page.tags %}
@@ -57,10 +55,20 @@ layout: default
             </div>
           </div>
         </div>
-      
+
+        <!-- dividing line under meta -->
         <div class="line contrast"></div>
       </div>
+    </article>
+  </div>
 
+  <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
+  <div id="main" class="post">
+    <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
+    <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
+
+    <!-- MAIN ARTICLE COLUMN -->
+    <article class="post-body">
       {{ content }}
     </article>
   </div>

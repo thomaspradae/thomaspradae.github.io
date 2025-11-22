@@ -1125,11 +1125,9 @@ pre code {
 
 #main.post {
     position: relative;
-    /* margin: 0 auto; */
-    max-width: 42rem;               /* text column width */
-    /* padding: 0 1.5rem; */
-
-    /* side columns */
+    max-width: 42rem;
+    margin-top: 6vh;   /* NEW: pushes TOC + content down below the intro */
+    /* your existing custom properties stay here */
     --toc-width: 12rem;
     --toc-gap: 3rem;
     --margin-note-width: 12rem;
