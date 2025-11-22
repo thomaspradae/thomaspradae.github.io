@@ -1197,8 +1197,14 @@ pre code {
 
 .post-top {
     background: aliceblue;
-    background-color: aliceblue;
+    padding: 3rem 0 2.5rem;
+}
+
+.post-top .post-header,
+.post-intro.post,
+#main.post {
     max-width: 42rem;
+    margin: 0 auto;   /* center in the page */
 }
 
 /* SIDENOTES (margin notes on right) */
