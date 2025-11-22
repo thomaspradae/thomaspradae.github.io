@@ -3,73 +3,81 @@ layout: default
 ---
 
 <section class="post-wrapper">
-  <!-- TOP NAV + BREADCRUMBS -->
-  <div class="post-header">
-    <div class="post-meta-container">
-      <div class="post-meta-container-left-side">
-        <section class="breadcrumbs">
-          {% case page.collection %}
-            {% when 'building' %}
-              <a href="/building.html">[<- back to building]</a>
-            {% when 'writing' %}
-              <a href="/writing.html">[<- back to writing]</a>
-            {% when 'notes' %}
-              <a href="/notes.html">[<- back to notes]</a>
-            {% when 'misc' %}
-              <a href="/misc.html">[<- back to misc]</a>
-            {% else %}
-              <a href="/">[<- back to home]</a>
-          {% endcase %}
-        </section>
-      </div>
+  <!-- BIG WRAPPER AROUND THE WHOLE POST PAGE -->
+  <div class="post-outer">
 
-      <div class="post-meta-container-right-side">
-        <a class="internal-link" href="https://thomaspradae.github.io">[home]</a>
-        <a class="internal-link" href="https://thomaspradae.github.io/about.html">[about]</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- BLOCK 1: TITLE + META + DIVIDING LINE -->
-  <div class="post-intro post">
-    <article class="post-body">
-      <h1 class="page-title">{{ page.title }}</h1>
-
+    <!-- BLOCK 1: FROM BREADCRUMBS DOWN TO THE DIVIDING LINE -->
+    <div class="post-top">
+      <!-- TOP NAV + BREADCRUMBS -->
       <div class="post-header">
-        <div class="post-metadata-container">
-          <div class="post-metadata">
-            <div class="meta">
-              <div class="post-meta-date">
-                <p class="title-post-meta-p">Published on</p>
-                <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
-                  {{ page.date | date: "%B %-d, %Y" }}
-                </time>
-              </div>
+        <div class="post-meta-container">
+          <div class="post-meta-container-left-side">
+            <section class="breadcrumbs">
+              {% case page.collection %}
+                {% when 'building' %}
+                  <a href="/building.html">[<- back to building]</a>
+                {% when 'writing' %}
+                  <a href="/writing.html">[<- back to writing]</a>
+                {% when 'notes' %}
+                  <a href="/notes.html">[<- back to notes]</a>
+                {% when 'misc' %}
+                  <a href="/misc.html">[<- back to misc]</a>
+                {% else %}
+                  <a href="/">[<- back to home]</a>
+              {% endcase %}
+            </section>
+          </div>
 
-              <p class="title-post-meta-p">Tags</p>
-              <div class="tags-holder">
-                {% for tag in page.tags %}
-                  <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
-                {% endfor %}
-              </div>
-            </div>
+          <div class="post-meta-container-right-side">
+            <a class="internal-link" href="https://thomaspradae.github.io">[home]</a>
+            <a class="internal-link" href="https://thomaspradae.github.io/about.html">[about]</a>
           </div>
         </div>
-
-        <!-- dividing line under meta -->
-        <div class="line contrast"></div>
       </div>
-    </article>
-  </div>
 
-  <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
-  <div id="main" class="post">
-    <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
-    <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
+      <!-- TITLE + META + DIVIDING LINE -->
+      <div class="post-intro post">
+        <article class="post-body">
+          <h1 class="page-title">{{ page.title }}</h1>
 
-    <!-- MAIN ARTICLE COLUMN -->
-    <article class="post-body">
-      {{ content }}
-    </article>
-  </div>
+          <div class="post-header">
+            <div class="post-metadata-container">
+              <div class="post-metadata">
+                <div class="meta">
+                  <div class="post-meta-date">
+                    <p class="title-post-meta-p">Published on</p>
+                    <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
+                      {{ page.date | date: "%B %-d, %Y" }}
+                    </time>
+                  </div>
+
+                  <p class="title-post-meta-p">Tags</p>
+                  <div class="tags-holder">
+                    {% for tag in page.tags %}
+                      <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- dividing line under meta -->
+            <div class="line contrast"></div>
+          </div>
+        </article>
+      </div>
+    </div> <!-- /post-top -->
+
+    <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
+    <div id="main" class="post">
+      <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
+      <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
+
+      <!-- MAIN ARTICLE COLUMN -->
+      <article class="post-body">
+        {{ content }}
+      </article>
+    </div>
+
+  </div> <!-- /post-outer -->
 </section>
