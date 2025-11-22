@@ -9,15 +9,15 @@ layout: default
         <section class="breadcrumbs">
           {% case page.collection %}
             {% when 'building' %}
-              <a href="/building.html">Building</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+              <a href="/building.html">[<- back to building]</a> > <a href="{{ page.url }}">{{ page.title }}</a>
             {% when 'writing' %}
-              <a href="/writing.html">Writing</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+              <a href="/writing.html">[<- back to writing]</a> > <a href="{{ page.url }}">{{ page.title }}</a>
             {% when 'notes' %}
-              <a href="/notes.html">Notes</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+              <a href="/notes.html">[<- back to notes]</a> > <a href="{{ page.url }}">{{ page.title }}</a>
             {% when 'misc' %}
-              <a href="/misc.html">Misc</a> > <a href="{{ page.url }}">{{ page.title }}</a>
+              <a href="/misc.html">[<- back to misc]</a> > <a href="{{ page.url }}">{{ page.title }}</a>
             {% else %}
-              <a href="/">Home</a>
+              <a href="/">[<- back to home]</a>
           {% endcase %}
         </section>
       </div>
