@@ -1195,6 +1195,11 @@ pre code {
     opacity: 0.8;
 }
 
+.post-top {
+    background: aliceblue;
+    max-width: 42rem;
+}
+
 /* SIDENOTES (margin notes on right) */
 
 #main.post .sidenote,
