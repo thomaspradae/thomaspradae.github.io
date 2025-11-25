@@ -278,8 +278,8 @@ html, body {
 }
 
 main.content {
-    background-color: var(--background-color);
-    min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 p {
@@ -325,19 +325,22 @@ a:any-link:hover{
 }
 
 footer {
-    padding-top: 1.25rem;
-    margin-top: 35vh;
-    background-color: blue;
-
+    position: sticky;
+    bottom: 0;
+    background-color: var(--contrast-color); /* or any color you want */
+    padding-top: 10vh; 
+    padding-bottom: 10vh; 
+    margin-top: 0; /* critical */
+    z-index: 0;    /* critical (main sits above this) */
 }
 
-.footer-line {
+/* .footer-line {
     margin-left: 8vw;
     margin-right: 8vw;
     margin-bottom: 1vh;
     height: 0.0312rem;
     background-color: var(--lightest-text);
-}
+} */
 
 .footer-info p{
     color: var(--lightest-text);
@@ -351,11 +354,8 @@ footer {
 }
 
 .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10vh;
-    margin-bottom: 0;
+    margin: 0;
+    padding-top: 10vh;
 }
 
 .footer-image {
