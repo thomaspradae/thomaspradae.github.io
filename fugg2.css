@@ -338,6 +338,11 @@ footer {
     padding-block: 7vh;  /* shorthand for top/bottom */
     margin-top: 0;
     z-index: 0;
+
+    background-image: url('assets/images/resources/color2.jpg');
+    background-size: cover;        /* fill the footer, crop if needed */
+    background-position: center;   /* center the image */
+    background-repeat: no-repeat;  /* no tiling */
 }
 
 /* .footer-line {
