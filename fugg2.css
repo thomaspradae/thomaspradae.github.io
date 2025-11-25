@@ -280,7 +280,14 @@ html, body {
 main.content {
     position: relative;
     z-index: 1;
+    background-color: var(--background-color);
+    min-height: 100vh;        /* important for the reveal */
 }
+
+.content {
+    text-align: left;
+}
+
 
 p {
     font-weight: 400;
@@ -327,11 +334,10 @@ a:any-link:hover{
 footer {
     position: sticky;
     bottom: 0;
-    background-color: var(--contrast-color); /* or any color you want */
-    padding-top: 10vh; 
-    padding-bottom: 10vh; 
-    margin-top: 0; /* critical */
-    z-index: 0;    /* critical (main sits above this) */
+    background-color: var(--contrast-color);
+    padding-block: 10vh;  /* shorthand for top/bottom */
+    margin-top: 0;
+    z-index: 0;
 }
 
 /* .footer-line {
