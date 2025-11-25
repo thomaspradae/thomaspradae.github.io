@@ -555,8 +555,8 @@ footer {
     font-size: 2.5rem;
     margin: 0;
     color: var(--contrast-color);
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 .subpage-intro:hover .dark{
