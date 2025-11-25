@@ -335,7 +335,7 @@ footer {
     position: sticky;
     bottom: 0;
     background-color: aliceblue;
-    padding-block: 10vh;  /* shorthand for top/bottom */
+    padding-block: 7vh;  /* shorthand for top/bottom */
     margin-top: 0;
     z-index: 0;
 }
