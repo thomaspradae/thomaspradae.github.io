@@ -279,9 +279,9 @@ html, body {
 
 main.content {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     background-color: var(--background-color);
-    min-height: 100vh;        /* important for the reveal */
+    min-height: 100vh;
 }
 
 .content {
@@ -334,15 +334,15 @@ a:any-link:hover{
 footer {
     position: sticky;
     bottom: 0;
-    /* background-color: aliceblue; */
-    padding-block: 30vh;  /* shorthand for top/bottom */
+    padding-block: 30vh;
     margin-top: 0;
-    z-index: 0;
 
-    background-image: url('assets/images/resources/color1.jpg');
-    background-size: cover;        /* fill the footer, crop if needed */
-    background-position: center;   /* center the image */
-    background-repeat: no-repeat;  /* no tiling */
+    z-index: 10; /* higher than main */
+
+    background-image: url('/assets/images/resources/color1.jpg'); /* note leading / */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* .footer-line {
