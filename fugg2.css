@@ -338,11 +338,12 @@ footer {
     margin-top: 0;
 
     z-index: 10; /* higher than main */
+    background-color: rgb(0, 24, 44);
 
-    background-image: url('/assets/images/resources/color1.jpg'); /* note leading / */
+    /* background-image: url('/assets/images/resources/color1.jpg'); note leading /
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
 /* .footer-line {
