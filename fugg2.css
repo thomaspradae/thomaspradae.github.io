@@ -339,15 +339,15 @@ a:any-link:hover{
 footer {
     position: sticky;
     bottom: 0;
-    /* background-color: aliceblue; */
+    background-color: rgb(0, 29, 54);
     padding-block: 30vh;  /* shorthand for top/bottom */
     margin-top: 0;
     z-index: 0;
 
-    background-image: url('assets/images/resources/color1.jpg');
+    /* background-image: url('assets/images/resources/color1.jpg');
     background-size: cover;        /* fill the footer, crop if needed */
-    background-position: center;   /* center the image */
-    background-repeat: no-repeat;  /* no tiling */
+    /* background-position: center;   center the image */
+    /* background-repeat: no-repeat;  no tiling  */
 }
 
 /* .footer-line {
