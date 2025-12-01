@@ -976,7 +976,7 @@ footer {
     margin: 0.25rem 0 0;
     font-family: 'Crimson Pro', serif;
     font-size: 1.2rem;
-    color: var(--backup-text-color-v2);
+    color: black;
     font-weight: 300;
     font-style: italic;
     text-transform: lowercase;
