@@ -974,12 +974,10 @@ footer {
 
 .post-meta-section-text {
     margin: 0.25rem 0 0;
-    font-family: 'GeistMono', sans-serif;
-    font-size: 0.875rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
     color: var(--backup-text-color-v2);
 }
-
-
 
 
 .breadcrumbs {
