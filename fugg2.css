@@ -977,6 +977,8 @@ footer {
     font-family: 'Crimson Pro', serif;
     font-size: 1.2rem;
     color: var(--backup-text-color-v2);
+    font-weight: 300;
+    font-style: italic;
 }
 
 
