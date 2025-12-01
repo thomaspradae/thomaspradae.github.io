@@ -41,7 +41,6 @@ layout: default
           <!-- TOP ROW: DATE(S) + SECTION BLURB -->
           <div class="post-meta-row">
             <div class="post-meta-date">
-              <p class="title-post-meta-p">Published</p>
               <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
                 {{ page.date | date: "%B %-d, %Y" }}
               </time>
@@ -55,7 +54,6 @@ layout: default
             </div>
       
             <div class="post-meta-section">
-              <p class="title-post-meta-p">Section</p>
               <p class="post-meta-section-text">
                 {% if page.section_label %}
                   {{ page.section_label }}
