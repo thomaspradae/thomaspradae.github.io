@@ -67,17 +67,6 @@ layout: default
               </p>
             </div>
           </div>
-      
-          <!-- BOTTOM ROW: TAGS -->
-          <div class="post-tags-row">
-            <p class="title-post-meta-p">Tags</p>
-            <div class="tags-holder">
-              {% for tag in page.tags %}
-                <a class="internal-link" href="/tag/{{ tag | replace: ' ', '-' }}">{{ tag }}</a>{% unless forloop.last %} /{% endunless %}
-              {% endfor %}
-            </div>
-          </div>
-      
         </div>
       </div>
 
