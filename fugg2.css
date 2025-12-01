@@ -940,6 +940,48 @@ footer {
 /* (004) - POST PAGE & MARKDOWN BASICS (THINK OBSIDIAN SETTINGS) */
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
+.post-top .post-metadata {
+    max-width: 42rem;
+    margin: 0 auto 2rem auto;
+}
+
+.post-metadata .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Row: [ dates ] [ section blurb ] side by side */
+.post-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.post-meta-date,
+.post-meta-section {
+    flex: 1;
+}
+
+.post-meta-date {
+    text-align: center;
+}
+
+.post-meta-section {
+    text-align: left;
+}
+
+.post-meta-section-text {
+    margin: 0.25rem 0 0;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 0.875rem;
+    color: var(--backup-text-color-v2);
+}
+
+
+
+
 .breadcrumbs {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
