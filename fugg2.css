@@ -979,6 +979,7 @@ footer {
     color: var(--backup-text-color-v2);
     font-weight: 300;
     font-style: italic;
+    text-transform: lowercase;
 }
 
 
