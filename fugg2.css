@@ -955,7 +955,7 @@ footer {
 .post-meta-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 2rem;
 }
 
@@ -966,14 +966,20 @@ footer {
 
 .post-meta-date {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* push date + "last edited" to bottom */
 }
 
 .post-meta-section {
     text-align: left;
+    display: flex;
+    justify-content: flex-end;   /* move "Notes" toward the right if you like */
+    align-items: flex-end;       /* bottom-align the text itself */
 }
 
 .post-meta-section-text {
-    margin: 0.25rem 0 0;
+    margin: 0;                   /* remove extra top margin so baseline matches */
     font-family: 'Crimson Pro', serif;
     font-size: 1.2rem;
     color: black;
@@ -981,7 +987,6 @@ footer {
     font-style: italic;
     text-transform: lowercase;
 }
-
 
 .breadcrumbs {
     font-family: 'Inter', sans-serif;
