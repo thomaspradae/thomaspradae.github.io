@@ -1194,7 +1194,7 @@ footer {
     color: var(--backup-text-color-v3);
 }
 
-.tags-holder{
+/* .tags-holder{
     font-size: 0.875rem;
     color: var(--backup-text-color-v3);
 }
@@ -1202,7 +1202,7 @@ footer {
 .tags-holder a{
     font-size: 0.875rem;
     color: var(--backup-text-color-v3);
-}
+} */
 
 h1 {
     font-size: 3.125rem;
@@ -1392,6 +1392,35 @@ pre code {
     text-align: center;
 }
 
+.post-top .post-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;  /* align text baselines */
+    gap: 2rem;
+}
+
+.post-top .post-meta-date .date-post,
+.post-top .post-meta-date .date-post-updated {
+  margin: 0;
+}
+
+.post-top .post-meta-section-text {
+    margin: 0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: lowercase;
+    color: black;
+  }
+
+.post-top .post-meta-date {
+  display: block;       /* kill inner flex so it stops being weird */
+  text-align: left;
+  margin: 0;
+}
+
+
 .post-top .post-header,
 .post-intro.post,
 #main.post {
@@ -1488,6 +1517,94 @@ pre code {
     margin: 0;                           /* remove extra paragraph margin */
 }
 
+/* Only affect tags inside posts, avoids messing hub pages */
+.post-intro .tags-holder {
+    display: flex;
+    align-items: center;
+    gap: 0;                         /* overlap instead of spacing */
+    font-size: 0.875rem;
+}
+
+/* each tag as overlapping “avatar” */
+.post-intro .tags-holder .tag-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: -0.5rem;           /* creates the avatar stack */
+    padding: 0;                     /* no pill yet */
+    border-radius: 999px;
+    overflow: hidden;
+    background-color: transparent;
+    text-decoration: none;
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease,
+        padding 0.25s ease;
+}
+
+/* first ball not shifted left */
+.post-intro .tags-holder .tag-pill:first-child {
+    margin-left: 0;
+}
+
+/* the ball */
+.post-intro .tag-pill-dot {
+    display: inline-block;          /* THIS makes width/height actually apply */
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    background-color: var(--contrast-color);   /* black ball */
+    border: 2px solid var(--background-color);
+    flex-shrink: 0;
+    transition:
+        margin-right 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* the label is “rolled up” */
+.post-intro .tag-pill-label {
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    padding-right: 0;
+    font-size: 0.75rem;
+    font-family: 'GeistMono', sans-serif;
+    text-transform: lowercase;
+    color: var(--background-color);          /* white on accent pill */
+    transition:
+        max-width 0.3s ease,
+        opacity 0.2s ease,
+        padding-right 0.25s ease;
+}
+
+/* hover → unroll into pill */
+.post-intro .tags-holder .tag-pill:hover {
+    background-color: var(--main-accent);
+    padding: 0 0.7rem 0 0.15rem;
+    transform: translateY(-1px);
+}
+
+/* move ball left + adjust ring */
+.post-intro .tags-holder .tag-pill:hover .tag-pill-dot {
+    margin-right: 0.45rem;
+    background-color: var(--contrast-color);
+    border-color: var(--main-accent);
+}
+
+/* reveal label */
+.post-intro .tags-holder .tag-pill:hover .tag-pill-label {
+    max-width: 8rem;
+    opacity: 1;
+    padding-right: 0.1rem;
+}
+
+/* override global link hover in this tiny zone */
+.post-intro .tags-holder .tag-pill,
+.post-intro .tags-holder .tag-pill:hover {
+    color: inherit;
+    text-decoration: none;
+}
 
 /* --------------------- */
 /* newhere.html*/
@@ -1985,15 +2102,15 @@ pre code {
         text-align: left;
     }
 
-    .tags-holder{
+    /* .tags-holder{
         font-size: 0.625rem;
         color: var(--backup-text-color-v3);
-    }
+    } */
 
-    .tags-holder a{
+    /* .tags-holder a{
         font-size: 0.625rem;
         color: var(--backup-text-color-v3);
-    }
+    } */
 
     .title-post-meta-p {
         font-weight: 400;
