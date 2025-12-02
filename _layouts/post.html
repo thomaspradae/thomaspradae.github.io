@@ -64,6 +64,15 @@ layout: default
                 {% endif %}
               </p>
             </div>
+
+            <div class="tags-holder">
+              {% for tag in page.tags %}
+                <a class="internal-link tag-pill" href="/tag/{{ tag | replace: ' ', '-' }}">
+                  <span class="tag-pill-dot"></span>
+                  <span class="tag-pill-label">{{ tag }}</span>
+                </a>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
