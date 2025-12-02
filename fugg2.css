@@ -1105,6 +1105,7 @@ footer {
 .post-meta-container-right-side .internal-link {
     margin: 0;
     margin-left: 1rem;
+    text-decoration: none;
 }
 
 .internal-link{
@@ -1124,6 +1125,7 @@ footer {
 
 .breadcrumbs a{
     color: var(--backup-text-color-v3);
+    text-decoration: none;
 }
 
 .breadcrumbs a:hover {
@@ -1395,7 +1397,7 @@ pre code {
 .post-top .post-meta-row {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;  /* align text baselines */
+    align-items: center;
     gap: 2rem;
 }
 
