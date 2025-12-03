@@ -37,23 +37,28 @@ layout: default
 
       <div class="post-metadata">
         <div class="meta">
-      
-          <!-- TOP ROW: DATE(S) + SECTION BLURB -->
           <div class="post-meta-row">
+            <!-- COLUMN 1: PUBLISHED -->
             <div class="post-meta-date">
+              <p class="meta-label">published</p>
+      
               <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
                 {{ page.date | date: "%B %-d, %Y" }}
               </time>
       
               {% if page.last_modified_at %}
-                <p class="title-post-meta-p">Last edited</p>
-                <time class="date-post date-post-updated" datetime="{{ page.last_modified_at | date_to_xmlschema }}">
+                <p class="meta-updated-label">last edited</p>
+                <time class="date-post date-post-updated"
+                      datetime="{{ page.last_modified_at | date_to_xmlschema }}">
                   {{ page.last_modified_at | date: "%B %-d, %Y" }}
                 </time>
               {% endif %}
             </div>
       
+            <!-- COLUMN 2: TYPE -->
             <div class="post-meta-section">
+              <p class="meta-label">type</p>
+      
               <p class="post-meta-section-text">
                 {% if page.section_label %}
                   {{ page.section_label }}
@@ -64,20 +69,24 @@ layout: default
                 {% endif %}
               </p>
             </div>
-
-            <div class="tags-holder">
-              {% for tag in page.tags %}
-                <a class="internal-link tag-pill" href="/tag/{{ tag | replace: ' ', '-' }}">
-                  <span class="tag-pill-dot"></span>
-                  <span class="tag-pill-label">{{ tag }}</span>
-                </a>
-              {% endfor %}
+      
+            <!-- COLUMN 3: TAGS -->
+            <div class="post-meta-tags">
+              <p class="meta-label">tags</p>
+      
+              <div class="tags-holder">
+                {% for tag in page.tags %}
+                  <a class="internal-link tag-pill" href="/tag/{{ tag | replace: ' ', '-' }}">
+                    <span class="tag-pill-dot"></span>
+                    <span class="tag-pill-label">{{ tag }}</span>
+                  </a>
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-
+      
       <!-- TITLE + META + DIVIDING LINE -->
       <div class="post-intro post">
         <article class="post-body">

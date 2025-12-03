@@ -1045,15 +1045,10 @@ footer {
 
 /* Row: [ dates ] [ section blurb ] side by side */
 .post-meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 2rem;
-}
-
-.post-meta-date,
-.post-meta-section {
-    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 3 equal tracks = your black columns */
+    column-gap: 2rem;                       /* the “salmon” distance between blocks */
+    align-items: flex-start;
 }
 
 .post-meta-date {
@@ -1195,6 +1190,34 @@ footer {
     margin: 0;
     color: var(--backup-text-color-v3);
 }
+
+.meta-label {
+    margin: 0 0 0.25rem 0;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--backup-text-color-v3);
+}
+  
+  .meta-updated-label {
+    margin: 0.25rem 0 0;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--backup-text-color-v3);
+}
+  
+.post-meta-date,
+.post-meta-section,
+.post-meta-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
 
 /* .tags-holder{
     font-size: 0.875rem;
@@ -1391,8 +1414,8 @@ pre code {
 
 .post-top {
     padding: 3rem 0 2.5rem;
-    text-align: center;
-    padding-top: 0
+    text-align: left;     /* don’t force everything to center */
+    padding-top: 0;
 }
 
 .post-top .post-meta-row {
@@ -1427,9 +1450,9 @@ pre code {
 .post-top .post-header,
 .post-intro.post,
 #main.post {
-    max-width: 42rem;
-    margin: 0 auto;   /* center in the page */
-    margin-bottom: 5rem;
+  max-width: 42rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
 }
 
 /* SIDENOTES (margin notes on right) */
