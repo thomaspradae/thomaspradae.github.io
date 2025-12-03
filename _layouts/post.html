@@ -82,25 +82,6 @@ layout: default
       <div class="post-intro post">
         <article class="post-body">
           <h1 class="page-title">{{ page.title }}</h1>
-
-          <div class="post-header">
-            <div class="post-metadata-container">
-              <div class="post-metadata">
-                <div class="meta">
-                  <p class="title-post-meta-p">Tags</p>
-                  <div class="tags-holder">
-                    {% for tag in page.tags %}
-                      <a class="internal-link tag-pill" href="/tag/{{ tag | replace: ' ', '-' }}">
-                        <span class="tag-pill-dot"></span>
-                        <span class="tag-pill-label">{{ tag }}</span>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- dividing line under meta -->
-          </div>
         </article>
       </div>
     </div> <!-- /post-top -->
