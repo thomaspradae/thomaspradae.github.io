@@ -976,8 +976,8 @@ footer {
 }
 
 .tag-pill-dot {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 999px;
     background-color: var(--contrast-color);          /* ball color */
     border: 2px solid var(--background-color);        /* subtle ring so overlap looks clean */
@@ -1193,7 +1193,7 @@ footer {
 
 .meta-label {
     margin: 0;
-    font-family: 'GeistMono', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1245,7 +1245,6 @@ h2 {
 
 h3 {
     font-size: 1.5625rem;
-    font-family: 'GeistMono', sans-serif;
     font-weight: 400;
     text-transform: uppercase;
     margin-top: 8vh;
@@ -1255,7 +1254,6 @@ h3 {
 h4 {
     font-size: 1.25rem;
     font-weight: 400;
-    font-family: 'GeistMono', sans-serif;
     text-transform: uppercase;
     margin-top: 8vh;
     color: var(--contrast-color);
@@ -1595,7 +1593,7 @@ pre code {
     white-space: nowrap;
     padding-right: 0;
     font-size: 0.75rem;
-    font-family: 'GeistMono', sans-serif;
+    font-family: 'Inter', sans-serif;
     text-transform: lowercase;
     color: var(--background-color);          /* white on accent pill */
     transition:
