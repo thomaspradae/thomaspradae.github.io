@@ -564,7 +564,7 @@ footer {
 .page-title {
     font-size: 2.6rem;
     margin: 0;
-    color: rgb(0, 92, 23);
+    color: rgb(255, 0, 0);
     margin-top: 3vh;
     margin-bottom: 3vh;
     text-align: center;
@@ -980,7 +980,7 @@ footer {
     display: inline-flex;
     align-items: center;   /* center ball + text vertically */
 
-    margin-left: -0.5rem;  /* overlap effect */
+    margin-left: -0.8rem;  /* overlap effect */
     padding: 0;            /* no pill padding at rest */
 
     border-radius: 999px;
