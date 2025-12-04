@@ -1011,7 +1011,6 @@ footer {
 .tag-pill:hover {
     background-color: var(--main-accent);   /* pill background */
     padding: 0 0.6rem 0 0.1rem;            /* a bit of pill padding */
-    transform: translateY(-1px);           /* tiny lift */
 }
 
 /* move ball to the left + recolor slightly */
