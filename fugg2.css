@@ -979,8 +979,8 @@ footer {
 
 
 .tag-pill-dot {
-    width: 1rem;
-    height: 1rem;
+    width: 0.6rem;
+    height: 0.6rem;
     border-radius: 999px;
     background-color: var(--contrast-color);          /* ball color */
     border: 2px solid var(--background-color);        /* subtle ring so overlap looks clean */
@@ -1225,6 +1225,7 @@ footer {
 
 .post-meta-tags:hover .tag-pill:not(:hover) {
     filter: brightness(0.9);
+    margin-right: 1rem;
 }
 
 .post-meta-tags .tag-pill:hover {
