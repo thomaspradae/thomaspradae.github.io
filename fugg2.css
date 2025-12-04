@@ -1618,7 +1618,7 @@ pre code {
     white-space: nowrap;
     padding-right: 0;
     font-size: 0.75rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Crimson Pro', serif;
     text-transform: lowercase;
     color: var(--background-color);          /* white on accent pill */
     transition:
@@ -1629,7 +1629,7 @@ pre code {
 
 /* hover → unroll into pill */
 .post-intro .tags-holder .tag-pill:hover {
-    background-color: var(--main-accent);
+    background-color: black;
     padding: 0 0.7rem 0 0.15rem;
     transform: translateY(-1px);
 }
@@ -1637,8 +1637,8 @@ pre code {
 /* move ball left + adjust ring */
 .post-intro .tags-holder .tag-pill:hover .tag-pill-dot {
     margin-right: 0.45rem;
-    background-color: var(--contrast-color);
-    border-color: var(--main-accent);
+    background-color: rgb(121, 121, 121);
+    border-color: rgb(255, 0, 0);
 }
 
 /* reveal label */
