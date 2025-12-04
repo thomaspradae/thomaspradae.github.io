@@ -1460,7 +1460,7 @@ pre code {
     font-weight: 300;
     font-style: italic;
     text-transform: lowercase;
-    color: black;
+    color: rgb(0, 62, 231);
   }
 
 .post-top .post-meta-date {
