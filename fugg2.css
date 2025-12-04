@@ -1029,7 +1029,7 @@ footer {
 
     /* delay on the way *out* so it feels sticky */
     transition:
-        max-width     0.35s ease 0.25s,
+        /* max-width     0.35s ease 0.25s, */
         opacity       0.25s ease 0.25s,
         padding-right 0.25s ease 0.25s;
 }
@@ -1051,7 +1051,7 @@ footer {
 
 .post-meta-tags:hover .tag-pill-label,
 .tags-holder:hover .tag-pill-label {
-    max-width: 8rem;
+    /* max-width: 8rem; */
     opacity: 1;
     padding-right: 0.1rem;
     transition-delay: 0s;                /* open immediately on hover in */
