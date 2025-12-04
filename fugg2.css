@@ -1196,7 +1196,7 @@ footer {
 .meta-label {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
     color: var(--backup-text-color-v3);
 }
