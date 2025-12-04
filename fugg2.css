@@ -998,7 +998,7 @@ footer {
     white-space: nowrap;
     padding-right: 0;
     font-size: 0.75rem;
-    font-family: 'GeistMono', sans-serif;
+    font-family: 'Inter', sans-serif;
     text-transform: lowercase;
     color: var(--background-color);    /* will be on accent background */
     transition:
@@ -1232,9 +1232,9 @@ footer {
 }
 
 .post-meta-tags:hover .tag-pill-dot {
-    margin-right: 0.4rem;
+    margin-right: 0.3rem;
     background-color: var(--contrast-color);
-    border-color: var(--main-accent);
+    border-color: transparent;
 }
 
 .post-meta-tags:hover .tag-pill-label {
