@@ -965,15 +965,17 @@ footer {
 /* base state: just a ball */
 .tag-pill {
     text-decoration: none;
-    padding: 0;                        /* no pill yet */
+    padding: 0;
     border-radius: 999px;
     overflow: hidden;
     background-color: transparent;
     transition:
         background-color 0.25s ease,
         transform 0.25s ease,
-        padding 0.25s ease;
+        padding 0.25s ease,
+        filter 0.25s ease;   /* so brightness animates smoothly */
 }
+
 
 .tag-pill-dot {
     width: 1rem;
@@ -1214,6 +1216,30 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.post-meta-tags:hover .tag-pill {
+    filter: brightness(1.05);
+}
+
+.post-meta-tags:hover .tag-pill:not(:hover) {
+    filter: brightness(0.9);
+}
+
+.post-meta-tags .tag-pill:hover {
+    filter: brightness(1.25);
+}
+
+.post-meta-tags:hover .tag-pill-dot {
+    margin-right: 0.4rem;
+    background-color: var(--contrast-color);
+    border-color: var(--main-accent);
+}
+
+.post-meta-tags:hover .tag-pill-label {
+    max-width: 8rem;
+    opacity: 1;
+    padding-right: 0.1rem;
 }
 
 
