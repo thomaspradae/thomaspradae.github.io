@@ -1028,7 +1028,7 @@ footer {
     font-family: 'Inter', sans-serif;
     text-transform: lowercase;
     color: var(--backup-text-color-v2);
-    line-height: 1;
+    line-height: 1.2;
 
     /* STICKY-OUT: delay only when hiding */
     transition:
@@ -1071,7 +1071,6 @@ footer {
 .tags-holder:hover .tag-pill-label {
     max-width: 8rem;
     opacity: 1;
-    margin-left: 0.1rem;
 
     /* HOVER-IN: override delay, show immediately */
     transition:
