@@ -1641,6 +1641,124 @@ pre code {
     /* max-width: 100%; */
 }
 
+/* ------------------------------------------------------------------ */
+/* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
+/* ------------------------------------------------------------------ */
+
+.archive-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;        /* vertically center card in viewport */
+    justify-content: center;    /* horizontally center card */
+    background-color: #e7e5de;  /* outer light-grey like the screenshot */
+}
+
+.archive-card {
+    width: min(64rem, 90vw);    /* max width ~1024px but responsive */
+    background-color: #f7f5ee;  /* inner “card” color */
+    padding: 3.5rem 4rem;
+    box-sizing: border-box;
+}
+
+/* remove bullets + reset spacing */
+.archive-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+/* each row = flex: title left, date right */
+.archive-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.1rem 0;
+}
+
+/* title (left column) */
+.archive-title {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.archive-title:hover {
+    color: #000000;
+}
+
+/* date (right column) */
+.archive-date {
+    color: #9b9b99;
+    font-family: 'GeistMono', monospace;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;  /* perfect column alignment */
+    margin-left: 2rem;
+}
+
+/* footer like the SORT “SORT / Overview / About” line */
+.archive-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 3rem;
+    font-family: 'GeistMono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #9b9b99;
+}
+
+.archive-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.archive-footer a:hover {
+    text-decoration: underline;
+}
+
+.archive-footer-left {
+    letter-spacing: 0.18em;
+}
+
+.archive-footer-right {
+    letter-spacing: 0.12em;
+}
+
+/* ----------------- */
+/* Responsive tweak  */
+/* ----------------- */
+
+@media (max-width: 768px) {
+    .archive-card {
+        padding: 2.5rem 1.75rem;
+        width: 100%;
+        margin: 0 1rem;
+    }
+
+    .archive-item {
+        flex-direction: row;
+        /* still two columns, but less tight */
+    }
+
+    .archive-date {
+        font-size: 0.7rem;
+    }
+
+    .archive-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
+
+
+
+
+
+
 /* --------------------- */
 /* newhere.html*/
 
