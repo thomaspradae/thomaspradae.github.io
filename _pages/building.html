@@ -6,7 +6,7 @@ title: Building
 <div class="archive-wrapper">
   <div class="archive-card">
     <ul class="archive-list">
-      {% assign building_posts = site.categories.building | sort: "date" | reverse %}
+      {% assign building_posts = site.building | sort: "date" | reverse %}
       {% for post in building_posts %}
       <li class="archive-item">
         <a class="archive-title" href="{{ post.url | relative_url }}">
