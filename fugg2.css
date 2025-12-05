@@ -980,7 +980,7 @@ footer {
     display: inline-flex;
     align-items: center;   /* center ball + text vertically */
 
-    margin-left: -0.4rem;  /* overlap effect */
+    margin-left: -0.3rem;  /* overlap effect */
     padding: 0;            /* no pill padding at rest */
 
     border-radius: 999px;
