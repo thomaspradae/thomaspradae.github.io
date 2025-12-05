@@ -564,7 +564,7 @@ footer {
 .page-title {
     font-size: 2.6rem;
     margin: 0;
-    color: rgb(251, 255, 0);
+    color: rgb(234, 0, 255);
     margin-top: 3vh;
     margin-bottom: 3vh;
     text-align: center;
@@ -989,11 +989,11 @@ footer {
     text-decoration: none;
 
     transition:
-        background-color 0.35s ease,
-        transform        0.35s ease,
-        filter           0.35s ease,
-        padding          0.35s ease,
-        margin-left      0.35s ease;  /* smooth when we “pull them apart” */
+    background-color 0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+    transform        0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+    filter           0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+    padding          0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
+    margin-left      0.28s cubic-bezier(0.4, 0.0, 0.2, 1); /* smooth when we “pull them apart” */
 }
 
 /* first one not shifted */
@@ -1011,9 +1011,9 @@ footer {
     flex-shrink: 0;
 
     transition:
-        margin-right     0.35s ease,
-        background-color 0.35s ease,
-        border-color     0.35s ease;
+        margin-right     0.24s cubic-bezier(0.4, 0.0, 0.2, 1),
+        background-color 0.24s cubic-bezier(0.4, 0.0, 0.2, 1),
+        border-color     0.24s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .tag-pill-label {
@@ -1032,11 +1032,11 @@ footer {
 
     /* STICKY-OUT: delay only when hiding */
     transition:
-        opacity     0.35s ease 0.25s,
-        margin-left 0.35s ease 0.25s,
-        max-width   0.35s ease 0.25s;
+        opacity     0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s,
+        margin-left 0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s,
+        max-width   0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s;
 
-    /* sticky on the way OUT
+        /* sticky on the way OUT
     transition:
         opacity    0.45s ease 0.35s,
         margin-left 0.45s ease 0.35s; */
@@ -1067,15 +1067,18 @@ footer {
     margin-right: 0.25rem;         /* space between dot and text */
 }
 
-.post-meta-tags:hover .tag-pill-label,
+..post-meta-tags:hover .tag-pill-label,
 .tags-holder:hover .tag-pill-label {
     max-width: 8rem;
     opacity: 1;
-    margin-left: 0.1rem;          /* tiny slide out */
-    /* override the “sticky out” delay so hover-in is immediate */
-    /* transition-delay: 0s; */
-}
+    margin-left: 0.1rem;
 
+    /* HOVER-IN: override delay, show immediately */
+    transition:
+        opacity     0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+        margin-left 0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+        max-width   0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
 /* -------------------------------------------------------------- */
 /* 2) Hover a specific tag ➜ accent pill                          */
 /* -------------------------------------------------------------- */
