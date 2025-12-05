@@ -966,7 +966,7 @@ footer {
 .tags-holder {
     display: flex;
     align-items: center;
-    gap: 0.5rem;  /* real space BETWEEN tags (background shows here) */
+    gap: 0rem;  /* real space BETWEEN tags (background shows here) */
 }
 
 /* base: stacked balls like avatars */
@@ -980,7 +980,7 @@ footer {
     display: inline-flex;
     align-items: center;   /* center ball + text vertically */
 
-    margin-left: -0.8rem;  /* overlap effect */
+    margin-left: -0.4rem;  /* overlap effect */
     padding: 0;            /* no pill padding at rest */
 
     border-radius: 999px;
@@ -1019,6 +1019,7 @@ footer {
 /* the label: no max-width, just fade + slide */
 .tag-pill-label {
     opacity: 0;
+    max-width: 0;
     white-space: nowrap;
     margin-left: 0;
     padding-right: 0;
@@ -1028,6 +1029,7 @@ footer {
     text-transform: lowercase;
     color: var(--backup-text-color-v2);
     line-height: 1;  /* keeps vertical centering with the dot */
+    white-space: nowrap;
 
     /* sticky on the way OUT */
     transition:
@@ -1047,7 +1049,7 @@ footer {
 
 .post-meta-tags:hover .tag-pill,
 .tags-holder:hover .tag-pill {
-    margin-left: 0;                /* stop overlapping, gap now shows */
+    margin-left: 0.25rem;                /* stop overlapping, gap now shows */
     padding: 0 0.5rem 0 0.15rem;   /* pill padding, but only inside pill */
     background-color: var(--background-color);
 }
@@ -1059,10 +1061,11 @@ footer {
 
 .post-meta-tags:hover .tag-pill-label,
 .tags-holder:hover .tag-pill-label {
+    max-width: 8rem;
     opacity: 1;
-    margin-left: 0.05rem;          /* tiny slide out */
+    margin-left: 0.1rem;          /* tiny slide out */
     /* override the “sticky out” delay so hover-in is immediate */
-    transition-delay: 0s;
+    /* transition-delay: 0s; */
 }
 
 /* -------------------------------------------------------------- */
@@ -1603,6 +1606,31 @@ pre code {
     color: var(--backup-text-color-v2);
     margin: 0;                           /* remove extra paragraph margin */
 }
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+/* (006) - ASCII FOOTER */
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+
+.ascii-footer-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;   /* centers the art horizontally */
+    margin-top: 4vh;
+    overflow-x: auto;          /* if it's too wide, allow horizontal scroll */
+}
+
+.ascii-footer {
+    font-family: 'GeistMono', monospace;
+    font-size: 0.55rem;        /* tune this until the whole thing fits nicely */
+    line-height: 1.1;
+    color: var(--lightest-text);
+    white-space: pre;          /* respect all spaces + newlines */
+    text-align: left;          /* the ASCII itself stays as you typed it */
+    display: inline-block;     /* so flexbox can center this block */
+    /* optional: keep it from growing too tall on mobile */
+    /* max-width: 100%; */
+}
+
 /* --------------------- */
 /* newhere.html*/
 
