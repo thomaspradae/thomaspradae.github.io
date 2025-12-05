@@ -1016,10 +1016,10 @@ footer {
         border-color     0.35s ease;
 }
 
-/* the label: no max-width, just fade + slide */
 .tag-pill-label {
     opacity: 0;
-    max-width: 0;
+    max-width: 0;             /* no width at rest */
+    overflow: hidden;         /* hide text when width is 0 */
     white-space: nowrap;
     margin-left: 0;
     padding-right: 0;
@@ -1028,14 +1028,22 @@ footer {
     font-family: 'Inter', sans-serif;
     text-transform: lowercase;
     color: var(--backup-text-color-v2);
-    line-height: 1;  /* keeps vertical centering with the dot */
-    white-space: nowrap;
+    line-height: 1;
 
-    /* sticky on the way OUT */
+    /* STICKY-OUT: delay only when hiding */
+    transition:
+        opacity     0.35s ease 0.25s,
+        margin-left 0.35s ease 0.25s,
+        max-width   0.35s ease 0.25s;
+
+    /* sticky on the way OUT
     transition:
         opacity    0.45s ease 0.35s,
-        margin-left 0.45s ease 0.35s;
+        margin-left 0.45s ease 0.35s; */
 }
+
+
+
 
 /* -------------------------------------------------------------- */
 /* 1) Hover the whole tag area (post-meta-tags) ➜ unroll all      */
