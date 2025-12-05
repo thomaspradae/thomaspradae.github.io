@@ -1003,8 +1003,8 @@ footer {
 
 /* the ball */
 .tag-pill-dot {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 999px;
     background-color: var(--tag-accent-light);
     border: 0.125rem solid var(--background-color); /* ~2px in rem */
@@ -1064,7 +1064,7 @@ footer {
 
 .post-meta-tags:hover .tag-pill-dot,
 .tags-holder:hover .tag-pill-dot {
-    margin-right: 0.25rem;         /* space between dot and text */
+    margin-right: 0.1rem;         /* space between dot and text */
 }
 
 .post-meta-tags:hover .tag-pill-label,
