@@ -1067,7 +1067,7 @@ footer {
     margin-right: 0.25rem;         /* space between dot and text */
 }
 
-..post-meta-tags:hover .tag-pill-label,
+.post-meta-tags:hover .tag-pill-label,
 .tags-holder:hover .tag-pill-label {
     max-width: 8rem;
     opacity: 1;
