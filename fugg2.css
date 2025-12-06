@@ -1655,7 +1655,7 @@ pre code {
 
 .archive-card {
     width: min(64rem, 90vw);    /* max width ~1024px but responsive */
-    background-color: #f7f5ee;  /* inner “card” color */
+    background-color: #a27f00;  /* inner “card” color */
     padding: 3.5rem 4rem;
     box-sizing: border-box;
 }
