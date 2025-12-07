@@ -1671,8 +1671,12 @@ pre code {
 
 /* each row = flex: title left, date right */
 .archive-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 3fr)   /* title: takes most of the space */
+        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
+        auto;            /* date: shrink-to-fit on the right */
+    column-gap: 2.5rem;
     align-items: baseline;
     padding: 0.1rem 0;
 }
@@ -1687,6 +1691,15 @@ pre code {
 
 .archive-title:hover {
     color: #000000;
+    text-decoration: none;
+}
+
+.archive-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #b0aea8;
+    /* by default left-aligned; if you want it closer to the date: */
+    /* text-align: right; */
 }
 
 /* date (right column) */
