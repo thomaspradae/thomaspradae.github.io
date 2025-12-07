@@ -1645,17 +1645,8 @@ pre code {
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
-.archive-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;        /* vertically center card in viewport */
-    justify-content: center;    /* horizontally center card */
-    background-color: #e7e5de;  /* outer light-grey like the screenshot */
-}
-
 .archive-card {
-    width: min(64rem, 90vw);    /* max width ~1024px but responsive */
-    background-color: #a27f00;  /* inner “card” color */
+    background-color: #ff0000;  /* inner “card” color */
     padding: 3.5rem 4rem;
     box-sizing: border-box;
 }
@@ -1739,6 +1730,8 @@ pre code {
 .archive-footer-right {
     letter-spacing: 0.12em;
 }
+
+
 
 /* ----------------- */
 /* Responsive tweak  */
