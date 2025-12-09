@@ -308,27 +308,14 @@ li {
     color: var(--backup-text-color);
 }
 
-a:-webkit-any-link {
-    color: var(--contrast-color);
-    cursor: pointer;
-    transition: color 0.3s ease;
-} 
-
-a:-webkit-any-link:hover {
-    color: var(--main-accent);
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-a:any-link{
+a {
     color: var(--contrast-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-a:any-link:hover{
+a:hover {
     color: var(--main-accent);
-    cursor: pointer;
     text-decoration: underline;
 }
 
