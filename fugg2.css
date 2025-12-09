@@ -1646,7 +1646,6 @@ pre code {
 /* ------------------------------------------------------------------ */
 
 .archive-card {
-    background-color: #ff0000;  /* inner “card” color */
     padding: 3.5rem 4rem;
     box-sizing: border-box;
 }
