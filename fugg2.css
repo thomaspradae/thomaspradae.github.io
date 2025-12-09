@@ -1671,8 +1671,9 @@ pre code {
     padding: 0.1rem 0;
 }
 
-.arhive-item:hover {
+.archive-item:hover {
     color: red;
+    background-color: #000000;
 }
 
 /* title (left column) */
