@@ -1671,6 +1671,10 @@ pre code {
     padding: 0.1rem 0;
 }
 
+.arhive-item:hover {
+    color: red;
+}
+
 /* title (left column) */
 .archive-title {
     text-decoration: none;
@@ -1687,15 +1691,13 @@ pre code {
 .archive-meta {
     font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
-    color: #b0aea8;
     /* by default left-aligned; if you want it closer to the date: */
     /* text-align: right; */
 }
 
 /* date (right column) */
 .archive-date {
-    color: #9b9b99;
-    font-family: 'GeistMono', monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;  /* perfect column alignment */
     margin-left: 2rem;
