@@ -1660,18 +1660,17 @@ pre code {
 }
 
 .archive-item:hover {
-    color: red;
-    background-color: #e1e1e1;
+    color: rgb(0, 0, 0);
 }
 
 .archive-item:hover .archive-title {
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 /* title (left column) */
 .archive-title {
     text-decoration: none;
-    /*color: #333333; */
+    color: inherit;
     font-weight: 400;
     letter-spacing: 0.02em;
 }
