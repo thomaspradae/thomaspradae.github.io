@@ -1663,6 +1663,10 @@ pre code {
     background-color: #000000;
 }
 
+.archive-item:hover .archive-title {
+    color: red;
+}
+
 /* title (left column) */
 .archive-title {
     text-decoration: none;
@@ -1719,6 +1723,7 @@ pre code {
 .archive-footer-right {
     letter-spacing: 0.12em;
 }
+
 
 
 
