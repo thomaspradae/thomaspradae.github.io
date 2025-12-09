@@ -1656,11 +1656,12 @@ pre code {
     column-gap: 2.5rem;
     align-items: baseline;
     padding: 0.1rem 0;
+    color:#B3B3B3
 }
 
 .archive-item:hover {
     color: red;
-    background-color: #000000;
+    background-color: #e1e1e1;
 }
 
 .archive-item:hover .archive-title {
@@ -1670,7 +1671,7 @@ pre code {
 /* title (left column) */
 .archive-title {
     text-decoration: none;
-    color: #333333;
+    /*color: #333333; */
     font-weight: 400;
     letter-spacing: 0.02em;
 }
