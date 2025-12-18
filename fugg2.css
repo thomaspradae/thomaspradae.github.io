@@ -1631,7 +1631,7 @@ pre code {
 
 .ascii-footer {
     font-family: 'GeistMono', monospace;
-    font-size: 0.55rem;        /* tune this until the whole thing fits nicely */
+    font-size: 0.3rem;        /* tune this until the whole thing fits nicely */
     line-height: 1.1;
     color: var(--lightest-text);
     white-space: pre;          /* respect all spaces + newlines */
