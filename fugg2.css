@@ -308,14 +308,27 @@ li {
     color: var(--backup-text-color);
 }
 
-a {
+a:-webkit-any-link {
+    color: var(--contrast-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+} 
+
+a:-webkit-any-link:hover {
+    color: var(--main-accent);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:any-link{
     color: var(--contrast-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-a:hover {
+a:any-link:hover{
     color: var(--main-accent);
+    cursor: pointer;
     text-decoration: underline;
 }
 
@@ -327,7 +340,7 @@ a:hover {
 footer {
     position: sticky;
     bottom: 0;
-    background-color: rgb(0, 29, 54);
+    background-color: rgb(255, 255, 255);
     padding-block: 30vh;  /* shorthand for top/bottom */
     margin-top: 0;
     z-index: 0;
@@ -1632,7 +1645,23 @@ pre code {
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
+.page-content:has(.archive-wrapper) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+}
+
+.archive-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;        /* vertically center card in viewport */
+    justify-content: center;    /* horizontally center card */
+    background-color: #e7e5de;  /* outer light-grey like the screenshot */
+}
+
 .archive-card {
+    width: min(64rem, 90vw);    /* max width ~1024px but responsive */
+    background-color: #f7f5ee;  /* inner “card” color */
     padding: 3.5rem 4rem;
     box-sizing: border-box;
 }
@@ -1648,48 +1677,28 @@ pre code {
 
 /* each row = flex: title left, date right */
 .archive-item {
-    display: grid;
-    grid-template-columns:
-        minmax(0, 3fr)   /* title: takes most of the space */
-        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
-        auto;            /* date: shrink-to-fit on the right */
-    column-gap: 2.5rem;
+    display: flex;
+    justify-content: space-between;
     align-items: baseline;
     padding: 0.1rem 0;
-    color:#B3B3B3
-}
-
-.archive-item:hover {
-    color: rgb(0, 0, 0);
-}
-
-.archive-item:hover .archive-title {
-    color: rgb(0, 0, 0);
 }
 
 /* title (left column) */
 .archive-title {
     text-decoration: none;
-    color: inherit;
+    color: #333333;
     font-weight: 400;
     letter-spacing: 0.02em;
 }
 
 .archive-title:hover {
     color: #000000;
-    text-decoration: none;
-}
-
-.archive-meta {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    /* by default left-aligned; if you want it closer to the date: */
-    /* text-align: right; */
 }
 
 /* date (right column) */
 .archive-date {
-    font-family: 'Inter', sans-serif;
+    color: #9b9b99;
+    font-family: 'GeistMono', monospace;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;  /* perfect column alignment */
     margin-left: 2rem;
@@ -1723,9 +1732,6 @@ pre code {
 .archive-footer-right {
     letter-spacing: 0.12em;
 }
-
-
-
 
 /* ----------------- */
 /* Responsive tweak  */
