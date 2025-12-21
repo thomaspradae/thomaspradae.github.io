@@ -1669,6 +1669,7 @@ pre code {
     column-gap: 2.5rem;
     align-items: baseline;
     padding: 0.1rem 0;
+    color: blue;
 }
 
 /* title (left column) */
@@ -1687,15 +1688,12 @@ pre code {
 .archive-meta {
     font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
-    color: #b0aea8;
     /* by default left-aligned; if you want it closer to the date: */
     /* text-align: right; */
 }
 
 /* date (right column) */
 .archive-date {
-    color: #9b9b99;
-    font-family: 'GeistMono', monospace;
     font-size: 0.75rem;
     font-variant-numeric: tabular-nums;  /* perfect column alignment */
     margin-left: 2rem;
