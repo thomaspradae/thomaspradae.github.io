@@ -1645,23 +1645,8 @@ pre code {
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
-.page-content:has(.archive-wrapper) {
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 0;
-}
-
-.archive-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;        /* vertically center card in viewport */
-    justify-content: center;    /* horizontally center card */
-    background-color: #e7e5de;  /* outer light-grey like the screenshot */
-}
-
 .archive-card {
-    width: min(64rem, 90vw);    /* max width ~1024px but responsive */
-    background-color: #f7f5ee;  /* inner “card” color */
+    background-color: #ff0000;  /* inner “card” color */
     padding: 3.5rem 4rem;
     box-sizing: border-box;
 }
@@ -1677,8 +1662,12 @@ pre code {
 
 /* each row = flex: title left, date right */
 .archive-item {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 3fr)   /* title: takes most of the space */
+        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
+        auto;            /* date: shrink-to-fit on the right */
+    column-gap: 2.5rem;
     align-items: baseline;
     padding: 0.1rem 0;
 }
@@ -1693,6 +1682,15 @@ pre code {
 
 .archive-title:hover {
     color: #000000;
+    text-decoration: none;
+}
+
+.archive-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #b0aea8;
+    /* by default left-aligned; if you want it closer to the date: */
+    /* text-align: right; */
 }
 
 /* date (right column) */
@@ -1733,6 +1731,8 @@ pre code {
     letter-spacing: 0.12em;
 }
 
+
+
 /* ----------------- */
 /* Responsive tweak  */
 /* ----------------- */
@@ -1766,6 +1766,7 @@ pre code {
 
 
 /* --------------------- */
+/* newhere.html*/
 /* newhere.html*/
 
 
