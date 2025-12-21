@@ -1645,9 +1645,16 @@ pre code {
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
+/* .archive-card {
+    padding: 3.5rem 4rem;
+    box-sizing: border-box;
+} */
+
 .archive-card {
     padding: 3.5rem 4rem;
     box-sizing: border-box;
+    /* remove any margins that might affect positioning */
+    margin: 0 auto;
 }
 
 /* remove bullets + reset spacing */
@@ -1671,6 +1678,25 @@ pre code {
     padding: 0.1rem 0;
     color: blue;
 }
+
+.archive-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* centers the card vertically */
+    padding: 4rem 0;
+}
+
+.archive-section-title {
+    font-family: 'GeistMono', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--backup-text-color-v3);
+    margin-bottom: 2rem;
+    padding-left: 4rem;  /* match archive-card padding */
+}
+
 
 /* title (left column) */
 .archive-title {

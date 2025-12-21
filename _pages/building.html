@@ -22,24 +22,24 @@ permalink: /building/
 
 <body>
   <div class="archive-wrapper">
+    <!-- Add section title here -->
+    <h2 class="archive-section-title">Building</h2>
+    
     <div class="archive-card">
       <ul class="archive-list">
         {% assign building_posts = site.building | sort: "date" | reverse %}
         {% for post in building_posts %}
         <li class="archive-item">
-          <!-- LEFT COLUMN: title, only thing that is clickable -->
           <a class="archive-title" href="{{ post.url | relative_url }}">
             {{ post.title }}
           </a>
 
-          <!-- MIDDLE COLUMN: meta (tags, type, etc.) -->
           <span class="archive-meta">
             {%- if post.tags and post.tags.size > 0 -%}
               {{ post.tags | join: ", " }}
             {%- endif -%}
           </span>
 
-          <!-- RIGHT COLUMN: date, not part of the link -->
           <span class="archive-date">
             {{ post.date | date: "%m.%d.%Y" }}
           </span>
