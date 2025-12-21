@@ -1653,6 +1653,7 @@ pre code {
 .archive-card {
     padding: 3.5rem 4rem;
     box-sizing: border-box;
+    position: relative; 
     /* remove any margins that might affect positioning */
 }
 
@@ -1678,12 +1679,14 @@ pre code {
     color: blue;
 }
 
-.archive-wrapper {
+.archive-wrapper{
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;  /* centers the card vertically */
-    padding: 4rem 0;
+    justify-content: center;     /* center card horizontally */
+    align-items: flex-start;     /* do NOT vertically center */
+    padding-top: 50vh;           /* card starts at middle of viewport */
+    background-color: #e7e5de;
+    box-sizing: border-box;
 }
 
 .archive-section-title {
@@ -1767,6 +1770,143 @@ pre code {
     .archive-item {
         flex-direction: row;
         /* still two columns, but less tight */
+    }
+
+    .archive-date {
+        font-size: 0.7rem;
+    }
+
+    .archive-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}/* ------------------------------------------------------------------ */
+/* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
+/* ------------------------------------------------------------------ */
+
+.archive-wrapper {
+    position: relative;
+    min-height: 100vh;
+    background-color: #e7e5de;
+    box-sizing: border-box;
+}
+
+/* Title fixed in top-left corner */
+.archive-section-title {
+    position: fixed;
+    top: 4rem;
+    left: 4rem;
+    font-family: 'GeistMono', sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+    color: #d0cec8;
+    margin: 0;
+    z-index: 10;
+}
+
+/* Card starts at 50vh */
+.archive-card {
+    position: relative;
+    margin-top: 50vh;  /* This makes the card start at the middle */
+    padding: 0 4rem 3.5rem 4rem;
+    box-sizing: border-box;
+}
+
+/* remove bullets + reset spacing */
+.archive-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+/* each row = flex: title left, date right */
+.archive-item {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 3fr)   /* title: takes most of the space */
+        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
+        auto;            /* date: shrink-to-fit on the right */
+    column-gap: 2.5rem;
+    align-items: baseline;
+    padding: 0.4rem 0;
+}
+
+/* title (left column) */
+.archive-title {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.archive-title:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+.archive-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #666666;
+}
+
+/* date (right column) */
+.archive-date {
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    color: #666666;
+}
+
+/* footer like the SORT "SORT / Overview / About" line */
+.archive-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 3rem;
+    font-family: 'GeistMono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #9b9b99;
+}
+
+.archive-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.archive-footer a:hover {
+    text-decoration: underline;
+}
+
+.archive-footer-left {
+    letter-spacing: 0.18em;
+}
+
+.archive-footer-right {
+    letter-spacing: 0.12em;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+    .archive-section-title {
+        top: 2rem;
+        left: 2rem;
+        font-size: 2rem;
+    }
+
+    .archive-card {
+        padding: 2.5rem 1.75rem;
+        margin-top: 40vh;
+    }
+
+    .archive-item {
+        grid-template-columns: 1fr;
+        row-gap: 0.5rem;
     }
 
     .archive-date {
