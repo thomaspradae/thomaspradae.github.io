@@ -1685,7 +1685,6 @@ pre code {
     justify-content: center;     /* center card horizontally */
     align-items: flex-start;     /* do NOT vertically center */
     padding-top: 50vh;           /* card starts at middle of viewport */
-    background-color: #e7e5de;
     box-sizing: border-box;
 }
 
@@ -1781,14 +1780,17 @@ pre code {
         gap: 0.5rem;
         align-items: flex-start;
     }
-}/* ------------------------------------------------------------------ */
+
+
+}
+
+/* ------------------------------------------------------------------ */
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
 .archive-wrapper {
     position: relative;
     min-height: 100vh;
-    background-color: #e7e5de;
     box-sizing: border-box;
 }
 
@@ -1797,7 +1799,6 @@ pre code {
     position: fixed;
     top: 4rem;
     left: 4rem;
-    font-family: 'GeistMono', sans-serif;
     font-size: 3rem;
     font-weight: 300;
     text-transform: capitalize;
