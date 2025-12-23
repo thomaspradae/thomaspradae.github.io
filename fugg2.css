@@ -1666,19 +1666,6 @@ pre code {
     font-size: 0.85rem;
 }
 
-/* each row = flex: title left, date right */
-.archive-item {
-    display: grid;
-    grid-template-columns:
-        minmax(0, 3fr)   /* title: takes most of the space */
-        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
-        auto;            /* date: shrink-to-fit on the right */
-    column-gap: 2.5rem;
-    align-items: baseline;
-    padding: 0.1rem 0;
-    color: blue;
-}
-
 .archive-wrapper{
     min-height: 100vh;
     justify-content: center;     /* center card horizontally */
