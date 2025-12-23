@@ -1862,6 +1862,12 @@ pre code {
     color: #333333;
 }
 
+.archive-item:hover .archive-title {
+    color: black
+}
+
+.archive-list
+
 /* date (right column) */
 .archive-date {
     font-size: 0.75rem;
