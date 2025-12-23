@@ -1681,7 +1681,6 @@ pre code {
 
 .archive-wrapper{
     min-height: 100vh;
-    display: flex;
     justify-content: center;     /* center card horizontally */
     align-items: flex-start;     /* do NOT vertically center */
     padding-top: 50vh;           /* card starts at middle of viewport */
@@ -1811,7 +1810,6 @@ pre code {
 /* Card starts at 50vh */
 .archive-card {
     position: relative;
-    margin-top: 50vh;  /* This makes the card start at the middle */
     padding: 0 4rem 3.5rem 4rem;
     box-sizing: border-box;
 }
