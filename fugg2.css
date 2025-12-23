@@ -1821,6 +1821,7 @@ pre code {
     padding: 0;
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
+    color: blue
 }
 
 /* each row = flex: title left, date right */
