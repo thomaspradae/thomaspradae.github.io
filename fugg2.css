@@ -1851,7 +1851,10 @@ pre code {
 .archive-meta {
     font-family: 'Inter', sans-serif;
     font-size: 0.75rem;
-    color: #666666;
+}
+
+.archive-list a.archive-title:any-link {
+    color: #333333;
 }
 
 /* date (right column) */
