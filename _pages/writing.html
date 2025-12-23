@@ -1,6 +1,6 @@
 ---
 layout: compress
-title: Writing
+title: writing
 permalink: /writing/
 ---
 
@@ -10,35 +10,36 @@ permalink: /writing/
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>writing / thomasprada</title>
+    <title>about / thomasprada</title>
     <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
     <link rel="stylesheet" href="/fugg2.css">  
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
     <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
+
 </head>
 
 <body>
   <div class="archive-wrapper">
+    <!-- Add section title here -->
+    <h2 class="archive-section-title">writing</h2>
+    
     <div class="archive-card">
       <ul class="archive-list">
         {% assign writing_posts = site.writing | sort: "date" | reverse %}
         {% for post in writing_posts %}
         <li class="archive-item">
-          <!-- LEFT COLUMN: title, only thing that is clickable -->
           <a class="archive-title" href="{{ post.url | relative_url }}">
             {{ post.title }}
           </a>
 
-          <!-- MIDDLE COLUMN: meta (tags, type, etc.) -->
           <span class="archive-meta">
             {%- if post.tags and post.tags.size > 0 -%}
               {{ post.tags | join: ", " }}
             {%- endif -%}
           </span>
 
-          <!-- RIGHT COLUMN: date, not part of the link -->
           <span class="archive-date">
             {{ post.date | date: "%m.%d.%Y" }}
           </span>
@@ -47,7 +48,7 @@ permalink: /writing/
       </ul>
 
       <div class="archive-footer">
-        <span class="archive-footer-left">WRITING</span>
+        <span class="archive-footer-left">writing</span>
         <span class="archive-footer-right">
           <a href="{{ '/' | relative_url }}">Overview ↓</a>
           <span> / </span>
