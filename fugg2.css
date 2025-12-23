@@ -1820,7 +1820,7 @@ pre code {
     padding: 0;
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
-    color: blue
+    color: var(--backup-text-color-v3);
 }
 
 /* each row = flex: title left, date right */
@@ -1858,7 +1858,7 @@ pre code {
 }
 
 .archive-list a.archive-title:any-link {
-    color: #333333;
+    color: var(--backup-text-color-v3);
 }
 
 .archive-item:hover a.archive-title:any-link {
