@@ -1801,7 +1801,7 @@ pre code {
     font-weight: 650;
     text-transform: capitalize;
     letter-spacing: 0.02em;
-    color: #d0cec8;
+    color: #ffbf00;
     margin: 0;
     z-index: 10;
 }
@@ -1861,9 +1861,11 @@ pre code {
     color: #333333;
 }
 
-.archive-item:hover .archive-title {
-    color: black
+.archive-item:hover a.archive-title:any-link {
+    color: black;
+    text-decoration: none;
 }
+
 
 .archive-list
 
