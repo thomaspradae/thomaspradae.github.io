@@ -1836,6 +1836,10 @@ pre code {
     padding: 0.4rem 0;
 }
 
+.archive-item:hover {
+    color: black
+}
+
 /* title (left column) */
 .archive-title {
     text-decoration: none;
