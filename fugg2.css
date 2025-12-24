@@ -1702,13 +1702,6 @@ pre code {
     /* text-align: right; */
 }
 
-/* date (right column) */
-.archive-date {
-    font-size: 0.75rem;
-    font-variant-numeric: tabular-nums;  /* perfect column alignment */
-    margin-left: 2rem;
-}
-
 /* footer like the SORT “SORT / Overview / About” line */
 .archive-footer {
     display: flex;
@@ -1902,6 +1895,15 @@ opacity: 1;
 color: var(--backup-text-color-v3);
 }
 
+.archive-list li {
+    color: var(--backup-text-color-v3);
+}
+
+.archive-list:hover li {
+    color: black
+}
+
+
 .archive-item:hover a.archive-title:any-link {
 color: black;
 text-decoration: none;
@@ -1911,7 +1913,10 @@ text-decoration: none;
 .archive-date {
 font-size: 0.75rem;
 font-variant-numeric: tabular-nums;
+margin-left: 2rem;
 }
+
+
 
 /* footer like the SORT "SORT / Overview / About" line */
 .archive-footer {
