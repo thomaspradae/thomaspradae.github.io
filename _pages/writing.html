@@ -36,7 +36,16 @@ permalink: /writing/
 
           <span class="archive-meta">
             {%- if post.tags and post.tags.size > 0 -%}
-              {{ post.tags | join: ", " }}
+              <span class="tags-holder tags-holder--archive">
+                {% for tag in post.tags %}
+                  {% assign tag_slug = tag | slugify %}
+                  <a class="internal-link tag-pill tag-pill--{{ tag_slug }}"
+                     href="/tag/{{ tag | replace: ' ', '-' }}">
+                    <span class="tag-pill-dot"></span>
+                    <span class="tag-pill-label">{{ tag }}</span>
+                  </a>
+                {% endfor %}
+              </span>
             {%- endif -%}
           </span>
 
