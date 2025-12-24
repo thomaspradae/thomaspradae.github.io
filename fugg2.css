@@ -1849,19 +1849,68 @@ pre code {
     row-gap: 0.25rem;
 }
 
+/* ------------------------------------------------------------------ */
+/* ARCHIVE: hovering the whole row unravels the tag pills              */
+/* ------------------------------------------------------------------ */
+
+/* Row hover -> unroll all pills (same as .tags-holder:hover) */
+.archive-item:hover .tags-holder .tag-pill {
+    margin-left: 0.25rem;              /* stop overlap */
+    padding: 0 0.5rem 0 0.15rem;       /* pill padding */
+    background-color: var(--background-color);
+}
+  
+  /* keep the first pill flush-left */
+.archive-item:hover .tags-holder .tag-pill:first-child {
+margin-left: 0;
+}
+  
+.archive-item:hover .tags-holder .tag-pill-dot {
+margin-right: 0.1rem;
+}
+
+.archive-item:hover .tags-holder .tag-pill-label {
+max-width: 8rem;
+opacity: 1;
+
+/* show immediately on row hover */
+transition:
+    opacity     0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    margin-left 0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
+    max-width   0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+}
+
+/* Optional: keyboard accessibility (tab into a link inside the row) */
+.archive-item:focus-within .tags-holder .tag-pill {
+margin-left: 0.25rem;
+padding: 0 0.5rem 0 0.15rem;
+background-color: var(--background-color);
+}
+.archive-item:focus-within .tags-holder .tag-pill:first-child {
+margin-left: 0;
+}
+.archive-item:focus-within .tags-holder .tag-pill-dot {
+margin-right: 0.1rem;
+}
+.archive-item:focus-within .tags-holder .tag-pill-label {
+max-width: 8rem;
+opacity: 1;
+}
+
+
 .archive-list a.archive-title:any-link {
-    color: var(--backup-text-color-v3);
+color: var(--backup-text-color-v3);
 }
 
 .archive-item:hover a.archive-title:any-link {
-    color: black;
-    text-decoration: none;
+color: black;
+text-decoration: none;
 }
 
 /* date (right column) */
 .archive-date {
-    font-size: 0.75rem;
-    font-variant-numeric: tabular-nums;
+font-size: 0.75rem;
+font-variant-numeric: tabular-nums;
 }
 
 /* footer like the SORT "SORT / Overview / About" line */
