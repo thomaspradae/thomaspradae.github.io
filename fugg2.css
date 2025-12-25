@@ -28,6 +28,20 @@
     --empty-ball: url('/assets/images/resources/emptyblackball.svg');
     --ball: url('/assets/images/resources/blackball.svg');
     --tag-accent-default: #444444;
+
+    /* TAG PILL KNOBS (from the trial) */
+    --tag-dur: 0.40s;
+    --tag-dur-fast: 0.30s;
+    --tag-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --tag-overlap: -0.35rem;
+    --tag-spread: 0.35rem;
+    --tag-label-max: 10rem;
+
+    /* OPACITY KNOBS (separate control) */
+    --tag-opacity-dur: 2.5s;              /* your trial value */
+    --tag-opacity-ease: var(--tag-ease);
+    --tag-idle-opacity: 0.5;              /* your trial value */
+    --tag-hover-opacity: 1;
 }
 
 @font-face{
@@ -942,172 +956,161 @@ footer {
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 /* ------------------------------------------------------------------ */
-/* TAGS: BALL ➜ PILL ON HOVER                                         */
+/* TAGS: BALL ➜ PILL ON HOVER (KNOBBED + OPACITY)                     */
 /* ------------------------------------------------------------------ */
 
 /* per-tag accent colors */
-.tag-pill--math {
-    --tag-accent: #4A90E2;
-}
-
-.tag-pill--ml {
-    --tag-accent: #B296FF;
-}
-
-.tag-pill--personal {
-    --tag-accent: #FFB347;
-}
-
-.tag-pill--reading {
-    --tag-accent: #5BCF9B;
-}
+.tag-pill--math { --tag-accent: #4A90E2; }
+.tag-pill--ml { --tag-accent: #B296FF; }
+.tag-pill--personal { --tag-accent: #FFB347; }
+.tag-pill--reading { --tag-accent: #5BCF9B; }
 
 /* container */
 .tags-holder {
-    display: flex;
-    align-items: center;
-    gap: 0rem;  /* real space BETWEEN tags (background shows here) */
+  display: inline-flex;
+  align-items: center;
+  gap: 0rem;
+
+  /* NEW: opacity breathing (matches trial) */
+  opacity: var(--tag-idle-opacity);
+  transition: opacity var(--tag-opacity-dur) var(--tag-opacity-ease);
+}
+
+/* fade up when parent "unrolls" OR cluster hovered */
+.post-meta-tags:hover .tags-holder,
+.archive-item:hover .tags-holder,
+.tags-holder:hover {
+  opacity: var(--tag-hover-opacity);
 }
 
 /* base: stacked balls like avatars */
 .tags-holder .tag-pill {
-    /* per-tag custom properties */
-    --tag-accent: var(--tag-accent-default);
-    --tag-accent-light: color-mix(in srgb, var(--tag-accent) 25%, #ffffff 75%);
-    --tag-accent-dark:  color-mix(in srgb, var(--tag-accent) 80%, #000000 20%);
+  --tag-accent: var(--tag-accent-default);
+  --tag-accent-light: color-mix(in srgb, var(--tag-accent) 25%, #ffffff 75%);
+  --tag-accent-dark:  color-mix(in srgb, var(--tag-accent) 80%, #000000 20%);
 
-    position: relative;
-    display: inline-flex;
-    align-items: center;   /* center ball + text vertically */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
 
-    margin-left: -0.3rem;  /* overlap effect */
-    padding: 0;            /* no pill padding at rest */
+  margin-left: var(--tag-overlap);
+  padding: 0;
 
-    border-radius: 999px;
-    overflow: hidden;
-    background-color: transparent;
-    text-decoration: none;
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: transparent;
+  text-decoration: none;
 
-    transition:
-    background-color 0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
-    transform        0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
-    filter           0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
-    padding          0.28s cubic-bezier(0.4, 0.0, 0.2, 1),
-    margin-left      0.28s cubic-bezier(0.4, 0.0, 0.2, 1); /* smooth when we “pull them apart” */
+  transition:
+    background-color var(--tag-dur-fast) var(--tag-ease),
+    transform        var(--tag-dur-fast) var(--tag-ease),
+    filter           var(--tag-dur-fast) var(--tag-ease),
+    padding          var(--tag-dur-fast) var(--tag-ease),
+    margin-left      var(--tag-dur-fast) var(--tag-ease);
 }
 
-/* first one not shifted */
 .tags-holder .tag-pill:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 /* the ball */
 .tag-pill-dot {
-    width: 0.625rem;
-    height: 0.625rem;
-    border-radius: 999px;
-    background-color: var(--tag-accent-light);
-    border: 0.125rem solid var(--background-color); /* ~2px in rem */
-    flex-shrink: 0;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 999px;
+  background-color: var(--tag-accent-light);
+  border: 0.125rem solid var(--background-color);
+  flex-shrink: 0;
 
-    transition:
-        margin-right     0.24s cubic-bezier(0.4, 0.0, 0.2, 1),
-        background-color 0.24s cubic-bezier(0.4, 0.0, 0.2, 1),
-        border-color     0.24s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition:
+    margin-right     var(--tag-dur-fast) var(--tag-ease),
+    background-color var(--tag-dur-fast) var(--tag-ease),
+    border-color     var(--tag-dur-fast) var(--tag-ease);
 }
 
+/* the label (hidden at rest) */
 .tag-pill-label {
-    opacity: 0;
-    max-width: 0;             /* no width at rest */
-    overflow: hidden;         /* hide text when width is 0 */
-    white-space: nowrap;
-    margin-left: 0;
-    padding-right: 0;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 
-    font-size: 0.75rem;
-    font-family: 'Inter', sans-serif;
-    text-transform: lowercase;
-    color: var(--backup-text-color-v2);
-    line-height: 1.2;
+  margin-left: 0;
+  padding-right: 0;
 
-    /* STICKY-OUT: delay only when hiding */
-    transition:
-        opacity     0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s,
-        margin-left 0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s,
-        max-width   0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0.18s;
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  text-transform: lowercase;
+  color: var(--backup-text-color-v2);
+  line-height: 1.2;
 
-        /* sticky on the way OUT
-    transition:
-        opacity    0.45s ease 0.35s,
-        margin-left 0.45s ease 0.35s; */
+  /* delay only on the way OUT */
+  transition:
+    opacity   var(--tag-dur-fast) var(--tag-ease) calc(var(--tag-dur-fast) * 0.6),
+    max-width var(--tag-dur-fast) var(--tag-ease) calc(var(--tag-dur-fast) * 0.6),
+    margin-left var(--tag-dur-fast) var(--tag-ease) calc(var(--tag-dur-fast) * 0.6);
 }
 
-
-
-
 /* -------------------------------------------------------------- */
-/* 1) Hover the whole tag area (post-meta-tags) ➜ unroll all      */
+/* Unroll triggers: hover the group (post-meta-tags) or holder     */
 /* -------------------------------------------------------------- */
-
-/* When hovering the whole tag group, we:
-   - cancel overlap (margin-left: 0) so `gap` becomes visible
-   - add a bit of pill padding
-   - nudge dot away from text
-   - fade + slide labels in (no delay IN) */
 
 .post-meta-tags:hover .tag-pill,
 .tags-holder:hover .tag-pill {
-    margin-left: 0.25rem;                /* stop overlapping, gap now shows */
-    padding: 0 0.5rem 0 0.15rem;   /* pill padding, but only inside pill */
-    background-color: var(--background-color);
+  margin-left: var(--tag-spread);
+  padding: 0 0.5rem 0 0.15rem;
+  background-color: var(--background-color);
+}
+
+.post-meta-tags:hover .tag-pill:first-child,
+.tags-holder:hover .tag-pill:first-child {
+  margin-left: 0;
 }
 
 .post-meta-tags:hover .tag-pill-dot,
 .tags-holder:hover .tag-pill-dot {
-    margin-right: 0.1rem;         /* space between dot and text */
+  margin-right: 0.1rem;
 }
 
 .post-meta-tags:hover .tag-pill-label,
 .tags-holder:hover .tag-pill-label {
-    max-width: 8rem;
-    opacity: 1;
+  max-width: var(--tag-label-max);
+  opacity: 1;
 
-    /* HOVER-IN: override delay, show immediately */
-    transition:
-        opacity     0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
-        margin-left 0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s,
-        max-width   0.26s cubic-bezier(0.4, 0.0, 0.2, 1) 0s;
+  /* no delay on the way IN */
+  transition:
+    opacity   var(--tag-dur-fast) var(--tag-ease) 0s,
+    max-width var(--tag-dur-fast) var(--tag-ease) 0s,
+    margin-left var(--tag-dur-fast) var(--tag-ease) 0s;
 }
+
 /* -------------------------------------------------------------- */
-/* 2) Hover a specific tag ➜ accent pill                          */
+/* Hover a specific pill -> accent it                              */
 /* -------------------------------------------------------------- */
 
 .post-meta-tags .tag-pill:hover,
 .tags-holder .tag-pill:hover {
-    background-color: var(--tag-accent);
-    transform: translateY(-1px);
-    filter: brightness(1.05);
+  background-color: var(--tag-accent);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .post-meta-tags .tag-pill:hover .tag-pill-dot,
 .tags-holder .tag-pill:hover .tag-pill-dot {
-    background-color: var(--tag-accent-dark);
-    border-color: var(--tag-accent);
+  background-color: var(--tag-accent-dark);
+  border-color: var(--tag-accent);
 }
 
 .post-meta-tags .tag-pill:hover .tag-pill-label,
 .tags-holder .tag-pill:hover .tag-pill-label {
-    color: var(--background-color);       /* white text on colored pill */
+  color: var(--background-color);
 }
 
-/* -------------------------------------------------------------- */
-/* 3) Don’t inherit global link hover styles inside tag pills     */
-/* -------------------------------------------------------------- */
-
+/* Don't inherit global link hover styles inside tag pills */
 .tags-holder .tag-pill,
 .tags-holder .tag-pill:hover {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 
