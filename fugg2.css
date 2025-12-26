@@ -42,6 +42,10 @@
     --tag-opacity-ease: var(--tag-ease);
     --tag-idle-opacity: 0.5;              /* your trial value */
     --tag-hover-opacity: 1;
+
+    /* ARCHIVE LAYOUT KNOBS */
+    --archive-gutter: 5rem;
+    --archive-title-top: 4rem;
 }
 
 @font-face{
@@ -1769,38 +1773,42 @@ pre code {
 /* (007) – ARCHIVE / INDEX PAGES (SORT-STYLE LIST)                    */
 /* ------------------------------------------------------------------ */
 
-/* WRITING / ARCHIVE LAYOUT (NO STICKY, NO FIXED)
-   - Title appears top-left on load
-   - List starts at 50vh (middle of viewport) on load
-   - Everything scrolls normally
-*/
+/* WRITING / ARCHIVE: title top-left on load, list starts at 50vh, normal scroll */
 
 .archive-wrapper{
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: 50vh auto; /* first row = air, second row = list */
+  position: relative;
   box-sizing: border-box;
+
+  /* this is what makes the list begin at the middle of the viewport */
+  padding-top: 50vh;
+
+  /* IMPORTANT: if you previously used grid, kill it */
+  display: block;
 }
 
-/* kill the "pinned to viewport" behavior */
 .archive-section-title{
-  position: relative;     /* NOT fixed */
-  top: auto;
-  left: auto;
+  position: absolute;
+  top: var(--archive-title-top);
+  left: var(--archive-gutter);
 
-  margin: 4rem 0 0 5rem;  /* top-left placement */
+  /* nuke global h2 margins */
+  margin: 0;
+
   font-size: 3rem;
   font-weight: 650;
-  text-transform: capitalize;
   letter-spacing: 0.02em;
+  text-transform: capitalize;
   color: #77003c;
-  z-index: 1;
+
+  /* keep it from weird centering inherited elsewhere */
+  text-align: left;
 }
 
-/* second row starts exactly at 50vh */
 .archive-card{
-  margin: 0;                       /* important: remove any margin-top hacks */
-  padding: 0 5rem 3.5rem 5rem;
+  /* these are your side margins */
+  padding: 0 var(--archive-gutter) 3.5rem var(--archive-gutter);
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -1961,17 +1969,13 @@ margin-left: 2rem;
 
 /* Responsive tweak */
 @media (max-width: 768px) {
-    .archive-wrapper{ 
-        grid-template-rows: 40vh auto; 
+    :root{
+        --archive-gutter: 2rem;
+        --archive-title-top: 2rem;
     }
     
     .archive-section-title{
-        margin: 2rem 0 0 2rem;
         font-size: 2rem;
-    }
-    
-    .archive-card{ 
-        padding: 0 2rem 2.5rem 2rem; 
     }
 
     .archive-item {
