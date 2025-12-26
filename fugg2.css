@@ -30,12 +30,12 @@
     --tag-accent-default: #444444;
 
     /* TAG PILL KNOBS (from the trial) */
-    --tag-dur: 0.40s;
-    --tag-dur-fast: 0.30s;
-    --tag-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --tag-dur: 0.55s;
+    --tag-dur-fast: 0.45s;
+    --tag-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
     --tag-overlap: -0.35rem;
     --tag-spread: 0.35rem;
-    --tag-label-max: 10rem;
+    --tag-label-max: 12rem;
 
     /* OPACITY KNOBS (separate control) */
     --tag-opacity-dur: 2.5s;              /* your trial value */
@@ -325,7 +325,7 @@ li {
 a:-webkit-any-link {
     color: var(--contrast-color);
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
 } 
 
 a:-webkit-any-link:hover {
@@ -337,7 +337,7 @@ a:-webkit-any-link:hover {
 a:any-link{
     color: var(--contrast-color);
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.5s ease;
 }
 
 a:any-link:hover{
@@ -1905,10 +1905,12 @@ color: var(--backup-text-color-v3);
 .archive-item:hover a.archive-title:any-link {
 color: black;
 text-decoration: none;
+transition: color 0.5s ease;
 }
 
 .archive-item:hover .archive-date {
     color: black;
+    transition: color 0.5s ease;
 }
 
 /* date (right column) */
