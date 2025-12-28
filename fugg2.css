@@ -117,6 +117,8 @@ blockquote p{
 .sidebar {
     width: 12.5rem;
     margin-left: 8vw;
+    display: flex;
+    justify-content: center;
 }
 
 nav.sidebar .home-sidebar-item a {
@@ -129,9 +131,7 @@ nav.sidebar .home-sidebar-item a {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    font-family: 'GeistMono', sans-serif;
     font-size: 0.75rem;
-    text-transform: uppercase;
 }
 
 /* li */
