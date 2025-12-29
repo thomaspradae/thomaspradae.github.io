@@ -23,7 +23,15 @@ permalink: /building/
 <body>
   <div class="archive-wrapper">
     <!-- Add section title here -->
-    <h2 class="archive-section-title">Building</h2>
+    <div class="archive-header">
+      <h2 class="archive-section-title">Building</h2>
+    
+      <div class="archive-topnav">
+        <a href="{{ '/' | relative_url }}">Overview ↓</a>
+        <span> / </span>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </div>
+    </div>
     
     <div class="archive-card">
       <ul class="archive-list">
@@ -56,15 +64,6 @@ permalink: /building/
         </li>
         {% endfor %}
       </ul>
-
-      <div class="archive-footer">
-        <span class="archive-footer-left">BUILDING</span>
-        <span class="archive-footer-right">
-          <a href="{{ '/' | relative_url }}">Overview ↓</a>
-          <span> / </span>
-          <a href="{{ '/about/' | relative_url }}">About</a>
-        </span>
-      </div>
     </div>
   </div>
 </body>

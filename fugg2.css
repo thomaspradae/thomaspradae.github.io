@@ -1994,7 +1994,47 @@ margin-left: 2rem;
     }
 }
 
-
+/* Header row: title (left) + top nav (right) aligned on baseline */
+.archive-header{
+    position: absolute;
+    top: var(--archive-title-top);
+    left: var(--archive-gutter);
+    right: var(--archive-gutter);
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; /* this is the key: baseline-align the text */
+    z-index: 10;
+  }
+  
+  /* Title is no longer absolutely positioned (the header handles layout) */
+  .archive-section-title{
+    position: static;   /* overrides your earlier absolute */
+    margin: 0;
+  }
+  
+  /* The top-right nav styling */
+  .archive-topnav{
+    font-family: 'GeistMono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #9b9b99;
+  
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+  
+  .archive-topnav a{
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .archive-topnav a:hover{
+    text-decoration: underline;
+  }
+  
 
 
 
