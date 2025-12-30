@@ -1434,115 +1434,157 @@ pre code {
     counter-reset: sidenote-counter;
 }
 
-/* A 3-column stage: [left gutter] [center content] [right gutter] */
-#main.post-stage{
-  --center-col: 42rem; /* your reading width */
-  --toc-width: 12rem;
-  --toc-gap: 3rem;
-  --margin-note-width: 12rem;
-  --margin-note-gap: 3rem;
+/* LEFT TOC */
 
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, var(--center-col))
-    minmax(0, 1fr);
-
-  column-gap: var(--toc-gap);
-  align-items: start;
-
-  /* optional: give the stage a bit of breathing room */
-  padding: 0 var(--archive-gutter);
-  box-sizing: border-box;
-
-  counter-reset: sidenote-counter;
+#main.post .left-toc {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--toc-width) - var(--toc-gap));
+    width: var(--toc-width);
+    margin: 0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--backup-text-color-v2);
 }
 
-/* Put TOC in the left gutter, pinned when scrolling */
-#main.post-stage .left-toc{
+#main.post .left-toc .toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#main.post .left-toc .toc-item {
+    margin: 0 0 0.35rem 0;
+}
+
+#main.post .left-toc a {
+    color: var(--backup-text-color-v2);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+#main.post .left-toc a:hover {
+    color: var(--contrast-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+#main.post .left-toc .toc-level-2 {
+    padding-left: 0.75rem;
+    margin-top: 0.35rem;
+}
+
+#main.post .left-toc .toc-level-3 {
+    padding-left: 1.25rem;
+}
+
+#main.post .left-toc .toc-level-4 {
+    padding-left: 1.75rem;
+}
+
+#main.post .left-toc .toc-level-5 {
+    padding-left: 2.25rem;
+    opacity: 0.9;
+}
+
+#main.post .left-toc .toc-level-6 {
+    padding-left: 2.75rem;
+    opacity: 0.8;
+}
+
+/* ------------------------------------------------------------------ */
+/* STICKY LEFT TOC: minimal change                                    */
+/* ------------------------------------------------------------------ */
+
+/* Stage grid: [left gutter] [center column] [right gutter] */
+.post-stage{
+  /* keep your exact TOC knobs without changing them */
+  --toc-width: 12rem;
+  --toc-gap: 3rem;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 42rem) minmax(0, 1fr);
+  column-gap: var(--toc-gap);
+  align-items: start;
+}
+
+/* Center column: your existing post container */
+.post-stage > #main.post{
+  grid-column: 2;
+  min-width: 0; /* prevents overflow in grid layouts */
+}
+
+/* Left gutter TOC: now in normal flow, so sticky works */
+.post-stage > .left-toc{
   grid-column: 1;
   justify-self: end;
 
   width: var(--toc-width);
+  margin: 0;
 
   position: sticky;
-  top: 6rem;                 /* where it sticks */
+  top: 0;              /* matches your old "top: 0" intent */
   align-self: start;
 
-  max-height: calc(100vh - 7rem);
-  overflow: auto;            /* scroll within toc if long */
+  max-height: 100vh;
+  overflow: auto;
 
-  margin: 0;
-  padding: 0;
   font-family: 'Crimson Pro', serif;
   font-size: 0.9rem;
   line-height: 1.4;
   color: var(--backup-text-color-v2);
 }
 
-/* Center column: your article */
-#main.post-stage .post-body{
-  grid-column: 2;
-  min-width: 0;              /* important: prevents overflow in grid */
+/* TOC link styles (matching existing #main.post .left-toc rules) */
+.post-stage > .left-toc .toc-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
-/* Right gutter (optional, but useful) */
-#main.post-stage .right-gutter{
+.post-stage > .left-toc .toc-item {
+  margin: 0 0 0.35rem 0;
+}
+
+.post-stage > .left-toc a {
+  color: var(--backup-text-color-v2);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.post-stage > .left-toc a:hover {
+  color: var(--contrast-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-stage > .left-toc .toc-level-2 {
+  padding-left: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.post-stage > .left-toc .toc-level-3 {
+  padding-left: 1.25rem;
+}
+
+.post-stage > .left-toc .toc-level-4 {
+  padding-left: 1.75rem;
+}
+
+.post-stage > .left-toc .toc-level-5 {
+  padding-left: 2.25rem;
+  opacity: 0.9;
+}
+
+.post-stage > .left-toc .toc-level-6 {
+  padding-left: 2.75rem;
+  opacity: 0.8;
+}
+
+/* Right gutter stays empty */
+.post-stage > .right-gutter{
   grid-column: 3;
-}
-
-#main.post .left-toc .toc-list,
-#main.post-stage .left-toc .toc-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-#main.post .left-toc .toc-item,
-#main.post-stage .left-toc .toc-item {
-    margin: 0 0 0.35rem 0;
-}
-
-#main.post .left-toc a,
-#main.post-stage .left-toc a {
-    color: var(--backup-text-color-v2);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-}
-
-#main.post .left-toc a:hover,
-#main.post-stage .left-toc a:hover {
-    color: var(--contrast-color);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-#main.post .left-toc .toc-level-2,
-#main.post-stage .left-toc .toc-level-2 {
-    padding-left: 0.75rem;
-    margin-top: 0.35rem;
-}
-
-#main.post .left-toc .toc-level-3,
-#main.post-stage .left-toc .toc-level-3 {
-    padding-left: 1.25rem;
-}
-
-#main.post .left-toc .toc-level-4,
-#main.post-stage .left-toc .toc-level-4 {
-    padding-left: 1.75rem;
-}
-
-#main.post .left-toc .toc-level-5,
-#main.post-stage .left-toc .toc-level-5 {
-    padding-left: 2.25rem;
-    opacity: 0.9;
-}
-
-#main.post .left-toc .toc-level-6,
-#main.post-stage .left-toc .toc-level-6 {
-    padding-left: 2.75rem;
-    opacity: 0.8;
 }
 
 .post-top {
@@ -1591,9 +1633,7 @@ pre code {
 /* SIDENOTES (margin notes on right) */
 
 #main.post .sidenote,
-#main.post .marginnote,
-#main.post-stage .sidenote,
-#main.post-stage .marginnote {
+#main.post .marginnote {
     float: right;
     clear: right;
     width: var(--margin-note-width);
@@ -1605,14 +1645,12 @@ pre code {
 
 /* numbering */
 
-#main.post .sidenote-number,
-#main.post-stage .sidenote-number {
+#main.post .sidenote-number {
     counter-increment: sidenote-counter;
     pointer-events: none;
 }
 
-#main.post .sidenote-number::after,
-#main.post-stage .sidenote-number::after {
+#main.post .sidenote-number::after {
     content: counter(sidenote-counter);
     font-size: 0.8rem;
     vertical-align: super;
@@ -1620,8 +1658,7 @@ pre code {
     color: var(--backup-text-color-v3);
 }
 
-#main.post .sidenote::before,
-#main.post-stage .sidenote::before {
+#main.post .sidenote::before {
     content: counter(sidenote-counter);
     font-size: 1rem;
     display: inline-block;
@@ -1631,9 +1668,7 @@ pre code {
 
 /* blockquotes + margin notes */
 #main.post blockquote .sidenote,
-#main.post blockquote .marginnote,
-#main.post-stage blockquote .sidenote,
-#main.post-stage blockquote .marginnote {
+#main.post blockquote .marginnote {
     text-align: left;
 }
 
@@ -1642,23 +1677,19 @@ pre code {
 
 /* Responsive: hide TOC and inline sidenotes on narrow screens */
 @media (max-width: 1024px) {
-    #main.post .left-toc,
-    #main.post-stage .left-toc {
+    .post-stage > .left-toc {
         display: none;
     }
 
     #main.post .sidenote,
-    #main.post .marginnote,
-    #main.post-stage .sidenote,
-    #main.post-stage .marginnote {
+    #main.post .marginnote {
         float: none;
         clear: both;
         margin: 0.75rem 0;
         width: 100%;
     }
 
-    #main.post .sidenote-number::after,
-    #main.post-stage .sidenote-number::after {
+    #main.post .sidenote-number::after {
         /* optional: hide superscript numbers on mobile */
         display: none;
     }
@@ -1666,9 +1697,7 @@ pre code {
 
 
 #main.post .sidenote,
-#main.post .marginnote,
-#main.post-stage .sidenote,
-#main.post-stage .marginnote {
+#main.post .marginnote {
     float: right;
     clear: right;
     width: var(--margin-note-width);
@@ -1681,9 +1710,7 @@ pre code {
 
 /* NEW: override <p> inside margin notes */
 #main.post .sidenote p,
-#main.post .marginnote p,
-#main.post-stage .sidenote p,
-#main.post-stage .marginnote p {
+#main.post .marginnote p {
     font-family: 'Crimson Pro', serif;   /* or GeistMono if you prefer */
     font-size: 1rem;
     line-height: 1.4;

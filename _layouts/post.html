@@ -97,13 +97,18 @@ layout: default
     </div> <!-- /post-top -->
 
     <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
-    <div id="main" class="post-stage">
+    <div class="post-stage">
+      <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
       <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
 
-      <article class="post-body">
-        {{ content }}
-      </article>
+      <!-- KEEP #main EXACTLY AS YOUR POST CONTAINER (so sidenotes rules still match) -->
+      <div id="main" class="post">
+        <article class="post-body">
+          {{ content }}
+        </article>
+      </div>
 
+      <!-- empty right gutter so the grid has symmetric tracks (no layout changes to content) -->
       <div class="right-gutter" aria-hidden="true"></div>
     </div>
 
