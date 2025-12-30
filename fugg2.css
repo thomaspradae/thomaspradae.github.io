@@ -1422,6 +1422,18 @@ pre code {
     padding-bottom: 1.25rem;
 }
 
+#main.post {
+    position: relative;
+    max-width: 42rem;
+    /* your existing custom properties stay here */
+    --toc-width: 12rem;
+    --toc-gap: 3rem;
+    --margin-note-width: 12rem;
+    --margin-note-gap: 3rem;
+
+    counter-reset: sidenote-counter;
+}
+
 /* A 3-column stage: [left gutter] [center content] [right gutter] */
 #main.post-stage{
   --center-col: 42rem; /* your reading width */
@@ -1479,46 +1491,55 @@ pre code {
   grid-column: 3;
 }
 
+#main.post .left-toc .toc-list,
 #main.post-stage .left-toc .toc-list {
     list-style: none;
     padding-left: 0;
     margin: 0;
 }
 
+#main.post .left-toc .toc-item,
 #main.post-stage .left-toc .toc-item {
     margin: 0 0 0.35rem 0;
 }
 
+#main.post .left-toc a,
 #main.post-stage .left-toc a {
     color: var(--backup-text-color-v2);
     text-decoration: none;
     transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
+#main.post .left-toc a:hover,
 #main.post-stage .left-toc a:hover {
     color: var(--contrast-color);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 
+#main.post .left-toc .toc-level-2,
 #main.post-stage .left-toc .toc-level-2 {
     padding-left: 0.75rem;
     margin-top: 0.35rem;
 }
 
+#main.post .left-toc .toc-level-3,
 #main.post-stage .left-toc .toc-level-3 {
     padding-left: 1.25rem;
 }
 
+#main.post .left-toc .toc-level-4,
 #main.post-stage .left-toc .toc-level-4 {
     padding-left: 1.75rem;
 }
 
+#main.post .left-toc .toc-level-5,
 #main.post-stage .left-toc .toc-level-5 {
     padding-left: 2.25rem;
     opacity: 0.9;
 }
 
+#main.post .left-toc .toc-level-6,
 #main.post-stage .left-toc .toc-level-6 {
     padding-left: 2.75rem;
     opacity: 0.8;
@@ -1560,18 +1581,17 @@ pre code {
 
 
 .post-top .post-header,
-.post-intro.post {
+.post-intro.post,
+#main.post {
   max-width: 42rem;
   margin: 0 auto;
   margin-bottom: 5rem;
 }
 
-#main.post-stage {
-  margin-bottom: 5rem;
-}
-
 /* SIDENOTES (margin notes on right) */
 
+#main.post .sidenote,
+#main.post .marginnote,
 #main.post-stage .sidenote,
 #main.post-stage .marginnote {
     float: right;
@@ -1585,11 +1605,13 @@ pre code {
 
 /* numbering */
 
+#main.post .sidenote-number,
 #main.post-stage .sidenote-number {
     counter-increment: sidenote-counter;
     pointer-events: none;
 }
 
+#main.post .sidenote-number::after,
 #main.post-stage .sidenote-number::after {
     content: counter(sidenote-counter);
     font-size: 0.8rem;
@@ -1598,6 +1620,7 @@ pre code {
     color: var(--backup-text-color-v3);
 }
 
+#main.post .sidenote::before,
 #main.post-stage .sidenote::before {
     content: counter(sidenote-counter);
     font-size: 1rem;
@@ -1607,6 +1630,8 @@ pre code {
 }
 
 /* blockquotes + margin notes */
+#main.post blockquote .sidenote,
+#main.post blockquote .marginnote,
 #main.post-stage blockquote .sidenote,
 #main.post-stage blockquote .marginnote {
     text-align: left;
@@ -1617,10 +1642,13 @@ pre code {
 
 /* Responsive: hide TOC and inline sidenotes on narrow screens */
 @media (max-width: 1024px) {
+    #main.post .left-toc,
     #main.post-stage .left-toc {
         display: none;
     }
 
+    #main.post .sidenote,
+    #main.post .marginnote,
     #main.post-stage .sidenote,
     #main.post-stage .marginnote {
         float: none;
@@ -1629,6 +1657,7 @@ pre code {
         width: 100%;
     }
 
+    #main.post .sidenote-number::after,
     #main.post-stage .sidenote-number::after {
         /* optional: hide superscript numbers on mobile */
         display: none;
@@ -1636,6 +1665,8 @@ pre code {
 }
 
 
+#main.post .sidenote,
+#main.post .marginnote,
 #main.post-stage .sidenote,
 #main.post-stage .marginnote {
     float: right;
@@ -1649,6 +1680,8 @@ pre code {
 }
 
 /* NEW: override <p> inside margin notes */
+#main.post .sidenote p,
+#main.post .marginnote p,
 #main.post-stage .sidenote p,
 #main.post-stage .marginnote p {
     font-family: 'Crimson Pro', serif;   /* or GeistMono if you prefer */
