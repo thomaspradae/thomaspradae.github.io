@@ -97,7 +97,7 @@ layout: default
     </div> <!-- /post-top -->
 
     <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
-    <div id="main" class="post">
+    <div id="main" class="post-stage">
       <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
       <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
 
@@ -105,6 +105,8 @@ layout: default
       <article class="post-body">
         {{ content }}
       </article>
+
+      <div class="right-gutter" aria-hidden="true"></div>
     </div>
 
   </div> <!-- /post-outer -->
