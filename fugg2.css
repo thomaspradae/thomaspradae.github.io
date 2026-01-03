@@ -1544,13 +1544,13 @@ pointer-events: auto;
 
 transition:
     opacity 520ms ease,
-    transform 220ms ease;
+    transform 520ms ease;
 }
 
 /* When auto-hide is active AND we're "idle", hide it */
 .toc-autohide-on .post-stage > .left-toc.toc-hidden{
 opacity: 0;
-transform: translateY(4px); /* subtle, optional */
+transform: translateY(1.5px); /* subtle, optional */
 pointer-events: none;
 }
 
