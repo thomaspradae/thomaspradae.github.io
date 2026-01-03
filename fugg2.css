@@ -1543,7 +1543,7 @@ transform: translateY(0);
 pointer-events: auto;
 
 transition:
-    opacity 220ms ease,
+    opacity 420ms ease,
     transform 220ms ease;
 }
 
@@ -1629,8 +1629,6 @@ pointer-events: auto;
       transition: none;
     }
   }
-  
-  
 
 /* TOC link styles (matching existing #main.post .left-toc rules) */
 .post-stage > .left-toc .toc-list {
