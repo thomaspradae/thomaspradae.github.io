@@ -582,7 +582,7 @@ footer {
 .page-title {
     font-size: 2.6rem;
     margin: 0;
-    color: rgb(187, 255, 0);
+    color: rgb(67, 92, 0);
     margin-top: 3vh;
     margin-bottom: 3vh;
     text-align: center;
@@ -1524,7 +1524,8 @@ pre code {
   margin: 0;
 
   position: sticky;
-  top: 10rem;              /* matches your old "top: 0" intent */
+  top: 10rem;   
+  bottom: 10rem;          
   align-self: start;
 
   max-height: 100vh;
