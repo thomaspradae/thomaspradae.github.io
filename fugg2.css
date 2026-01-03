@@ -1567,6 +1567,69 @@ pointer-events: auto;
     transition: none;
 }
 }
+
+/* ------------------------------------------------------------------ */
+/* TOC: reveal-on-hover even when hidden (via hover-capture zone)      */
+/* ------------------------------------------------------------------ */
+
+/* Ensure the TOC box can host an absolutely-positioned pseudo-element */
+.post-stage > .left-toc{
+    position: sticky; /* you already have this */
+    /* add: */
+    z-index: 20;
+  }
+  
+  /* Hover-capture zone:
+     - Lives in the left gutter area
+     - Still receives hover even when TOC is hidden
+  */
+  .toc-autohide-on .post-stage > .left-toc::before{
+    content: "";
+    position: absolute;
+  
+    /* Expand the hover zone around where the TOC lives */
+    top: -1rem;
+    bottom: -1rem;
+    left: -2rem;                 /* extend a bit into the gutter */
+    right: 0;                    /* cover the TOC width itself */
+  
+    /* Important: this zone must be hoverable */
+    pointer-events: auto;
+  
+    /* Invisible */
+    background: transparent;
+  
+    /* Place it above the TOC so it can catch hover even if TOC is hidden */
+    z-index: 1;
+  }
+  
+  /* Put actual TOC content above the hover zone so clicks work when visible */
+  .post-stage > .left-toc > *{
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* If user hovers the TOC zone, force it visible */
+  .toc-autohide-on .post-stage > .left-toc:hover{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* When hidden, keep the TOC non-interactive, but hover zone still works */
+  .toc-autohide-on .post-stage > .left-toc.toc-hidden{
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none; /* ok now because hover zone is separate */
+  }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .post-stage > .left-toc{
+      transition: none;
+    }
+  }
+  
   
 
 /* TOC link styles (matching existing #main.post .left-toc rules) */
