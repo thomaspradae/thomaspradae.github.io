@@ -1536,6 +1536,39 @@ pre code {
   color: var(--backup-text-color-v2);
 }
 
+/* TOC visibility animation */
+.post-stage > .left-toc{
+opacity: 1;
+transform: translateY(0);
+pointer-events: auto;
+
+transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+/* When auto-hide is active AND we're "idle", hide it */
+.toc-autohide-on .post-stage > .left-toc.toc-hidden{
+opacity: 0;
+transform: translateY(4px); /* subtle, optional */
+pointer-events: none;
+}
+
+/* Optional: if user hovers the TOC region, keep it visible */
+.toc-autohide-on .post-stage > .left-toc:hover{
+opacity: 1;
+transform: translateY(0);
+pointer-events: auto;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+.post-stage > .left-toc{
+    transition: none;
+}
+}
+  
+
 /* TOC link styles (matching existing #main.post .left-toc rules) */
 .post-stage > .left-toc .toc-list {
   list-style: none;
