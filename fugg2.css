@@ -1543,7 +1543,7 @@ transform: translateY(0);
 pointer-events: auto;
 
 transition:
-    opacity 420ms ease,
+    opacity 520ms ease,
     transform 220ms ease;
 }
 
