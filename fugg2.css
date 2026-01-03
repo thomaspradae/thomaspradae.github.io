@@ -2064,7 +2064,7 @@ margin-right: 0.1rem;
 }
 
 .archive-item:hover .tags-holder .tag-pill-label {
-max-width: 8rem;
+max-width: 12rem;
 opacity: 1;
 
 /* show immediately on row hover */
