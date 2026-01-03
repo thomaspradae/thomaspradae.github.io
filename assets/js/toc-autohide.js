@@ -10,7 +10,7 @@
       // -----------------------------
       // Config knobs
       // -----------------------------
-      const HIDE_DELAY_MS = 1100;     // how long after scroll stops to hide
+      const HIDE_DELAY_MS = 900;     // how long after scroll stops to hide
       const STICKY_TOP_PX = 10 * 16; // only used if you want logic tied to top; not required
       // (STICKY_TOP_PX is unused right now; leaving it as a “future knob”)
   
