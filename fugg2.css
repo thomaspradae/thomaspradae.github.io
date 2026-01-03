@@ -1524,7 +1524,7 @@ pre code {
   margin: 0;
 
   position: sticky;
-  top: 0;              /* matches your old "top: 0" intent */
+  top: 10rem;              /* matches your old "top: 0" intent */
   align-self: start;
 
   max-height: 100vh;
