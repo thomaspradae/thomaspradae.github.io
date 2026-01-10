@@ -203,6 +203,26 @@ flex-direction: column;
 gap: 0.75rem;
 }
 
+/* HOME mark image (above title) */
+.home-mark{
+margin: 0 0 2.5rem 0;   /* space under image */
+display: flex;
+justify-content: center;
+}
+
+.home-mark-img{
+/* knobs */
+--home-mark-width: 18rem;     /* change this */
+--home-mark-max: 70vw;        /* prevents overflow on small screens */
+
+width: min(var(--home-mark-width), var(--home-mark-max));
+height: auto;
+display: block;
+
+/* optional: subtle “print” feel */
+/* filter: contrast(1.02); */
+}
+
 .home-nav-link {
 font-family: "Crimson Pro", serif; /* you asked to use Crimson Pro */
 font-weight: 400;
