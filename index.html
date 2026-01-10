@@ -9,105 +9,30 @@
     <link rel="stylesheet" href="/fugg2.css">
 </head>
 
-<body>
-    <script>
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.querySelector('body').classList.add('theme-dark')
-        }
-    </script>
-    
-    <nav class="sidebar">
-      <ul class="home-sidebar-list">
-          <li class="home-sidebar-item"><a href="/">[&nbsp;&nbsp;] Casa/Home</a></li>
-          <li class="home-sidebar-item"><a href="/newhere.html">[&nbsp;&nbsp;] If you're new here</a></li>
-          <li class="home-sidebar-item"><a href="/about">[&nbsp;&nbsp;] About</a></li>
-          <li class="home-sidebar-item"><a href="/building">[&nbsp;&nbsp;] Building</a></li>
-          <li class="home-sidebar-item"><a href="/writing">[&nbsp;&nbsp;] Writing</a></li>
-          <li class="home-sidebar-item"><a href="/notes">[&nbsp;&nbsp;] Notes</a></li>
-          <li class="home-sidebar-item"><a href="/misc">[&nbsp;&nbsp;] Misc</a></li>
-          <li class="home-sidebar-item"><a href="/contact.html">[&nbsp;&nbsp;] Contact</a></li>
-          <li class="home-sidebar-item"><a href="/cv.html">[&nbsp;&nbsp;] CV</a></li>
-          <li class="home-sidebar-item"><a href="https://github.com/thomaspradae">[&nbsp;&nbsp;] GitHub</a></li>
-          <li class="home-sidebar-item"><a href="https://twitter.com/thomas__prada">[&nbsp;&nbsp;] Twitter</a></li>
-          <li class="home-sidebar-item"><a href="/rss.html">[&nbsp;&nbsp;] RSS</a></li>
-      </ul>
-    </nav>
-
-
-    <script>
-      var darkModeToggle = document.querySelector("#theme-toggle");
-
-      const lightThemeImages = {
-        "gifHome": "/assets/images/resources/FINAL_V4.gif",
-        "icon1": "/assets/images/resources/lightestemptyball.svg",
-        "icon2": "/assets/images/resources/lightestball.svg",
-        "footericon": "/assets/images/resources/POSLIGHTGREY.png",
-      }
-
-      const darkThemeImages = {
-        "gifHome": "/assets/images/resources/FINAL_V1_DARK.gif",
-        "icon1": "/assets/images/resources/darkestemptyball.svg",
-        "icon2": "/assets/images/resources/darkestball.svg",
-        "footericon": "/assets/images/resources/POSDARKGREY2.png",
-      }
-
-      function toggleTheme() {
-        document.body.classList.toggle("theme-dark");
-        updateThemeState();
-        updateButtonLabel();
-
-        // Update images
-        const isDarkMode = document.body.classList.contains("theme-dark");
-        const themeImages = isDarkMode ? darkThemeImages : lightThemeImages;
-        document.querySelector('.gif-home').src = themeImages.gifHome;
-        document.querySelector('.info-icon_1').src = themeImages.icon1;
-        document.querySelector('.info-icon_2').src = themeImages.icon2;
-        document.querySelector('.footer-image').src = themeImages.footericon;
-        console.log("Theme toggled:", document.body.classList.contains("theme-dark") ? "Dark Mode" : "Light Mode");
-      }
-
-      function updateThemeState() {
-        let isDarkMode = document.body.classList.contains("theme-dark");
-        let theme = isDarkMode ? "dark" : "light";
-        localStorage.setItem("theme", theme);
-        darkModeToggle.setAttribute("aria-checked", isDarkMode.toString());
-        console.log("Theme updated in localStorage to:", theme);
-      }
-
-      function updateButtonLabel() {
-        darkModeToggle.textContent = `${document.body.classList.contains("theme-dark") ? 'Light' : 'Dark'} Mode`;
-      }
-
-      function initializeTheme() {
-        let isDarkMode = document.body.classList.contains("theme-dark");
-        darkModeToggle.setAttribute("aria-checked", isDarkMode.toString());
-        updateButtonLabel();
-
-        const themeImages = isDarkMode ? darkThemeImages : lightThemeImages;
-        document.querySelector('.gif-home').src = themeImages.gifHome;
-        document.querySelector('.info-icon_1').src = themeImages.icon1;
-        document.querySelector('.info-icon_2').src = themeImages.icon2;
-        document.querySelector('.footer-image').src = themeImages.footericon;
-        console.log("Theme initialized:", isDarkMode ? "Dark Mode" : "Light Mode");
-      }
-
-      darkModeToggle.addEventListener("click", toggleTheme);
-      document.addEventListener('DOMContentLoaded', initializeTheme);
-
-      window.addEventListener('keydown', function(e) {
-          if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
-            return;
-          }
-          if (e.key === 'd' || e.key === 'D') {
-            toggleTheme();
-          }
-      });
-
-      initializeTheme();
-    </script>
-
+<body class="home-page">
+    <main class="home-shell">
+      <header class="home-hero">
+        <h1 class="home-title">Field Notes</h1>
+  
+        <p class="home-subtitle">
+          <span class="home-subtitle-line">Attempts at paying attention</span>
+          <span class="home-subtitle-by">by Thomas Prada</span>
+        </p>
+      </header>
+  
+      <nav class="home-nav" aria-label="Primary">
+        <ul class="home-nav-list">
+          <li class="home-nav-item"><a class="home-nav-link" href="/writing">Writing</a></li>
+          <li class="home-nav-item"><a class="home-nav-link" href="/building">Building</a></li>
+          <li class="home-nav-item"><a class="home-nav-link" href="/notes">Notes</a></li>
+          <li class="home-nav-item"><a class="home-nav-link" href="/misc">Misc</a></li>
+          <li class="home-nav-item"><a class="home-nav-link" href="/about">About</a></li>
+        </ul>
+      </nav>
+    </main>
+  
     <script src="weather.js"></script>
-
-</body>
+  </body>
+  
 
 </html>
