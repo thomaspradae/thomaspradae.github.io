@@ -132,6 +132,111 @@ color: var(--background-color);
 background: var(--main-accent);
 }
 
+/* ------------------------------------------------------------------ */
+/* HOME (Field Notes editorial block)                                 */
+/* ------------------------------------------------------------------ */
+
+.home-page {
+background: var(--background-color);
+min-height: 100vh;
+}
+
+.home-shell {
+/* puts the block lower on the page, like your reference image */
+max-width: 42rem;
+margin: 0 auto;
+padding: 55vh 2rem 10vh;
+}
+
+.home-hero {
+text-align: center;
+}
+
+/* 1) Title: its own style */
+.home-title {
+font-family: "Crimson Pro", serif;
+font-weight: 400;
+font-style: italic;         /* editorial vibe */
+font-size: 3.6rem;
+line-height: 1.05;
+color: var(--contrast-color);
+margin: 0 0 1rem 0;
+}
+
+/* 2) Subtitle: its own style */
+.home-subtitle {
+margin: 0 0 3rem 0;
+line-height: 1.15;
+}
+
+.home-subtitle-line {
+display: block;
+font-family: "Crimson Pro", serif;
+font-weight: 300;
+font-style: italic;
+font-size: 1.6rem;
+color: var(--backup-text-color-v2);
+}
+
+.home-subtitle-by {
+display: block;
+margin-top: 0.35rem;
+font-family: "Inter", sans-serif;
+font-weight: 500;
+font-size: 0.8rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--backup-text-color-v3);
+}
+
+/* 3) Link list: its own style */
+.home-nav {
+text-align: center;
+}
+
+.home-nav-list {
+list-style: none;
+padding: 0;
+margin: 0;
+display: inline-flex;
+flex-direction: column;
+gap: 0.75rem;
+}
+
+.home-nav-link {
+font-family: "Crimson Pro", serif; /* you asked to use Crimson Pro */
+font-weight: 400;
+font-style: italic;
+font-size: 1.4rem;
+color: var(--backup-text-color-v2);
+text-decoration: none;
+transition: color 180ms ease, transform 180ms ease;
+}
+
+.home-nav-link:hover {
+color: var(--contrast-color);
+transform: translateY(-1px);
+text-decoration: none;
+}
+
+/* Mobile tuning */
+@media (max-width: 600px) {
+.home-shell {
+    padding: 45vh 1.5rem 10vh;
+}
+
+.home-title {
+    font-size: 2.6rem;
+}
+
+.home-subtitle-line {
+    font-size: 1.25rem;
+}
+
+.home-nav-link {
+    font-size: 1.2rem;
+}
+}
 
 /* ------------------------------------------------------------------------- */
 /* Move Later */
