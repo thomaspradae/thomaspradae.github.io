@@ -225,9 +225,7 @@ display: block;
 }
 
 .home-nav-link {
-font-family: "Crimson Pro", serif; /* you asked to use Crimson Pro */
 font-weight: 400;
-font-style: italic;
 font-size: 1.4rem;
 color: var(--backup-text-color-v2);
 text-decoration: none;
