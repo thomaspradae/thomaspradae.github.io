@@ -200,6 +200,10 @@ display: inline-flex;
 flex-direction: column;
 }
 
+.home-nav-list li {
+font-family: Inter, sans-serif;
+}
+
 /* HOME mark image (above title) */
 .home-mark{
 margin: 0 0 2.5rem 0;   /* space under image */
