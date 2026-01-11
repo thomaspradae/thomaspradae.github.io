@@ -156,7 +156,6 @@ text-align: center;
 .home-title {
 font-family: "Crimson Pro", serif;
 font-weight: 400;
-font-style: italic;         /* editorial vibe */
 font-size: 3.6rem;
 line-height: 1.05;
 color: var(--contrast-color);
