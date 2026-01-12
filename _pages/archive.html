@@ -1,0 +1,89 @@
+---
+layout: compress
+title: Archive
+permalink: /archive/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about / thomasprada</title>
+  <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/fugg2.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
+  <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
+</head>
+
+<body>
+  <div class="archive-wrapper">
+    <div class="archive-header">
+      <h2 class="archive-section-title">Archive</h2>
+
+      <div class="archive-topnav">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <span> / </span>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </div>
+    </div>
+
+    <div class="archive-card">
+      <ul class="archive-list">
+        {%- assign all_docs = site.writing
+          | concat: site.building
+          | concat: site.notes
+          | concat: site.misc
+          | sort: "date"
+          | reverse
+        -%}
+
+        {% for post in all_docs %}
+        <li class="archive-item">
+          <!-- Title -->
+          <a class="archive-title" href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+
+          <!-- TYPE column (between title and tags) -->
+          <span class="archive-type">
+            {%- case post.collection -%}
+              {%- when "writing" -%}writing
+              {%- when "building" -%}building
+              {%- when "notes" -%}notes
+              {%- when "misc" -%}misc
+              {%- else -%}{{ post.collection }}
+            {%- endcase -%}
+          </span>
+
+          <!-- Tags -->
+          <span class="archive-meta">
+            {%- if post.tags and post.tags.size > 0 -%}
+              <span class="tags-holder tags-holder--archive">
+                {% for tag in post.tags %}
+                  {% assign tag_slug = tag | slugify %}
+                  <a class="internal-link tag-pill tag-pill--{{ tag_slug }}"
+                     href="/tag/{{ tag | replace: ' ', '-' }}">
+                    <span class="tag-pill-dot"></span>
+                    <span class="tag-pill-label">{{ tag }}</span>
+                  </a>
+                {% endfor %}
+              </span>
+            {%- endif -%}
+          </span>
+
+          <!-- Date -->
+          <span class="archive-date">
+            {{ post.date | date: "%Y.%m" }}
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>
