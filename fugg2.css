@@ -2408,6 +2408,62 @@ margin-left: 2rem;
   text-decoration: underline;
 }
 
+/* ------------------------------------------------------------------ */
+/* ARCHIVE: lock columns so tag unroll doesn't move TYPE/DATE          */
+/* ------------------------------------------------------------------ */
+
+.archive-item{
+display: grid;
+
+/* Fixed lanes for TYPE and DATE.
+    Tags gets a fixed lane too, title eats the rest. */
+grid-template-columns:
+    minmax(0, 1fr)   /* title */
+    7.5rem           /* type (fixed) */
+    22rem            /* tags (fixed lane) */
+    5.5rem;          /* date (fixed) */
+
+column-gap: 2.5rem;
+align-items: baseline;
+}
+
+/* Critical: allow grid items to shrink; prevents content from resizing tracks */
+.archive-title,
+.archive-type,
+.archive-meta,
+.archive-date{
+min-width: 0;
+}
+
+/* TYPE should never wrap */
+.archive-type{
+white-space: nowrap;
+font-family: 'GeistMono', monospace; /* optional, but reads like a column */
+font-size: 0.7rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: var(--backup-text-color-v3);
+}
+
+/* DATE should never wrap */
+.archive-date{
+white-space: nowrap;
+justify-self: end;
+}
+
+/* Tags must respect their lane width */
+.archive-meta{
+max-width: 100%;
+overflow: visible;   /* allow pills to visually overflow without moving columns */
+}
+
+/* Keep wrapping behavior inside the fixed tags lane */
+.tags-holder--archive{
+max-width: 100%;
+flex-wrap: wrap;
+align-items: center;
+}
+  
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 /* (005) - MOBILE */
