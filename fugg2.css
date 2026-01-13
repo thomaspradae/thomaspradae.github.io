@@ -1990,7 +1990,7 @@ scroll-margin-top: 6rem;
 /* NEW: override <p> inside margin notes */
 #main.post .sidenote p,
 #main.post .marginnote p {
-    font-family: 'Crimson Pro', serif;   /* or GeistMono if you prefer */
+    font-family: 'Crimson Pro', serif;   
     font-size: 1rem;
     line-height: 1.4;
     color: var(--backup-text-color-v2);
@@ -2010,7 +2010,6 @@ scroll-margin-top: 6rem;
 }
 
 .ascii-footer {
-    font-family: 'GeistMono', monospace;
     font-size: 0.3rem;        /* tune this until the whole thing fits nicely */
     line-height: 1.1;
     color: var(--lightest-text);
@@ -2080,18 +2079,6 @@ scroll-margin-top: 6rem;
     font-size: 0.75rem;
     /* by default left-aligned; if you want it closer to the date: */
     /* text-align: right; */
-}
-
-/* footer like the SORT “SORT / Overview / About” line */
-.archive-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 3rem;
-    font-family: 'GeistMono', monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: #9b9b99;
 }
 
 .archive-footer a {
@@ -2309,20 +2296,6 @@ font-variant-numeric: tabular-nums;
 margin-left: 2rem;
 }
 
-
-
-/* footer like the SORT "SORT / Overview / About" line */
-.archive-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 3rem;
-    font-family: 'GeistMono', monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: #9b9b99;
-}
-
 .archive-footer a {
     color: inherit;
     text-decoration: none;
@@ -2388,7 +2361,7 @@ margin-left: 2rem;
 
 /* The top-right nav styling */
 .archive-topnav{
-  font-family: 'GeistMono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -2438,7 +2411,7 @@ min-width: 0;
 /* TYPE should never wrap */
 .archive-type{
 white-space: nowrap;
-font-family: 'GeistMono', monospace; /* optional, but reads like a column */
+font-family: 'Inter', sans-serif;
 font-size: 0.7rem;
 text-transform: uppercase;
 letter-spacing: 0.12em;
