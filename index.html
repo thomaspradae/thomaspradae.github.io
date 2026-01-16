@@ -59,17 +59,27 @@
       }
 
       .inspectHud{
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        right: 10px;
+        position: fixed;
+
+        /* height from top of the page (viewport) */
+        top: 2vh;
+
+        /* center horizontally */
+        left: 50%;
+        transform: translateX(-50%);
+
+        /* match home-shell overall width:
+           home-shell max-width (42rem) + left/right padding (2rem + 2rem) = 46rem */
+        width: min(46rem, 100vw);
+
+        /* match the home-shell padding so text lines up with your column */
+        padding: 0 2rem;
 
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         gap: 12px;
 
-        padding: 0;
         background: transparent;
         border: none;
 
@@ -79,7 +89,14 @@
         color: #000;
 
         pointer-events: none;
-        z-index: 40;
+        z-index: 9999;
+      }
+
+      @media (max-width: 600px){
+        .inspectHud{
+          width: 100vw;
+          padding: 0 1.5rem;
+        }
       }
 
       .hudLeft{ min-width: 0; } /* allow wrapping in name */
@@ -97,6 +114,7 @@
         overflow: hidden;             /* avoid pushing HUD taller */
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
       }
 
@@ -112,9 +130,9 @@
 
 <body class="home-page">
     <main class="home-shell">
+      <div id="hud" class="inspectHud"></div>
       <figure class="home-mark">
         <div id="wrap" class="inspectCard">
-          <div id="hud" class="inspectHud"></div>
           <canvas id="gl"></canvas>
           <div id="pointsLayer"></div>
           <div id="cursorLabel"></div>
