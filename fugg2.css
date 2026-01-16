@@ -145,7 +145,7 @@ min-height: 100vh;
 /* puts the block lower on the page, like your reference image */
 max-width: 42rem;
 margin: 0 auto;
-padding: 10vh 2rem 10vh;
+padding: 2vh 2rem 10vh;
 }
 
 .home-hero {
