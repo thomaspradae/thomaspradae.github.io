@@ -79,6 +79,7 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 12px;
         line-height: 1.15;
+        color: #000;            /* make text visible */
 
         pointer-events: none;
         z-index: 40;
@@ -133,7 +134,7 @@
       </nav>
     </main>
   
-    <script src="weather.js"></script>
+    <!-- <script src="weather.js"></script> --> <!-- Disabled: using hardcoded text in HUD -->
     <script>
 /* ====== CONFIG ====== */
 const TARGET_W = 910, TARGET_H = 820;  // "final pixel space" for georef + DEM
@@ -386,6 +387,8 @@ function loadImage(url){
     const t = `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
     hudRight.textContent = `Bogotá 16°   ${t} ${tzStr(d)}`;
   }
+  // Initialize with hardcoded text immediately
+  hudRight.textContent = `Bogotá 16°`;
   tickClock();
   setInterval(tickClock, 250);
 
@@ -610,7 +613,6 @@ function loadImage(url){
     requestAnimationFrame(frame);
   }
 
-  hud.textContent = "";
   requestAnimationFrame(frame);
 })();
 </script>
