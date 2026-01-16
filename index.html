@@ -61,20 +61,43 @@
       }
 
       .inspectHud{
-        position: fixed;
+        position: absolute;     /* was: fixed */
         top: 10px;
-        left: 10px;              /* or right:10px if you want */
-        margin: 0;
-        padding: 6px 8px;
+        left: 10px;
+        right: 10px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+
+        padding: 0;             /* no pill */
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
+
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 12px;
-        line-height: 1.2;
-        background: rgba(255,255,255,0.75);
-        border: 1px solid rgba(0,0,0,0.10);
-        border-radius: 10px;
-        backdrop-filter: blur(6px);
+        line-height: 1.15;
+
         pointer-events: none;
         z-index: 40;
+      }
+
+      .hudLeft{ min-width: 0; } /* allow wrapping in name */
+      .hudTopLine{ white-space: nowrap; }
+      .hudName{
+        margin-top: 2px;
+        white-space: normal;    /* wraps */
+        max-width: 28ch;        /* knob: how wide before wrapping */
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .hudRight{
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        opacity: 0.9;
       }
     </style>
 </head>
@@ -340,6 +363,32 @@ function loadImage(url){
   const pointsLayer = document.getElementById("pointsLayer");
   const cursorLabel = document.getElementById("cursorLabel");
 
+  hud.innerHTML = `
+    <div class="hudLeft">
+      <div class="hudTopLine" id="hudTopLine"></div>
+      <div class="hudName" id="hudName"></div>
+    </div>
+    <div class="hudRight" id="hudRight"></div>
+  `;
+  const hudTopLine = hud.querySelector("#hudTopLine");
+  const hudName = hud.querySelector("#hudName");
+  const hudRight = hud.querySelector("#hudRight");
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function tzStr(d){
+    const off = -d.getTimezoneOffset();     // minutes east of UTC
+    const s = off >= 0 ? "+" : "-";
+    const a = Math.abs(off);
+    return `${s}${pad2(Math.floor(a/60))}${pad2(a%60)}`;
+  }
+  function tickClock(){
+    const d = new Date();
+    const t = `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+    hudRight.textContent = `Bogotá 16°   ${t} ${tzStr(d)}`;
+  }
+  tickClock();
+  setInterval(tickClock, 250);
+
   let showOverlay = true; // you can remove overlay later if you want
 
   const [demMeta, rotMeta, pts] = await Promise.all([
@@ -485,16 +534,18 @@ function loadImage(url){
     const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
     const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
 
-    hud.textContent =
-      `${lon.toFixed(6)} | +${lat.toFixed(6)} | ` +
-      (elev===null ? "elev n/a" : `+${elev.toFixed(1)} m`) +
-      (hoveredName ? ` | ${hoveredName}` : "");
-  })
+    hudTopLine.textContent =
+      `${lat.toFixed(4)}  ${lon.toFixed(4)}  ` +
+      (elev===null ? "" : `+${Math.round(elev)} m`);
+
+    hudName.textContent = hoveredName ? hoveredName.toUpperCase() : "";
+  });
 
   wrap.addEventListener("mouseleave", () => {
     inside = false;
     pxX = -10000; pxY = -10000;
-    hud.textContent = "";
+    hudTopLine.textContent = "";
+    hudName.textContent = "";
   });
 
   gl.disable(gl.DEPTH_TEST);
