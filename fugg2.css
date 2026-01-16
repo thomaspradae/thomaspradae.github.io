@@ -242,7 +242,7 @@ text-decoration: none;
 /* Mobile tuning */
 @media (max-width: 600px) {
 .home-shell {
-    padding: 45vh 1.5rem 10vh;
+    padding: 45vh 1.5rem 0vh;
 }
 
 .home-title {
