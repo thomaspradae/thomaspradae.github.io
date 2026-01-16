@@ -8,10 +8,15 @@
     <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
     <link rel="stylesheet" href="/fugg2.css">
     <style>
+      .heroCol{
+        width: 420px;         /* same as your map hero width */
+        margin: 0 auto;       /* centers the whole column */
+      }
+
       .inspectCard{
         position: relative;
-        width: 420px;                 /* change this to taste */
-        aspect-ratio: 910 / 820;      /* keeps the map ratio */
+        width: 100%;          /* was 420px */
+        aspect-ratio: 910 / 820;
         background:#fff;
         border-radius: 12px;
         overflow:hidden;
@@ -132,31 +137,34 @@
     <main class="home-shell">
       <div id="hud" class="inspectHud"></div>
       <figure class="home-mark">
-        <div id="wrap" class="inspectCard">
-          <canvas id="gl"></canvas>
-          <div id="pointsLayer"></div>
-          <div id="cursorLabel"></div>
+        <div class="heroCol">
+          <div id="wrap" class="inspectCard">
+            <canvas id="gl"></canvas>
+            <div id="pointsLayer"></div>
+            <div id="cursorLabel"></div>
+          </div>
+
+          <header class="home-hero">
+            <h1 class="home-title">field notes</h1>
+      
+            <p class="home-subtitle">
+              <span class="home-subtitle-line">Attempts at paying attention</span>
+              <span class="home-subtitle-by">by Thomas Prada</span>
+            </p>
+          </header>
+      
+          <nav class="home-nav" aria-label="Primary">
+            <ul class="home-nav-list">
+              <li class="home-nav-item"><a class="home-nav-link" href="/about">About</a></li>
+              <li class="home-nav-item"><a class="home-nav-link" href="/archive">Archive</a></li>
+              <li class="home-nav-item"><a class="home-nav-link" href="/writing">Writing</a></li>
+              <li class="home-nav-item"><a class="home-nav-link" href="/building">Building</a></li>
+              <li class="home-nav-item"><a class="home-nav-link" href="/notes">Notes</a></li>
+              <li class="home-nav-item"><a class="home-nav-link" href="/misc">Misc</a></li>
+            </ul>
+          </nav>
         </div>
       </figure>
-      <header class="home-hero">
-        <h1 class="home-title">field notes</h1>
-  
-        <p class="home-subtitle">
-          <span class="home-subtitle-line">Attempts at paying attention</span>
-          <span class="home-subtitle-by">by Thomas Prada</span>
-        </p>
-      </header>
-  
-      <nav class="home-nav" aria-label="Primary">
-        <ul class="home-nav-list">
-          <li class="home-nav-item"><a class="home-nav-link" href="/about">About</a></li>
-          <li class="home-nav-item"><a class="home-nav-link" href="/archive">Archive</a></li>
-          <li class="home-nav-item"><a class="home-nav-link" href="/writing">Writing</a></li>
-          <li class="home-nav-item"><a class="home-nav-link" href="/building">Building</a></li>
-          <li class="home-nav-item"><a class="home-nav-link" href="/notes">Notes</a></li>
-          <li class="home-nav-item"><a class="home-nav-link" href="/misc">Misc</a></li>
-        </ul>
-      </nav>
     </main>
   
     <!-- <script src="weather.js"></script> --> <!-- Disabled: using hardcoded text in HUD -->
