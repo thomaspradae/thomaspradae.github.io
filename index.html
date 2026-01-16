@@ -59,7 +59,6 @@
       }
 
       .inspectHud{
-        position: absolute;     /* was: fixed */
         top: 10px;
         left: 10px;
         right: 10px;
@@ -109,12 +108,12 @@
 
 <body class="home-page">
     <main class="home-shell">
+      <div id="hud" class="inspectHud"></div>
       <figure class="home-mark">
         <div id="wrap" class="inspectCard">
           <canvas id="gl"></canvas>
           <div id="pointsLayer"></div>
           <div id="cursorLabel"></div>
-          <div id="hud" class="inspectHud"></div>
         </div>
       </figure>
       <header class="home-hero">
