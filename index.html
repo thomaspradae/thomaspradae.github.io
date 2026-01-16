@@ -422,6 +422,20 @@ function loadImage(url){
   const hudTime = hud.querySelector("#hudTime");
   const hudTz = hud.querySelector("#hudTz");
 
+  // ===== default readout (shown when not hovering) =====
+  const DEFAULT_LAT = 4.5796;
+  const DEFAULT_LON = -74.0575;
+  const DEFAULT_ALT_M = 3150;
+
+  function setHud(lat, lon, altM){
+    hudLat.textContent = `+${lat.toFixed(4)}`;
+    hudLon.textContent = `${lon.toFixed(4)}`;
+    hudAlt.textContent = (altM == null) ? "" : `+${Math.round(altM)} m`;
+  }
+
+  // initialize immediately
+  setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
+
   function pad2(n){ return String(n).padStart(2,"0"); }
   function tzStr(d){
     const off = -d.getTimezoneOffset();     // minutes east of UTC
@@ -586,9 +600,7 @@ function loadImage(url){
     const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
     const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
 
-    hudLat.textContent = `+${lat.toFixed(4)}`;
-    hudLon.textContent = `${lon.toFixed(4)}`;
-    hudAlt.textContent = elev===null ? "" : `+${Math.round(elev)} m`;
+    setHud(lat, lon, elev);
 
     hudName.textContent = hoveredName ? hoveredName.toUpperCase() : "";
   });
@@ -596,9 +608,7 @@ function loadImage(url){
   wrap.addEventListener("mouseleave", () => {
     inside = false;
     pxX = -10000; pxY = -10000;
-    hudLat.textContent = "";
-    hudLon.textContent = "";
-    hudAlt.textContent = "";
+    setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
     hudName.textContent = "";
   });
 
