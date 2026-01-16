@@ -33,7 +33,7 @@
 
       .pt{
         position:absolute;
-        width:6px; height:6px;
+        width:10px; height:10px;
         border-radius:999px;
         background: rgba(255,80,80,0.95);
         box-shadow: 0 0 0 2px rgba(0,0,0,0.35);
@@ -538,7 +538,7 @@ function loadImage(url){
     const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
 
     hudTopLine.textContent =
-      `${lat.toFixed(4)}  ${lon.toFixed(4)}  ` +
+      `$+{lat.toFixed(4)}  ${lon.toFixed(4)}  ` +
       (elev===null ? "" : `+${Math.round(elev)} m`);
 
     hudName.textContent = hoveredName ? hoveredName.toUpperCase() : "";
