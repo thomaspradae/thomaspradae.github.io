@@ -1,0 +1,48 @@
+{
+  "geotiff": {
+    "lon0": -74.17680555555555,
+    "lat0": 4.707083333333334,
+    "dlon": 0.0002777777777777778,
+    "dlat": -0.0002777777777777778,
+    "src_W": 782,
+    "src_H": 887
+  },
+  "pixel_transforms": {
+    "rot_deg": 120.0,
+    "rot_rad": 2.0943951023931953,
+    "rot_canvas_W": 1160,
+    "rot_canvas_H": 1121,
+    "rot_tx": 189.16666666666666,
+    "rot_ty": 117.0,
+    "crop_x0": 202,
+    "crop_y0": 315,
+    "crop_x1": 843,
+    "crop_y1": 823,
+    "pre_squish_W": 641,
+    "pre_squish_H": 508,
+    "out_W": 910,
+    "out_H": 820,
+    "squished": true
+  },
+  "visual": {
+    "paper_base": [
+      0.975,
+      0.972,
+      0.965
+    ],
+    "hill_alpha": 0.3,
+    "hill_gamma": 0.85,
+    "exposure": 1.0
+  },
+  "inputs": {
+    "aoi": "/home/t/Downloads/peaksv2blur/web/bogota-plate/public/bogota/aoi_localidades.geojson",
+    "hillshade": "/home/t/Downloads/peaksv2blur/web/bogota-plate/public/bogota/hillshade.png",
+    "geotiff": "/home/t/Downloads/peaksv2blur/web/bogota-plate/public/bogota/bogota_raw_srtm.tif",
+    "crop_pad_px": 8
+  },
+  "notes": [
+    "This debug script uses ORACLE-derived rot_tx/rot_ty (PIL expand=True behavior).",
+    "Mask alpha is applied AFTER crop (not pre-rotate).",
+    "To map final pixel -> lon/lat: undo resize -> undo crop -> undo rotate+expand -> GeoTIFF px->lon/lat."
+  ]
+}

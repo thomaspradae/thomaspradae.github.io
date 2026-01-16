@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Bogota Inspect</title>
+  <style>
+    body { margin:0; background:#fff; font-family: system-ui, sans-serif; }
+    #wrap {
+      position: relative;
+      width: 910px;
+      height: 820px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      user-select: none;
+    }
+    #overlay {
+      position:absolute; inset:0;
+      width:100%; height:100%;
+    }
+    .pt {
+      position:absolute;
+      width:6px; height:6px;
+      border-radius:999px;
+      background: rgba(255,80,80,0.95);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.35);
+      pointer-events:none;
+    }
+    #hud {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+    #cursorLabel {
+      position:absolute;
+      padding: 4px 6px;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      pointer-events: none;
+      white-space: nowrap;
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div style="padding:16px; background:#fff; min-height:100vh;">
+    <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+      <button id="toggle" style="border:1px solid #444; padding:6px 10px; border-radius:8px;">
+        Toggle overlay
+      </button>
+      <div id="hud">loading…</div>
+    </div>
+
+    <div id="wrap">
+      <img id="overlay" src="/bogota/overlay.webp" alt="overlay" draggable="false" />
+      <div id="pointsLayer"></div>
+      <div id="cursorLabel"></div>
+    </div>
+  </div>
+
+<script>
+const TARGET_W = 910, TARGET_H = 820;
+const clamp = (x,a,b)=>Math.min(b,Math.max(a,x));
+
+function demSampleBilinear(q, gw, gh, gx, gy, nodata) {
+  const x0 = Math.floor(gx), y0 = Math.floor(gy);
+  const x1 = x0 + 1, y1 = y0 + 1;
+  if (x0 < 0 || y0 < 0 || x1 >= gw || y1 >= gh) return null;
+
+  const i00 = y0*gw + x0, i10 = y0*gw + x1;
+  const i01 = y1*gw + x0, i11 = y1*gw + x1;
+
+  const a=q[i00], b=q[i10], c=q[i01], d=q[i11];
+  if (a===nodata || b===nodata || c===nodata || d===nodata) return null;
+
+  const fx = gx - x0, fy = gy - y0;
+  const wa=(1-fx)*(1-fy), wb=fx*(1-fy), wc=(1-fx)*fy, wd=fx*fy;
+  return wa*a + wb*b + wc*c + wd*d;
+}
+
+function finalPxToLonLat(u, v, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const sx = t.pre_squish_W / t.out_W;
+  const sy = t.pre_squish_H / t.out_H;
+  const xc = u * sx, yc = v * sy;
+  const xr = xc + t.crop_x0, yr = yc + t.crop_y0;
+
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const xPure = xr - t.rot_tx, yPure = yr - t.rot_ty;
+  const dx = xPure - cx, dy = yPure - cy;
+  const xs = cosA * dx - sinA * dy + cx;
+  const ys = sinA * dx + cosA * dy + cy;
+
+  return { lon: g.lon0 + xs * g.dlon, lat: g.lat0 + ys * g.dlat };
+}
+
+function lonLatToFinalPx(pt, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const xs = (pt.lon - g.lon0) / g.dlon;
+  const ys = (pt.lat - g.lat0) / g.dlat;
+
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const dx = xs - cx, dy = ys - cy;
+
+  const xPure = cosA * dx + sinA * dy + cx;
+  const yPure = -sinA * dx + cosA * dy + cy;
+
+  const xr = xPure + t.rot_tx, yr = yPure + t.rot_ty;
+  const xc = xr - t.crop_x0, yc = yr - t.crop_y0;
+
+  const sx = t.out_W / t.pre_squish_W;
+  const sy = t.out_H / t.pre_squish_H;
+  return { u: xc * sx, v: yc * sy };
+}
+
+(async function main(){
+  const wrap = document.getElementById("wrap");
+  const overlay = document.getElementById("overlay");
+  const hud = document.getElementById("hud");
+  const toggle = document.getElementById("toggle");
+  const pointsLayer = document.getElementById("pointsLayer");
+  const cursorLabel = document.getElementById("cursorLabel");
+
+  let showOverlay = true;
+
+  const [demMeta, rotMeta, pts] = await Promise.all([
+    fetch("/bogota/debug_steps1_5/dem_512x512_i16.json", {cache:"no-store"}).then(r=>r.json()),
+    fetch("/bogota/debug_steps1_5/bounds_rotcrop.json", {cache:"no-store"}).then(r=>r.json()),
+    fetch("/bogota/points.json", {cache:"no-store"}).then(r=>r.json()),
+  ]);
+
+  const buf = await fetch("/bogota/debug_steps1_5/dem_512x512_i16.bin", {cache:"no-store"}).then(r=>r.arrayBuffer());
+  const demQ = new Int16Array(buf);
+
+  // render points once
+  const pointUV = (pts.points || []).map(p => ({...p, ...lonLatToFinalPx({lon:p.lon, lat:p.lat}, rotMeta)}));
+  for (const p of pointUV) {
+    const el = document.createElement("div");
+    el.className = "pt";
+    el.style.left = (p.u - 3) + "px";
+    el.style.top  = (p.v - 3) + "px";
+    el.title = p.name;
+    pointsLayer.appendChild(el);
+  }
+
+  toggle.addEventListener("click", () => {
+    showOverlay = !showOverlay;
+    overlay.style.display = showOverlay ? "block" : "none";
+    console.log("[toggle overlay]", showOverlay);
+  });
+
+  wrap.addEventListener("mousemove", (e) => {
+    const r = wrap.getBoundingClientRect();
+    const u = clamp(e.clientX - r.left, 0, TARGET_W - 1);
+    const v = clamp(e.clientY - r.top, 0, TARGET_H - 1);
+
+    const {lon, lat} = finalPxToLonLat(u, v, rotMeta);
+
+    const gw = demMeta.w, gh = demMeta.h;
+    const gx = (u + 0.5) * (gw / demMeta.final_w) - 0.5;
+    const gy = (v + 0.5) * (gh / demMeta.final_h) - 0.5;
+    const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
+    const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
+
+    // hover name
+    let name = null;
+    const R = 10;
+    let bestD2 = Infinity;
+    for (const p of pointUV) {
+      const dx = p.u - u, dy = p.v - v;
+      const d2 = dx*dx + dy*dy;
+      if (d2 <= R*R && d2 < bestD2) { bestD2 = d2; name = p.name; }
+    }
+
+    hud.textContent =
+      `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
+      (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`) +
+      (name ? ` | ${name}` : "");
+
+    cursorLabel.style.display = "block";
+    cursorLabel.style.left = (u + 10) + "px";
+    cursorLabel.style.top  = (v + 10) + "px";
+    cursorLabel.textContent = name ? name : `${u.toFixed(1)}, ${v.toFixed(1)}`;
+  });
+
+  wrap.addEventListener("mouseleave", () => {
+    hud.textContent = "loading…";
+    cursorLabel.style.display = "none";
+  });
+
+  overlay.addEventListener("load", () => console.log("[overlay.webp] loaded"));
+  overlay.addEventListener("error", (e) => console.log("[overlay.webp] error", e));
+
+  hud.textContent = "move mouse…";
+})();
+</script>
+</body>
+</html>

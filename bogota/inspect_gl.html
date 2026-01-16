@@ -1,0 +1,571 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Bogota Inspect (WebGL reveal)</title>
+  <style>
+    body { margin:0; background:#fff; font-family: system-ui, sans-serif; }
+    #wrap {
+      position: relative;
+      width: 910px;
+      height: 820px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* WebGL canvas is the visual layer */
+    #gl {
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      display:block;
+    }
+
+    .pt {
+      position:absolute;
+      width:6px; height:6px;
+      border-radius:999px;
+      background: rgba(255,80,80,0.95);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.35);
+      pointer-events:none;
+      z-index: 20;
+    }
+
+    #hud {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+
+    #cursorLabel {
+      position:absolute;
+      padding: 4px 6px;
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      pointer-events: none;
+      white-space: nowrap;
+      display:none;
+      z-index: 30;
+    }
+  </style>
+</head>
+<body>
+  <div style="padding:16px; background:#fff; min-height:100vh;">
+    <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+      <button id="toggle" style="border:1px solid #444; padding:6px 10px; border-radius:8px;">
+        Toggle overlay
+      </button>
+      <div id="hud">loading…</div>
+    </div>
+
+    <div id="wrap">
+      <canvas id="gl"></canvas>
+      <div id="pointsLayer"></div>
+      <div id="cursorLabel"></div>
+    </div>
+  </div>
+
+<script>
+const TARGET_W = 910, TARGET_H = 820;
+const clamp = (x,a,b)=>Math.min(b,Math.max(a,x));
+
+/* ---------------- DEM + mapping (unchanged from your inspect) ---------------- */
+
+function demSampleBilinear(q, gw, gh, gx, gy, nodata) {
+  const x0 = Math.floor(gx), y0 = Math.floor(gy);
+  const x1 = x0 + 1, y1 = y0 + 1;
+  if (x0 < 0 || y0 < 0 || x1 >= gw || y1 >= gh) return null;
+
+  const i00 = y0*gw + x0, i10 = y0*gw + x1;
+  const i01 = y1*gw + x0, i11 = y1*gw + x1;
+
+  const a=q[i00], b=q[i10], c=q[i01], d=q[i11];
+  if (a===nodata || b===nodata || c===nodata || d===nodata) return null;
+
+  const fx = gx - x0, fy = gy - y0;
+  const wa=(1-fx)*(1-fy), wb=fx*(1-fy), wc=(1-fx)*fy, wd=fx*fy;
+  return wa*a + wb*b + wc*c + wd*d;
+}
+
+function finalPxToLonLat(u, v, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const sx = t.pre_squish_W / t.out_W;
+  const sy = t.pre_squish_H / t.out_H;
+  const xc = u * sx, yc = v * sy;
+  const xr = xc + t.crop_x0, yr = yc + t.crop_y0;
+
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const xPure = xr - t.rot_tx, yPure = yr - t.rot_ty;
+  const dx = xPure - cx, dy = yPure - cy;
+  const xs = cosA * dx - sinA * dy + cx;
+  const ys = sinA * dx + cosA * dy + cy;
+
+  return { lon: g.lon0 + xs * g.dlon, lat: g.lat0 + ys * g.dlat };
+}
+
+function lonLatToFinalPx(pt, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const xs = (pt.lon - g.lon0) / g.dlon;
+  const ys = (pt.lat - g.lat0) / g.dlat;
+
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const dx = xs - cx, dy = ys - cy;
+
+  const xPure = cosA * dx + sinA * dy + cx;
+  const yPure = -sinA * dx + cosA * dy + cy;
+
+  const xr = xPure + t.rot_tx, yr = yPure + t.rot_ty;
+  const xc = xr - t.crop_x0, yc = yr - t.crop_y0;
+
+  const sx = t.out_W / t.pre_squish_W;
+  const sy = t.out_H / t.pre_squish_H;
+  return { u: xc * sx, v: yc * sy };
+}
+
+/* ---------------- WebGL: minimal reveal + composite ---------------- */
+
+const VS = `
+attribute vec2 aPos;
+varying vec2 vUv;
+void main(){
+  vUv = aPos * 0.5 + 0.5;
+  gl_Position = vec4(aPos, 0.0, 1.0);
+}
+`;
+
+const FS_MASK_UPDATE = `
+precision mediump float;
+varying vec2 vUv;
+
+uniform sampler2D uPrev;
+uniform vec2 uResPx;     // render size in px
+uniform vec2 uPointerPx; // pointer in px (same space)
+uniform float uTime;
+
+uniform float uRadiusPx;
+uniform float uFeatherPx;
+uniform float uDecay;      // 0..1
+uniform float uDiffusion;  // 0..1
+uniform float uNoiseAmp;   // 0..1
+uniform float uNoiseFreq;  // ~1..4
+
+float hash21(vec2 p){
+  p = fract(p * vec2(123.34, 345.45));
+  p += dot(p, p + 34.345);
+  return fract(p.x * p.y);
+}
+float noise(vec2 p){
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  float a = hash21(i);
+  float b = hash21(i + vec2(1.0, 0.0));
+  float c = hash21(i + vec2(0.0, 1.0));
+  float d = hash21(i + vec2(1.0, 1.0));
+  vec2 u = f*f*(3.0-2.0*f);
+  return mix(a,b,u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
+}
+
+void main(){
+  float prev = texture2D(uPrev, vUv).r;
+
+  vec2 texel = 1.0 / uResPx;
+  float n0 = texture2D(uPrev, vUv + vec2(texel.x, 0.0)).r;
+  float n1 = texture2D(uPrev, vUv - vec2(texel.x, 0.0)).r;
+  float n2 = texture2D(uPrev, vUv + vec2(0.0, texel.y)).r;
+  float n3 = texture2D(uPrev, vUv - vec2(0.0, texel.y)).r;
+  float blur = (prev + n0 + n1 + n2 + n3) / 5.0;
+
+  float base = mix(prev, blur, clamp(uDiffusion, 0.0, 1.0));
+  base *= clamp(uDecay, 0.0, 1.0);
+
+  vec2 px = vUv * uResPx;
+  float d = distance(px, uPointerPx);
+
+  float nn = noise(vUv * uNoiseFreq + vec2(uTime * 0.05, -uTime * 0.03));
+  float wobble = (nn - 0.5) * 2.0 * uNoiseAmp * (uRadiusPx * 0.25);
+
+  float r = uRadiusPx + wobble;
+  float f = max(1.0, uFeatherPx);
+  float t = 1.0 - smoothstep(r - f, r, d);
+  t = pow(t, 1.35);
+
+  float outv = max(base, t);
+  gl_FragColor = vec4(outv, outv, outv, 1.0);
+}
+`;
+
+const FS_COMPOSITE = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+varying vec2 vUv;
+
+uniform sampler2D uHill;
+uniform sampler2D uOverlay;
+uniform sampler2D uMask;
+
+uniform float uHillAlpha;
+uniform float uOverlayAlpha;
+uniform float uRevealSoftness;
+uniform float uBleedStrength; // 0..1
+uniform float uBleedRadiusPx; // in px
+uniform vec2 uResPx;
+
+float lum(vec3 c){ return dot(c, vec3(0.3333333)); }
+
+void main(){
+  vec3 paper = vec3(1.0, 1.0, 1.0);
+
+  vec4 hill4 = texture2D(uHill, vUv);
+  vec3 hill = hill4.rgb;
+  float hillA = hill4.a;           // assumes hillshade_paper_rotcrop.webp has alpha
+
+  float hl = pow(clamp(lum(hill), 0.0, 1.0), 0.85);
+  vec3 base = mix(paper, vec3(hl), clamp(uHillAlpha, 0.0, 1.0));
+
+  // smooth edge from alpha (simple threshold, no derivatives needed)
+  float a = smoothstep(0.0, 0.1, hillA);
+
+  // now gate everything by a (outside becomes paper)
+  vec3 col = mix(paper, base, a);
+
+  float m = texture2D(uMask, vUv).r;
+  float reveal = smoothstep(0.0, max(0.0001, uRevealSoftness), m);
+
+  vec4 ov = texture2D(uOverlay, vUv);
+  float ovA = ov.a * uOverlayAlpha;
+
+  // cheap "bleed": blur overlay alpha a bit and multiply base
+  vec2 texel = 1.0 / uResPx;
+  vec2 o = texel * max(0.0, uBleedRadiusPx);
+  float a0 = texture2D(uOverlay, vUv).a;
+  float a1 = texture2D(uOverlay, vUv + vec2( o.x, 0.0)).a;
+  float a2 = texture2D(uOverlay, vUv + vec2(-o.x, 0.0)).a;
+  float a3 = texture2D(uOverlay, vUv + vec2(0.0, o.y)).a;
+  float a4 = texture2D(uOverlay, vUv + vec2(0.0, -o.y)).a;
+  float bleedA = (a0+a1+a2+a3+a4)/5.0;
+
+  col = mix(col, col * (0.6 + 0.4 * ov.rgb), bleedA * uBleedStrength * reveal * a);
+  col = mix(col, ov.rgb, ovA * reveal * a);
+
+  gl_FragColor = vec4(col, 1.0);
+}
+`;
+
+function createShader(gl, type, src){
+  const sh = gl.createShader(type);
+  gl.shaderSource(sh, src);
+  gl.compileShader(sh);
+  if(!gl.getShaderParameter(sh, gl.COMPILE_STATUS)){
+    const log = gl.getShaderInfoLog(sh);
+    gl.deleteShader(sh);
+    throw new Error(log);
+  }
+  return sh;
+}
+
+function createProgram(gl, vsSrc, fsSrc){
+  const vs = createShader(gl, gl.VERTEX_SHADER, vsSrc);
+  const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSrc);
+  const p = gl.createProgram();
+  gl.attachShader(p, vs);
+  gl.attachShader(p, fs);
+  gl.linkProgram(p);
+  if(!gl.getProgramParameter(p, gl.LINK_STATUS)){
+    const log = gl.getProgramInfoLog(p);
+    gl.deleteProgram(p);
+    throw new Error(log);
+  }
+  gl.deleteShader(vs);
+  gl.deleteShader(fs);
+  return p;
+}
+
+function createTex(gl, w, h, data, linear=true){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, linear ? gl.LINEAR : gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, linear ? gl.LINEAR : gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+  return tex;
+}
+
+function texFromImage(gl, img){
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+  return tex;
+}
+
+function makeFBO(gl, tex){
+  const fb = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  return fb;
+}
+
+function loadImage(url){
+  return new Promise((resolve, reject)=>{
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = url;
+    img.onload = ()=>resolve(img);
+    img.onerror = reject;
+  });
+}
+
+(async function main(){
+  const wrap = document.getElementById("wrap");
+  const canvas = document.getElementById("gl");
+  const hud = document.getElementById("hud");
+  const toggle = document.getElementById("toggle");
+  const pointsLayer = document.getElementById("pointsLayer");
+  const cursorLabel = document.getElementById("cursorLabel");
+
+  let showOverlay = true;
+
+  // --- load meta / dem / points (same as your inspect)
+  const [demMeta, rotMeta, pts] = await Promise.all([
+    fetch("/bogota/debug_steps1_5/dem_512x512_i16.json", {cache:"no-store"}).then(r=>r.json()),
+    fetch("/bogota/debug_steps1_5/bounds_rotcrop.json", {cache:"no-store"}).then(r=>r.json()),
+    fetch("/bogota/points.json", {cache:"no-store"}).then(r=>r.json()),
+  ]);
+  const buf = await fetch("/bogota/debug_steps1_5/dem_512x512_i16.bin", {cache:"no-store"}).then(r=>r.arrayBuffer());
+  const demQ = new Int16Array(buf);
+
+  // --- points DOM
+  const pointUV = (pts.points || []).map(p => ({...p, ...lonLatToFinalPx({lon:p.lon, lat:p.lat}, rotMeta)}));
+  for (const p of pointUV) {
+    const el = document.createElement("div");
+    el.className = "pt";
+    el.style.left = (p.u - 3) + "px";
+    el.style.top  = (p.v - 3) + "px";
+    el.title = p.name;
+    pointsLayer.appendChild(el);
+  }
+
+  // --- WebGL init
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  canvas.width  = Math.floor(TARGET_W * dpr);
+  canvas.height = Math.floor(TARGET_H * dpr);
+
+  const gl = canvas.getContext("webgl", { premultipliedAlpha:false, antialias:true });
+  if(!gl) throw new Error("WebGL not available");
+
+  const progMask = createProgram(gl, VS, FS_MASK_UPDATE);
+  const progComp = createProgram(gl, VS, FS_COMPOSITE);
+
+  const vbo = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, +1,-1, -1,+1, +1,+1]), gl.STATIC_DRAW);
+
+  function drawQuad(prog){
+    const aPos = gl.getAttribLocation(prog, "aPos");
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    gl.disableVertexAttribArray(aPos);
+  }
+
+  // textures (both are already final-cropped 910x820)
+  const [hillImg, ovImg] = await Promise.all([
+    loadImage("/bogota/debug_steps1_5/hillshade_paper_rotcrop.webp"),
+    loadImage("/bogota/overlay.webp"),
+  ]);
+
+  const texHill = texFromImage(gl, hillImg);
+  const texOverlay = texFromImage(gl, ovImg);
+
+  // reveal mask ping-pong
+  const W = canvas.width, H = canvas.height;
+  const zero = new Uint8Array(W*H*4); // all 0
+  const texMaskA = createTex(gl, W, H, zero, true);
+  const texMaskB = createTex(gl, W, H, zero, true);
+  const fbA = makeFBO(gl, texMaskA);
+  const fbB = makeFBO(gl, texMaskB);
+
+  // uniforms
+  const uPrev = gl.getUniformLocation(progMask, "uPrev");
+  const uResPx = gl.getUniformLocation(progMask, "uResPx");
+  const uPointerPx = gl.getUniformLocation(progMask, "uPointerPx");
+  const uTime = gl.getUniformLocation(progMask, "uTime");
+  const uRadiusPx = gl.getUniformLocation(progMask, "uRadiusPx");
+  const uFeatherPx = gl.getUniformLocation(progMask, "uFeatherPx");
+  const uDecay = gl.getUniformLocation(progMask, "uDecay");
+  const uDiffusion = gl.getUniformLocation(progMask, "uDiffusion");
+  const uNoiseAmp = gl.getUniformLocation(progMask, "uNoiseAmp");
+  const uNoiseFreq = gl.getUniformLocation(progMask, "uNoiseFreq");
+
+  const uHill = gl.getUniformLocation(progComp, "uHill");
+  const uOverlay = gl.getUniformLocation(progComp, "uOverlay");
+  const uMask = gl.getUniformLocation(progComp, "uMask");
+  const uHillAlpha = gl.getUniformLocation(progComp, "uHillAlpha");
+  const uOverlayAlpha = gl.getUniformLocation(progComp, "uOverlayAlpha");
+  const uRevealSoftness = gl.getUniformLocation(progComp, "uRevealSoftness");
+  const uBleedStrength = gl.getUniformLocation(progComp, "uBleedStrength");
+  const uBleedRadiusPx = gl.getUniformLocation(progComp, "uBleedRadiusPx");
+  const uResPx2 = gl.getUniformLocation(progComp, "uResPx");
+
+  // knobs (keep these few)
+  const K = {
+    hillAlpha: 0.85,
+    overlayAlpha: 1.0,       // 0 => no overlay at all
+    revealSoftness: 0.35,    // smaller => more binary reveal
+    bleedStrength: 0.65,     // 0..1
+    bleedRadiusPx: 1.5,      // in px
+
+    radiusPx: 55,            // brush size
+    featherPx: 30,
+    decay: 0.965,
+    diffusion: 0.20,
+    noiseAmp: 0.25,
+    noiseFreq: 2.2,
+  };
+
+  // pointer state in GL pixel space
+  let inside = false;
+  let pxX = -10000, pxY = -10000;
+
+  toggle.addEventListener("click", () => {
+    showOverlay = !showOverlay;
+  });
+
+  wrap.addEventListener("mousemove", (e) => {
+    const r = wrap.getBoundingClientRect();
+    const u = clamp(e.clientX - r.left, 0, TARGET_W - 1);
+    const v = clamp(e.clientY - r.top, 0, TARGET_H - 1);
+
+    inside = true;
+
+    // GL pixel coords: (0,0) bottom-left for our shader distance
+    pxX = (u * dpr);
+    pxY = (H - (v * dpr));
+
+    // HUD + cursor label (your existing logic)
+    const {lon, lat} = finalPxToLonLat(u, v, rotMeta);
+
+    const gw = demMeta.w, gh = demMeta.h;
+    const gx = (u + 0.5) * (gw / demMeta.final_w) - 0.5;
+    const gy = (v + 0.5) * (gh / demMeta.final_h) - 0.5;
+    const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
+    const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
+
+    let name = null;
+    const R = 10;
+    let bestD2 = Infinity;
+    for (const p of pointUV) {
+      const dx = p.u - u, dy = p.v - v;
+      const d2 = dx*dx + dy*dy;
+      if (d2 <= R*R && d2 < bestD2) { bestD2 = d2; name = p.name; }
+    }
+
+    hud.textContent =
+      `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
+      (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`) +
+      (name ? ` | ${name}` : "");
+
+    cursorLabel.style.display = "block";
+    cursorLabel.style.left = (u + 10) + "px";
+    cursorLabel.style.top  = (v + 10) + "px";
+    cursorLabel.textContent = name ? name : `${u.toFixed(1)}, ${v.toFixed(1)}`;
+  });
+
+  wrap.addEventListener("mouseleave", () => {
+    inside = false;
+    pxX = -10000; pxY = -10000;
+    hud.textContent = "move mouse…";
+    cursorLabel.style.display = "none";
+  });
+
+  gl.disable(gl.DEPTH_TEST);
+  gl.disable(gl.CULL_FACE);
+
+  let ping = 0; // 0 => A->B, 1 => B->A
+
+  function frame(t){
+    const time = t * 0.001;
+
+    // pass 1: update mask
+    const src = (ping === 0) ? texMaskA : texMaskB;
+    const dst = (ping === 0) ? fbB : fbA;
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst);
+    gl.viewport(0, 0, W, H);
+    gl.useProgram(progMask);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, src);
+    gl.uniform1i(uPrev, 0);
+
+    gl.uniform2f(uResPx, W, H);
+    gl.uniform2f(uPointerPx, inside ? pxX : -10000, inside ? pxY : -10000);
+    gl.uniform1f(uTime, time);
+
+    gl.uniform1f(uRadiusPx, K.radiusPx * dpr);
+    gl.uniform1f(uFeatherPx, K.featherPx * dpr);
+    gl.uniform1f(uDecay, K.decay);
+    gl.uniform1f(uDiffusion, K.diffusion);
+    gl.uniform1f(uNoiseAmp, K.noiseAmp);
+    gl.uniform1f(uNoiseFreq, K.noiseFreq);
+
+    drawQuad(progMask);
+
+    ping = (ping === 0) ? 1 : 0;
+    const curMask = (ping === 0) ? texMaskA : texMaskB;
+
+    // pass 2: composite to screen
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, W, H);
+    gl.useProgram(progComp);
+
+    gl.uniform2f(uResPx2, W, H);
+    gl.uniform1f(uHillAlpha, K.hillAlpha);
+    gl.uniform1f(uOverlayAlpha, showOverlay ? K.overlayAlpha : 0.0);
+    gl.uniform1f(uRevealSoftness, K.revealSoftness);
+    gl.uniform1f(uBleedStrength, K.bleedStrength);
+    gl.uniform1f(uBleedRadiusPx, K.bleedRadiusPx * dpr);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texHill);
+    gl.uniform1i(uHill, 0);
+
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, texOverlay);
+    gl.uniform1i(uOverlay, 1);
+
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, curMask);
+    gl.uniform1i(uMask, 2);
+
+    drawQuad(progComp);
+
+    requestAnimationFrame(frame);
+  }
+
+  hud.textContent = "move mouse…";
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
