@@ -24,14 +24,26 @@
         display:block;
       }
 
+      #pointsLayer{
+        position:absolute;
+        inset:0;
+        pointer-events:none;   /* layer ignores mouse */
+        z-index: 20;
+      }
+
       .pt{
         position:absolute;
         width:6px; height:6px;
         border-radius:999px;
         background: rgba(255,80,80,0.95);
         box-shadow: 0 0 0 2px rgba(0,0,0,0.35);
-        pointer-events:none;
+        transform: translate(-50%, -50%); /* center on its coordinate */
+        pointer-events: auto;            /* IMPORTANT: allow hover */
         z-index: 20;
+      }
+
+      #pointsLayer .pt{
+        pointer-events:auto;   /* points accept mouse */
       }
 
       #cursorLabel{
@@ -49,10 +61,20 @@
       }
 
       .inspectHud{
-        margin-top: 10px;
+        position: absolute;
+        top: 10px;
+        left: 10px;              /* or right:10px if you want */
+        margin: 0;
+        padding: 6px 8px;
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 12px;
-        opacity: 0.85;
+        line-height: 1.2;
+        background: rgba(255,255,255,0.75);
+        border: 1px solid rgba(0,0,0,0.10);
+        border-radius: 10px;
+        backdrop-filter: blur(6px);
+        pointer-events: none;
+        z-index: 40;
       }
     </style>
 </head>
@@ -64,9 +86,8 @@
           <canvas id="gl"></canvas>
           <div id="pointsLayer"></div>
           <div id="cursorLabel"></div>
+          <div id="hud" class="inspectHud"></div>
         </div>
-
-        <div id="hud" class="inspectHud">loading…</div>
       </figure>
       <header class="home-hero">
         <h1 class="home-title">field notes</h1>
@@ -333,18 +354,43 @@ function loadImage(url){
   const rect0 = wrap.getBoundingClientRect();
   const VIEW_W = rect0.width;
   const VIEW_H = rect0.height;
-  const sxView = VIEW_W / TARGET_W;
-  const syView = VIEW_H / TARGET_H;
 
-  // points in VIEW pixels (but computed from final px)
-  const pointUV = (pts.points || []).map(p => ({...p, ...lonLatToFinalPx({lon:p.lon, lat:p.lat}, rotMeta)}));
+  // points positioned as percentages (scales with card)
+  const pointUV = (pts.points || []).map(p => ({
+    ...p,
+    ...lonLatToFinalPx({ lon: p.lon, lat: p.lat }, rotMeta)
+  }));
+
+  let hoveringPoint = false;
+
   for (const p of pointUV) {
     const el = document.createElement("div");
     el.className = "pt";
-    el.style.left = (p.u * sxView - 3) + "px";
-    el.style.top  = (p.v * syView - 3) + "px";
-    el.title = p.name;
+
+    // percent positioning -> scales perfectly with the card
+    el.style.left = (100 * (p.u / (TARGET_W - 1))) + "%";
+    el.style.top  = (100 * (p.v / (TARGET_H - 1))) + "%";
+
     pointsLayer.appendChild(el);
+
+    // hover label (name)
+    el.addEventListener("mouseenter", (ev) => {
+      hoveringPoint = true;
+      cursorLabel.style.display = "block";
+      cursorLabel.textContent = p.name;
+
+      // place label near the point in VIEW px
+      const r = wrap.getBoundingClientRect();
+      const x = (p.u / (TARGET_W - 1)) * r.width;
+      const y = (p.v / (TARGET_H - 1)) * r.height;
+      cursorLabel.style.left = (x + 10) + "px";
+      cursorLabel.style.top  = (y + 10) + "px";
+    });
+
+    el.addEventListener("mouseleave", () => {
+      hoveringPoint = false;
+      cursorLabel.style.display = "none";
+    });
   }
 
   // WebGL init at view size
@@ -450,10 +496,12 @@ function loadImage(url){
       `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
       (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`);
 
-    cursorLabel.style.display = "block";
-    cursorLabel.style.left = (x + 10) + "px";
-    cursorLabel.style.top  = (y + 10) + "px";
-    cursorLabel.textContent = `${u.toFixed(1)}, ${v.toFixed(1)}`;
+    if (!hoveringPoint) {
+      cursorLabel.style.display = "block";
+      cursorLabel.style.left = (x + 10) + "px";
+      cursorLabel.style.top  = (y + 10) + "px";
+      cursorLabel.textContent = `${u.toFixed(1)}, ${v.toFixed(1)}`;
+    }
   });
 
   wrap.addEventListener("mouseleave", () => {
