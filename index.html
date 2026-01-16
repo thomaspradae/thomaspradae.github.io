@@ -362,6 +362,7 @@ function loadImage(url){
   }));
 
   let hoveringPoint = false;
+  let hoveredName = null;
 
   for (const p of pointUV) {
     const el = document.createElement("div");
@@ -374,22 +375,14 @@ function loadImage(url){
     pointsLayer.appendChild(el);
 
     // hover label (name)
-    el.addEventListener("mouseenter", (ev) => {
+    el.addEventListener("mouseenter", () => {
       hoveringPoint = true;
-      cursorLabel.style.display = "block";
-      cursorLabel.textContent = p.name;
-
-      // place label near the point in VIEW px
-      const r = wrap.getBoundingClientRect();
-      const x = (p.u / (TARGET_W - 1)) * r.width;
-      const y = (p.v / (TARGET_H - 1)) * r.height;
-      cursorLabel.style.left = (x + 10) + "px";
-      cursorLabel.style.top  = (y + 10) + "px";
+      hoveredName = p.name;
     });
 
     el.addEventListener("mouseleave", () => {
       hoveringPoint = false;
-      cursorLabel.style.display = "none";
+      hoveredName = null;
     });
   }
 
@@ -494,21 +487,14 @@ function loadImage(url){
 
     hud.textContent =
       `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
-      (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`);
-
-    if (!hoveringPoint) {
-      cursorLabel.style.display = "block";
-      cursorLabel.style.left = (x + 10) + "px";
-      cursorLabel.style.top  = (y + 10) + "px";
-      cursorLabel.textContent = `${u.toFixed(1)}, ${v.toFixed(1)}`;
-    }
+      (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`) +
+      (hoveredName ? ` | ${hoveredName}` : "");
   });
 
   wrap.addEventListener("mouseleave", () => {
     inside = false;
     pxX = -10000; pxY = -10000;
     hud.textContent = "";
-    cursorLabel.style.display = "none";
   });
 
   gl.disable(gl.DEPTH_TEST);

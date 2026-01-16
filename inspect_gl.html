@@ -365,16 +365,6 @@ function loadImage(url){
     el.style.top  = (p.v - 3) + "px";
     el.title = p.name;
     pointsLayer.appendChild(el);
-
-    el.addEventListener("mouseenter", () => {
-      hoveringPoint = true;
-      hoveredName = p.name;
-    });
-
-    el.addEventListener("mouseleave", () => {
-      hoveringPoint = false;
-      hoveredName = null;
-    });
   }
 
   // --- WebGL init
@@ -459,8 +449,6 @@ function loadImage(url){
   // pointer state in GL pixel space
   let inside = false;
   let pxX = -10000, pxY = -10000;
-  let hoveringPoint = false;
-  let hoveredName = null;
 
   toggle.addEventListener("click", () => {
     showOverlay = !showOverlay;
@@ -486,16 +474,31 @@ function loadImage(url){
     const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
     const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
 
+    let name = null;
+    const R = 10;
+    let bestD2 = Infinity;
+    for (const p of pointUV) {
+      const dx = p.u - u, dy = p.v - v;
+      const d2 = dx*dx + dy*dy;
+      if (d2 <= R*R && d2 < bestD2) { bestD2 = d2; name = p.name; }
+    }
+
     hud.textContent =
       `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
       (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`) +
-      (hoveredName ? ` | ${hoveredName}` : "");
+      (name ? ` | ${name}` : "");
+
+    cursorLabel.style.display = "block";
+    cursorLabel.style.left = (u + 10) + "px";
+    cursorLabel.style.top  = (v + 10) + "px";
+    cursorLabel.textContent = name ? name : `${u.toFixed(1)}, ${v.toFixed(1)}`;
   });
 
   wrap.addEventListener("mouseleave", () => {
     inside = false;
     pxX = -10000; pxY = -10000;
     hud.textContent = "move mouse…";
+    cursorLabel.style.display = "none";
   });
 
   gl.disable(gl.DEPTH_TEST);
