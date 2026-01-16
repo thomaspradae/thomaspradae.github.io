@@ -61,7 +61,7 @@
       }
 
       .inspectHud{
-        position: absolute;
+        position: fixed;
         top: 10px;
         left: 10px;              /* or right:10px if you want */
         margin: 0;
@@ -486,10 +486,10 @@ function loadImage(url){
     const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
 
     hud.textContent =
-      `lon ${lon.toFixed(6)} | lat ${lat.toFixed(6)} | ` +
-      (elev===null ? "elev n/a" : `elev ${elev.toFixed(1)} m`) +
+      `${lon.toFixed(6)} | +${lat.toFixed(6)} | ` +
+      (elev===null ? "elev n/a" : `+${elev.toFixed(1)} m`) +
       (hoveredName ? ` | ${hoveredName}` : "");
-  });
+  })
 
   wrap.addEventListener("mouseleave", () => {
     inside = false;
