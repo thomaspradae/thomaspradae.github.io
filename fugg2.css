@@ -220,6 +220,7 @@ color: var(--backup-text-color-v3);
 /* 3) Link list: its own style */
 .home-nav {
 text-align: left;
+line-height: 1.6;
 }
 
 .home-nav-list {
