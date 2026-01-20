@@ -175,11 +175,10 @@ margin: 0 0 1rem 0;
 /* handwriting overlays */
 .scribble-name{
   position: absolute;
-  top: -6px;              /* tune */
-  left: 50%;
-  transform: translateX(55px) rotate(-1deg); /* tune */
-  height: 22px;           /* tune */
-  opacity: 0.9;
+  top: 1px;              /* tune */
+  transform: translateX(90px) rotate(1deg); /* tune */
+  height: 28px;           /* tune */
+  /* opacity: 0.9; */
   pointer-events: none;
 }
 
