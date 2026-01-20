@@ -162,6 +162,37 @@ color: var(--contrast-color);
 margin: 0 0 1rem 0;
 }
 
+/* Title stack: positioning context for scribbles */
+.titleStack{
+  position: relative;
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px 0 0;
+  display: grid;
+  place-items: center;
+}
+
+/* handwriting overlays */
+.scribble-name{
+  position: absolute;
+  top: -6px;              /* tune */
+  left: 50%;
+  transform: translateX(55px) rotate(-1deg); /* tune */
+  height: 22px;           /* tune */
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.scribble-sub{
+  position: absolute;
+  top: 78px;              /* tune */
+  left: 50%;
+  transform: translateX(-60px) rotate(0.5deg);
+  height: 14px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
 /* 2) Subtitle: its own style */
 .home-subtitle {
 margin: 0 0 3rem 0;
