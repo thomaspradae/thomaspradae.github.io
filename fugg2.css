@@ -2321,6 +2321,17 @@ text-decoration: none;
 transition: color 0.5s ease;
 }
 
+/* Make TYPE react to hovering anywhere in the row */
+.archive-item:hover .archive-type{
+  color: black;
+  transition: color 0.5s ease;
+}
+
+/* Optional: keyboard nav parity */
+.archive-item:focus-within .archive-type{
+  color: black;
+}
+
 .archive-item:hover .archive-date {
     color: black;
     transition: color 0.5s ease;
