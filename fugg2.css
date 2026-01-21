@@ -2219,15 +2219,12 @@ scroll-margin-top: 6rem;
     color: var(--backup-text-color-v3);
 }
 
-/* each row = flex: title left, date right */
+/* each row = percentage-based columns (simple + predictable) */
 .archive-item {
-    display: grid;
-    grid-template-columns:
-        minmax(0, 3fr)   /* title: takes most of the space */
-        minmax(0, 2fr)   /* middle meta column (tags, etc.) */
-        auto;            /* date: shrink-to-fit on the right */
-    column-gap: 2.5rem;
+    display: flex;
     align-items: baseline;
+    width: 100%;
+    gap: 2.5rem;
     padding: 0.4rem 0;
 }
 
@@ -2373,8 +2370,17 @@ margin-left: 2rem;
     }
 
     .archive-item {
-        grid-template-columns: 1fr;
-        row-gap: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .archive-title,
+    .archive-type,
+    .archive-meta,
+    .archive-date{
+        width: 100%;
+        text-align: left;
     }
 
     .archive-date {
@@ -2430,25 +2436,20 @@ margin-left: 2rem;
 }
 
 /* ------------------------------------------------------------------ */
-/* ARCHIVE: lock columns so tag unroll doesn't move TYPE/DATE          */
+/* ARCHIVE: percentage-based columns with full width                   */
+/* - Simple, predictable layout                                        */
+/* - Each column has explicit width percentage                         */
 /* ------------------------------------------------------------------ */
 
 .archive-item{
-display: grid;
-
-/* Fixed lanes for TYPE and DATE.
-    Tags gets a fixed lane too, title eats the rest. */
-grid-template-columns:
-    minmax(0, 0.8fr)   /* title */
-    7.5rem           /* type (fixed) */
-    28rem            /* tags (fixed lane) */
-    5.5rem;          /* date (fixed) */
-
-column-gap: 2.5rem;
-align-items: baseline;
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  gap: 2.5rem;
+  padding: 0.4rem 0;
 }
 
-/* Critical: allow grid items to shrink; prevents content from resizing tracks */
+/* Critical: allow flex items to shrink; prevents overflow */
 .archive-title,
 .archive-type,
 .archive-meta,
@@ -2456,8 +2457,17 @@ align-items: baseline;
 min-width: 0;
 }
 
-/* TYPE should never wrap */
+/* Title: takes most space */
+.archive-title{
+  width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Type indicator */
 .archive-type{
+width: 12%;
 white-space: nowrap;
 font-family: 'Inter', sans-serif;
 font-size: 0.7rem;
@@ -2466,22 +2476,30 @@ letter-spacing: 0.12em;
 color: var(--backup-text-color-v3);
 }
 
-/* DATE should never wrap */
-.archive-date{
-white-space: nowrap;
-justify-self: end;
-}
-
-/* Tags must respect their lane width */
+/* Tags column */
 .archive-meta{
+width: 35%;
+font-family: 'Inter', sans-serif;
+font-size: 0.75rem;
 max-width: 100%;
 overflow: visible;   /* allow pills to visually overflow without moving columns */
 }
 
-/* Keep wrapping behavior inside the fixed tags lane */
+/* Date: right-aligned */
+.archive-date{
+width: 13%;
+white-space: nowrap;
+text-align: right;
+margin-left: 0;
+font-size: 0.75rem;
+font-variant-numeric: tabular-nums;
+}
+
+/* Tags wrapping */
 .tags-holder--archive{
 max-width: 100%;
 flex-wrap: wrap;
+row-gap: 0.25rem;
 align-items: center;
 }
   
