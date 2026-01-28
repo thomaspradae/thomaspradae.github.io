@@ -2323,6 +2323,16 @@ transition: color 0.5s ease;
     transition: color 0.5s ease;
 }
 
+/* Make tag label text go black when the row is hovered */
+.archive-item:hover .tags-holder .tag-pill:not(:hover) .tag-pill-label{
+  color: var(--contrast-color);
+}
+
+/* Optional: keyboard parity (tabbing into a row) */
+.archive-item:focus-within .tags-holder .tag-pill:not(:hover) .tag-pill-label{
+  color: var(--contrast-color);
+}
+
 /* date (right column) */
 .archive-date {
 font-size: 0.75rem;
