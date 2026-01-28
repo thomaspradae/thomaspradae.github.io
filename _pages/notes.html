@@ -34,7 +34,7 @@ permalink: /notes/
     </div>
     
     <div class="archive-card">
-      <ul class="archive-list">
+      <ul class="archive-list" data-cols="3">
         {% assign notes_posts = site.notes | sort: "date" | reverse %}
         {% for post in notes_posts %}
         <li class="archive-item">

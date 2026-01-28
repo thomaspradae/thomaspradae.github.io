@@ -2148,22 +2148,11 @@ scroll-margin-top: 6rem;
         margin: 0 1rem;
     }
 
-    .archive-item {
-        flex-direction: row;
-        /* still two columns, but less tight */
-    }
-
-    .archive-date {
-        font-size: 0.7rem;
-    }
-
     .archive-footer {
         flex-direction: column;
         gap: 0.5rem;
         align-items: flex-start;
     }
-
-
 }
 
 /* ------------------------------------------------------------------ */
@@ -2219,7 +2208,7 @@ scroll-margin-top: 6rem;
     color: var(--backup-text-color-v3);
 }
 
-/* each row = percentage-based columns (simple + predictable) */
+/* Base archive item styles - flex row layout */
 .archive-item {
     display: flex;
     align-items: baseline;
@@ -2457,43 +2446,55 @@ margin-left: 2rem;
 min-width: 0;
 }
 
-/* Title: takes most space */
+/* Base styles for archive columns */
 .archive-title{
-  width: 40%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Type indicator */
 .archive-type{
-width: 12%;
-white-space: nowrap;
-font-family: 'Inter', sans-serif;
-font-size: 0.7rem;
-text-transform: uppercase;
-letter-spacing: 0.12em;
-color: var(--backup-text-color-v3);
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--backup-text-color-v3);
 }
 
-/* Tags column */
 .archive-meta{
-width: 35%;
-font-family: 'Inter', sans-serif;
-font-size: 0.75rem;
-max-width: 100%;
-overflow: visible;   /* allow pills to visually overflow without moving columns */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  max-width: 100%;
+  overflow: visible;   /* allow pills to visually overflow without moving columns */
 }
 
-/* Date: right-aligned */
 .archive-date{
-width: 13%;
-white-space: nowrap;
-text-align: right;
-margin-left: 0;
-font-size: 0.75rem;
-font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+  margin-left: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
 }
+
+/* ------------------------------------------------------------------ */
+/* Conditional widths based on data-cols attribute                    */
+/* ------------------------------------------------------------------ */
+
+/* 3 columns: title / meta / date (Building, Notes, Writing) */
+.archive-list[data-cols="3"] .archive-title{ width: 50%; }
+.archive-list[data-cols="3"] .archive-meta { width: 37%; }
+.archive-list[data-cols="3"] .archive-date { width: 13%; }
+
+/* 4 columns: title / type / meta / date (Archive) */
+.archive-list[data-cols="4"] .archive-title{ width: 40%; }
+.archive-list[data-cols="4"] .archive-type { width: 12%; }
+.archive-list[data-cols="4"] .archive-meta { width: 35%; }
+.archive-list[data-cols="4"] .archive-date { width: 13%; }
+
+/* 2 columns: title / date (minimal layout) */
+.archive-list[data-cols="2"] .archive-title{ width: 87%; }
+.archive-list[data-cols="2"] .archive-date { width: 13%; }
 
 /* Tags wrapping */
 .tags-holder--archive{

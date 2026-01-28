@@ -34,7 +34,7 @@ permalink: /building/
     </div>
     
     <div class="archive-card">
-      <ul class="archive-list">
+      <ul class="archive-list" data-cols="3">
         {% assign building_posts = site.building | sort: "date" | reverse %}
         {% for post in building_posts %}
         <li class="archive-item">
