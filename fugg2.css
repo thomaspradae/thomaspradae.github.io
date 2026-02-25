@@ -46,10 +46,10 @@
     --archive-title-top: 4rem;
 
     /* POST PAGE — SYMMETRIC 5-ZONE LAYOUT (adjust these 4 only) */
-    --post-outer-gutter:  8vw;   /* outer edges, both sides  */
-    --post-sidebar-width: 12rem; /* TOC width = sidenote width */
-    --post-inner-gap:     2.5rem;/* gap between sidebar & center, both sides */
-    --post-center-width:  42rem; /* the reading column        */
+    --post-outer-gutter:  10%;   /* outer edges, both sides  */
+    --post-sidebar-width: 10%; /* TOC width = sidenote width */
+    --post-inner-gap:     10%;/* gap between sidebar & center, both sides */
+    --post-center-width:  40%; /* the reading column        */
 }
 
 .crimson-pro {
