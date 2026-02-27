@@ -1,9 +1,8 @@
 // assets/js/toc.js
-
 console.log("[TOC] script loaded");
 
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("[TOC] DOMContentLoaded");
+function buildTOC() {
+  console.log("[TOC] buildTOC()");
 
   const main = document.querySelector("#main.post");
   if (!main) {
@@ -17,42 +16,33 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // Prefer the article.post-body; fall back to the main container
-  const article = main.querySelector(".post-body") || main;
-  console.log("[TOC] article node:", article);
-
-  const headings = article.querySelectorAll("h2, h3, h4, h5, h6");
-  console.log("[TOC] headings found:", headings.length, headings);
-
-  if (!headings.length) {
-    console.log("[TOC] no h2/h3/h4 found under article/post-body");
+  // prevent duplicates if something runs twice
+  if (tocContainer.dataset.built === "1") {
+    console.log("[TOC] already built, skipping");
     return;
   }
+  tocContainer.dataset.built = "1";
+
+  const article = main.querySelector(".post-body") || main;
+  const headings = article.querySelectorAll("h2, h3, h4, h5, h6");
+  console.log("[TOC] headings found:", headings.length);
+
+  if (!headings.length) return;
 
   const list = document.createElement("ul");
   list.className = "toc-list";
 
-  headings.forEach(function (h) {
-    const level = parseInt(h.tagName.substring(1), 10); // 2, 3, 4
-    let text = h.textContent.trim();
-    console.log(`[TOC] processing <${h.tagName.toLowerCase()}> "${text}"`);
+  headings.forEach((h) => {
+    const level = parseInt(h.tagName.substring(1), 10);
+    const text = h.textContent.trim();
 
-    // Generate an id if missing
     if (!h.id) {
-      let base = text.toLowerCase().replace(/[^\w]+/g, "-");
-      base = base.replace(/^-+|-+$/g, ""); // trim dashes
-
+      let base = text.toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "");
       if (!base) base = "section";
-
       let id = base;
       let i = 1;
-      while (document.getElementById(id)) {
-        id = `${base}-${i++}`;
-      }
+      while (document.getElementById(id)) id = `${base}-${i++}`;
       h.id = id;
-      console.log(`[TOC] assigned id="${id}"`);
-    } else {
-      console.log(`[TOC] existing id="${h.id}"`);
     }
 
     const li = document.createElement("li");
@@ -68,4 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   tocContainer.appendChild(list);
   console.log("[TOC] TOC built and appended");
-});
+
+  // Let other scripts know TOC now exists
+  document.dispatchEvent(new CustomEvent("toc:built", { detail: { tocContainer } }));
+}
+
+// Run ASAP: if deferred, DOM is already parsed; if not, wait.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", buildTOC);
+} else {
+  buildTOC();
+}
