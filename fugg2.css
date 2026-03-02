@@ -3020,3 +3020,65 @@ align-items: center;
     /* Post layout handled by .post-stage collapse and .post-outer > *:not(.post-stage) in 1024px block */
 }
 
+
+/* ------------------------------------------------------------------ */
+/* TOC: NO BALLS. Pure vertical rail + per-item lines (override)       */
+/* Paste at END of file                                                */
+/* ------------------------------------------------------------------ */
+
+/* 1) Kill the moving follower ball + section ticks (JS-inserted) */
+.post-stage > nav#left-toc.left-toc .toc-rail-indicator,
+.post-stage > nav#left-toc.left-toc .toc-rail-tick{
+  display: none !important;
+}
+
+/* 2) Remove the per-link DOT (your old “ball”) */
+.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::before{
+  content: none !important;
+}
+
+/* 3) Make each TOC item a LINE coming off the vertical rail
+   - We reuse your existing indent variable so deeper headings get longer lines
+   - This is the “each part of the TOC is a line” change */
+.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::after{
+  content: "";
+  position: absolute;
+
+  /* rail x is -0.60rem relative to TOC; same coordinate system you used */
+  left: calc(-0.60rem - var(--toc-indent));
+  top: 0.55em;
+  transform: translateY(-50%);
+
+  height: 2px; /* line thickness */
+  width: calc(0.60rem + var(--toc-indent)); /* line length grows with indent */
+
+  background: var(--lightest-text);
+  opacity: 0.85;
+
+  border-radius: 999px; /* makes it feel “inked” */
+  pointer-events: none;
+  z-index: 1;
+
+  transition: background-color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+/* ACTIVE line */
+.post-stage > nav#left-toc.left-toc a.toc-active::after{
+  background: var(--contrast-color);
+  opacity: 0.95;
+}
+
+/* HOVER line (non-active) */
+.post-stage > nav#left-toc.left-toc a[href^="#"]:hover:not(.toc-active)::after{
+  background: var(--main-accent);
+  opacity: 1;
+}
+
+/* Optional: keep the TOC “text reveal on hover” behavior the same.
+   If you want the TOC text ALWAYS visible, uncomment this. */
+/*
+.post-stage > nav#left-toc.left-toc .toc-list{
+  opacity: 1 !important;
+  transform: none !important;
+}
+*/
