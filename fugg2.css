@@ -1475,27 +1475,26 @@ pre code {
 /* STICKY LEFT TOC + GRID LAYOUT                                      */
 /* ------------------------------------------------------------------ */
 
-/* 2. The wrapper that holds [toc] [post] [right-gutter] — symmetric 7-column grid */
+/* post-stage: TOC | outer | inner | main | inner | notes | outer */
 .post-stage {
   display: grid;
   grid-template-columns:
-    var(--post-outer-gutter)   /* left outer edge      */
-    var(--post-sidebar-width)  /* TOC column           */
-    var(--post-inner-gap)      /* inner gap left       */
-    minmax(0, var(--post-center-width)) /* center      */
-    var(--post-inner-gap)      /* inner gap right      */
-    var(--post-sidebar-width)  /* sidenotes column     */
-    var(--post-outer-gutter);  /* right outer edge     */
+    var(--post-sidebar-width)  /* TOC lane (moved to far-left) */
+    var(--post-outer-gutter)   /* gutter */
+    var(--post-inner-gap)      /* gutter */
+    minmax(0, var(--post-center-width))
+    var(--post-inner-gap)
+    var(--post-sidebar-width)  /* notes lane */
+    var(--post-outer-gutter);
 
   grid-template-areas:
-    ". toc . main . notes .";
+    "toc . . main . notes .";
 
-  /* DON'T set a max-width here — let outer gutter columns handle edges */
   align-items: start;
   padding-top: 4vh;
 }
 
-/* TOC locked to the left lane */
+/* TOC lane */
 .post-stage > nav#left-toc.left-toc {
   grid-area: toc;
   justify-self: stretch;
@@ -1505,9 +1504,13 @@ pre code {
   top: 10rem;
   max-height: calc(100vh - 12rem);
   overflow: auto;
-  align-self: start;
-  z-index: 20;
 
+  /* IMPORTANT: since it's now at the very left edge,
+     give it padding so the rail isn't off-screen */
+  padding-left: 1.2rem;
+  padding-right: 0.5rem;
+
+  z-index: 20;
   margin: 0;
   font-family: 'Crimson Pro', serif;
   font-size: 0.9rem;
@@ -1515,19 +1518,11 @@ pre code {
   color: var(--backup-text-color-v2);
 }
 
-/* Center post locked to main lane */
-.post-stage > #main.post {
-  grid-area: main;
-  min-width: 0;
-  width: 100%;
-  margin: 0;
-}
+/* main */
+.post-stage > #main.post { grid-area: main; min-width: 0; width: 100%; margin: 0; }
 
-/* Right gutter / notes lane (absolute container for gutter notes) */
-.post-stage > .right-gutter {
-  grid-area: notes;
-  position: relative; /* used as absolute-position container */
-}
+/* right gutter notes */
+.post-stage > .right-gutter { grid-area: notes; position: relative; }
 
 /* Style for positioned notes in the right gutter */
 .gutter-note {
@@ -1603,7 +1598,7 @@ pointer-events: auto;
     /* Expand the hover zone around where the TOC lives */
     top: -1rem;
     bottom: -1rem;
-    left: -2rem;                 /* extend a bit into the gutter */
+    left: -0.5rem;               /* was -2rem; now at edge */
     right: 0;                    /* cover the TOC width itself */
   
     /* Important: this zone must be hoverable */
@@ -1617,7 +1612,7 @@ pointer-events: auto;
   }
   
   /* Put actual TOC content above the hover zone so clicks work when visible */
-  .post-stage > nav#left-toc.left-toc > *{
+  .post-stage > nav#left-toc.left-toc > .toc-list{
     position: relative;
     z-index: 2;
   }
@@ -1680,6 +1675,18 @@ pointer-events: auto;
 .post-stage > .left-toc .toc-level-6 {
   padding-left: 2.75rem;
   opacity: 0.8;
+}
+
+/* Optional: Only show the rail by default; reveal the text on hover (LessWrong vibe) */
+.post-stage > nav#left-toc.left-toc .toc-list {
+  opacity: 0;
+  transform: translateX(-2px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.post-stage > nav#left-toc.left-toc:hover .toc-list {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* POST-TOP: breadcrumbs, meta, title — centered to match the grid */
@@ -1768,7 +1775,7 @@ pointer-events: auto;
 .post-stage > nav#left-toc.left-toc::after{
 content: "";
 position: absolute;
-left: -0.60rem;
+left: 0.60rem;
 top: 0;
 bottom: 0;
 width: 1px;
@@ -1788,7 +1795,7 @@ pointer-events: none;
 }
 
 /* Keep your actual TOC content above the rail */
-.post-stage > nav#left-toc.left-toc > *{
+.post-stage > nav#left-toc.left-toc > .toc-list{
 position: relative;
 z-index: 2;
 }
@@ -1888,7 +1895,7 @@ text-decoration: none;
 /* Moving follower dot (JS inserts this element into the TOC) */
 .post-stage > nav#left-toc.left-toc .toc-rail-indicator{
 position: absolute;
-left: -0.60rem;
+left: 0.60rem;
 top: 0;
 transform: translate(-50%, -50%);
 
@@ -1906,7 +1913,7 @@ pointer-events: none;
 /* “Section ticks” (JS inserts these; used for H2 sections) */
 .post-stage > nav#left-toc.left-toc .toc-rail-tick{
 position: absolute;
-left: -0.60rem;
+left: 0.60rem;
 width: 0.65rem;
 height: 2px;
 transform: translate(-50%, -50%);
