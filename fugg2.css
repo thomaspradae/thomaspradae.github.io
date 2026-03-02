@@ -1523,21 +1523,24 @@ pre code {
   margin: 0;
 }
 
-/* Right gutter / notes lane */
+/* Right gutter / notes lane (absolute container for gutter notes) */
 .post-stage > .right-gutter {
   grid-area: notes;
-  position: relative;
+  position: relative; /* used as absolute-position container */
 }
 
-/* Notes sidebar / end-of-post footnotes pinned in the right lane */
-.post-stage > .right-gutter .footnotes{
-  position: sticky;
-  top: 10rem;
-  max-height: calc(100vh - 12rem);
-  overflow: auto;
+/* Style for positioned notes in the right gutter */
+.gutter-note {
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--backup-text-color-v3);
+}
 
-  border-top: 0;     /* it’s no longer “end of article” */
-  margin-top: 0;
+.gutter-note p {
+  margin: 0 0 0.75rem 0;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 /* Remove the old rule that was breaking header alignment */
