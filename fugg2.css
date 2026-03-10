@@ -45,11 +45,16 @@
     --archive-gutter: 5rem;
     --archive-title-top: 4rem;
 
-    /* POST PAGE — SYMMETRIC 5-ZONE LAYOUT (adjust these 4 only) */
-    --post-outer-gutter:  10%;   /* outer edges, both sides  */
-    --post-sidebar-width: 10%; /* TOC width = sidenote width */
-    --post-inner-gap:     10%;/* gap between sidebar & center, both sides */
-    --post-center-width:  40%; /* the reading column        */
+    /* POST PAGE GRID — matches experiment */
+    --post-toc-col: 20%;
+    --post-gutter-a: 8%;
+    --post-content-col: 40%;
+    --post-gutter-b: 8%;
+    --post-notes-col: 20%;
+    --post-gutter-c: 1%;
+
+    --post-content-max: 42rem;
+    --post-notes-max: 20rem;
 }
 
 .crimson-pro {
@@ -1460,222 +1465,223 @@ pre code {
     max-width: 42rem;     /* ~42rem, comfy reading width */
 }
 
+/* Main post container: keep sidenote counters and width knobs */
 #main.post {
     position: relative;
     counter-reset: sidenote-counter;
-    --margin-note-width: var(--post-sidebar-width);
-    --margin-note-gap:   var(--post-inner-gap);
-    --toc-width:         var(--post-sidebar-width);
-    --toc-gap:           var(--post-inner-gap);
+    --margin-note-width: var(--post-notes-col);
+    --margin-note-gap:   var(--post-gutter-b);
 }
 
-/* LEFT TOC */
-
 /* ------------------------------------------------------------------ */
-/* STICKY LEFT TOC + GRID LAYOUT                                      */
+/* POST-STAGE GRID — matches experiment                               */
 /* ------------------------------------------------------------------ */
 
-/* post-stage: TOC | outer | inner | main | inner | notes | outer */
-.post-stage {
+.post-stage{
   display: grid;
   grid-template-columns:
-    var(--post-sidebar-width)  /* TOC lane (moved to far-left) */
-    var(--post-outer-gutter)   /* gutter */
-    var(--post-inner-gap)      /* gutter */
-    minmax(0, var(--post-center-width))
-    var(--post-inner-gap)
-    var(--post-sidebar-width)  /* notes lane */
-    var(--post-outer-gutter);
-
-  grid-template-areas:
-    "toc . . main . notes .";
-
+    var(--post-toc-col)
+    var(--post-gutter-a)
+    var(--post-content-col)
+    var(--post-gutter-b)
+    var(--post-notes-col)
+    var(--post-gutter-c);
   align-items: start;
+  width: 100%;
   padding-top: 4vh;
 }
 
-/* TOC lane */
-.post-stage > nav#left-toc.left-toc {
-  grid-area: toc;
-  justify-self: stretch;
-  width: 100%;
+.post-stage > #left-toc.left-toc,
+.post-stage > #main.post,
+.post-stage > .right-gutter{
+  min-width: 0;
+}
 
+/* TOC column / rail */
+.post-stage > #left-toc.left-toc{
+  grid-column: 1;
   position: sticky;
-  top: 10rem;
-  max-height: calc(100vh - 12rem);
-  overflow: auto;
-
-  /* IMPORTANT: since it's now at the very left edge,
-     give it padding so the rail isn't off-screen */
-  padding-left: 1.2rem;
-  padding-right: 0.5rem;
-
-  z-index: 20;
+  top: 0;
+  height: 100vh;
+  padding: 14px 12px;
   margin: 0;
+  overflow: hidden;
+  z-index: 20;
+
   font-family: 'Crimson Pro', serif;
   font-size: 0.9rem;
   line-height: 1.4;
   color: var(--backup-text-color-v2);
 }
 
-/* main */
-.post-stage > #main.post { grid-area: main; min-width: 0; width: 100%; margin: 0; }
-
-/* right gutter notes */
-.post-stage > .right-gutter { grid-area: notes; position: relative; }
-
-/* Style for positioned notes in the right gutter */
-.gutter-note {
+/* Centered article column */
+.post-stage > #main.post{
+  grid-column: 3;
+  display: flex;
+  justify-content: center;
   width: 100%;
-  font-size: 0.9rem;
-  line-height: 1.35;
-  color: var(--backup-text-color-v3);
-}
-
-.gutter-note p {
-  margin: 0 0 0.75rem 0;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-/* Remove the old rule that was breaking header alignment */
-.post-outer > *:not(.post-stage) {
-  all: unset;
-  display: block;
-}
-
-/* TOC visibility animation */
-.post-stage > nav#left-toc.left-toc{
-opacity: 1;
-transform: translateY(0);
-pointer-events: auto;
-
-transition:
-    opacity 520ms ease,
-    transform 520ms ease;
-}
-
-/* When auto-hide is active AND we're "idle", hide it */
-.toc-autohide-on .post-stage > nav#left-toc.left-toc.toc-hidden{
-opacity: 0;
-transform: translateY(1.5px); /* subtle, optional */
-pointer-events: none;
-}
-
-/* Optional: if user hovers the TOC region, keep it visible */
-.toc-autohide-on .post-stage > nav#left-toc.left-toc:hover{
-opacity: 1;
-transform: translateY(0);
-pointer-events: auto;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-.post-stage > nav#left-toc.left-toc{
-    transition: none;
-}
-}
-
-/* ------------------------------------------------------------------ */
-/* TOC: reveal-on-hover even when hidden (via hover-capture zone)      */
-/* ------------------------------------------------------------------ */
-
-/* Ensure the TOC box can host an absolutely-positioned pseudo-element */
-.post-stage > nav#left-toc.left-toc{
-    position: sticky; /* you already have this */
-    /* add: */
-    z-index: 20;
-  }
-  
-  /* Hover-capture zone:
-     - Lives in the left gutter area
-     - Still receives hover even when TOC is hidden
-  */
-  .toc-autohide-on .post-stage > nav#left-toc.left-toc::before{
-    content: "";
-    position: absolute;
-  
-    /* Expand the hover zone around where the TOC lives */
-    top: -1rem;
-    bottom: -1rem;
-    left: -0.5rem;               /* was -2rem; now at edge */
-    right: 0;                    /* cover the TOC width itself */
-  
-    /* Important: this zone must be hoverable */
-    pointer-events: auto;
-  
-    /* Invisible */
-    background: transparent;
-  
-    /* Place it above the TOC so it can catch hover even if TOC is hidden */
-    z-index: 1;
-  }
-  
-  /* Put actual TOC content above the hover zone so clicks work when visible */
-  .post-stage > nav#left-toc.left-toc > .toc-list{
-    position: relative;
-    z-index: 2;
-  }
-  
-  /* If user hovers the TOC zone, force it visible */
-  .toc-autohide-on .post-stage > nav#left-toc.left-toc:hover{
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    .post-stage > nav#left-toc.left-toc{
-      transition: none;
-    }
-  }
-
-/* TOC link styles (matching existing #main.post .left-toc rules) */
-.post-stage > .left-toc .toc-list {
-  list-style: none;
-  padding-left: 0;
   margin: 0;
+  position: relative;
 }
 
-.post-stage > .left-toc .toc-item {
-  margin: 0 0 0.35rem 0;
+.post-stage > #main.post > .post-body{
+  width: 100%;
+  max-width: var(--post-content-max);
 }
 
-.post-stage > .left-toc a {
+/* Right notes column */
+.post-stage > .right-gutter{
+  grid-column: 5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.post-stage > .right-gutter > .right-gutter-inner{
+  position: relative;
+  width: 100%;
+  max-width: var(--post-notes-max);
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------------ */
+/* POST TOC — experiment style                                        */
+/* ------------------------------------------------------------------ */
+
+.post-stage > #left-toc.left-toc{
+  --snake-top: 0px;
+  --snake-h: 0px;
+}
+
+.post-stage > #left-toc.left-toc .toc-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-stage > #left-toc.left-toc .toc-item{
+  position: relative;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 0 10px 8px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 28px;
+  user-select: none;
+  color: var(--contrast-color);
+}
+
+.post-stage > #left-toc.left-toc .toc-item::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #d8d8d8;
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.15s ease, opacity 0.28s ease;
+}
+
+.post-stage > #left-toc.left-toc .toc-item::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--snake-top, 0px);
+  height: var(--snake-h, 0px);
+  width: 2px;
+  background: var(--contrast-color);
+  pointer-events: none;
+  z-index: 0;
+  transition: top 0.08s ease-out, height 0.08s ease-out, opacity 0.28s ease;
+}
+
+.post-stage > #left-toc.left-toc .toc-item:hover::before{
+  background: var(--contrast-color);
+}
+
+.post-stage > #left-toc.left-toc .toc-item > a{
+  position: relative;
+  z-index: 1;
   color: var(--backup-text-color-v2);
   text-decoration: none;
-  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.28s ease, color 0.15s ease;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
 }
 
-.post-stage > .left-toc a:hover {
+.post-stage > #left-toc.left-toc .toc-item:hover > a{
   color: var(--contrast-color);
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
-.post-stage > .left-toc .toc-level-2 {
-  padding-left: 0.75rem;
-  margin-top: 0.35rem;
+/* initial open state */
+body.toc-open .post-stage > #left-toc.left-toc .toc-item > a{
+  opacity: 1;
 }
 
-.post-stage > .left-toc .toc-level-3 {
-  padding-left: 1.25rem;
+/* collapsed state, reveal on hover */
+body.toc-collapsed .post-stage > #left-toc.left-toc:hover .toc-item > a{
+  opacity: 1;
 }
 
-.post-stage > .left-toc .toc-level-4 {
-  padding-left: 1.75rem;
+/* first TOC item text animation */
+.post-stage > #left-toc.left-toc .toc-item:first-child > a{
+  transform: translateY(8px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.15s ease;
 }
 
-.post-stage > .left-toc .toc-level-5 {
-  padding-left: 2.25rem;
-  opacity: 0.9;
+/* hide first TOC item while title is visible */
+body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child > a{
+  opacity: 0;
+  transform: translateY(6px);
 }
 
-.post-stage > .left-toc .toc-level-6 {
-  padding-left: 2.75rem;
-  opacity: 0.8;
+body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::before,
+body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::after{
+  opacity: 0;
 }
+
+/* reveal first TOC item after title scrolls away */
+body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > a{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* keep scrollspy color behavior */
+.post-stage > #left-toc.left-toc .toc-item > a.toc-active{
+  color: var(--contrast-color);
+}
+
+.post-stage > #left-toc.left-toc .toc-item > a[href^="#"]:hover:not(.toc-active){
+  color: var(--main-accent);
+  text-decoration: none;
+}
+
+/* indentation */
+.post-stage > #left-toc.left-toc .toc-level-2{ padding-left: 12px; }
+.post-stage > #left-toc.left-toc .toc-level-3{ padding-left: 24px; }
+.post-stage > #left-toc.left-toc .toc-level-4{ padding-left: 36px; }
+.post-stage > #left-toc.left-toc .toc-level-5{ padding-left: 48px; }
+.post-stage > #left-toc.left-toc .toc-level-6{ padding-left: 60px; }
 
 /* Optional: Only show the rail by default; reveal the text on hover (LessWrong vibe) */
 .post-stage > nav#left-toc.left-toc .toc-list {
@@ -1690,25 +1696,18 @@ pointer-events: auto;
 }
 
 /* POST-TOP: breadcrumbs, meta, title — centered to match the grid */
-.post-top {
-  max-width: calc(
-    var(--post-outer-gutter) +
-    var(--post-sidebar-width) +
-    var(--post-inner-gap) +
-    var(--post-center-width) +
-    var(--post-inner-gap) +
-    var(--post-sidebar-width) +
-    var(--post-outer-gutter)
-  );
-  margin: 0 auto;
-
-  padding-left: calc(var(--post-outer-gutter) + var(--post-sidebar-width) + var(--post-inner-gap));
-  padding-right: calc(var(--post-outer-gutter) + var(--post-sidebar-width) + var(--post-inner-gap));
+/* Post-top block: share same 6-column grid as post-stage */
+.post-top{
+  display: grid;
+  grid-template-columns:
+    var(--post-toc-col)
+    var(--post-gutter-a)
+    var(--post-content-col)
+    var(--post-gutter-b)
+    var(--post-notes-col)
+    var(--post-gutter-c);
+  width: 100%;
   padding-top: 8vh;
-  padding-bottom: 0;
-  box-sizing: border-box;
-
-  text-align: left;
 }
 
 .post-top .post-meta-row {
@@ -1741,196 +1740,22 @@ pointer-events: auto;
 
 
 .post-top .post-header,
-.post-intro.post,
-#main.post {
-  max-width: 42rem;
-  margin: 0 auto;
-  margin-bottom: 5rem;
+.post-top .post-metadata,
+.post-top .post-intro.post{
+  grid-column: 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.post-top .post-header > *,
+.post-top .post-metadata > *,
+.post-top .post-intro.post > *{
+  width: 100%;
+  max-width: var(--post-content-max);
 }
 
 /* ------------------------------------------------------------------ */
-/* TOC Scrollspy + Rail + Dots + Indent Connectors (ADD-ONLY)         */
-/* - No global :root vars                                              */
-/* - Keeps your existing .toc-level-* indents untouched                */
-/* - Uses ::after for rail (your ::before is hover-capture zone)       */
-/* ------------------------------------------------------------------ */
-
-/* JS writes these (scoped to TOC only, not global) */
-.post-stage > nav#left-toc.left-toc{
---toc-active-y: 0px;
---toc-progress-y: 0px;
-}
-
-/* Mirror your existing indent values into a custom property so we can
-    place dots/lines WITHOUT changing the actual padding-left indents. */
-.post-stage > nav#left-toc.left-toc .toc-item{ --toc-indent: 0rem; }
-.post-stage > nav#left-toc.left-toc .toc-level-2{ --toc-indent: 0.75rem; }
-.post-stage > nav#left-toc.left-toc .toc-level-3{ --toc-indent: 1.25rem; }
-.post-stage > nav#left-toc.left-toc .toc-level-4{ --toc-indent: 1.75rem; }
-.post-stage > nav#left-toc.left-toc .toc-level-5{ --toc-indent: 2.25rem; }
-.post-stage > nav#left-toc.left-toc .toc-level-6{ --toc-indent: 2.75rem; }
-
-/* Main rail (behind everything). Put it slightly LEFT of the TOC text
-    so we don’t need to add padding that would change your indents. */
-.post-stage > nav#left-toc.left-toc::after{
-content: "";
-position: absolute;
-left: 0.60rem;
-top: 0;
-bottom: 0;
-width: 1px;
-
-/* Filled-to-progress segment, then base rail */
-background: linear-gradient(
-    to bottom,
-    var(--contrast-color) 0,
-    var(--contrast-color) var(--toc-progress-y, var(--toc-active-y, 0px)),
-    var(--lightest-text)  var(--toc-progress-y, var(--toc-active-y, 0px)),
-    var(--lightest-text)  100%
-);
-
-opacity: 0.9;
-z-index: 0;
-pointer-events: none;
-}
-
-/* Keep your actual TOC content above the rail */
-.post-stage > nav#left-toc.left-toc > .toc-list{
-position: relative;
-z-index: 2;
-}
-
-/* Base link styling (only TOC hash links) */
-.post-stage > nav#left-toc.left-toc a[href^="#"]{
-position: relative;
-color: var(--backup-text-color-v2);
-text-decoration: none;
-}
-
-/* Dot: anchored to each TOC link, but positioned back left to the rail
-    using the indent variable (so indents stay exactly the same). */
-.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::before{
-content: "";
-position: absolute;
-
-/* Rail x is -0.60rem relative to TOC.
-    Anchor starts at +indent, so we go left by (0.60rem + indent). */
-left: calc(-0.60rem - var(--toc-indent));
-top: 0.55em;
-transform: translate(-50%, -50%);
-
-width: 0.42rem;
-height: 0.42rem;
-border-radius: 999px;
-
-background: var(--background-color);
-border: 1px solid var(--lightest-text);
-
-z-index: 2;
-transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
-}
-
-/* Connector line: “lines + indents” vibe.
-    Draw a faint horizontal line from the rail dot to the start of the text.
-    Longer indent => longer connector. */
-.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::after{
-content: "";
-position: absolute;
-
-/* start near the dot, end at the text start (x=0 of the anchor) */
-left: calc(-0.60rem - var(--toc-indent) + 0.21rem);
-top: 0.55em;
-transform: translateY(-50%);
-
-height: 1px;
-width: calc(0.60rem + var(--toc-indent) - 0.21rem);
-
-background: var(--lightest-text);
-opacity: 0.8;
-
-pointer-events: none;
-z-index: 1;
-transition: background-color 160ms ease, opacity 160ms ease;
-}
-
-/* ACTIVE (scrollspy) */
-.post-stage > nav#left-toc.left-toc a.toc-active{
-color: var(--contrast-color);
-text-decoration: none;
-}
-
-.post-stage > nav#left-toc.left-toc a.toc-active::before{
-background: var(--contrast-color);
-border-color: var(--contrast-color);
-transform: translate(-50%, -50%) scale(1.06);
-}
-
-.post-stage > nav#left-toc.left-toc a.toc-active::after{
-background: var(--contrast-color);
-opacity: 0.85;
-}
-
-/* HOVER (non-active) = your “third color” */
-.post-stage > nav#left-toc.left-toc a[href^="#"]:hover:not(.toc-active){
-color: var(--main-accent);
-text-decoration: underline;
-text-underline-offset: 2px;
-}
-
-.post-stage > nav#left-toc.left-toc a[href^="#"]:hover:not(.toc-active)::before{
-border-color: var(--main-accent);
-}
-
-.post-stage > nav#left-toc.left-toc a[href^="#"]:hover:not(.toc-active)::after{
-background: var(--main-accent);
-opacity: 0.9;
-}
-
-/* Keep active from changing when hovered */
-.post-stage > nav#left-toc.left-toc a.toc-active:hover{
-color: var(--contrast-color);
-text-decoration: none;
-}
-
-/* Moving follower dot (JS inserts this element into the TOC) */
-.post-stage > nav#left-toc.left-toc .toc-rail-indicator{
-position: absolute;
-left: 0.60rem;
-top: 0;
-transform: translate(-50%, -50%);
-
-width: 0.55rem;
-height: 0.55rem;
-border-radius: 999px;
-
-background: var(--background-color);
-border: 1px solid var(--contrast-color);
-
-z-index: 3;
-pointer-events: none;
-}
-
-/* “Section ticks” (JS inserts these; used for H2 sections) */
-.post-stage > nav#left-toc.left-toc .toc-rail-tick{
-position: absolute;
-left: 0.60rem;
-width: 0.65rem;
-height: 2px;
-transform: translate(-50%, -50%);
-
-background: var(--lightest-text);
-opacity: 0.9;
-
-z-index: 1;
-pointer-events: none;
-}
-
-/* Optional: make clicks land nicely if you have sticky header */
-.post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6{
-scroll-margin-top: 6rem;
-}
-  
-
 /* SIDENOTES (margin notes on right) */
 
 #main.post .sidenote,
@@ -1977,33 +1802,51 @@ scroll-margin-top: 6rem;
 
 
 /* 5. Mobile: collapse everything to single column */
-@media (max-width: 1024px) {
-    .post-top {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        max-width: 100%;
-    }
+@media (max-width: 1024px){
+  .post-top{
+    grid-template-columns: 1fr;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 
-    .post-stage {
-        display: block;
-        padding: 0 1.5rem;
-    }
+  .post-top > .post-header,
+  .post-top > .post-metadata,
+  .post-top > .post-intro.post{
+    grid-column: 1;
+  }
 
-    .post-stage > .left-toc   { display: none; }
-    .post-stage > .right-gutter { display: none; }
-    .post-stage > #main.post  { max-width: 100%; margin: 0; }
+  .post-stage{
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem;
+  }
 
-    #main.post .sidenote,
-    #main.post .marginnote {
-        float: none;
-        clear: both;
-        margin: 0.75rem 0;
-        width: 100%;
-    }
+  .post-stage > #left-toc.left-toc{
+    display: none;
+  }
 
-    #main.post .sidenote-number::after {
-        display: none;
-    }
+  .post-stage > .right-gutter{
+    display: none;
+  }
+
+  .post-stage > #main.post{
+    grid-column: 1;
+  }
+
+  .post-stage > #main.post > .post-body{
+    max-width: none;
+  }
+
+  #main.post .sidenote,
+  #main.post .marginnote{
+    float: none;
+    clear: both;
+    margin: 0.75rem 0;
+    width: 100%;
+  }
+
+  #main.post .sidenote-number::after{
+    display: none;
+  }
 }
 
 
@@ -3022,63 +2865,4 @@ align-items: center;
 
 
 /* ------------------------------------------------------------------ */
-/* TOC: NO BALLS. Pure vertical rail + per-item lines (override)       */
-/* Paste at END of file                                                */
-/* ------------------------------------------------------------------ */
-
-/* 1) Kill the moving follower ball + section ticks (JS-inserted) */
-.post-stage > nav#left-toc.left-toc .toc-rail-indicator,
-.post-stage > nav#left-toc.left-toc .toc-rail-tick{
-  display: none !important;
-}
-
-/* 2) Remove the per-link DOT (your old “ball”) */
-.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::before{
-  content: none !important;
-}
-
-/* 3) Make each TOC item a LINE coming off the vertical rail
-   - We reuse your existing indent variable so deeper headings get longer lines
-   - This is the “each part of the TOC is a line” change */
-.post-stage > nav#left-toc.left-toc .toc-item > a[href^="#"]::after{
-  content: "";
-  position: absolute;
-
-  /* rail x is -0.60rem relative to TOC; same coordinate system you used */
-  left: calc(-0.60rem - var(--toc-indent));
-  top: 0.55em;
-  transform: translateY(-50%);
-
-  height: 2px; /* line thickness */
-  width: calc(0.60rem + var(--toc-indent)); /* line length grows with indent */
-
-  background: var(--lightest-text);
-  opacity: 0.85;
-
-  border-radius: 999px; /* makes it feel “inked” */
-  pointer-events: none;
-  z-index: 1;
-
-  transition: background-color 160ms ease, opacity 160ms ease, transform 160ms ease;
-}
-
-/* ACTIVE line */
-.post-stage > nav#left-toc.left-toc a.toc-active::after{
-  background: var(--contrast-color);
-  opacity: 0.95;
-}
-
-/* HOVER line (non-active) */
-.post-stage > nav#left-toc.left-toc a[href^="#"]:hover:not(.toc-active)::after{
-  background: var(--main-accent);
-  opacity: 1;
-}
-
-/* Optional: keep the TOC “text reveal on hover” behavior the same.
-   If you want the TOC text ALWAYS visible, uncomment this. */
-/*
-.post-stage > nav#left-toc.left-toc .toc-list{
-  opacity: 1 !important;
-  transform: none !important;
-}
-*/
+/* (end of file) */

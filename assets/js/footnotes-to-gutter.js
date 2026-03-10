@@ -3,7 +3,7 @@
   const SEL = {
     stage: ".post-stage",
     main: "#main.post",
-    gutter: ".post-stage > .right-gutter",
+    gutter: ".post-stage > .right-gutter > .right-gutter-inner",
     footnotes: "#main .footnotes",
     refs: 'sup[role="doc-noteref"] a.footnote[href^="#"]',
   };

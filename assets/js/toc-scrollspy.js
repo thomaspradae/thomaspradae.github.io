@@ -1,119 +1,145 @@
-// assets/js/toc-scrollspy.js
+// assets/js/toc-scrollspy.js — experiment-style snake + state
 (() => {
   const SEL = {
-    toc: 'nav#left-toc.left-toc',
-    main: '#main.post',
-    body: '#main.post .post-body',
-    headings: 'h2, h3, h4, h5, h6',
+    toc: "#left-toc.left-toc",
+    main: "#main.post",
+    body: "#main.post .post-body",
+    headings: "h2, h3, h4, h5, h6",
+    title: ".page-title"
   };
 
-  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  let tocItemEls = [];
+  let railRAF = null;
+  let hasScrolledOnce = false;
 
-  function ensureIndicator(toc) {
-    let el = toc.querySelector('.toc-rail-indicator');
-    if (!el) {
-      el = document.createElement('div');
-      el.className = 'toc-rail-indicator';
-      toc.appendChild(el);
+  const scheduleUpdate = () => {
+    if (railRAF) return;
+    railRAF = requestAnimationFrame(() => {
+      railRAF = null;
+      updateTOCState();
+      updateRailProgress();
+      updateActiveLink();
+    });
+  };
+
+  function updateTOCState() {
+    const body = document.body;
+    const firstTitle = document.querySelector(SEL.title);
+
+    if (!hasScrolledOnce && (window.scrollY || document.documentElement.scrollTop) > 6) {
+      hasScrolledOnce = true;
     }
-    return el;
+
+    body.classList.toggle("toc-open", !hasScrolledOnce);
+    body.classList.toggle("toc-collapsed", hasScrolledOnce);
+
+    if (firstTitle) {
+      const rect = firstTitle.getBoundingClientRect();
+      const titleFullyGone = rect.bottom <= 0;
+
+      body.classList.toggle("title-hidden", !titleFullyGone);
+      body.classList.toggle("title-toc-visible", titleFullyGone);
+    } else {
+      body.classList.remove("title-hidden");
+      body.classList.remove("title-toc-visible");
+    }
   }
 
-  function clearTicks(toc) {
-    toc.querySelectorAll('.toc-rail-tick').forEach(n => n.remove());
+  function updateRailProgress() {
+    const toc = document.querySelector(SEL.toc);
+    const main = document.querySelector(SEL.main);
+    if (!toc || !main) return;
+
+    tocItemEls = Array.from(toc.querySelectorAll(".toc-item"));
+    if (!tocItemEls.length) return;
+
+    const railRect = toc.getBoundingClientRect();
+    const railHeight = railRect.height;
+
+    const articleHeight = main.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+    const mainRect = main.getBoundingClientRect();
+    const articleTop = mainRect.top + scrollY;
+    const scrollStart = articleTop;
+    const scrollEnd = articleTop + articleHeight - viewportHeight;
+    const scrollRange = Math.max(1, scrollEnd - scrollStart);
+
+    const snakeH = Math.min(
+      railHeight,
+      Math.max(20, (viewportHeight / Math.max(1, articleHeight)) * railHeight)
+    );
+
+    const maxTop = Math.max(0, railHeight - snakeH);
+    const t = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
+    const snakeTop = t * maxTop;
+    const snakeBot = snakeTop + snakeH;
+
+    for (const el of tocItemEls) {
+      const r = el.getBoundingClientRect();
+      const itTop = r.top - railRect.top;
+      const itBot = r.bottom - railRect.top;
+
+      const overlapTop = Math.max(itTop, snakeTop);
+      const overlapBot = Math.min(itBot, snakeBot);
+      const overlapH = Math.max(0, overlapBot - overlapTop);
+
+      if (overlapH <= 0) {
+        el.style.setProperty("--snake-h", "0px");
+        continue;
+      }
+
+      el.style.setProperty("--snake-top", (overlapTop - itTop) + "px");
+      el.style.setProperty("--snake-h", overlapH + "px");
+    }
   }
 
-  function buildTicks(toc, headings, articleTop, articleHeight, railHeight) {
-    clearTicks(toc);
+  function updateActiveLink() {
+    const toc = document.querySelector(SEL.toc);
+    const article = document.querySelector(SEL.body);
+    if (!toc || !article) return;
 
-    // ticks for H2 only (LessWrong-ish). change filter if you want.
-    headings
-      .filter(h => h.tagName === 'H2')
-      .forEach(h => {
-        const y = (h.getBoundingClientRect().top + window.scrollY - articleTop) / articleHeight;
-        const tickTop = clamp01(y) * railHeight;
+    const headings = Array.from(article.querySelectorAll(SEL.headings)).filter(h => h.id);
+    if (!headings.length) return;
 
-        const tick = document.createElement('div');
-        tick.className = 'toc-rail-tick';
-        tick.style.top = `${tickTop}px`;
-        toc.appendChild(tick);
-      });
-  }
-
-  function setActiveLink(toc, headings, probeY) {
-    // last heading whose top is above probeY
+    const probeY = window.scrollY + 140;
     let active = null;
+
     for (const h of headings) {
       const top = h.getBoundingClientRect().top + window.scrollY;
       if (top <= probeY) active = h;
       else break;
     }
 
-    toc.querySelectorAll('a.toc-active').forEach(a => a.classList.remove('toc-active'));
+    toc.querySelectorAll("a.toc-active").forEach(a => a.classList.remove("toc-active"));
     if (!active) return;
 
     const link = toc.querySelector(`a[href="#${CSS.escape(active.id)}"]`);
-    if (link) link.classList.add('toc-active');
-  }
-
-  function update(toc, main, headings, indicator) {
-    // Use the article column as the truth source for top/height.
-    const articleTop = main.getBoundingClientRect().top + window.scrollY;
-    const articleHeight = main.offsetHeight;
-
-    // Rail height is the visible TOC box height (since it's sticky)
-    const railHeight = toc.getBoundingClientRect().height;
-
-    // Probe point: slightly below top of viewport feels good
-    const probeY = window.scrollY + 140;
-
-    const progress = clamp01((probeY - articleTop) / articleHeight);
-    const progressPx = progress * railHeight;
-
-    toc.style.setProperty('--toc-progress-y', `${progressPx}px`);
-    indicator.style.top = `${progressPx}px`;
-
-    setActiveLink(toc, headings, probeY);
-    // keep these available if you want them for other styles
-    toc.style.setProperty('--toc-active-y', `${progressPx}px`);
+    if (link) link.classList.add("toc-active");
   }
 
   function init() {
-    const toc = document.querySelector(SEL.toc);
+    scheduleUpdate();
+
     const main = document.querySelector(SEL.main);
-    if (!toc || !main) return;
+    if (!main) return;
 
-    const article = document.querySelector(SEL.body) || main;
-    const headings = Array.from(article.querySelectorAll(SEL.headings))
-      .filter(h => h.id); // your toc.js guarantees ids
-
-    const indicator = ensureIndicator(toc);
-
-    const rebuild = () => {
-      const articleTop = main.getBoundingClientRect().top + window.scrollY;
-      const articleHeight = main.offsetHeight;
-      const railHeight = toc.getBoundingClientRect().height;
-      buildTicks(toc, headings, articleTop, articleHeight, railHeight);
-      update(toc, main, headings, indicator);
-    };
-
-    // first pass
-    rebuild();
-
-    // keep in sync with images/fonts/mathjax layout shifts
-    const ro = new ResizeObserver(rebuild);
+    const ro = new ResizeObserver(scheduleUpdate);
     ro.observe(main);
 
-    window.addEventListener('scroll', () => update(toc, main, headings, indicator), { passive: true });
-    window.addEventListener('resize', rebuild);
+    main.querySelectorAll("img").forEach(img => {
+      if (!img.complete) img.addEventListener("load", scheduleUpdate, { once: true });
+    });
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
   }
 
-  // If toc.js builds first, we still init on DOMContentLoaded.
-  // If toc.js builds later, this also catches it.
-  document.addEventListener('toc:built', init);
+  document.addEventListener("toc:built", init);
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
