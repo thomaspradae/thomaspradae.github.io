@@ -4,7 +4,7 @@
     toc: "#left-toc.left-toc",
     rail: "#left-toc.left-toc .toc-rail",
     main: "#main.post",
-    body: "#main.post .post-body",
+    body: "#main.post .post-body-content",
     headings: "h2, h3, h4, h5, h6",
     title: ".page-title"
   };

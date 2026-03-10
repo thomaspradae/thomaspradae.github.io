@@ -63,7 +63,8 @@ function buildTOC() {
 
   tocContainer.innerHTML = "";
 
-  const article = main.querySelector(".post-body") || main;
+  const article = document.querySelector("#main .post-body-content");
+  if (!article) return;
   const sections = buildSectionModel(article);
   if (!sections.length) return;
 
