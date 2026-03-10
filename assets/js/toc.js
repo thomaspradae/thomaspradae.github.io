@@ -58,10 +58,7 @@ function buildTOC() {
   const main = document.querySelector("#main.post");
   if (!main) return;
 
-  // Prefer inner rail container; fall back to nav if missing
-  const tocContainer =
-    document.querySelector("#left-toc .toc-inner") ||
-    document.getElementById("left-toc");
+  const tocContainer = document.querySelector("#left-toc .toc-inner");
   if (!tocContainer) return;
 
   tocContainer.innerHTML = "";

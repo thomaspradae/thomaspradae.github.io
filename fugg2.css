@@ -1497,7 +1497,7 @@ pre code {
   min-width: 0;
 }
 
-/* TOC column / rail */
+/* TOC column */
 .post-stage > #left-toc.left-toc{
   grid-column: 1;
   position: sticky;
@@ -1508,10 +1508,37 @@ pre code {
   overflow: hidden;
   z-index: 20;
 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   font-family: 'Crimson Pro', serif;
   font-size: 0.9rem;
   line-height: 1.4;
   color: var(--backup-text-color-v2);
+
+  --snake-top: 0px;
+  --snake-h: 0px;
+}
+
+/* Inner rail viewport */
+.post-stage > #left-toc.left-toc .toc-rail{
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Inner list container */
+.post-stage > #left-toc.left-toc .toc-inner{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
 }
 
 /* Centered article column */
@@ -1519,7 +1546,9 @@ pre code {
   grid-column: 3;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  min-width: 0;
   margin: 0;
   position: relative;
 }
@@ -1527,6 +1556,7 @@ pre code {
 .post-stage > #main.post > .post-body{
   width: 100%;
   max-width: var(--post-content-max);
+  box-sizing: border-box;
 }
 
 /* Right notes column */
@@ -1534,7 +1564,9 @@ pre code {
   grid-column: 5;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  min-width: 0;
   position: relative;
 }
 
@@ -1543,23 +1575,12 @@ pre code {
   width: 100%;
   max-width: var(--post-notes-max);
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /* ------------------------------------------------------------------ */
 /* POST TOC — experiment style                                        */
 /* ------------------------------------------------------------------ */
-
-.post-stage > #left-toc.left-toc{
-  --snake-top: 0px;
-  --snake-h: 0px;
-}
-
-.post-stage > #left-toc.left-toc .toc-inner{
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
 
 .post-stage > #left-toc.left-toc .toc-list{
   list-style: none;
@@ -1691,17 +1712,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 .post-stage > #left-toc.left-toc .toc-level-5{ padding-left: 48px; }
 .post-stage > #left-toc.left-toc .toc-level-6{ padding-left: 60px; }
 
-/* Optional: Only show the rail by default; reveal the text on hover (LessWrong vibe) */
-.post-stage > nav#left-toc.left-toc .toc-list {
-  opacity: 0;
-  transform: translateX(-2px);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-
-.post-stage > nav#left-toc.left-toc:hover .toc-list {
-  opacity: 1;
-  transform: translateX(0);
-}
 
 /* POST-TOP: breadcrumbs, meta, title — centered to match the grid */
 /* Post-top block: share same 6-column grid as post-stage */

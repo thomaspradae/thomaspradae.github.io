@@ -2,6 +2,7 @@
 (() => {
   const SEL = {
     toc: "#left-toc.left-toc",
+    rail: "#left-toc.left-toc .toc-rail",
     main: "#main.post",
     body: "#main.post .post-body",
     headings: "h2, h3, h4, h5, h6",
@@ -47,13 +48,14 @@
 
   function updateRailProgress() {
     const toc = document.querySelector(SEL.toc);
+    const rail = document.querySelector(SEL.rail);
     const main = document.querySelector(SEL.main);
-    if (!toc || !main) return;
+    if (!toc || !rail || !main) return;
 
     tocItemEls = Array.from(toc.querySelectorAll(".toc-item"));
     if (!tocItemEls.length) return;
 
-    const railRect = toc.getBoundingClientRect();
+    const railRect = rail.getBoundingClientRect();
     const railHeight = railRect.height;
 
     const articleHeight = main.offsetHeight;
