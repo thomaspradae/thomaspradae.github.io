@@ -1700,6 +1700,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 }
 
 /* indentation */
+.post-stage > #left-toc.left-toc .toc-level-1{ padding-left: 0px; }
 .post-stage > #left-toc.left-toc .toc-level-2{ padding-left: 12px; }
 .post-stage > #left-toc.left-toc .toc-level-3{ padding-left: 24px; }
 .post-stage > #left-toc.left-toc .toc-level-4{ padding-left: 36px; }

@@ -15,12 +15,23 @@ function tocWordCount(text) {
 }
 
 function buildSectionModel(article) {
+  const sections = [];
+
+  const pageTitleEl = document.querySelector("#main .post-top .page-title");
+  if (pageTitleEl) {
+    if (!pageTitleEl.id) pageTitleEl.id = "page-title";
+    sections.push({
+      id: pageTitleEl.id,
+      title: pageTitleEl.textContent.trim(),
+      level: 1,
+      wc: 1
+    });
+  }
+
   const all = Array.from(article.children);
   const headings = all.filter(el => /^H[2-6]$/.test(el.tagName));
 
-  if (!headings.length) return [];
-
-  const sections = [];
+  if (!headings.length) return sections;
 
   headings.forEach((heading, idx) => {
     const level = parseInt(heading.tagName.substring(1), 10);
