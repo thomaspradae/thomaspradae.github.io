@@ -1723,7 +1723,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     var(--post-notes-col)
     var(--post-gutter-c); */
   width: 100%;
-  padding-top: 8vh;
 }
 
 .post-top .post-meta-row {
