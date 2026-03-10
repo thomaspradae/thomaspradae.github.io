@@ -1460,17 +1460,26 @@ pre code {
     padding: 0;
 }
 
-/* The actual text column for the post */
-.post {
-    max-width: 42rem;     /* ~42rem, comfy reading width */
-}
-
-/* Main post container: keep sidenote counters and width knobs */
+/* Main post container: grid item + centering wrapper */
 #main.post {
     position: relative;
     counter-reset: sidenote-counter;
     --margin-note-width: var(--post-notes-col);
     --margin-note-gap:   var(--post-gutter-b);
+
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+#main.post > .post-body{
+    width: 100%;
+    max-width: var(--post-content-max);
+    box-sizing: border-box;
 }
 
 /* ------------------------------------------------------------------ */
@@ -1510,6 +1519,7 @@ pre code {
 
   display: flex;
   flex-direction: column;
+  min-width: 0;
   min-height: 100vh;
 
   font-family: 'Crimson Pro', serif;
@@ -1541,23 +1551,6 @@ pre code {
   height: 100%;
 }
 
-/* Centered article column */
-.post-stage > #main.post{
-  grid-column: 3;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  position: relative;
-}
-
-.post-stage > #main.post > .post-body{
-  width: 100%;
-  max-width: var(--post-content-max);
-  box-sizing: border-box;
-}
 
 /* Right notes column */
 .post-stage > .right-gutter{
@@ -1757,18 +1750,19 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 }
 
 
-.post-top .post-header,
-.post-top .post-metadata,
-.post-top .post-intro.post{
+.post-top > .post-header,
+.post-top > .post-metadata,
+.post-top > .post-intro.post{
   grid-column: 3;
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
 }
 
-.post-top .post-header > *,
-.post-top .post-metadata > *,
-.post-top .post-intro.post > *{
+.post-top > .post-header > *,
+.post-top > .post-metadata > *,
+.post-top > .post-intro.post > *{
   width: 100%;
   max-width: var(--post-content-max);
 }
