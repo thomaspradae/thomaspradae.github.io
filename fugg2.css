@@ -1474,6 +1474,7 @@ pre code {
     width: 100%;
     min-width: 0;
     margin: 0;
+    flex-wrap: wrap;
 }
 
 #main.post > .post-body{
