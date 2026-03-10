@@ -1554,11 +1554,19 @@ pre code {
   --snake-h: 0px;
 }
 
+.post-stage > #left-toc.left-toc .toc-inner{
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .post-stage > #left-toc.left-toc .toc-list{
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;

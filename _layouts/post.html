@@ -99,7 +99,11 @@ layout: default
     <!-- BLOCK 2: TOC + MAIN ARTICLE CONTENT -->
     <div class="post-stage">
       <!-- LEFT TOC: JS will fill this based on h2/h3/h4 in .post-body -->
-      <nav id="left-toc" class="left-toc" aria-label="Table of contents"></nav>
+      <nav id="left-toc" class="left-toc" aria-label="Table of contents">
+        <div class="toc-rail">
+          <div class="toc-inner"></div>
+        </div>
+      </nav>
 
       <!-- KEEP #main EXACTLY AS YOUR POST CONTAINER (so sidenotes rules still match) -->
       <div id="main" class="post">
