@@ -1714,14 +1714,9 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 /* POST-TOP: breadcrumbs, meta, title — centered to match the grid */
 /* Post-top block: share same 6-column grid as post-stage */
 .post-top{
-  display: grid;
-  /* grid-template-columns:
-    var(--post-toc-col)
-    var(--post-gutter-a)
-    var(--post-content-col)
-    var(--post-gutter-b)
-    var(--post-notes-col)
-    var(--post-gutter-c); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   width: 100%;
 }
 
