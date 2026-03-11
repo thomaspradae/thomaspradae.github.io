@@ -1599,7 +1599,7 @@ pre code {
 }
 
 .gutter-note-number {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Crimson Pro', serif;
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--backup-text-color-v3);
