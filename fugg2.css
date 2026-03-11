@@ -49,9 +49,9 @@
     --post-toc-col: 20%;
     --post-gutter-a: 8%;
     --post-content-col: 40%;
-    --post-gutter-b: 8%;
+    --post-gutter-b: 6%;
     --post-notes-col: 20%;
-    --post-gutter-c: 1%;
+    --post-gutter-c: 6%;
 
     --post-content-max: 42rem;
     --post-notes-max: 20rem;
@@ -1600,7 +1600,7 @@ pre code {
 
 .gutter-note-number {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   color: var(--backup-text-color-v3);
   min-width: 1rem;
