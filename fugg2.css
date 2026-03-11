@@ -1721,7 +1721,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
 .post-top .post-meta-row {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     gap: 2rem;
 }

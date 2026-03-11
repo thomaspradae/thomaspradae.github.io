@@ -87,21 +87,20 @@ layout: default
                     {% endfor %}
                   </div>
                 </div>
-
-                <!-- COLUMN 2: TYPE -->
-                <div class="post-meta-section">
-                  <p class="meta-label">type</p>
-          
-                  <p class="post-meta-section-text">
-                    {% if page.section_label %}
-                      {{ page.section_label }}
-                    {% elsif page.collection %}
-                      {{ page.collection | capitalize }}
-                    {% else %}
-                      Notes
-                    {% endif %}
-                  </p>
-                </div>
+              </div>
+            <!-- COLUMN 2: TYPE -->
+              <div class="post-meta-section">
+                <p class="meta-label">type</p>
+        
+                <p class="post-meta-section-text">
+                  {% if page.section_label %}
+                    {{ page.section_label }}
+                  {% elsif page.collection %}
+                    {{ page.collection | capitalize }}
+                  {% else %}
+                    Notes
+                  {% endif %}
+                </p>
               </div>
             </div>
           </div>
