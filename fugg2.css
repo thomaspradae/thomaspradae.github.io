@@ -472,7 +472,7 @@ a:any-link:hover{
 footer {
     position: sticky;
     bottom: 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
     padding-block: 30vh;  /* shorthand for top/bottom */
     margin-top: 0;
     z-index: 0;
