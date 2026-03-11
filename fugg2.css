@@ -1194,7 +1194,6 @@ footer {
 .post-metadata .meta {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
 }
 
 /* Row: [ dates ] [ section blurb ] side by side */
@@ -1721,7 +1720,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
 .post-top .post-meta-row {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start;    
     gap: 2rem;
 }
 
