@@ -1740,13 +1740,9 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     font-style: italic;
     text-transform: lowercase;
     color: rgb(0, 62, 231);
-  }
-
-.post-top .post-meta-date {
-  display: block;       /* kill inner flex so it stops being weird */
-  text-align: left;
-  margin: 0;
 }
+
+
 
 
 .post-top > .post-header,
