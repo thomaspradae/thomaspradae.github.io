@@ -1588,8 +1588,8 @@ pre code {
 /* ------------------------------------------------------------------ */
 
 
-gutter-note p {
-  color: var(--contrast-color);
+.gutter-note p {
+  color: red;
 }
 
 
