@@ -73,22 +73,6 @@ layout: default
                     </time>
                   {% endif %}
                 </div>
-          
-                <!-- COLUMN 2: TYPE -->
-                <div class="post-meta-section">
-                  <p class="meta-label">type</p>
-          
-                  <p class="post-meta-section-text">
-                    {% if page.section_label %}
-                      {{ page.section_label }}
-                    {% elsif page.collection %}
-                      {{ page.collection | capitalize }}
-                    {% else %}
-                      Notes
-                    {% endif %}
-                  </p>
-                </div>
-          
                 <!-- COLUMN 3: TAGS -->
                 <div class="post-meta-tags">
                   <p class="meta-label">tags</p>
@@ -102,6 +86,21 @@ layout: default
                       </a>
                     {% endfor %}
                   </div>
+                </div>
+
+                <!-- COLUMN 2: TYPE -->
+                <div class="post-meta-section">
+                  <p class="meta-label">type</p>
+          
+                  <p class="post-meta-section-text">
+                    {% if page.section_label %}
+                      {{ page.section_label }}
+                    {% elsif page.collection %}
+                      {{ page.collection | capitalize }}
+                    {% else %}
+                      Notes
+                    {% endif %}
+                  </p>
                 </div>
               </div>
             </div>
