@@ -1280,49 +1280,64 @@ footer {
     color: var(--main-accent);
 }
 
-.footnotes{
-    border-top: 0.0125rem solid var(--lightest-text);
-    margin-top: 5vh;
+/* FOOTNOTES BLOCK */
+.footnotes {
+  border-top: 0.0125rem solid var(--lightest-text);
+  margin-top: 5vh;
+  padding-top: 2rem;
 }
 
-.footnotes ol{
-    margin-top: 5vh;
+.footnotes ol {
+  margin: 0;
+  padding-left: 1.25rem;
 }
 
-
-.footnote{
-    font-weight: 300;
-    font-size: 0.875rem;
-    color: var(--main-accent);
-    transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
-    text-decoration: none;
-    padding-left: 0.125rem;
+.footnotes li {
+  color: var(--backup-text-color-v2);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
 }
 
 .footnotes ol li p {
-    font-family: 'Crimson Pro', serif; 
-    font-size: 0.75rem;                /* smaller than main body */
-    line-height: 1.5;
-    color: var(--backup-text-color-v2);
-    margin: 0 0 0.75rem 0;
+  margin: 0;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--backup-text-color-v2);
 }
 
-.footnote:hover{
-    color: var(--secondary-accent);
-    text-decoration: underline;
+.footnotes a {
+  color: var(--backup-text-color-v2);
 }
 
-.reversefootnote{
-    font-weight: 400;
-    font-size: 0.875rem;
-    color: var(--main-accent);
-    text-decoration: none;
-    transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
+.footnotes a:hover {
+  color: var(--main-accent);
 }
 
-.reversefootnote:hover{
-    color: var(--secondary-accent);
-    text-decoration: underline;
+.reversefootnote {
+  font-size: 0.75rem;
+  color: var(--backup-text-color-v3);
+  text-decoration: none;
+}
+
+.reversefootnote:hover {
+  color: var(--main-accent);
+  text-decoration: underline;
+}
+
+.footnote {
+  font-weight: 300;
+  font-size: 0.875rem;
+  color: var(--main-accent);
+  transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
+  text-decoration: none;
+  padding-left: 0.125rem;
+}
+
+.footnote:hover {
+  color: var(--secondary-accent);
+  text-decoration: underline;
 }
 
 /* .meta{
