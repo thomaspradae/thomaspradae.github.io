@@ -86,8 +86,14 @@ function buildTOC() {
     const li = document.createElement("li");
     li.className = `toc-item toc-level-${s.level}`;
     li.dataset.target = s.id;
-    li.style.flexGrow = String(Math.max(1, s.wc));
-    li.style.flexBasis = "0px";
+
+    const isTitleItem = idx === 0;
+    if (isTitleItem) {
+      li.classList.add("toc-title-item");
+    } else {
+      li.style.flexGrow = String(Math.max(1, s.wc));
+      li.style.flexBasis = "0px";
+    }
 
     const a = document.createElement("a");
     a.href = `#${s.id}`;

@@ -1583,6 +1583,11 @@ pre code {
   gap: 8px;
 }
 
+.post-stage > #left-toc.left-toc .toc-title-item{
+  flex: 0 0 4.5rem;
+  min-height: 4.5rem;
+}
+
 .post-stage > #left-toc.left-toc .toc-item{
   position: relative;
   border: none;
