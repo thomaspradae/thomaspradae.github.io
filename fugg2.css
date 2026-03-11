@@ -670,7 +670,6 @@ footer {
     color: #83000045;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    text-align: center;
 }
 
 .subpage-intro:hover .dark{
@@ -1741,9 +1740,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     text-transform: lowercase;
     color: rgb(0, 62, 231);
 }
-
-
-
 
 .post-top > .post-header,
 .post-top > .post-metadata,
