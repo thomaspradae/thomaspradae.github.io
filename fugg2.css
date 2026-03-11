@@ -1496,7 +1496,6 @@ pre code {
     var(--post-gutter-c);
   align-items: start;
   width: 100%;
-  padding-top: 4vh;
 }
 
 .post-stage > #left-toc.left-toc,
