@@ -1958,6 +1958,8 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     white-space: pre;
     font-family: monospace;
     line-height: 1;
+    font-size: 0.3rem;
+    color: var(--lightest-text);
 }
 
 .ascii-footer {
