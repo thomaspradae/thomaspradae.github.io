@@ -1953,6 +1953,13 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     overflow-x: auto;          /* if it's too wide, allow horizontal scroll */
 }
 
+.ascii-footer-wrapper pre {
+    margin: 0;
+    white-space: pre;
+    font-family: monospace;
+    line-height: 1;
+}
+
 .ascii-footer {
     font-size: 0.3rem;        /* tune this until the whole thing fits nicely */
     line-height: 1.1;
