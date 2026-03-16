@@ -469,91 +469,175 @@ a:any-link:hover{
     text-align: left;
 }
 
-footer {
+/* ------------------------------------------------------------------ */
+/* FOOTER — full-screen editorial footer                              */
+/* ------------------------------------------------------------------ */
+
+.site-footer {
     position: sticky;
     bottom: 0;
-    background-color: rgb(255, 255, 255);
-    padding-block: 30vh;  /* shorthand for top/bottom */
-    margin-top: 0;
     z-index: 0;
 
-    /* background-image: url('assets/images/resources/color1.jpg');
-    background-size: cover;        /* fill the footer, crop if needed */
-    /* background-position: center;   center the image */
-    /* background-repeat: no-repeat;  no tiling  */
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    background-color: var(--background-color);
+
+    display: grid;
+    grid-template-columns: 24% 28% 24% 24%;
+    grid-template-rows: auto 1fr auto;
+    padding: 2rem 2rem 1.5rem 2rem;
 }
 
-/* .footer-line {
-    margin-left: 8vw;
-    margin-right: 8vw;
-    margin-bottom: 1vh;
-    height: 0.0312rem;
-    background-color: var(--lightest-text);
-} */
+/* top-left mark */
+.footer-mark {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
 
-.footer-info p{
-    color: var(--lightest-text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    line-height: 0.95;
+    color: var(--backup-text-color-v4);
 }
 
-.footer-info{
-    margin-left: 8vw;
-    text-align: left;
-    font-size: 0.75rem;
-    color: var(--contrast-color);
+/* top middle links block */
+.footer-links {
+    grid-column: 2 / 4;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
+
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 4.5rem;
 }
 
-.footer-bottom {
-    margin: 0;
-    padding-top: 10vh;
-}
-
-.footer-image {
-    width: 2.1875rem;
-    height: auto;
-    margin-left: 8vw;
-}
-
-.footer-text {
-    text-align: right;
+.footer-links-col {
     display: flex;
     flex-direction: column;
-    margin-right: 8vw;
-    font-size: 0.625rem;
-    color: var(--lightest-text);
+    gap: 0.2rem;
 }
 
-.footer-text .year,
-.footer-text .name {
-    display: block;
+.footer-links-col a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--backup-text-color-v3);
+    text-decoration: none;
 }
 
-.footer-text .name {
-    font-weight: bold;
+.footer-links-col a:hover {
+    color: var(--contrast-color);
+    text-decoration: none;
 }
 
-.info-item {
+/* ascii art stage */
+.ascii-footer-wrapper {
+    grid-column: 2 / 4;
+    grid-row: 2;
+
+    align-self: end;
+    justify-self: center;
+
+    width: 100%;
     display: flex;
-    align-items: center;
-}
+    justify-content: center;
+    align-items: flex-end;
 
-.info-icon_1 {
-    margin-right: 0.3125rem;
-    width: 0.625rem;
-    height: 0.625rem;
-}
-
-.info-icon_2 {
-    margin-right: 0.3125rem;
-    width: 0.625rem;
-    height: 0.625rem;
-}
-
-.info-item p {
     margin: 0;
+    overflow: hidden;
 }
 
-#bogota-weather {
-    font-weight: bold;
+.ascii-footer-wrapper pre,
+.ascii-footer {
+    margin: 0;
+    white-space: pre;
+    text-align: left;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.22rem;
+    line-height: 0.82;
+    color: #c6c6c6;
+}
+
+/* signoff under map */
+.footer-signoff {
+    grid-column: 2 / 4;
+    grid-row: 3;
+
+    align-self: end;
+    justify-self: center;
+    text-align: center;
+
+    padding-top: 1rem;
+}
+
+.footer-signoff-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: var(--backup-text-color-v2);
+    margin-bottom: 0.3rem;
+}
+
+.footer-signoff-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--backup-text-color-v3);
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+        min-height: 100vh;
+    }
+
+    .footer-mark {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 2.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+        grid-column: 1;
+        grid-row: 2;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .ascii-footer-wrapper {
+        grid-column: 1;
+        grid-row: 3;
+        width: 100%;
+        overflow-x: auto;
+        justify-content: center;
+    }
+
+    .ascii-footer-wrapper pre,
+    .ascii-footer {
+        font-size: 0.17rem;
+        line-height: 0.8;
+    }
+
+    .footer-signoff {
+        grid-column: 1;
+        grid-row: 4;
+        padding-top: 1rem;
+    }
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
@@ -1939,38 +2023,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     line-height: 1.4;
     color: var(--backup-text-color-v2);
     margin: 0;                           /* remove extra paragraph margin */
-}
-
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-/* (006) - ASCII FOOTER */
-/* ----------------------------------------------------------------------------------------------------------------------------------------- */
-
-.ascii-footer-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;   /* centers the art horizontally */
-    margin-top: 4vh;
-    overflow-x: auto;          /* if it's too wide, allow horizontal scroll */
-}
-
-.ascii-footer-wrapper pre {
-    margin: 0;
-    white-space: pre;
-    font-family: monospace;
-    line-height: 1;
-    font-size: 0.3rem;
-    color: var(--lightest-text);
-}
-
-.ascii-footer {
-    font-size: 0.3rem;        /* tune this until the whole thing fits nicely */
-    line-height: 1.1;
-    color: var(--lightest-text);
-    white-space: pre;          /* respect all spaces + newlines */
-    text-align: left;          /* the ASCII itself stays as you typed it */
-    display: inline-block;     /* so flexbox can center this block */
-    /* optional: keep it from growing too tall on mobile */
-    /* max-width: 100%; */
 }
 
 /* ------------------------------------------------------------------ */

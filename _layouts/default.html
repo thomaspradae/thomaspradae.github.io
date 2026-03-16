@@ -44,9 +44,31 @@ layout: compress
     </div>
   </main>
 
-  <footer>
+  <footer class="site-footer">
+    <div class="footer-mark no-mathjax">"field notes"</div>
+
+    <div class="footer-links no-mathjax">
+      <div class="footer-links-col">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/archive.html">Archive</a>
+        <a href="/writing.html">Writing</a>
+        <a href="/building.html">Building</a>
+        <a href="/notes.html">Notes</a>
+        <a href="/misc.html">Misc</a>
+      </div>
+
+      <div class="footer-links-col">
+        <a href="https://twitter.com/thomas__prada" target="_blank" rel="noopener noreferrer">Twitter (X)</a>
+        <a href="https://github.com/thomaspradae" target="_blank" rel="noopener noreferrer">Github</a>
+        <a href="/rss.html">RSS</a>
+        <a href="/cv.html">CV</a>
+        <a href="mailto:thomaspradaes@gmail.com">Email</a>
+      </div>
+    </div>
+
     <div class="ascii-footer-wrapper no-mathjax">
-<pre>{% raw %}
+      <pre class="ascii-footer">{% raw %}
 ;&&&&&&&$+:                                                                 ..                                           ......::::::::::::::::::::::::::;+xxXXXXxxx+++++;;:....:;;;.                                                .X&& 
 +&&&&&&&$+:                                                                                       ....                  .......::::;;:::::::::;;+++xxxXXX$$&&&&&$$XXxxxxx+++;:.   .;;:                                                 ;$& 
     .x&&&&&&&$+.       ...........    .                                                                 ...::...          ........:::::;;;;;;;:::::;+xX$&&&&&&&&&&&&&&$$$XXXXXXXxxx+++;::;::           .::::..                                .; 
@@ -110,9 +132,11 @@ XX$$$$$$$&&&&&&&&&&&$XXxxx+;;:.                                                 
 
 {% endraw %}</pre>
     </div>
-  
 
-
+    <div class="footer-signoff no-mathjax">
+      <div class="footer-signoff-title">thomas prada's field notes</div>
+      <div class="footer-signoff-meta">copyright © all rights reserved</div>
+    </div>
   </footer>
 
   <!-- GSAP scroll animation for .stickysidebar -->
@@ -123,7 +147,7 @@ XX$$$$$$$&&&&&&&&&&&$XXxxx+;;:.                                                 
       console.log("Screen width is greater than 600px, animation active");
       gsap.to(".stickysidebar", {
         scrollTrigger: {
-          trigger: ".footer-line",
+          trigger: ".site-footer",
           start: "top 100%",
           end: "bottom 10%",
           scrub: 1,
