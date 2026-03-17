@@ -496,10 +496,10 @@ a:any-link:hover{
 }
 
 .footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 7rem;
+    display: grid;
+    grid-template-columns: 22rem max-content max-content max-content;
+    column-gap: 4.5rem;
+    align-items: start;
 
     width: 100%;
     max-width: 96rem;
@@ -508,8 +508,6 @@ a:any-link:hover{
 
 /* left title block */
 .footer-mark {
-    flex: 0 0 22rem;
-
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: clamp(2.5rem, 4vw, 4.5rem);
@@ -517,33 +515,43 @@ a:any-link:hover{
     color: var(--backup-text-color-v4);
 }
 
-/* links block sits just to the right of field notes */
-.footer-links {
+/* each section: label aligned with first item of list */
+.footer-group {
     display: grid;
     grid-template-columns: max-content max-content;
-    column-gap: 5rem;
+    column-gap: 1rem;
     align-items: start;
-    justify-content: start;
-
-    margin-top: 0.15rem;
 }
 
-.footer-links-col {
+.footer-group-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--backup-text-color-v3);
+    white-space: nowrap;
+    padding-top: 0;
+}
+
+.footer-group-links {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
 }
 
-.footer-links-col a {
+.footer-group-links a {
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.45;
-    color: var(--backup-text-color-v3);
+    color: var(--backup-text-color-v2);
     text-decoration: none;
+    white-space: nowrap;
 }
 
-.footer-links-col a:hover {
+.footer-group-links a:hover {
     color: var(--contrast-color);
     text-decoration: none;
 }
@@ -612,19 +620,18 @@ a:any-link:hover{
     }
 
     .footer-top {
-        flex-direction: column;
-        gap: 1.5rem;
+        grid-template-columns: 1fr;
+        row-gap: 1.25rem;
         max-width: none;
     }
 
     .footer-mark {
-        flex: none;
         font-size: 2.3rem;
     }
 
-    .footer-links {
-        grid-template-columns: 1fr 1fr;
-        column-gap: 2rem;
+    .footer-group {
+        grid-template-columns: 5.5rem 1fr;
+        column-gap: 1rem;
     }
 
     .ascii-footer-wrapper {
