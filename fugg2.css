@@ -497,7 +497,7 @@ a:any-link:hover{
 
 .footer-top {
     display: grid;
-    grid-template-columns: 22rem max-content max-content max-content;
+    grid-template-columns: max-content max-content max-content max-content;
     column-gap: 4.5rem;
     align-items: start;
 
@@ -513,6 +513,7 @@ a:any-link:hover{
     font-size: clamp(2.5rem, 4vw, 4.5rem);
     line-height: 0.95;
     color: var(--backup-text-color-v4);
+    white-space: nowrap;
 }
 
 /* each section: label aligned with first item of list */
