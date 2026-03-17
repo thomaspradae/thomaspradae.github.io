@@ -526,12 +526,10 @@ a:any-link:hover{
 
 .footer-group-label {
     font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.45;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--backup-text-color-v3);
+    color: #d7d7d7;
     white-space: nowrap;
     padding-top: 0;
 }
