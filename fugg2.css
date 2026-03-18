@@ -1690,9 +1690,8 @@ pre code {
 }
 
 .gutter-note-number {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  line-height: 1.35;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.925rem;
   color: var(--backup-text-color-v3);
   min-width: 0.9rem;
 }
@@ -1701,7 +1700,7 @@ pre code {
 .gutter-note-body p {
   margin: 0;
   font-family: 'Crimson Pro', serif;
-  font-size: 0.82rem;
+  font-size: 0.925rem;
   line-height: 1.35;
   color: var(--backup-text-color-v2);
 }
