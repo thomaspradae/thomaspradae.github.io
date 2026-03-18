@@ -1694,6 +1694,7 @@ pre code {
   font-size: 0.925rem;
   color: var(--backup-text-color-v3);
   min-width: 0.9rem;
+  line-height: 1.35;
 }
 
 .gutter-note-body,
