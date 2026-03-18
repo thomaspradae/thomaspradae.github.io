@@ -303,6 +303,37 @@ text-decoration: none;
 .home-nav-link {
     font-size: 1.2rem;
 }
+
+    /* scale everything up on iPhone */
+    p {
+        font-size: 1.2rem;
+        line-height: 1.55;
+    }
+
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+
+    .home-nav-link {
+        font-size: 1.35rem;
+    }
+
+    .latest-post-p {
+        font-size: 0.95rem;
+    }
+
+    .latest-post-time {
+        font-size: 0.8rem;
+    }
+
+    .all-post-description {
+        font-size: 0.85rem;
+    }
+
+    .footnotes li,
+    .footnotes ol li p {
+        font-size: 0.85rem;
+    }
 }
 
 /* ------------------------------------------------------------------------- */
