@@ -1528,24 +1528,208 @@ h6 {
     color: var(--contrast-color);
 }
 
-/* Style for inline code */
-code {
-    color: var(--contrast-color); /* Inline code text color */
-    background-color: var(--backup-text-color-v4); /* Inline code background color */
-    padding: 0.125rem 0.25rem; /* Padding for inline code */
-    border-radius: 0.25rem; /* Rounded corners for inline code */
-    font-size: 90%; /* Slightly smaller font size */
+/* ------------------------------------------------------------------ */
+/* CODE BLOCKS                                                         */
+/* ------------------------------------------------------------------ */
+
+/* inline code only */
+:not(pre) > code {
+  font-family: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+  font-size: 0.88em;
+  line-height: 1;
+  color: #222222;
+  background: #f3f3ef;
+  border: 1px solid #e7e7df;
+  border-radius: 0.35rem;
+  padding: 0.12rem 0.32rem;
+  white-space: nowrap;
 }
 
-/* Style for code blocks */
-pre code {
-    display: block; /* Ensure it takes full width */
-    padding: 0.625rem; /* Padding for code block */
-    color: var(--contrast-color); /* Code block text color */
-    background-color: var(--backup-text-color-v5); /* Code block background color */
-    border-radius: 0.375rem; /* Rounded corners for code block */
-    overflow-x: auto; /* Horizontal scroll for long lines */
-    font-size: 85%; /* Adjust font size */
+/* outer wrapper from Jekyll/Rouge */
+div[class^="language-"].highlighter-rouge,
+.highlighter-rouge {
+  position: relative;
+  margin: 2rem 0;
+}
+
+/* actual block shell */
+.highlighter-rouge .highlight {
+  position: relative;
+  background: #f7f7f2;
+  border: 1px solid #e7e7df;
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+/* top bar */
+.highlighter-rouge .highlight::before {
+  content: attr(data-lang);
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8d8d8d;
+  background: #f1f1eb;
+  border-bottom: 1px solid #e7e7df;
+  padding: 0.65rem 0.9rem;
+}
+
+/* scrolling code area */
+.highlighter-rouge pre.highlight {
+  margin: 0;
+  padding: 1rem 1rem 1.05rem 1rem;
+  overflow-x: auto;
+  background: transparent;
+}
+
+/* code text */
+.highlighter-rouge code {
+  font-family: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #222222;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}
+
+/* copy button */
+.code-copy-button {
+  position: absolute;
+  top: 0.48rem;
+  right: 0.55rem;
+  z-index: 3;
+
+  appearance: none;
+  border: 1px solid #ddddcf;
+  background: rgba(255, 255, 255, 0.88);
+  color: #6b6b6b;
+  border-radius: 0.45rem;
+  padding: 0.32rem 0.52rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.code-copy-button:hover {
+  background: #ffffff;
+  color: #111111;
+  border-color: #cfcfbe;
+}
+
+.code-copy-button:focus-visible {
+  outline: 2px solid #b296ff;
+  outline-offset: 2px;
+}
+
+/* Rouge token colors */
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cp,
+.highlight .cs {
+  color: #8b8b84;
+  font-style: italic;
+}
+
+.highlight .err {
+  color: #b00020;
+  background: transparent;
+}
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .ow {
+  color: #7b61ff;
+}
+
+.highlight .o {
+  color: #5f5f5f;
+}
+
+.highlight .p {
+  color: #6d6d66;
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx {
+  color: #2f8f5b;
+}
+
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .il,
+.highlight .mo {
+  color: #c45508;
+}
+
+.highlight .na {
+  color: #7c3aed;
+}
+
+.highlight .nb,
+.highlight .bp {
+  color: #2563eb;
+}
+
+.highlight .nc,
+.highlight .nf,
+.highlight .fm {
+  color: #1d4ed8;
+}
+
+.highlight .nt {
+  color: #c2410c;
+}
+
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+  color: #374151;
+}
+
+/* selection inside code blocks */
+.highlighter-rouge code::selection,
+.highlighter-rouge code span::selection {
+  background: #d9ccff;
+  color: #111111;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  :not(pre) > code {
+    white-space: normal;
+  }
+
+  .highlighter-rouge code {
+    font-size: 0.82rem;
+  }
+
+  .highlighter-rouge .highlight::before {
+    padding-right: 4.5rem;
+  }
 }
 
 .testing {
