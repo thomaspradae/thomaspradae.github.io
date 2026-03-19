@@ -474,17 +474,20 @@ main.content {
 }
 
 
-p {
+/* Grouping p, li, and ul so they share the same base typography */
+p,
+li,
+ul {
     font-weight: 400;
-    /* color: #9b9b9b; */
     color: var(--backup-text-color);
     font-size: 1.35rem;
     font-family: 'Crimson Pro', serif;
     line-height: 1.4;
 }
 
-li {    
-    color: var(--backup-text-color);
+/* Add a little margin to the bottom of lists so they space out like paragraphs do */
+ul, ol {
+    margin-bottom: 1.25rem;
 }
 
 a:-webkit-any-link {
