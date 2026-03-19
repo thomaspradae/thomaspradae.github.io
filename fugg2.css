@@ -1632,8 +1632,8 @@ div[class^="language-"].highlighter-rouge,
 /* code text */
 .highlighter-rouge code {
   font-family: 'SF Mono Nerd', monospace;
-  font-size: 0.83rem;
-  line-height: 1.35;
+  font-size: 0.9rem;
+  line-height: 1;
   color: #222222;
   background: transparent;
   border: 0;
