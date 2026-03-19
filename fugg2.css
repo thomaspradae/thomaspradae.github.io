@@ -2545,6 +2545,7 @@ transition: color 0.5s ease;
 font-size: 0.75rem;
 font-variant-numeric: tabular-nums;
 margin-left: 2rem;
+font-family: 'Inter', sans-serif;
 }
 
 .archive-footer a {
@@ -2668,6 +2669,8 @@ min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
 }
 
 .archive-type{
@@ -2675,7 +2678,6 @@ min-width: 0;
   font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
   color: var(--backup-text-color-v3);
 }
 
