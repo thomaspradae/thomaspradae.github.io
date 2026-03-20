@@ -552,7 +552,7 @@ a:any-link:hover{
 
 .footer-top {
     display: grid;
-    grid-template-columns: max-content max-content max-content max-content;
+    grid-template-columns: max-content max-content max-content max-content max-content;
     column-gap: 4.5rem;
     align-items: start;
 
@@ -610,6 +610,20 @@ a:any-link:hover{
     text-decoration: none;
 }
 
+/* HUD column (city, time, tz) - matches Elsewhere style */
+.footer-hud-content {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--backup-text-color-v2);
+    font-variant-numeric: tabular-nums;
+}
+
+.footer-hud-content span:empty {
+    display: none;
+}
+
 /* ascii art stage */
 .ascii-footer-wrapper {
     grid-row: 2;
@@ -652,7 +666,6 @@ a:any-link:hover{
     font-family: 'Crimson Pro', serif;
     font-size: 0.8rem;
     font-weight: 600;
-    text-transform: lowercase;
     color: var(--backup-text-color-v2);
     margin-bottom: 0.3rem;
 }
