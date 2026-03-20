@@ -808,6 +808,11 @@ a:any-link:hover{
     margin-top: 8vh;
 }
 
+/* When image has a caption, drop its bottom margin so caption sits snug */
+.page-content img:has(+ em) {
+    margin-bottom: 0;
+}
+
 /* Image captions: *italic text* after an image in Markdown becomes <em> */
 img + em {
     display: block;
