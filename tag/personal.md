@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Personal
 ---
 
 {% assign tag = "personal" %}
@@ -15,12 +16,6 @@ layout: default
   {% endfor %}
 {% endfor %}
 
-
-{% assign page.title = tag %}
-
-<head>
-  <title>{{ tag | downcase }} / thomasprada</title>
-</head>
 
 <h1>{{ tag }}</h1>
  
