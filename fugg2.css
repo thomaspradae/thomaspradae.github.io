@@ -813,9 +813,8 @@ img + em {
     display: block;
     font-style: normal;
     font-family: 'Crimson Pro', serif;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: var(--backup-text-color-v3);
-    margin-top: 0.5rem;
     margin-bottom: 2rem;
 }
 
