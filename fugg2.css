@@ -812,12 +812,11 @@ a:any-link:hover{
 img + em {
     display: block;
     font-style: normal;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Crimson Pro', serif;
     font-size: 0.75rem;
     color: var(--backup-text-color-v3);
     margin-top: 0.5rem;
     margin-bottom: 2rem;
-    text-align: center;
 }
 
 /* Optional figure numbering: add .figures-counted to post body, set figure_count: true in front matter */
