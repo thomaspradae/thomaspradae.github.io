@@ -808,6 +808,29 @@ a:any-link:hover{
     margin-top: 8vh;
 }
 
+/* Image captions: *italic text* after an image in Markdown becomes <em> */
+img + em {
+    display: block;
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: var(--backup-text-color-v3);
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Optional figure numbering: add .figures-counted to post body, set figure_count: true in front matter */
+.figures-counted {
+    counter-reset: figure-counter;
+}
+
+.figures-counted img + em::before {
+    counter-increment: figure-counter;
+    content: "Figure " counter(figure-counter) " — ";
+    font-weight: 600;
+}
+
 
 .page-title {
     font-size: 3rem;
