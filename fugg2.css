@@ -302,6 +302,11 @@ transform: translateY(-1px);
 text-decoration: none;
 }
 
+.home-nav-list a.home-nav-link:hover {
+  color: var(--contrast-color);
+  text-decoration: none;
+}
+
 /* Mobile tuning */
 @media (max-width: 600px) {
 .home-shell {
