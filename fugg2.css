@@ -2670,14 +2670,13 @@ font-family: 'Inter', sans-serif;
 /* The top-right nav styling */
 .archive-topnav{
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
   color: #9b9b99;
 
   display: inline-flex;
   align-items: baseline;
-  gap: 0.35rem;
+  gap: 1rem;
 }
 
 .archive-topnav a{
