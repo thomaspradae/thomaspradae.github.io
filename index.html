@@ -7,6 +7,7 @@
     <title>Thomas Prada's "field notes"</title>
     <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
     <link rel="stylesheet" href="/fugg2.css">
+    <link rel="preconnect" href="https://api.open-meteo.com">
     <style>
       .heroCol{
         width: 420px;         /* same as your map hero width */
@@ -407,7 +408,7 @@ function loadImage(url){
       <div class="hudName" id="hudName"></div>
     </div>
     <div class="hudRight" id="hudRight">
-      <span id="hudCity"></span>
+      <span id="hudCity" class="weather-pending"></span>
       <span id="hudTime"></span>
       <span id="hudTz"></span>
     </div>
@@ -449,8 +450,7 @@ function loadImage(url){
     hudTime.textContent = t;
     hudTz.textContent = tzStr(d);
   }
-  // hudCity filled by weather.js; show placeholder until loaded
-  hudCity.textContent = "Bogotá —";
+  // hudCity filled by weather.js; stays hidden until loaded
   tickClock();
   setInterval(tickClock, 250);
 

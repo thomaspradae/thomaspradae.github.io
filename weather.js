@@ -17,8 +17,9 @@ function fetchWeatherData() {
         const label = `Bogotá ${currentTemperature}°`;
         const weatherEl = document.getElementById('bogota-weather');
         const hudCityEl = document.getElementById('hudCity');
-        if (weatherEl) weatherEl.textContent = label;
-        if (hudCityEl) hudCityEl.textContent = label;
+        [weatherEl, hudCityEl].forEach(function(el) {
+            if (el) { el.textContent = label; el.classList.remove('weather-pending'); }
+        });
 
         tickFooterHud();
         setInterval(tickFooterHud, 250);
@@ -27,8 +28,9 @@ function fetchWeatherData() {
         const fallback = 'Bogotá —°';
         const weatherEl = document.getElementById('bogota-weather');
         const hudCityEl = document.getElementById('hudCity');
-        if (weatherEl) weatherEl.textContent = fallback;
-        if (hudCityEl) hudCityEl.textContent = fallback;
+        [weatherEl, hudCityEl].forEach(function(el) {
+            if (el) { el.textContent = fallback; el.classList.remove('weather-pending'); }
+        });
         tickFooterHud();
         setInterval(tickFooterHud, 250);
     });

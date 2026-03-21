@@ -14,6 +14,8 @@ layout: compress
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="/fugg2.css">
 
+  <link rel="preconnect" href="https://api.open-meteo.com">
+
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -86,7 +88,7 @@ layout: compress
       <div class="footer-group footer-group--hud">
         <div class="footer-group-label footer-group-label--empty"></div>
         <div class="footer-group-label footer-hud-line">
-          <span id="bogota-weather">—</span>
+          <span id="bogota-weather" class="weather-pending">—</span>
           <span id="footer-hud-time"></span>
           <span id="footer-hud-tz"></span>
         </div>
