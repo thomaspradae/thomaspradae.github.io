@@ -620,17 +620,12 @@ a:any-link:hover{
     overflow: hidden;
 }
 
-.footer-hud-content {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    line-height: 1.45;
-    color: var(--backup-text-color-v2);
+.footer-hud-line {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    white-space: nowrap;
     font-variant-numeric: tabular-nums;
-}
-
-.footer-hud-content span:empty {
-    display: none;
 }
 
 /* ascii art stage */
