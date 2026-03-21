@@ -610,7 +610,16 @@ a:any-link:hover{
     text-decoration: none;
 }
 
-/* HUD column (city, time, tz) - matches Elsewhere style */
+/* HUD column - no label, just time/city/weather like other columns */
+.footer-group--hud {
+    grid-template-columns: 0 max-content;
+}
+
+.footer-group-label--empty {
+    visibility: hidden;
+    overflow: hidden;
+}
+
 .footer-hud-content {
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
