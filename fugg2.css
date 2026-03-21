@@ -482,7 +482,6 @@ main.content {
     gap: 1rem;
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--backup-text-color-v4);
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
 }
