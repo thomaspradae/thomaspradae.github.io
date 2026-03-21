@@ -167,7 +167,7 @@
       </figure>
     </main>
   
-    <!-- <script src="weather.js"></script> --> <!-- Disabled: using hardcoded text in HUD -->
+    <script src="/weather.js"></script>
     <script>
 /* ====== CONFIG ====== */
 const TARGET_W = 910, TARGET_H = 820;  // "final pixel space" for georef + DEM
@@ -446,12 +446,11 @@ function loadImage(url){
   function tickClock(){
     const d = new Date();
     const t = `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
-    hudCity.textContent = "Bogotá 16°";
     hudTime.textContent = t;
     hudTz.textContent = tzStr(d);
   }
-  // Initialize with hardcoded text immediately
-  hudCity.textContent = "Bogotá 16°";
+  // hudCity filled by weather.js; show placeholder until loaded
+  hudCity.textContent = "Bogotá —";
   tickClock();
   setInterval(tickClock, 250);
 

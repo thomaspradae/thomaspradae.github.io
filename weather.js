@@ -7,22 +7,28 @@ function tzStr(d) {
 }
 
 function fetchWeatherData() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=4.6097&longitude=-74.0817&hourly=temperature_2m')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=4.6097&longitude=-74.0817&hourly=temperature_2m&timezone=America%2FBogota')
     .then(response => response.json())
     .then(data => {
-        const now = new Date();
-        const hourIndex = now.getUTCHours();
+        const bogotaHour = parseInt(new Date().toLocaleString('en-CA', { timeZone: 'America/Bogota', hour: '2-digit', hour12: false }), 10);
+        const hourIndex = Math.min(bogotaHour, data.hourly.temperature_2m.length - 1);
         const currentTemperature = Math.round(data.hourly.temperature_2m[hourIndex]);
 
+        const label = `Bogotá ${currentTemperature}°`;
         const weatherEl = document.getElementById('bogota-weather');
-        if (weatherEl) weatherEl.textContent = `Bogotá ${currentTemperature}°`;
+        const hudCityEl = document.getElementById('hudCity');
+        if (weatherEl) weatherEl.textContent = label;
+        if (hudCityEl) hudCityEl.textContent = label;
 
         tickFooterHud();
         setInterval(tickFooterHud, 250);
     })
     .catch(() => {
+        const fallback = 'Bogotá —°';
         const weatherEl = document.getElementById('bogota-weather');
-        if (weatherEl) weatherEl.textContent = 'Bogotá —°';
+        const hudCityEl = document.getElementById('hudCity');
+        if (weatherEl) weatherEl.textContent = fallback;
+        if (hudCityEl) hudCityEl.textContent = fallback;
         tickFooterHud();
         setInterval(tickFooterHud, 250);
     });
