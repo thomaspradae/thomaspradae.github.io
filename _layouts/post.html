@@ -108,6 +108,39 @@ layout: default
         <article class="post-body post-body-content">
           {{ content }}
         </article>
+
+        {% assign all_posts = site.writing | concat: site.building | concat: site.notes | concat: site.misc | sort: "date" %}
+        {% assign prev_post = nil %}
+        {% assign next_post = nil %}
+        {% assign last_post = nil %}
+        {% assign found_current = false %}
+        {% for p in all_posts %}
+          {% if found_current %}
+            {% assign next_post = p %}
+            {% assign found_current = false %}
+          {% endif %}
+          {% if p.url == page.url %}
+            {% assign prev_post = last_post %}
+            {% assign found_current = true %}
+          {% endif %}
+          {% assign last_post = p %}
+        {% endfor %}
+
+        <nav class="post-nav" aria-label="Post navigation">
+          <div class="post-nav-prev">
+            {% if prev_post %}
+              <a href="{{ prev_post.url | relative_url }}" class="post-nav-link">← prev</a>
+            {% endif %}
+          </div>
+          <div class="post-nav-center">
+            <a href="#" class="post-nav-link post-nav-back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">back to top</a>
+          </div>
+          <div class="post-nav-next">
+            {% if next_post %}
+              <a href="{{ next_post.url | relative_url }}" class="post-nav-link">next →</a>
+            {% endif %}
+          </div>
+        </nav>
       </div>
 
       <!-- right gutter / notes lane -->

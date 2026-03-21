@@ -474,6 +474,51 @@ main.content {
     padding-bottom: 20vh; /* Now padding is based on where content ACTUALLY ends */
 }
 
+/* Post nav: prev | back to top | next */
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--backup-text-color-v4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+}
+
+.post-nav-prev,
+.post-nav-center,
+.post-nav-next {
+    min-width: 0;
+}
+
+.post-nav-prev {
+    text-align: left;
+    flex: 1;
+}
+
+.post-nav-center {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.post-nav-next {
+    text-align: right;
+    flex: 1;
+}
+
+.post-nav-link {
+    color: var(--backup-text-color-v2);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-nav-link:hover {
+    color: var(--contrast-color);
+    text-decoration: none;
+}
+
 .content {
     text-align: left;
 }
