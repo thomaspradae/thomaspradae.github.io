@@ -2670,8 +2670,7 @@ font-family: 'Inter', sans-serif;
 /* The top-right nav styling */
 .archive-topnav{
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+  font-size: 1rem;
   color: #9b9b99;
 
   display: inline-flex;
