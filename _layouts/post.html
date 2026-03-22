@@ -128,7 +128,7 @@ layout: default
           <nav class="post-nav" aria-label="Post navigation">
             <div class="post-nav-prev">
               {% if prev_post %}
-                <a href="{{ prev_post.url | relative_url }}" class="post-nav-link">← prev</a>
+                <a href="{{ prev_post.url | relative_url }}" class="post-nav-link">prev</a>
               {% endif %}
             </div>
             <div class="post-nav-center">
@@ -136,7 +136,7 @@ layout: default
             </div>
             <div class="post-nav-next">
               {% if next_post %}
-                <a href="{{ next_post.url | relative_url }}" class="post-nav-link">next →</a>
+                <a href="{{ next_post.url | relative_url }}" class="post-nav-link">next</a>
               {% endif %}
             </div>
           </nav>

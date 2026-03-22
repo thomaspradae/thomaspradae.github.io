@@ -2738,6 +2738,24 @@ font-family: 'Inter', sans-serif;
         text-align: left;
     }
 
+    .archive-list[data-cols="2"] .archive-title,
+    .archive-list[data-cols="3"] .archive-title,
+    .archive-list[data-cols="3"] .archive-meta,
+    .archive-list[data-cols="3"] .archive-date,
+    .archive-list[data-cols="4"] .archive-title,
+    .archive-list[data-cols="4"] .archive-type,
+    .archive-list[data-cols="4"] .archive-meta,
+    .archive-list[data-cols="4"] .archive-date,
+    .archive-list[data-cols="2"] .archive-date {
+        width: 100%;
+    }
+
+    .archive-title {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+
     .archive-date {
         font-size: 0.7rem;
     }
