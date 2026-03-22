@@ -1450,6 +1450,7 @@ img + em {
     margin: 0;
     margin-left: 1rem;
     text-decoration: none;
+    font-size: 0.9rem;
 }
 
 .internal-link{
