@@ -307,98 +307,6 @@ text-decoration: none;
   text-decoration: none;
 }
 
-/* Mobile tuning */
-@media (max-width: 600px) {
-
-.home-title {
-    font-size: 3.4rem;
-}
-
-.scribble-name {
-    position: absolute;
-    top: 1px;
-    transform: translateX(70px) rotate(1deg);
-    height: 1.3rem;
-    pointer-events: none;
-}
-
-.home-subtitle-line {
-    font-size: 1.25rem;
-}
-
-.home-nav-link {
-    font-size: 1.2rem;
-}
-
-    /* scale everything up on iPhone */
-    p {
-        font-size: 1.2rem;
-        line-height: 1.55;
-    }
-
-    h1 { font-size: 2.4rem; }
-    h2 { font-size: 1.6rem; }
-    h3 { font-size: 1.3rem; }
-
-    .home-nav-link {
-        font-size: 1.35rem;
-    }
-
-    .latest-post-p {
-        font-size: 0.95rem;
-    }
-
-    .latest-post-time {
-        font-size: 0.8rem;
-    }
-
-    .all-post-description {
-        font-size: 0.85rem;
-    }
-
-    .footnotes li,
-    .footnotes ol li p {
-        font-size: 0.85rem;
-    }
-
-    /* index HUD: stack Bogotá weather/time on top, coords below, centered */
-    .inspectHud {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-    }
-
-    .inspectHud .hudRight {
-        order: 1;
-        justify-content: center;
-    }
-
-    .inspectHud .hudLeft {
-        order: 2;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .inspectHud .hudTopLine {
-        justify-content: center;
-    }
-
-    .inspectHud .hudName {
-        text-align: center;
-        margin-top: 0;
-    }
-
-    .heroCol {
-        width: 90%;
-    }
-}
-
-/* ------------------------------------------------------------------------- */
-/* Move Later */
-
-
 .post-header {
     margin-bottom: 5vh;
     margin-top: 5vh;
@@ -2338,58 +2246,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     text-align: left;
 }
 
-
-
-
-/* 5. Mobile: collapse everything to single column */
-@media (max-width: 1024px){
-  .post-top{
-    grid-template-columns: 1fr;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .post-top > .post-header,
-  .post-top > .post-metadata,
-  .post-top > .post-intro.post{
-    grid-column: 1;
-  }
-
-  .post-stage{
-    grid-template-columns: 1fr;
-    padding: 0 1.5rem;
-  }
-
-  .post-stage > #left-toc.left-toc{
-    display: none;
-  }
-
-  .post-stage > .right-gutter{
-    display: none;
-  }
-
-  .post-stage > #main.post{
-    grid-column: 1;
-  }
-
-  .post-stage > #main.post > .post-body{
-    max-width: none;
-  }
-
-  #main.post .sidenote,
-  #main.post .marginnote{
-    float: none;
-    clear: both;
-    margin: 0.75rem 0;
-    width: 100%;
-  }
-
-  #main.post .sidenote-number::after{
-    display: none;
-  }
-}
-
-
 #main.post .sidenote,
 #main.post .marginnote {
     float: right;
@@ -2490,6 +2346,55 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     letter-spacing: 0.12em;
 }
 
+
+/* 5. Mobile: collapse everything to single column */
+@media (max-width: 1024px){
+    .post-top{
+      grid-template-columns: 1fr;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  
+    .post-top > .post-header,
+    .post-top > .post-metadata,
+    .post-top > .post-intro.post{
+      grid-column: 1;
+    }
+  
+    .post-stage{
+      grid-template-columns: 1fr;
+      padding: 0 1.5rem;
+    }
+  
+    .post-stage > #left-toc.left-toc{
+      display: none;
+    }
+  
+    .post-stage > .right-gutter{
+      display: none;
+    }
+  
+    .post-stage > #main.post{
+      grid-column: 1;
+    }
+  
+    .post-stage > #main.post > .post-body{
+      max-width: none;
+    }
+  
+    #main.post .sidenote,
+    #main.post .marginnote{
+      float: none;
+      clear: both;
+      margin: 0.75rem 0;
+      width: 100%;
+    }
+  
+    #main.post .sidenote-number::after{
+      display: none;
+    }
+  }
+  
 
 
 /* ----------------- */
@@ -2711,97 +2616,6 @@ font-family: 'Inter', sans-serif;
 
 .archive-footer-right {
     letter-spacing: 0.12em;
-}
-
-/* Responsive tweak */
-@media (max-width: 768px) {
-    :root{
-        --archive-gutter: 2rem;
-        --archive-title-top: 2rem;
-    }
-
-    .archive-section-title{
-        font-size: 2rem;
-    }
-
-    /* --- ARCHIVE ITEM: full mobile re-layout --- */
-    .archive-item {
-        flex-direction: column;
-        gap: 0.3rem;
-        align-items: flex-start;
-        padding: 0.75rem 0;
-    }
-
-    /* TITLE: wraps freely, full width */
-    .archive-title {
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: unset !important;
-        width: 100% !important;
-        font-size: 0.9rem;
-        line-height: 1.35;
-    }
-
-    /* DATE • TYPE row */
-    .archive-item .archive-date,
-    .archive-item .archive-type {
-        display: inline;
-        width: auto !important;
-        white-space: nowrap;
-        font-size: 0.7rem;
-        text-align: left;
-        margin: 0;
-    }
-
-    /* Wrap date + type in a single line using a pseudo-row */
-    .archive-item .archive-date::after {
-        content: " · ";
-        color: var(--backup-text-color-v3);
-    }
-
-    /* Hide type if empty */
-    .archive-item .archive-type:empty {
-        display: none;
-    }
-    .archive-item .archive-type:empty + *::before {
-        content: none;
-    }
-
-    /* TAGS: already expanded, small */
-    .archive-item .tags-holder {
-        opacity: 1;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-        margin-top: 0.2rem;
-    }
-
-    /* Force pills open on mobile (no hover needed) */
-    .archive-item .tags-holder .tag-pill {
-        margin-left: 0 !important;
-        padding: 0 0.4rem 0 0.15rem !important;
-        background-color: var(--background-color) !important;
-    }
-
-    .archive-item .tags-holder .tag-pill-dot {
-        margin-right: 0.1rem;
-    }
-
-    .archive-item .tags-holder .tag-pill-label {
-        opacity: 1 !important;
-        max-width: 10rem !important;
-        font-size: 0.65rem;
-    }
-
-    /* Hide the meta column entirely (tags are already shown above) */
-    .archive-item .archive-meta {
-        width: 100% !important;
-    }
-
-    .archive-footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
-    }
 }
 
 /* Header row: title (left) + top nav (right) aligned on baseline */
@@ -3439,3 +3253,187 @@ align-items: center;
 
 /* ------------------------------------------------------------------ */
 /* (end of file) */
+
+
+/* Mobile tuning */
+@media (max-width: 600px) {
+
+    .home-title {
+        font-size: 3.4rem;
+    }
+    
+    .scribble-name {
+        position: absolute;
+        top: 1px;
+        transform: translateX(70px) rotate(1deg);
+        height: 1.3rem;
+        pointer-events: none;
+    }
+    
+    .home-subtitle-line {
+        font-size: 1.25rem;
+    }
+    
+    .home-nav-link {
+        font-size: 1.2rem;
+    }
+    
+        /* scale everything up on iPhone */
+        p {
+            font-size: 1.2rem;
+            line-height: 1.55;
+        }
+    
+        h1 { font-size: 2.4rem; }
+        h2 { font-size: 1.6rem; }
+        h3 { font-size: 1.3rem; }
+    
+        .home-nav-link {
+            font-size: 1.35rem;
+        }
+    
+        .latest-post-p {
+            font-size: 0.95rem;
+        }
+    
+        .latest-post-time {
+            font-size: 0.8rem;
+        }
+    
+        .all-post-description {
+            font-size: 0.85rem;
+        }
+    
+        .footnotes li,
+        .footnotes ol li p {
+            font-size: 0.85rem;
+        }
+    
+        /* index HUD: stack Bogotá weather/time on top, coords below, centered */
+        .inspectHud {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+        }
+    
+        .inspectHud .hudRight {
+            order: 1;
+            justify-content: center;
+        }
+    
+        .inspectHud .hudLeft {
+            order: 2;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .inspectHud .hudTopLine {
+            justify-content: center;
+        }
+    
+        .inspectHud .hudName {
+            text-align: center;
+            margin-top: 0;
+        }
+    
+        .heroCol {
+            width: 90%;
+        }
+    }
+    
+    /* ------------------------------------------------------------------------- */
+    /* Move Later */
+    
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+    :root{
+        --archive-gutter: 2rem;
+        --archive-title-top: 2rem;
+    }
+
+    .archive-section-title{
+        font-size: 2rem;
+    }
+
+    /* --- ARCHIVE ITEM: full mobile re-layout --- */
+    .archive-item {
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: flex-start;
+        padding: 0.75rem 0;
+    }
+
+    /* TITLE: wraps freely, full width */
+    .archive-title {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        width: 100% !important;
+        font-size: 0.9rem;
+        line-height: 1.35;
+    }
+
+    /* DATE • TYPE row */
+    .archive-item .archive-date,
+    .archive-item .archive-type {
+        display: inline;
+        width: auto !important;
+        white-space: nowrap;
+        font-size: 0.7rem;
+        text-align: left;
+        margin: 0;
+    }
+
+    /* Wrap date + type in a single line using a pseudo-row */
+    .archive-item .archive-date::after {
+        content: " · ";
+        color: var(--backup-text-color-v3);
+    }
+
+    /* Hide type if empty */
+    .archive-item .archive-type:empty {
+        display: none;
+    }
+    .archive-item .archive-type:empty + *::before {
+        content: none;
+    }
+
+    /* TAGS: already expanded, small */
+    .archive-item .tags-holder {
+        opacity: 1;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 0.2rem;
+    }
+
+    /* Force pills open on mobile (no hover needed) */
+    .archive-item .tags-holder .tag-pill {
+        margin-left: 0 !important;
+        padding: 0 0.4rem 0 0.15rem !important;
+        background-color: var(--background-color) !important;
+    }
+
+    .archive-item .tags-holder .tag-pill-dot {
+        margin-right: 0.1rem;
+    }
+
+    .archive-item .tags-holder .tag-pill-label {
+        opacity: 1 !important;
+        max-width: 10rem !important;
+        font-size: 0.65rem;
+    }
+
+    /* Hide the meta column entirely (tags are already shown above) */
+    .archive-item .archive-meta {
+        width: 100% !important;
+    }
+
+    .archive-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
