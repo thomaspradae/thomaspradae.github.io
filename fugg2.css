@@ -380,6 +380,10 @@ text-decoration: none;
     .inspectHud .hudName {
         text-align: center;
     }
+
+    .heroCol {
+        width: 100%;
+    }
 }
 
 /* ------------------------------------------------------------------------- */
