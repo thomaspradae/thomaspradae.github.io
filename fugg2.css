@@ -355,6 +355,21 @@ text-decoration: none;
     .footnotes ol li p {
         font-size: 0.85rem;
     }
+
+    /* index HUD: stack Bogotá weather/time on top, coords below, centered */
+    .inspectHud {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .inspectHud .hudRight {
+        order: 1;
+    }
+
+    .inspectHud .hudLeft {
+        order: 2;
+    }
 }
 
 /* ------------------------------------------------------------------------- */
