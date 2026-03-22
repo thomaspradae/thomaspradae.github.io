@@ -2719,45 +2719,82 @@ font-family: 'Inter', sans-serif;
         --archive-gutter: 2rem;
         --archive-title-top: 2rem;
     }
-    
+
     .archive-section-title{
         font-size: 2rem;
     }
 
+    /* --- ARCHIVE ITEM: full mobile re-layout --- */
     .archive-item {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.3rem;
         align-items: flex-start;
+        padding: 0.75rem 0;
     }
 
-    .archive-title,
-    .archive-type,
-    .archive-meta,
-    .archive-date{
-        width: 100%;
-        text-align: left;
-    }
-
-    .archive-list[data-cols="2"] .archive-title,
-    .archive-list[data-cols="3"] .archive-title,
-    .archive-list[data-cols="3"] .archive-meta,
-    .archive-list[data-cols="3"] .archive-date,
-    .archive-list[data-cols="4"] .archive-title,
-    .archive-list[data-cols="4"] .archive-type,
-    .archive-list[data-cols="4"] .archive-meta,
-    .archive-list[data-cols="4"] .archive-date,
-    .archive-list[data-cols="2"] .archive-date {
-        width: 100%;
-    }
-
+    /* TITLE: wraps freely, full width */
     .archive-title {
-        white-space: normal;
-        overflow: visible;
-        text-overflow: unset;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        width: 100% !important;
+        font-size: 0.9rem;
+        line-height: 1.35;
     }
 
-    .archive-date {
+    /* DATE • TYPE row */
+    .archive-item .archive-date,
+    .archive-item .archive-type {
+        display: inline;
+        width: auto !important;
+        white-space: nowrap;
         font-size: 0.7rem;
+        text-align: left;
+        margin: 0;
+    }
+
+    /* Wrap date + type in a single line using a pseudo-row */
+    .archive-item .archive-date::after {
+        content: " · ";
+        color: var(--backup-text-color-v3);
+    }
+
+    /* Hide type if empty */
+    .archive-item .archive-type:empty {
+        display: none;
+    }
+    .archive-item .archive-type:empty + *::before {
+        content: none;
+    }
+
+    /* TAGS: already expanded, small */
+    .archive-item .tags-holder {
+        opacity: 1;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 0.2rem;
+    }
+
+    /* Force pills open on mobile (no hover needed) */
+    .archive-item .tags-holder .tag-pill {
+        margin-left: 0 !important;
+        padding: 0 0.4rem 0 0.15rem !important;
+        background-color: var(--background-color) !important;
+    }
+
+    .archive-item .tags-holder .tag-pill-dot {
+        margin-right: 0.1rem;
+    }
+
+    .archive-item .tags-holder .tag-pill-label {
+        opacity: 1 !important;
+        max-width: 10rem !important;
+        font-size: 0.65rem;
+    }
+
+    /* Hide the meta column entirely (tags are already shown above) */
+    .archive-item .archive-meta {
+        width: 100% !important;
     }
 
     .archive-footer {
