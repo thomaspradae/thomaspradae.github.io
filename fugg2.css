@@ -311,7 +311,15 @@ text-decoration: none;
 @media (max-width: 600px) {
 
 .home-title {
-    font-size: 2.6rem;
+    font-size: 3.4rem;
+}
+
+.scribble-name {
+    position: absolute;
+    top: 1px;
+    transform: translateX(70px) rotate(1deg);
+    height: 1.3rem;
+    pointer-events: none;
 }
 
 .home-subtitle-line {
