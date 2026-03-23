@@ -3361,7 +3361,7 @@ align-items: center;
         --archive-title-top: 2rem;
     }
 
-    /* 1. CENTER THE NAV */
+    /* 1. NAV above title via order, centered */
     .archive-header {
         position: static;
         display: flex;
@@ -3372,32 +3372,36 @@ align-items: center;
     }
 
     .archive-topnav {
+        order: -1;
+        width: 100%;
         justify-content: center;
         font-size: 0.85rem;
+        text-align: center;
     }
 
     /* 2. TITLE — centered, equidistant between nav and first post */
     .archive-section-title {
-        position: static;
+        position: static !important;
         font-size: 3rem;
-        text-align: center;
+        text-align: center !important;
         margin: 0;
+        padding: 6vh 0;
     }
 
-    /* 3. WRAPPER — kill 50vh padding, flow naturally */
+    /* 3. WRAPPER — posts start around 50vh */
     .archive-wrapper {
         padding-top: 0;
-        display: flex;
-        flex-direction: column;
+        display: block;
         min-height: 100vh;
+    }
+
+    .archive-header {
+        min-height: 50vh;
+        justify-content: center;
     }
 
     .archive-card {
         padding: 0 2rem 3rem 2rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     /* 4. EACH ITEM — title + date same row via flex-wrap, tags below */
