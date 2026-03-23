@@ -678,7 +678,6 @@ a:any-link:hover{
 .footer-signoff-meta {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    text-transform: uppercase;
     color: var(--backup-text-color-v4);
     margin-bottom: 0.2rem;
 }
