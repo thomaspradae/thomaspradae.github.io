@@ -697,10 +697,19 @@ a:any-link:hover{
 }
 
 @media (max-width: 768px) {
+    /* Reduce footer blink during fast scroll: solid background + compositing layers */
+    body {
+        background-color: var(--background-color);
+    }
+    main.content {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
     .site-footer {
         grid-template-rows: auto 1fr auto;
         padding: 1.5rem 1.25rem 1.25rem 1.25rem;
         min-height: 100vh;
+        backface-visibility: hidden;
     }
 
     .footer-top {
