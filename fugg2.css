@@ -675,20 +675,27 @@ a:any-link:hover{
     padding-top: 1rem;
 }
 
-.footer-signoff-title {
-    font-family: 'Crimson Pro', serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--backup-text-color-v2);
-    margin-bottom: 0.3rem;
-}
-
 .footer-signoff-meta {
     font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--backup-text-color-v3);
+    margin-bottom: 0.2rem;
+}
+
+.footer-signoff-coords {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    color: var(--backup-text-color-v3);
+    margin-bottom: 0.3rem;
+}
+
+.footer-signoff-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--backup-text-color-v2);
 }
 
 @media (max-width: 768px) {
