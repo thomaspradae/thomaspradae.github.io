@@ -2356,6 +2356,29 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
 /* 5. Mobile: collapse everything to single column */
 @media (max-width: 1024px){
+    /* Zero gutters that cause horizontal overflow */
+    .layout-post .post-meta-container-left-side {
+      padding-right: 0;
+    }
+
+    /* Let flex children shrink so BREADCRUMBS [space-between] HOME ABOUT fits within width */
+    .layout-post .post-meta-container {
+      min-width: 0;
+    }
+    .layout-post .post-meta-container-left-side {
+      min-width: 0;
+      overflow: hidden;
+    }
+    .layout-post .post-meta-container-left-side .breadcrumbs,
+    .layout-post .post-meta-container-left-side .breadcrumbs a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .layout-post .post-meta-container-right-side {
+      flex-shrink: 0;
+    }
+
     .post-top{
       grid-template-columns: 1fr;
       padding-left: 1.5rem;
@@ -2371,6 +2394,13 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     .post-stage{
       grid-template-columns: 1fr;
       padding: 0 1.5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .layout-post .post-wrapper,
+    .layout-post .post-outer {
+      max-width: 100%;
+      box-sizing: border-box;
     }
   
     .post-stage > #left-toc.left-toc{
@@ -3264,6 +3294,14 @@ align-items: center;
 
 /* Mobile tuning */
 @media (max-width: 600px) {
+    /* Post layout: minimal gutters on small screens */
+    .layout-post .post-stage {
+      padding: 0 1rem;
+    }
+    .layout-post .post-top {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
     .home-title {
         font-size: 3.4rem;
