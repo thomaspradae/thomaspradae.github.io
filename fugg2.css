@@ -3361,102 +3361,141 @@ align-items: center;
         --archive-title-top: 2rem;
     }
 
-    .archive-section-title {
-        font-size: 2rem;
-    }
-
-    .archive-item {
+    /* 1. CENTER THE NAV */
+    .archive-header {
+        position: static;
+        display: flex;
         flex-direction: column;
-        gap: 0.15rem;
-        align-items: flex-start;
-        padding: 1.1rem 0;
+        align-items: center;
+        padding-top: 2rem;
+        gap: 0;
     }
 
-    /* 1) TITLE — bigger, more hierarchy */
+    .archive-topnav {
+        justify-content: center;
+        font-size: 0.85rem;
+    }
+
+    /* 2. TITLE — centered, equidistant between nav and first post */
+    .archive-section-title {
+        position: static;
+        font-size: 3rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    /* 3. WRAPPER — kill 50vh padding, flow naturally */
+    .archive-wrapper {
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .archive-card {
+        padding: 0 2rem 3rem 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* 4. EACH ITEM — title + date same row via flex-wrap, tags below */
+    .archive-item {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0;
+        padding: 1.25rem 0;
+        border-bottom: 0.5px solid #e8e8e8;
+    }
+
+    /* no divider above first item */
+    .archive-list .archive-item:first-child {
+        border-top: none;
+    }
+
+    /* TITLE: sits left, shrinks to make room for date */
     .archive-item .archive-title {
         order: 1;
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: unset !important;
-        width: 100% !important;
-        font-size: 1rem;
-        font-weight: 500;
+        width: auto !important;
+        flex: 1 1 0;
+        min-width: 0;
+        font-size: 0.9rem;
+        font-weight: 400;
         line-height: 1.35;
         color: var(--backup-text-color-v2);
-        margin-bottom: 0.1rem;
+        margin-right: 1rem;
     }
 
-    /* 2) DATE comes first in the date·type line */
+    /* DATE: sits right on the same row as title */
     .archive-item .archive-date {
         order: 2;
-        display: inline !important;
         width: auto !important;
+        flex-shrink: 0;
+        font-size: 0.72rem;
+        color: var(--backup-text-color-v3);
         white-space: nowrap;
-        font-size: 0.68rem;
         margin: 0;
-        color: var(--backup-text-color-v3);
     }
 
-    /* TYPE comes right after date on same line */
-    .archive-item .archive-type {
-        order: 2;
-        display: inline !important;
-        width: auto !important;
-        white-space: nowrap;
-        font-size: 0.68rem;
-        margin: 0;
-        color: var(--backup-text-color-v3);
-        text-transform: uppercase;
-    }
-
-    /* Dot separator: on TYPE's ::before, so date · type */
-    .archive-item .archive-type::before {
-        content: "· ";
-        color: var(--backup-text-color-v3);
-    }
-
-    /* Remove the dot from date::after (kill previous rule) */
     .archive-item .archive-date::after {
         content: "" !important;
     }
 
-    /* Hide type if empty */
-    .archive-item .archive-type:empty {
+    /* Hide type on these mobile layouts */
+    .archive-item .archive-type {
         display: none !important;
     }
-    .archive-item .archive-type:empty::before {
-        content: "" !important;
-    }
 
-    /* 3) TAGS — order 3, not bold */
+    /* TAGS: full-width row below title+date */
     .archive-item .archive-meta {
         order: 3;
         width: 100% !important;
-        margin-top: 0.25rem;
+        flex-basis: 100%;
+        margin-top: 0.35rem;
     }
 
     .archive-item .tags-holder {
         opacity: 1;
-        flex-wrap: wrap;
-        gap: 0.3rem;
+        display: inline;
+        gap: 0;
     }
 
-    .archive-item .tags-holder .tag-pill {
-        margin-left: 0 !important;
-        padding: 0 0.4rem 0 0.15rem !important;
-        background-color: var(--background-color) !important;
+    /* flatten pills to inline text */
+    .archive-item .tag-pill {
+        display: inline !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    .archive-item .tags-holder .tag-pill-dot {
-        margin-right: 0.1rem;
+    .archive-item .tag-pill-dot {
+        display: none;
     }
 
-    .archive-item .tags-holder .tag-pill-label {
+    .archive-item .tag-pill-label {
+        display: inline !important;
         opacity: 1 !important;
-        max-width: 10rem !important;
-        font-size: 0.65rem;
+        max-width: none !important;
+        font-size: 0.72rem;
         font-weight: 400;
         color: var(--backup-text-color-v3);
+    }
+
+    /* dot separator — bigger than tag text */
+    .archive-item .tag-pill::before {
+        content: "·";
+        font-size: 1rem;
+        line-height: 1;
+        color: var(--backup-text-color-v3);
+        margin-right: 0.25rem;
+        margin-left: 0.1rem;
+        vertical-align: baseline;
     }
 
     .archive-footer {
