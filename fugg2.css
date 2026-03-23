@@ -3384,8 +3384,8 @@ align-items: center;
         position: static !important;
         font-size: 3rem;
         text-align: center !important;
-        margin: 0;
-        padding: 6vh 0;
+        margin: auto 0;
+        padding: 0;
     }
 
     /* 3. WRAPPER — posts start around 50vh */
