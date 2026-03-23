@@ -691,9 +691,9 @@ a:any-link:hover{
 
 .footer-signoff-title {
     font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--backup-text-color-v2);
+    color: var(--backup-text-color-v4);
 }
 
 @media (max-width: 768px) {
