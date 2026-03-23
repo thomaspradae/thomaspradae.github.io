@@ -3397,7 +3397,7 @@ align-items: center;
 
     .archive-header {
         min-height: 50vh;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .archive-card {
