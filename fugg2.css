@@ -679,7 +679,6 @@ a:any-link:hover{
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     color: var(--backup-text-color-v4);
-    margin-bottom: 0.2rem;
 }
 
 .footer-signoff-coords {
