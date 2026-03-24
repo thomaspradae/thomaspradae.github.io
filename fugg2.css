@@ -3470,7 +3470,7 @@ align-items: center;
         width: auto !important;
         flex: 1 1 0;
         min-width: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 400;
         line-height: 1.35;
         color: var(--backup-text-color-v2);
