@@ -45,6 +45,29 @@ layout: default
                 <a class="internal-link" href="https://thomaspradae.github.io/about.html">About</a>
               </div>
             </div>
+
+            <div class="mobile-post-menu-shell" aria-hidden="true">
+              <button
+                type="button"
+                class="mobile-post-menu-toggle"
+                aria-label="Open post menu"
+                aria-controls="mobile-post-menu-panel"
+                aria-expanded="false">
+                <span class="mobile-post-menu-dot"></span>
+                <span class="mobile-post-menu-dot"></span>
+                <span class="mobile-post-menu-dot"></span>
+              </button>
+
+              <div class="mobile-post-menu-backdrop" hidden></div>
+
+              <aside id="mobile-post-menu-panel" class="mobile-post-menu-panel" hidden aria-label="Post menu">
+                <div class="mobile-post-menu-panel-inner">
+                  <div class="mobile-post-menu-label">TOC</div>
+                  <div class="mobile-post-menu-toc"></div>
+                  <a class="mobile-post-menu-nav" href="{{ '/archive/' | relative_url }}">Nav</a>
+                </div>
+              </aside>
+            </div>
           </div>
 
           <!-- TITLE + META + DIVIDING LINE -->
