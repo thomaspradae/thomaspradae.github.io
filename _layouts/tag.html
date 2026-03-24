@@ -20,7 +20,7 @@ layout: compress
 <body>
   <div class="archive-wrapper">
     <div class="archive-header">
-      <h2 class="archive-section-title">tag: {{ page.title | default: page.tag | escape }}</h2>
+      <h2 class="archive-section-title"><span class="archive-section-title-prefix">tag: </span>{{ page.title | default: page.tag | escape }}</h2>
 
       <div class="archive-topnav">
         <a href="{{ '/search/' | relative_url }}">Search</a>

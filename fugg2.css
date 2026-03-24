@@ -2685,6 +2685,12 @@ font-family: 'Inter', sans-serif;
   margin: 0;
 }
 
+/* tag page: "tag:" prefix in light grey */
+.archive-section-title-prefix {
+  color: var(--backup-text-color-v3);
+  text-transform: lowercase;
+}
+
 /* The top-right nav styling */
 .archive-topnav{
   font-family: 'Inter', sans-serif;
