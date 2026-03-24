@@ -3505,12 +3505,15 @@ align-items: center;
         display: none !important;
     }
 
-    /* TAGS: full-width row below title+date */
+    /* TAGS: same row as date, wrap with title when needed */
     .archive-item .archive-meta {
         order: 3;
-        width: 100% !important;
-        flex-basis: 100%;
-        margin-top: 0.35rem;
+        width: auto !important;
+        flex-basis: auto !important;
+        flex: 0 1 auto;
+        min-width: 0;
+        margin-top: 0;
+        margin-left: 0.5rem;
     }
 
     .archive-item .tags-holder {
