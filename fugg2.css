@@ -3308,7 +3308,7 @@ align-items: center;
 @media (max-width: 600px) {
     /* Post layout: minimal gutters on small screens */
     .layout-post .post-stage {
-      padding: 0 1rem;
+      padding: 0 2rem;
     }
     .layout-post .post-top {
       padding-left: 1rem;
