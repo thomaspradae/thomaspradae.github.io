@@ -3453,11 +3453,11 @@ align-items: center;
         padding: 0 2rem 3rem 2rem;
     }
 
-    /* 4. EACH ITEM — grid: title+date row 1, tags row 2 (tags respect date column) */
+    /* 4. EACH ITEM — title + date same row via flex-wrap, tags below */
     .archive-item {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
         align-items: baseline;
         gap: 0;
         padding: 1.25rem 0;
@@ -3469,14 +3469,14 @@ align-items: center;
         border-top: none;
     }
 
-    /* TITLE: left column, row 1 */
+    /* TITLE: sits left, shrinks to make room for date */
     .archive-item .archive-title {
-        grid-column: 1;
-        grid-row: 1;
+        order: 1;
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: unset !important;
         width: auto !important;
+        flex: 1 1 0;
         min-width: 0;
         font-size: 0.9rem;
         font-weight: 400;
@@ -3485,15 +3485,15 @@ align-items: center;
         margin-right: 1rem;
     }
 
-    /* DATE: right column, row 1 only */
+    /* DATE: sits right on the same row as title */
     .archive-item .archive-date {
-        grid-column: 2;
-        grid-row: 1;
+        order: 2;
+        width: auto !important;
+        flex-shrink: 0;
         font-size: 0.72rem;
         color: var(--backup-text-color-v3);
         white-space: nowrap;
         margin: 0;
-        justify-self: end;
     }
 
     .archive-item .archive-date::after {
@@ -3505,13 +3505,14 @@ align-items: center;
         display: none !important;
     }
 
-    /* TAGS: left column only, row 2 — wraps within column, respects date */
+    /* TAGS: row below title, respects the date column on the right */
     .archive-item .archive-meta {
-        grid-column: 1;
-        grid-row: 2;
-        margin-top: 0.35rem;
+        order: 3;
+        width: auto !important;
+        flex: 1 1 0;
         min-width: 0;
-        max-width: 100%;
+        margin-top: 0.35rem;
+        margin-right: 1rem;
     }
 
     .archive-item .tags-holder {
