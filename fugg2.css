@@ -3454,15 +3454,19 @@ align-items: center;
 
     .layout-post .post-meta-date {
         grid-column: 1;
+        grid-row: 1;
     }
 
     .layout-post .post-meta-section {
         grid-column: 2;
+        grid-row: 1;
         justify-content: flex-start;
+        align-items: flex-start;
     }
 
     .layout-post .post-meta-tags {
         grid-column: 1 / -1;
+        grid-row: 2;
     }
 
     .layout-post .post-meta-tags .tags-holder {
