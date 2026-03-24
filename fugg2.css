@@ -707,6 +707,9 @@ a:any-link:hover{
         margin-top: 2vh;
     }
     .site-footer {
+        position: static;
+        bottom: auto;
+        z-index: auto;
         grid-template-rows: auto 1fr auto;
         padding: 1.5rem 1.25rem 1.25rem 1.25rem;
         min-height: 100vh;
