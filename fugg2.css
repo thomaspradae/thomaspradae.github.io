@@ -3284,6 +3284,7 @@ align-items: center;
         margin: 0;
         color: var(--contrast-color);
         margin-bottom: 1rem;
+        margin-top: 2rem;
     }
 
     .latest:hover .dark{
