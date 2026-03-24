@@ -2571,10 +2571,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
       max-height: calc(100vh - 6rem);
       overflow: auto;
       border-radius: 1.35rem;
-      border: 0.0625rem solid rgba(224, 224, 224, 0.9);
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
-      backdrop-filter: blur(18px);
+      backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(18px);
     }
 
