@@ -3552,6 +3552,8 @@ align-items: center;
         font-weight: 400;
         color: var(--backup-text-color-v3);
         line-height: 0;
+        font-family: 'Crimson Pro', serif;
+        font-size: 0.8rem;
     }
 
     /* dot separator — bigger than tag text */
