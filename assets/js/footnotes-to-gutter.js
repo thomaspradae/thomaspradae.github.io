@@ -122,6 +122,16 @@
     return note;
   }
 
+  function getInlineInsertionTarget(ref) {
+    const anchor = ref.closest('sup[role="doc-noteref"]') || ref;
+
+    return (
+      anchor.closest("p, li, blockquote, figcaption, dd, td, th") ||
+      anchor.parentElement ||
+      anchor
+    );
+  }
+
   function onInlineRefClick(event) {
     if (!isMobile()) return;
 
@@ -137,14 +147,16 @@
 
     event.preventDefault();
 
-    const anchor = ref.closest('sup[role="doc-noteref"]') || ref;
-    const isOpen = anchor.nextElementSibling?.classList.contains("inline-footnote");
+    const target = getInlineInsertionTarget(ref);
+    const next = target.nextElementSibling;
+    const isOpen =
+      next?.classList.contains("inline-footnote") && next.dataset.footnoteId === id;
 
     clearInlineNotes(main);
     if (isOpen) return;
 
     const note = createInlineNote(data);
-    anchor.insertAdjacentElement("afterend", note);
+    target.insertAdjacentElement("afterend", note);
 
     ref.classList.add("is-inline-footnote-open");
     ref.setAttribute("aria-expanded", "true");
