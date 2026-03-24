@@ -696,10 +696,25 @@ a:any-link:hover{
     color: var(--backup-text-color-v4);
 }
 
+@keyframes footerMobileReveal {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 768px) {
     /* Reduce footer blink during fast scroll: solid background + compositing layers */
     body {
         background-color: var(--background-color);
+    }
+    .layout-post .post-wrapper,
+    .layout-post .post-outer {
+        padding-bottom: 8vh;
     }
     main.content {
         transform: translateZ(0);
@@ -714,6 +729,18 @@ a:any-link:hover{
         padding: 1.5rem 1.25rem 1.25rem 1.25rem;
         min-height: 100vh;
         backface-visibility: hidden;
+    }
+    @supports (animation-timeline: view()) {
+        .site-footer {
+            opacity: 0;
+            will-change: opacity, transform;
+            animation-name: footerMobileReveal;
+            animation-duration: 0.9s;
+            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+            animation-fill-mode: both;
+            animation-timeline: view();
+            animation-range: entry 8% cover 32%;
+        }
     }
 
     .footer-top {
