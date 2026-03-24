@@ -2570,7 +2570,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
       max-height: calc(100vh - 6rem);
       overflow: auto;
       border-radius: 1.35rem;
-      -webkit-backdrop-filter: blur(18px);
     }
 
     .layout-post .mobile-post-menu-panel-inner {
