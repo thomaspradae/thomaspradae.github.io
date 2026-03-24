@@ -3219,16 +3219,6 @@ align-items: center;
         text-align: left;
     }
 
-    /* .tags-holder{
-        font-size: 0.625rem;
-        color: var(--backup-text-color-v3);
-    } */
-
-    /* .tags-holder a{
-        font-size: 0.625rem;
-        color: var(--backup-text-color-v3);
-    } */
-
     .title-post-meta-p {
         font-weight: 400;
         color: var(--backup-text-color-v4);
