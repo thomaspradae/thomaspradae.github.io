@@ -3521,9 +3521,10 @@ align-items: center;
         gap: 0;
     }
 
-    /* flatten pills to inline text */
+    /* flatten pills to inline text; inline-block keeps dot+label as one unit when wrapping */
     .archive-item .tag-pill {
-        display: inline !important;
+        display: inline-block !important;
+        white-space: nowrap;
         background: none !important;
         padding: 0 !important;
         margin: 0 !important;
