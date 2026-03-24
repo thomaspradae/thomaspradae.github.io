@@ -453,15 +453,17 @@ main.content {
     flex: 1;
 }
 
-.post-nav-link {
+.layout-post .post-nav .post-nav-link {
     color: var(--backup-text-color-v4);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.post-nav-link:hover {
-    color: var(--contrast-color);
-    text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+    .layout-post .post-nav .post-nav-link:hover {
+        color: var(--contrast-color);
+        text-decoration: none;
+    }
 }
 
 .content {
