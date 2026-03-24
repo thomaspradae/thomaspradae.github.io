@@ -704,6 +704,7 @@ a:any-link:hover{
     main.content {
         transform: translateZ(0);
         backface-visibility: hidden;
+        margin-top: 2vh;
     }
     .site-footer {
         grid-template-rows: auto 1fr auto;
