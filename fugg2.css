@@ -2509,14 +2509,17 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
     .layout-post .mobile-post-menu-shell {
       display: block;
-      position: fixed;
-      top: 1.25rem;
-      right: 1.25rem;
+      position: relative;
+      flex: 0 0 auto;
+      margin-left: auto;
       z-index: 80;
     }
 
     .layout-post .mobile-post-menu-shell.is-sticky {
+      position: fixed;
       top: 1rem;
+      right: 1.25rem;
+      margin-left: 0;
     }
 
     .layout-post .mobile-post-menu-toggle {
@@ -2531,7 +2534,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
       gap: 0.24rem;
       cursor: pointer;
       background: rgba(255, 255, 255, 0.52);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       transition: top 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
