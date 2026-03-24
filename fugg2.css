@@ -454,7 +454,7 @@ main.content {
 }
 
 .post-nav-link {
-    color: var(--backup-text-color-v2);
+    color: var(--backup-text-color-v4);
     text-decoration: none;
     transition: color 0.2s ease;
 }
