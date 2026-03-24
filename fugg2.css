@@ -3529,6 +3529,23 @@ align-items: center;
         padding: 0 !important;
         margin: 0;
         margin-right: 0.6rem;
+        border-radius: 0 !important;
+        overflow: visible !important;
+        line-height: 0;
+    }
+
+    /* kill hover/unroll effects on mobile */
+    .archive-item:hover .tags-holder .tag-pill,
+    .archive-item:focus-within .tags-holder .tag-pill {
+        background: none !important;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+    .archive-item:hover .tags-holder .tag-pill-label,
+    .archive-item:focus-within .tags-holder .tag-pill-label {
+        color: var(--backup-text-color-v3) !important;
     }
 
     .archive-item .tag-pill-dot {
@@ -3542,6 +3559,7 @@ align-items: center;
         font-size: 0.725rem;
         font-weight: 400;
         color: var(--backup-text-color-v3);
+        line-height: 0;
     }
 
     /* dot separator — bigger than tag text */
