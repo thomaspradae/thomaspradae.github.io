@@ -126,6 +126,30 @@
     return ref.closest('sup[role="doc-noteref"]') || ref;
   }
 
+  function getInlineInsertionReference(target) {
+    const next = target.nextSibling;
+    if (!(next instanceof Text)) return next;
+
+    const text = next.textContent || "";
+    const match = text.match(/^([)\]}'"”’.,;:!?]+)/);
+    if (!match) return next;
+
+    const punctuation = match[1];
+    const remainder = text.slice(punctuation.length);
+    const parent = target.parentNode;
+    if (!parent) return next;
+
+    parent.insertBefore(document.createTextNode(punctuation), next);
+
+    if (remainder) {
+      next.textContent = remainder;
+      return next;
+    }
+
+    next.remove();
+    return null;
+  }
+
   function onInlineRefClick(event) {
     if (!isMobile()) return;
 
@@ -150,7 +174,13 @@
     if (isOpen) return;
 
     const note = createInlineNote(data);
-    target.insertAdjacentElement("afterend", note);
+    const parent = target.parentNode;
+    if (parent) {
+      const reference = getInlineInsertionReference(target);
+      parent.insertBefore(note, reference);
+    } else {
+      target.insertAdjacentElement("afterend", note);
+    }
 
     ref.classList.add("is-inline-footnote-open");
     ref.setAttribute("aria-expanded", "true");
