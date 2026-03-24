@@ -127,27 +127,32 @@
   }
 
   function getInlineInsertionReference(target) {
-    const next = target.nextSibling;
-    if (!(next instanceof Text)) return next;
+    let next = target.nextSibling;
 
-    const text = next.textContent || "";
-    const match = text.match(/^([)\]}'"”’.,;:!?]+)/);
-    if (!match) return next;
+    while (next instanceof Text) {
+      const text = next.textContent || "";
+      const match = text.match(/^([)\]}'"”’.,;:!?]+)/);
+      if (!match) return next;
 
-    const punctuation = match[1];
-    const remainder = text.slice(punctuation.length);
-    const parent = target.parentNode;
-    if (!parent) return next;
+      const punctuation = match[1];
+      const remainder = text.slice(punctuation.length);
 
-    parent.insertBefore(document.createTextNode(punctuation), next);
+      // If this node is already punctuation-only, keep it in place and keep
+      // looking for the first real content node after it.
+      if (!remainder) {
+        next = next.nextSibling;
+        continue;
+      }
 
-    if (remainder) {
+      const parent = target.parentNode;
+      if (!parent) return next;
+
+      parent.insertBefore(document.createTextNode(punctuation), next);
       next.textContent = remainder;
       return next;
     }
 
-    next.remove();
-    return null;
+    return next;
   }
 
   function getOpenInlineNote(target, id) {
