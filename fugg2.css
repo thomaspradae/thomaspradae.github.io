@@ -750,7 +750,7 @@ a:any-link:hover{
     main.content {
         transform: translateZ(0);
         backface-visibility: hidden;
-        margin-top: 1vh;
+        margin-top: 0;
     }
     .site-footer {
         position: static;
