@@ -3292,10 +3292,6 @@ align-items: center;
         color: var(--contrast-color);
     }
 
-    li {
-        font-size: 0.75rem;
-    }
-
     /* Post layout handled by .post-stage collapse and .post-outer > *:not(.post-stage) in 1024px block */
 }
 
