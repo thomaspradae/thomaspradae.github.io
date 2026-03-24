@@ -3527,7 +3527,8 @@ align-items: center;
         white-space: nowrap;
         background: none !important;
         padding: 0 !important;
-        margin: 0 !important;
+        margin: 0;
+        margin-right: 0.6rem;
     }
 
     .archive-item .tag-pill-dot {
