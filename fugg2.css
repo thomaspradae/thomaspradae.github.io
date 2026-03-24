@@ -1591,6 +1591,63 @@ img + em {
   text-decoration: underline;
 }
 
+.footnote.is-inline-footnote-open {
+  color: var(--contrast-color);
+  text-decoration: none;
+}
+
+.inline-footnote {
+  display: block;
+  width: 100%;
+  margin: 0.8rem 0 0.65rem;
+  padding: 0.8rem 0;
+  border-top: 0.0125rem solid var(--lightest-text);
+  border-bottom: 0.0125rem solid var(--lightest-text);
+}
+
+.inline-footnote-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.75rem;
+  align-items: start;
+}
+
+.inline-footnote-number {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--backup-text-color-v3);
+}
+
+.inline-footnote-body {
+  min-width: 0;
+}
+
+.inline-footnote-paragraph {
+  display: block;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--backup-text-color-v2);
+}
+
+.inline-footnote-paragraph + .inline-footnote-paragraph {
+  margin-top: 0.4rem;
+}
+
+.inline-footnote a {
+  color: var(--backup-text-color-v2);
+}
+
+.inline-footnote a:hover {
+  color: var(--main-accent);
+}
+
+.inline-footnote code {
+  font-size: 0.72rem;
+  background-color: var(--backup-text-color-v5);
+}
+
 /* .meta{
     margin-bottom: 0vh;
     display: block;

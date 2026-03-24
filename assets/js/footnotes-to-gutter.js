@@ -7,8 +7,14 @@
     footnotes: "#main .footnotes",
     refs: 'sup[role="doc-noteref"] a.footnote[href^="#"]',
   };
+  const MOBILE_MEDIA = "(max-width: 1024px)";
 
   let raf = null;
+  let currentMode = null;
+  let footnoteMap = new Map();
+
+  const isMobile = () => window.matchMedia(MOBILE_MEDIA).matches;
+
   const schedule = () => {
     if (raf) return;
     raf = requestAnimationFrame(() => {
@@ -20,7 +26,7 @@
   function stripBackrefs(li) {
     const clone = li.cloneNode(true);
     clone.querySelectorAll('a.reversefootnote, a[href^="#fnref"]').forEach(a => a.remove());
-    return clone.innerHTML.trim();
+    return clone;
   }
 
   function getFootnoteNumber(id) {
@@ -28,26 +34,133 @@
     return match ? match[1] : "";
   }
 
-  function layout() {
-    const stage = document.querySelector(SEL.stage);
-    const main = document.querySelector(SEL.main);
-    const gutter = document.querySelector(SEL.gutter);
-    const footnotes = document.querySelector(SEL.footnotes);
+  function buildInlineHtml(clone) {
+    const parts = [];
 
-    if (!stage || !main || !gutter || !footnotes) return;
+    clone.childNodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent.trim();
+        if (text) parts.push(text);
+        return;
+      }
 
-    gutter.style.position = "relative";
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
 
-    // Map: fnId -> { number, html }
+      const el = node;
+
+      if (el.matches("ul, ol")) {
+        [...el.children].forEach(item => {
+          const html = item.innerHTML.trim();
+          if (html) parts.push(`&bull; ${html}`);
+        });
+        return;
+      }
+
+      const html = el.innerHTML.trim();
+      if (html) parts.push(html);
+    });
+
+    return parts
+      .filter(Boolean)
+      .map(html => `<span class="inline-footnote-paragraph">${html}</span>`)
+      .join("");
+  }
+
+  function buildFootnoteMap(footnotes) {
     const map = new Map();
+
     footnotes.querySelectorAll("ol > li[id]").forEach(li => {
+      const clone = stripBackrefs(li);
+
       map.set(li.id, {
+        id: li.id,
         number: getFootnoteNumber(li.id),
-        html: stripBackrefs(li),
+        html: clone.innerHTML.trim(),
+        inlineHtml: buildInlineHtml(clone),
       });
     });
 
-    gutter.querySelectorAll(".gutter-note").forEach(n => n.remove());
+    return map;
+  }
+
+  function clearGutterNotes(gutter) {
+    gutter?.querySelectorAll(".gutter-note").forEach(note => note.remove());
+  }
+
+  function clearInlineNotes(main) {
+    if (!main) return;
+
+    main.querySelectorAll(".inline-footnote").forEach(note => note.remove());
+    main.querySelectorAll(SEL.refs).forEach(ref => {
+      ref.classList.remove("is-inline-footnote-open");
+      ref.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function bindInlineRefs(main) {
+    main.querySelectorAll(SEL.refs).forEach(ref => {
+      if (ref.dataset.inlineFootnoteBound === "true") return;
+
+      ref.dataset.inlineFootnoteBound = "true";
+      ref.setAttribute("aria-expanded", "false");
+      ref.addEventListener("click", onInlineRefClick);
+    });
+  }
+
+  function createInlineNote(data) {
+    const note = document.createElement("span");
+    note.className = "inline-footnote";
+    note.dataset.footnoteId = data.id;
+
+    note.innerHTML = `
+      <span class="inline-footnote-inner">
+        <span class="inline-footnote-number">${data.number}</span>
+        <span class="inline-footnote-body">${data.inlineHtml || data.html}</span>
+      </span>
+    `;
+
+    return note;
+  }
+
+  function onInlineRefClick(event) {
+    if (!isMobile()) return;
+
+    const ref = event.currentTarget;
+    if (!(ref instanceof HTMLAnchorElement)) return;
+
+    const main = document.querySelector(SEL.main);
+    if (!main) return;
+
+    const id = decodeURIComponent(ref.getAttribute("href").slice(1));
+    const data = footnoteMap.get(id);
+    if (!data) return;
+
+    event.preventDefault();
+
+    const anchor = ref.closest('sup[role="doc-noteref"]') || ref;
+    const isOpen = anchor.nextElementSibling?.classList.contains("inline-footnote");
+
+    clearInlineNotes(main);
+    if (isOpen) return;
+
+    const note = createInlineNote(data);
+    anchor.insertAdjacentElement("afterend", note);
+
+    ref.classList.add("is-inline-footnote-open");
+    ref.setAttribute("aria-expanded", "true");
+
+    requestAnimationFrame(() => {
+      note.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+
+  function renderDesktop({ stage, main, gutter, footnotes }) {
+    if (!stage || !main || !gutter || !footnotes) return;
+
+    clearInlineNotes(main);
+    clearGutterNotes(gutter);
+
+    gutter.style.position = "relative";
 
     const stageTop = stage.getBoundingClientRect().top + window.scrollY;
 
@@ -56,7 +169,7 @@
 
     main.querySelectorAll(SEL.refs).forEach(ref => {
       const id = decodeURIComponent(ref.getAttribute("href").slice(1));
-      const data = map.get(id);
+      const data = footnoteMap.get(id);
       if (!data) return;
 
       const note = document.createElement("div");
@@ -84,6 +197,44 @@
     footnotes.style.display = "none";
   }
 
+  function renderMobile({ gutter, footnotes }) {
+    clearGutterNotes(gutter);
+
+    if (footnotes) {
+      footnotes.style.display = "none";
+    }
+  }
+
+  function layout() {
+    const stage = document.querySelector(SEL.stage);
+    const main = document.querySelector(SEL.main);
+    const gutter = document.querySelector(SEL.gutter);
+    const footnotes = document.querySelector(SEL.footnotes);
+
+    if (!main || !footnotes) return;
+
+    footnoteMap = buildFootnoteMap(footnotes);
+    bindInlineRefs(main);
+
+    const nextMode = isMobile() ? "mobile" : "desktop";
+
+    if (currentMode !== nextMode) {
+      if (nextMode === "mobile") {
+        clearGutterNotes(gutter);
+      } else {
+        clearInlineNotes(main);
+      }
+      currentMode = nextMode;
+    }
+
+    if (nextMode === "mobile") {
+      renderMobile({ gutter, footnotes });
+      return;
+    }
+
+    renderDesktop({ stage, main, gutter, footnotes });
+  }
+
   function init() {
     schedule();
 
@@ -98,6 +249,14 @@
     });
 
     window.addEventListener("resize", schedule);
+    document.addEventListener("click", event => {
+      if (!isMobile()) return;
+      if (!(event.target instanceof Element)) return;
+      if (event.target.closest(".inline-footnote")) return;
+      if (event.target.closest(SEL.refs)) return;
+
+      clearInlineNotes(main);
+    });
   }
 
   if (document.readyState === "loading") {
