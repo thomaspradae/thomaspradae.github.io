@@ -123,13 +123,7 @@
   }
 
   function getInlineInsertionTarget(ref) {
-    const anchor = ref.closest('sup[role="doc-noteref"]') || ref;
-
-    return (
-      anchor.closest("p, li, blockquote, figcaption, dd, td, th") ||
-      anchor.parentElement ||
-      anchor
-    );
+    return ref.closest('sup[role="doc-noteref"]') || ref;
   }
 
   function onInlineRefClick(event) {
