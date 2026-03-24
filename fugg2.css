@@ -3327,7 +3327,7 @@ align-items: center;
     }
     
         /* scale everything up on iPhone */
-        p {
+        p, li, ul {
             font-size: 1.2rem;
             line-height: 1.55;
         }
