@@ -1613,10 +1613,9 @@ img + em {
 
 .inline-footnote-number {
   font-family: 'Crimson Pro', serif;
-  font-size: 0.72rem;
-  line-height: 1.2;
+  font-size: 0.82rem;
+  line-height: 1.4;
   color: var(--backup-text-color-v3);
-  transform: translateY(0.08rem);
 }
 
 .inline-footnote-body {
