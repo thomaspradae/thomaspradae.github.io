@@ -2491,6 +2491,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     /* Let flex children shrink so BREADCRUMBS [space-between] HOME ABOUT fits within width */
     .layout-post .post-meta-container {
       min-width: 0;
+      align-items: center;
     }
     .layout-post .post-meta-container-left-side {
       min-width: 0;
