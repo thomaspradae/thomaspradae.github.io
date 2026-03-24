@@ -150,14 +150,18 @@
     return null;
   }
 
+  function getOpenInlineNote(target, id) {
+    const next = target.nextElementSibling;
+    if (!next?.classList.contains("inline-footnote")) return null;
+    if (next.dataset.footnoteId !== id) return null;
+    return next;
+  }
+
   function onInlineRefClick(event) {
     if (!isMobile()) return;
 
     const ref = event.currentTarget;
     if (!(ref instanceof HTMLAnchorElement)) return;
-
-    const main = document.querySelector(SEL.main);
-    if (!main) return;
 
     const id = decodeURIComponent(ref.getAttribute("href").slice(1));
     const data = footnoteMap.get(id);
@@ -166,12 +170,13 @@
     event.preventDefault();
 
     const target = getInlineInsertionTarget(ref);
-    const next = target.nextElementSibling;
-    const isOpen =
-      next?.classList.contains("inline-footnote") && next.dataset.footnoteId === id;
-
-    clearInlineNotes(main);
-    if (isOpen) return;
+    const openNote = getOpenInlineNote(target, id);
+    if (openNote) {
+      openNote.remove();
+      ref.classList.remove("is-inline-footnote-open");
+      ref.setAttribute("aria-expanded", "false");
+      return;
+    }
 
     const note = createInlineNote(data);
     const parent = target.parentNode;
