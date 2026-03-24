@@ -3535,7 +3535,7 @@ align-items: center;
         display: inline !important;
         opacity: 1 !important;
         max-width: none !important;
-        font-size: 0.72rem;
+        font-size: 0.725rem;
         font-weight: 400;
         color: var(--backup-text-color-v3);
     }
@@ -3543,12 +3543,12 @@ align-items: center;
     /* dot separator — bigger than tag text */
     .archive-item .tag-pill::before {
         content: "·";
-        font-size: 1rem;
-        line-height: 1;
+        font-size: 1.500rem;
+        line-height: inherit;
+        vertical-align: middle;
+        margin-left: 0.500rem;
+        margin-right: 0.125rem;
         color: var(--backup-text-color-v3);
-        margin-right: 0.25rem;
-        margin-left: 0.1rem;
-        vertical-align: baseline;
     }
 
     .archive-footer {
