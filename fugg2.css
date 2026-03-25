@@ -2542,7 +2542,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
     .layout-post .mobile-post-menu-shell.is-sticky .mobile-post-menu-toggle,
     body.mobile-post-menu-open.layout-post .mobile-post-menu-toggle {
-      background: rgba(255, 255, 255, 0.72);
+      background: transparent;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
