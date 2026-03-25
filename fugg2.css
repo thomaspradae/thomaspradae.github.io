@@ -1486,6 +1486,13 @@ img + em {
     justify-content: flex-end;   /* push date + "last edited" to bottom */
 }
 
+.post-meta-last-modified {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .post-meta-section {
     text-align: left;
     display: flex;
@@ -1691,6 +1698,12 @@ img + em {
     color: var(--backup-text-color-v3);
 }
 
+.date-post-mono {
+    font-family: 'SF Mono Nerd', monospace;
+    font-size: 0.78rem;
+    letter-spacing: -0.01em;
+}
+
 .meta-label {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -1699,15 +1712,8 @@ img + em {
     color: var(--backup-text-color-v3);
 }
   
-  .meta-updated-label {
-    margin: 0.25rem 0 0;
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--backup-text-color-v3);
-}
-  
 .post-meta-date,
+.post-meta-last-modified,
 .post-meta-section,
 .post-meta-tags {
   display: flex;
@@ -2305,7 +2311,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 }
 
 .post-top .post-meta-date .date-post,
-.post-top .post-meta-date .date-post-updated {
+.post-top .post-meta-last-modified .date-post-mono {
   margin: 0;
 }
 
@@ -3651,6 +3657,7 @@ align-items: center;
     }
 
     .layout-post .post-meta-mobile-row .post-meta-date,
+    .layout-post .post-meta-mobile-row .post-meta-last-modified,
     .layout-post .post-meta-mobile-row .post-meta-section {
         flex: 0 0 auto;
         text-align: left;

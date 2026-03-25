@@ -86,15 +86,17 @@ layout: default
                   <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
                     {{ page.date | date: "%B %-d, %Y" }}
                   </time>
-          
-                  {% if page.last_modified_at %}
-                    <p class="meta-updated-label">last edited</p>
-                    <time class="date-post date-post-updated"
+                </div>
+                {% if page.last_modified_at %}
+                  <div class="post-meta-last-modified">
+                    <p class="meta-label">last modified</p>
+
+                    <time class="date-post date-post-mono"
                           datetime="{{ page.last_modified_at | date_to_xmlschema }}">
                       {{ page.last_modified_at | date: "%B %-d, %Y" }}
                     </time>
-                  {% endif %}
-                </div>
+                  </div>
+                {% endif %}
                 <!-- COLUMN 3: TAGS -->
                 <div class="post-meta-tags">
                   <p class="meta-label">tags</p>
@@ -134,15 +136,17 @@ layout: default
                   <time class="date-post" datetime="{{ page.date | date_to_xmlschema }}">
                     {{ page.date | date: "%B %-d, %Y" }}
                   </time>
+                </div>
+                {% if page.last_modified_at %}
+                  <div class="post-meta-last-modified">
+                    <p class="meta-label">last modified</p>
 
-                  {% if page.last_modified_at %}
-                    <p class="meta-updated-label">last edited</p>
-                    <time class="date-post date-post-updated"
+                    <time class="date-post date-post-mono"
                           datetime="{{ page.last_modified_at | date_to_xmlschema }}">
                       {{ page.last_modified_at | date: "%B %-d, %Y" }}
                     </time>
-                  {% endif %}
-                </div>
+                  </div>
+                {% endif %}
 
                 <div class="post-meta-section">
                   <p class="meta-label">type</p>
