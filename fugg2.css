@@ -2512,6 +2512,8 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     }
 
     .layout-post .mobile-post-menu-shell {
+      --mobile-post-menu-sticky-top: 1rem;
+      --mobile-post-menu-sticky-right: 1.25rem;
       display: block;
       position: relative;
       flex: 0 0 auto;
@@ -2521,8 +2523,8 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
     .layout-post .mobile-post-menu-shell.is-sticky {
       position: fixed;
-      top: 1rem;
-      right: 1.25rem;
+      top: var(--mobile-post-menu-sticky-top);
+      right: var(--mobile-post-menu-sticky-right);
       margin-left: 0;
     }
 

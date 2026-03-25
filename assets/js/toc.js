@@ -154,6 +154,15 @@ function initMobilePostMenu(sections) {
   const isMobileViewport = () => window.matchMedia(MOBILE_POST_MENU_QUERY).matches;
   let lastDebugSnapshot = "";
 
+  const captureStickyAnchor = () => {
+    if (!isMobileViewport()) return;
+    if (shell.classList.contains("is-sticky")) return;
+
+    const rect = shell.getBoundingClientRect();
+    shell.style.setProperty("--mobile-post-menu-sticky-top", `${Math.round(rect.top)}px`);
+    shell.style.setProperty("--mobile-post-menu-sticky-right", `${Math.round(window.innerWidth - rect.right)}px`);
+  };
+
   const closeMenu = () => {
     document.body.classList.remove("mobile-post-menu-open");
     toggle.setAttribute("aria-expanded", "false");
@@ -171,6 +180,8 @@ function initMobilePostMenu(sections) {
   };
 
   const syncScrolledState = () => {
+    captureStickyAnchor();
+
     const isSticky = isMobileViewport() && window.scrollY > 0;
     shell.classList.toggle("is-sticky", isSticky);
 
@@ -229,6 +240,7 @@ function initMobilePostMenu(sections) {
   }
 
   shell.setAttribute("aria-hidden", "false");
+  captureStickyAnchor();
   syncScrolledState();
 }
 
