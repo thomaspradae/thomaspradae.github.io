@@ -12,7 +12,7 @@ tags:
   - log
 excerpt:
 ---
-## (0) - NOTES
+## (0) - Notes
 
 ### (0.1) - v.3 - 3d model with rudimentary physics
 
@@ -62,7 +62,7 @@ Let's try and build a basic representation of a missile. In order to do this, le
 
 The forces on a rocket (missile) change during a typical flight (I read, I can't remember where I read this from, but it changes less for missiles, but it still changes). This is because the the weight and mass of our missile is constantly changing. For example (I have to dig deeper into this), but a considerable amount of the mass of a missile is its fuel. Therefore, we can't use the standard form of Newton's second law of motion to determine the acceleration and velocity of our missile. The first thing we're going to model is
 
-## (1) - LOG
+## (1) - Log
 
 (Wasn't really consistent with the log lol - Thomas (22 jun, 2024))
 

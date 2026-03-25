@@ -11,9 +11,9 @@ excerpt: The code is pretty straight forward, we start off our simulation once a
 
 
 
-(THIS IS JUST A TRIAL NOTE TO TEST OUT THE WEBSITE)
+(This Is Just a Trial Note to Test Out the Website)
 
-## (TRIAL NOTE)
+## (Trial Note)
 
 **Objective**
 Intercept the missile that's fired from the "Attack" coordinates before it reaches the "Target" coordinates.
