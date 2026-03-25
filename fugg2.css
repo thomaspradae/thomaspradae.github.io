@@ -2440,7 +2440,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
 .archive-section-title {
     text-transform: uppercase;
-    letter-spacing: 0.18em;
     color: var(--backup-text-color-v3);
     margin-bottom: 2rem;
 }
@@ -2451,7 +2450,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     text-decoration: none;
     color: #333333;
     font-weight: 400;
-    letter-spacing: 0.02em;
 }
 
 .archive-title:hover {
@@ -2474,15 +2472,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 .archive-footer a:hover {
     text-decoration: underline;
 }
-
-.archive-footer-left {
-    letter-spacing: 0.18em;
-}
-
-.archive-footer-right {
-    letter-spacing: 0.12em;
-}
-
 
 /* 5. Mobile: collapse everything to single column */
 @media (max-width: 1024px){
@@ -2748,7 +2737,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
   font-size: 3rem;
   font-weight: 650;
-  letter-spacing: 0.02em;
   text-transform: capitalize;
   color: #ff0000;
 
@@ -2791,7 +2779,6 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
     text-decoration: none;
     color: #333333;
     font-weight: 400;
-    letter-spacing: 0.02em;
 }
 
 .archive-title:hover {
@@ -2913,14 +2900,6 @@ font-family: 'Inter', sans-serif;
 
 .archive-footer a:hover {
     text-decoration: underline;
-}
-
-.archive-footer-left {
-    letter-spacing: 0.18em;
-}
-
-.archive-footer-right {
-    letter-spacing: 0.12em;
 }
 
 /* Header row: title (left) + top nav (right) aligned on baseline */
