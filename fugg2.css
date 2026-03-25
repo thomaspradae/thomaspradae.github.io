@@ -257,14 +257,17 @@ padding: 0;
 margin: 0;
 display: inline-flex;
 flex-direction: column;
+gap: 0.2rem;
 }
 
 .home-nav-list li {
 font-family: Inter, sans-serif;
+margin: 0;
+color: var(--backup-text-color-v2);
 }
 
 .home-nav-list a:any-link {
-    color: #bebebe;
+    color: inherit;
 }
 
 /* HOME mark image (above title) */
@@ -291,15 +294,53 @@ display: block;
 .home-nav-link {
 font-weight: 400;
 font-size: 1.4rem;
-color: var(--backup-text-color-v2);
+color: inherit;
 text-decoration: none;
 transition: color 180ms ease, transform 180ms ease;
+}
+
+.home-nav-link--icon {
+display: inline-flex;
+align-items: center;
+gap: 0.7rem;
+width: fit-content;
+}
+
+.home-nav-link--icon:focus-visible {
+outline: 1px solid currentColor;
+outline-offset: 0.18rem;
+}
+
+.home-nav-label {
+line-height: 1;
+}
+
+.home-nav-icon {
+width: 1.05em;
+height: 1.05em;
+flex: 0 0 1.05em;
+background-color: currentColor;
+opacity: 0.6;
+-webkit-mask-image: var(--icon-url);
+mask-image: var(--icon-url);
+-webkit-mask-repeat: no-repeat;
+mask-repeat: no-repeat;
+-webkit-mask-position: center;
+mask-position: center;
+-webkit-mask-size: contain;
+mask-size: contain;
+transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .home-nav-link:hover {
 color: var(--contrast-color);
 transform: translateY(-1px);
 text-decoration: none;
+}
+
+.home-nav-link:hover .home-nav-icon,
+.home-nav-link:focus-visible .home-nav-icon {
+opacity: 1;
 }
 
 .home-nav-list a.home-nav-link:hover {
