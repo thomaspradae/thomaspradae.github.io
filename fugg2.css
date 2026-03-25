@@ -3509,7 +3509,6 @@ align-items: center;
     h2 {
         font-size: 1.125rem;
         font-weight: 400;
-        text-transform: uppercase;
         margin-top: 8vh;
         color: var(--contrast-color);
     }
@@ -3517,7 +3516,6 @@ align-items: center;
     h3 {
         font-size: 1rem;
         font-weight: 400;
-        text-transform: uppercase;
         margin-top: 5vh;
         color: var(--contrast-color);
     }
@@ -3525,7 +3523,6 @@ align-items: center;
     h4 {
         font-size: 0.875rem;
         font-weight: 400;
-        text-transform: uppercase;
         margin-top: 5vh;
         color: var(--contrast-color);
     }
@@ -3533,7 +3530,6 @@ align-items: center;
     h5 {
         font-size: 0.75rem;
         font-weight: 400;
-        text-transform: uppercase;
         margin-top: 5vh;
         color: var(--contrast-color);
     }
@@ -3541,7 +3537,6 @@ align-items: center;
     h6 {
         font-size: 0.625rem;
         font-weight: 400;
-        text-transform: uppercase;
         margin-top: 5vh;
         color: var(--contrast-color);
     }
