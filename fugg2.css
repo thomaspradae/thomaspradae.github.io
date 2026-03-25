@@ -3466,7 +3466,7 @@ align-items: center;
     }
 
     .date-post{
-        font-size: 0.625rem;
+        font-size: 0.75rem;
         color: var(--backup-text-color-v3);
     }
 
@@ -3514,6 +3514,10 @@ align-items: center;
         font-weight: 400;
         margin-top: 5vh;
         color: var(--contrast-color);
+    }
+
+    .meta-label{
+        color: var(--backup-text-color-v4);
     }
 
     /* Post layout handled by .post-stage collapse and .post-outer > *:not(.post-stage) in 1024px block */
@@ -3637,7 +3641,6 @@ align-items: center;
     .layout-post .post-metadata > .post-meta-mobile {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
     }
 
     .layout-post .post-meta-mobile-row {
