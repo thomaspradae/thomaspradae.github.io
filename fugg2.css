@@ -752,6 +752,9 @@ a:any-link:hover{
         backface-visibility: hidden;
         margin-top: 0;
     }
+    .layout-post main.content {
+        transform: none;
+    }
     .site-footer {
         position: static;
         bottom: auto;

@@ -143,37 +143,6 @@ function createMobileTOCList(sections, closeMenu) {
   return list;
 }
 
-function getMobilePostMenuDebugPanel() {
-  let panel = document.getElementById("mobile-post-menu-debug");
-  if (panel) return panel;
-
-  panel = document.createElement("pre");
-  panel.id = "mobile-post-menu-debug";
-
-  Object.assign(panel.style, {
-    position: "fixed",
-    left: "0.75rem",
-    bottom: "0.75rem",
-    zIndex: "999",
-    margin: "0",
-    padding: "0.65rem 0.75rem",
-    borderRadius: "0.8rem",
-    background: "rgba(255,255,255,0.92)",
-    border: "1px solid rgba(0,0,0,0.08)",
-    boxShadow: "0 12px 28px rgba(0,0,0,0.12)",
-    color: "#6f6f6f",
-    fontFamily: "'SF Mono Nerd', monospace",
-    fontSize: "0.65rem",
-    lineHeight: "1.35",
-    whiteSpace: "pre-wrap",
-    pointerEvents: "none",
-    maxWidth: "calc(100vw - 1.5rem)"
-  });
-
-  document.body.appendChild(panel);
-  return panel;
-}
-
 function initMobilePostMenu(sections) {
   const shell = document.querySelector(".mobile-post-menu-shell");
   const toggle = shell?.querySelector(".mobile-post-menu-toggle");
@@ -210,14 +179,7 @@ function initMobilePostMenu(sections) {
     }
 
     if (!DEBUG_MOBILE_POST_MENU) return;
-
-    const debugPanel = getMobilePostMenuDebugPanel();
-    if (!isMobileViewport()) {
-      debugPanel.hidden = true;
-      return;
-    }
-
-    debugPanel.hidden = false;
+    if (!isMobileViewport()) return;
 
     const shellRect = shell.getBoundingClientRect();
     const toggleRect = toggle.getBoundingClientRect();
@@ -231,8 +193,6 @@ function initMobilePostMenu(sections) {
       `shell top/right: ${Math.round(shellRect.top)} / ${Math.round(window.innerWidth - shellRect.right)}`,
       `toggle top/right: ${Math.round(toggleRect.top)} / ${Math.round(window.innerWidth - toggleRect.right)}`
     ].join("\n");
-
-    debugPanel.textContent = snapshot;
 
     if (snapshot !== lastDebugSnapshot) {
       console.debug(snapshot);
