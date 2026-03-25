@@ -169,7 +169,7 @@ function initMobilePostMenu(sections) {
   };
 
   const syncScrolledState = () => {
-    const isSticky = isMobileViewport() && window.scrollY > 12;
+    const isSticky = isMobileViewport() && window.scrollY > 0;
     shell.classList.toggle("is-sticky", isSticky);
 
     if (!isMobileViewport()) {
