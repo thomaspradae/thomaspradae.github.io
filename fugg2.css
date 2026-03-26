@@ -106,6 +106,8 @@ blockquote p{
 /* li */
 .home-sidebar-item {
     position: relative;
+    display: block;
+    width: fit-content;
     margin-bottom: 0.625rem;
     color: rgb(144, 144, 144);
     transition: background-color 0.3s, color 0.3s;
@@ -142,6 +144,45 @@ blockquote p{
 
 .home-sidebar-item:hover {
     color: var(--contrast-color);
+}
+
+.home-sidebar-preview {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 1.5rem);
+    width: clamp(9rem, 14vw, 13rem);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.4rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.98);
+    transform-origin: left center;
+    transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+    z-index: 2;
+}
+
+.home-sidebar-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 37.5625rem) {
+    .home-sidebar-item:hover .home-sidebar-preview,
+    .home-sidebar-item:focus-within .home-sidebar-preview {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 37.5rem) {
+    .home-sidebar-preview {
+        display: none;
+    }
 }
 
 
