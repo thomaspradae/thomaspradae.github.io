@@ -3038,11 +3038,22 @@ min-width: 0;
 }
 
 .archive-type{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
   text-transform: uppercase;
   color: var(--backup-text-color-v3);
+}
+
+.archive-type-icon{
+  width: 0.72rem;
+  height: auto;
+  flex: 0 0 auto;
+  display: block;
+  opacity: 0.8;
 }
 
 .archive-meta{

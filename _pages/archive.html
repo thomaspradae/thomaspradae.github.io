@@ -58,13 +58,28 @@ permalink: /archive/
 
           <!-- TYPE column (between title and tags) -->
           <span class="archive-type">
+            {%- assign archive_type_label = post.collection -%}
+            {%- assign archive_type_icon = "/assets/images/resources/archive.png" -%}
             {%- case post.collection -%}
-              {%- when "writing" -%}writing
-              {%- when "building" -%}building
-              {%- when "notes" -%}notes
-              {%- when "misc" -%}misc
-              {%- else -%}{{ post.collection }}
+              {%- when "writing" -%}
+                {%- assign archive_type_label = "writing" -%}
+                {%- assign archive_type_icon = "/assets/images/resources/writing.png" -%}
+              {%- when "building" -%}
+                {%- assign archive_type_label = "building" -%}
+                {%- assign archive_type_icon = "/assets/images/resources/building.png" -%}
+              {%- when "notes" -%}
+                {%- assign archive_type_label = "notes" -%}
+                {%- assign archive_type_icon = "/assets/images/resources/notes.png" -%}
+              {%- when "misc" -%}
+                {%- assign archive_type_label = "marginalia" -%}
+                {%- assign archive_type_icon = "/assets/images/resources/marginalia.png" -%}
             {%- endcase -%}
+            <img
+              src="{{ archive_type_icon }}"
+              alt=""
+              class="archive-type-icon"
+              aria-hidden="true">
+            <span class="archive-type-label">{{ archive_type_label }}</span>
           </span>
 
           <!-- Tags -->
