@@ -3016,7 +3016,7 @@ font-family: 'Inter', sans-serif;
 
 .archive-title-group{
   display: inline-flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 0.7rem;
 }
 
