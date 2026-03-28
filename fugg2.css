@@ -3572,7 +3572,7 @@ min-width: 0;
   white-space: nowrap;
   font-family: 'Inter', sans-serif;
   font-size: 0.7rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: var(--backup-text-color-v3);
 }
 
