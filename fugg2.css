@@ -814,6 +814,18 @@ a:any-link:hover{
     margin-bottom: 0.1rem;
 }
 
+.footer-signoff-meta a,
+.footer-signoff-meta a:any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-signoff-meta a:hover,
+.footer-signoff-meta a:any-link:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
 .footer-signoff-coords {
     font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
@@ -826,25 +838,6 @@ a:any-link:hover{
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--backup-text-color-v4);
-}
-
-.footer-signoff-dawgs {
-    margin-top: 0.45rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
-    color: var(--backup-text-color-v3);
-}
-
-.footer-signoff-dawgs a,
-.footer-signoff-dawgs a:any-link {
-    color: inherit;
-    text-decoration: none;
-}
-
-.footer-signoff-dawgs a:hover,
-.footer-signoff-dawgs a:any-link:hover {
-    color: var(--contrast-color);
-    text-decoration: underline;
 }
 
 @keyframes footerMobileReveal {
