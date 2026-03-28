@@ -3057,8 +3057,10 @@ font-family: 'Inter', sans-serif;
   text-decoration: none;
 }
 
-.archive-topnav a:hover{
-  text-decoration: underline;
+.archive-topnav a:-webkit-any-link:hover,
+.archive-topnav a:any-link:hover{
+  color: #000000;
+  text-decoration: none;
 }
 
 /* ------------------------------------------------------------------ */
