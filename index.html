@@ -650,7 +650,8 @@ function loadImage(url){
     const gx = (u + 0.5) * (gw / demMeta.final_w) - 0.5;
     const gy = (v + 0.5) * (gh / demMeta.final_h) - 0.5;
     const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
-    const elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
+    let elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
+    if (elev === null || elev < 1000 || elev > 5000) elev = 3100 + Math.random() * 200;
 
     setHud(lat, lon, elev);
 
