@@ -1,0 +1,27 @@
+{%- assign search_docs = site.writing
+  | concat: site.building
+  | concat: site.notes
+  | concat: site.misc
+  | sort: "date"
+  | reverse
+-%}
+[
+{%- for doc in search_docs -%}
+  {%- assign category_label = doc.collection -%}
+  {%- case doc.collection -%}
+    {%- when "misc" -%}
+      {%- assign category_label = "marginalia" -%}
+  {%- endcase -%}
+  {
+    "title": {{ doc.title | strip_html | strip_newlines | strip | jsonify }},
+    "description": {{ doc.description | default: doc.summary | default: doc.excerpt | strip_html | strip_newlines | strip | jsonify }},
+    "excerpt": {{ doc.excerpt | default: doc.description | default: doc.content | strip_html | strip_newlines | strip | truncate: 240 | jsonify }},
+    "body": {{ doc.content | strip_html | strip_newlines | strip | jsonify }},
+    "url": {{ doc.url | relative_url | jsonify }},
+    "category": {{ doc.collection | jsonify }},
+    "category_label": {{ category_label | jsonify }},
+    "tags": {% if doc.tags and doc.tags.size > 0 %}{{ doc.tags | jsonify }}{% else %}[]{% endif %},
+    "date": {{ doc.date | date: "%Y-%m-%d" | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+]

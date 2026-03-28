@@ -1,0 +1,27 @@
+<div
+  class="archive-topnav js-inline-search"
+  data-search-scope="{{ include.scope | default: '' }}"
+  data-search-scope-label="{{ include.scope_label | default: 'Archive' }}"
+  data-search-placeholder="{{ include.placeholder | default: 'Search everywhere...' }}"
+  data-search-index-url="{{ '/search-index.json' | relative_url }}"
+  data-search-results-url="{{ '/search/' | relative_url }}">
+  <span class="search-slot">
+    <a href="{{ '/search/' | relative_url }}" class="search-trigger" aria-expanded="false">Search</a>
+    <span class="search-bar">
+      <input
+        type="search"
+        class="search-input"
+        placeholder="{{ include.placeholder | default: 'Search everywhere...' }}"
+        autocomplete="off">
+      <span class="search-actions">
+        <button type="button" class="search-clear" aria-label="Clear search"></button>
+        <span class="search-actions-sep"></span>
+        <button type="button" class="search-close">esc</button>
+      </span>
+    </span>
+  </span>
+  <a href="{{ '/archive/' | relative_url }}">Nav</a>
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <a href="{{ '/about/' | relative_url }}">About</a>
+  <div class="search-dropdown"></div>
+</div>

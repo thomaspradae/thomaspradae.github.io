@@ -19,7 +19,7 @@ permalink: /archive/
   <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
 </head>
 
-<body>
+<body class="archive-page">
   <div class="archive-wrapper">
     <div class="archive-header">
       <div class="archive-title-group">
@@ -31,12 +31,11 @@ permalink: /archive/
           aria-hidden="true">
       </div>
 
-      <div class="archive-topnav">
-        <a href="{{ '/search/' | relative_url }}">Search</a>
-        <a href="{{ '/archive/' | relative_url }}">Nav</a>
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-      </div>
+      {% include archive_search_nav.html
+        scope=""
+        scope_label="Archive"
+        placeholder="Search everywhere..."
+      %}
     </div>
 
     <div class="archive-card">
@@ -107,6 +106,7 @@ permalink: /archive/
       </ul>
     </div>
   </div>
+  {% include search_assets.html %}
 </body>
 
 </html>

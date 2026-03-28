@@ -20,7 +20,7 @@ permalink: /notes/
 
 </head>
 
-<body>
+<body class="archive-page">
   <div class="archive-wrapper">
     <!-- Add section title here -->
     <div class="archive-header">
@@ -33,12 +33,11 @@ permalink: /notes/
           aria-hidden="true">
       </div>
     
-      <div class="archive-topnav">
-        <a href="{{ '/search/' | relative_url }}">Search</a>
-        <a href="{{ '/archive/' | relative_url }}">Nav</a>
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-      </div>
+      {% include archive_search_nav.html
+        scope="notes"
+        scope_label="Notes"
+        placeholder="Search in Notes..."
+      %}
     </div>
     
     <div class="archive-card">
@@ -74,5 +73,6 @@ permalink: /notes/
       </ul>
     </div>
   </div>
+  {% include search_assets.html %}
 </body>
 </html>

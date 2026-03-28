@@ -1,0 +1,65 @@
+---
+layout: compress
+title: Search
+permalink: /search/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | escape }} - Thomas Prada's "field notes"</title>
+  <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/fugg2.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
+  <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
+</head>
+
+<body class="search-page">
+  <div class="archive-wrapper">
+    <div class="archive-header">
+      <div class="archive-title-group">
+        <h2 class="archive-section-title">Search</h2>
+        <img
+          src="/assets/images/resources/archive.png"
+          alt=""
+          class="archive-section-icon"
+          aria-hidden="true">
+      </div>
+
+      <div class="archive-topnav">
+        <a href="{{ '/archive/' | relative_url }}">Nav</a>
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+      </div>
+    </div>
+
+    <div class="archive-card">
+      <section
+        class="search-page-shell js-search-page"
+        data-search-index-url="{{ '/search-index.json' | relative_url }}">
+        <p class="search-page-lede">
+          Search across writing, building, notes, and marginalia from one place.
+        </p>
+
+        <div class="search-page-input-row">
+          <input
+            type="search"
+            class="search-page-input"
+            placeholder="Search everywhere..."
+            autocomplete="off">
+          <button type="button" class="search-page-clear">clear</button>
+        </div>
+
+        <div class="search-page-results"></div>
+      </section>
+    </div>
+  </div>
+  {% include search_assets.html %}
+</body>
+
+</html>
