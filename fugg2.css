@@ -828,6 +828,25 @@ a:any-link:hover{
     color: var(--backup-text-color-v4);
 }
 
+.footer-signoff-dawgs {
+    margin-top: 0.45rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--backup-text-color-v3);
+}
+
+.footer-signoff-dawgs a,
+.footer-signoff-dawgs a:any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-signoff-dawgs a:hover,
+.footer-signoff-dawgs a:any-link:hover {
+    color: var(--contrast-color);
+    text-decoration: underline;
+}
+
 @keyframes footerMobileReveal {
     from {
         opacity: 0;
