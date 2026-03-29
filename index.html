@@ -137,14 +137,38 @@
       .hudName{
         margin-top: 2px;
         max-width: 28ch;
-        text-transform: uppercase;
-
         min-height: calc(1.15em * 2);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .hudNameText{
+        min-width: 0;
         overflow: hidden;             /* avoid pushing HUD taller */
         display: -webkit-box;
         -webkit-line-clamp: 2;
         line-clamp: 2;
         -webkit-box-orient: vertical;
+        text-transform: uppercase;
+      }
+
+      .hudNameIcon{
+        display: none;
+        flex: none;
+        width: 0.85rem;
+        height: 0.85rem;
+        object-fit: contain;
+      }
+
+      .hudNameIcon.is-visible{
+        display: block;
+      }
+
+      .hudNameIcon--peak{
+        width: 0.38rem;
+        height: 0.38rem;
+        margin-top: 0.2rem;
       }
 
       .hudRight{
@@ -458,7 +482,10 @@ function loadImage(url){
         <span id="hudLon"></span>
         <span id="hudAlt"></span>
       </div>
-      <div class="hudName" id="hudName"></div>
+      <div class="hudName" id="hudName">
+        <span class="hudNameText" id="hudNameText"></span>
+        <img class="hudNameIcon" id="hudNameIcon" alt="" aria-hidden="true">
+      </div>
     </div>
     <div class="hudRight" id="hudRight">
       <span id="hudCity" class="weather-pending"></span>
@@ -467,7 +494,8 @@ function loadImage(url){
     </div>
   `;
   const hudTopLine = hud.querySelector("#hudTopLine");
-  const hudName = hud.querySelector("#hudName");
+  const hudNameText = hud.querySelector("#hudNameText");
+  const hudNameIcon = hud.querySelector("#hudNameIcon");
   const hudRight = hud.querySelector("#hudRight");
   const hudLat = hud.querySelector("#hudLat");
   const hudLon = hud.querySelector("#hudLon");
@@ -485,6 +513,30 @@ function loadImage(url){
     hudLat.textContent = `+${lat.toFixed(4)}`;
     hudLon.textContent = `${lon.toFixed(4)}`;
     hudAlt.textContent = (altM == null) ? "" : `+${Math.round(altM)} m`;
+  }
+
+  function setHoveredName(name){
+    hudNameText.textContent = name ? name.toUpperCase() : "";
+    hudNameIcon.classList.remove("is-visible", "hudNameIcon--peak");
+
+    if (!name) {
+      hudNameIcon.removeAttribute("src");
+      return;
+    }
+
+    if (name.includes("Monserrate")) {
+      hudNameIcon.src = "/assets/images/resources/jesus.png";
+      hudNameIcon.classList.add("is-visible");
+      return;
+    }
+
+    if (name.includes("Aguanoso") || name.includes("Alto de la Viga")) {
+      hudNameIcon.src = "/assets/images/resources/mnt.png";
+      hudNameIcon.classList.add("is-visible", "hudNameIcon--peak");
+      return;
+    }
+
+    hudNameIcon.removeAttribute("src");
   }
 
   // initialize immediately
@@ -528,9 +580,6 @@ function loadImage(url){
     ...lonLatToFinalPx({ lon: p.lon, lat: p.lat }, rotMeta)
   }));
 
-  let hoveringPoint = false;
-  let hoveredName = null;
-
   for (const p of pointUV) {
     const el = document.createElement("div");
     el.className = "pt";
@@ -543,13 +592,11 @@ function loadImage(url){
 
     // hover label (name)
     el.addEventListener("mouseenter", () => {
-      hoveringPoint = true;
-      hoveredName = p.name;
+      setHoveredName(p.name);
     });
 
     el.addEventListener("mouseleave", () => {
-      hoveringPoint = false;
-      hoveredName = null;
+      setHoveredName(null);
     });
   }
 
@@ -654,15 +701,13 @@ function loadImage(url){
     if (elev === null || elev < 1000 || elev > 5000) elev = 3100 + Math.random() * 200;
 
     setHud(lat, lon, elev);
-
-    hudName.textContent = hoveredName ? hoveredName.toUpperCase() : "";
   });
 
   wrap.addEventListener("mouseleave", () => {
     inside = false;
     pxX = -10000; pxY = -10000;
     setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
-    hudName.textContent = "";
+    setHoveredName(null);
   });
 
   gl.disable(gl.DEPTH_TEST);
