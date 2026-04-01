@@ -4363,6 +4363,11 @@ align-items: center;
         gap: 0.35rem;
     }
 
+    /* Tag pages skip .archive-title-group, so mirror its mobile centering here. */
+    .archive-header > .archive-section-title {
+        margin: auto 0;
+    }
+
     .archive-section-icon {
         order: -1;
         width: 2.25rem;
