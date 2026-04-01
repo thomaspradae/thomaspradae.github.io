@@ -474,6 +474,10 @@
     var separator = root.querySelector(".search-actions-sep");
     var closeButton = root.querySelector(".search-close");
     var dropdown = root.querySelector(".search-dropdown");
+    var navTrigger = root.querySelector(".archive-nav-trigger");
+    var navOverlay = root.querySelector(".archive-nav-overlay");
+    var navPanel = root.querySelector(".archive-nav-panel");
+    var firstNavLink = navPanel ? navPanel.querySelector("a") : null;
 
     if (!trigger || !input || !clearButton || !separator || !closeButton || !dropdown) {
       return;
@@ -501,6 +505,40 @@
       dropdown.innerHTML = "";
       dropdown.classList.remove("visible");
       state.kbIndex = -1;
+    }
+
+    function openNav(event) {
+      if (!navTrigger || !navOverlay) {
+        return;
+      }
+
+      if (event) {
+        event.preventDefault();
+      }
+
+      if (document.body.classList.contains("search-open")) {
+        closeSearch();
+      }
+
+      document.body.classList.add("nav-open");
+      navTrigger.setAttribute("aria-expanded", "true");
+      navOverlay.setAttribute("aria-hidden", "false");
+
+      requestAnimationFrame(function () {
+        if (firstNavLink) {
+          firstNavLink.focus();
+        }
+      });
+    }
+
+    function closeNav() {
+      if (!navTrigger || !navOverlay) {
+        return;
+      }
+
+      document.body.classList.remove("nav-open");
+      navTrigger.setAttribute("aria-expanded", "false");
+      navOverlay.setAttribute("aria-hidden", "true");
     }
 
     function updateKeyboardSelection() {
@@ -588,6 +626,10 @@
         event.preventDefault();
       }
 
+      if (document.body.classList.contains("nav-open")) {
+        closeNav();
+      }
+
       document.body.classList.add("search-open");
       trigger.setAttribute("aria-expanded", "true");
 
@@ -614,6 +656,26 @@
 
     trigger.addEventListener("click", openSearch);
 
+    if (navTrigger && navOverlay) {
+      navTrigger.addEventListener("click", function (event) {
+        if (document.body.classList.contains("nav-open")) {
+          event.preventDefault();
+          closeNav();
+          return;
+        }
+
+        openNav(event);
+      });
+
+      navOverlay.addEventListener("click", function (event) {
+        if (navPanel && navPanel.contains(event.target)) {
+          return;
+        }
+
+        closeNav();
+      });
+    }
+
     closeButton.addEventListener("click", function () {
       closeSearch();
     });
@@ -632,6 +694,16 @@
     });
 
     document.addEventListener("click", function (event) {
+      if (document.body.classList.contains("nav-open") && navOverlay && navPanel) {
+        if (navTrigger && navTrigger.contains(event.target)) {
+          return;
+        }
+
+        if (!navPanel.contains(event.target) && !navOverlay.contains(event.target)) {
+          closeNav();
+        }
+      }
+
       if (!document.body.classList.contains("search-open")) {
         return;
       }
@@ -645,19 +717,33 @@
 
     document.addEventListener("keydown", function (event) {
       var isOpen = document.body.classList.contains("search-open");
+      var isNavOpen = document.body.classList.contains("nav-open");
 
       if ((event.key === "/" || (event.metaKey && event.key.toLowerCase() === "k")) && !isOpen && !isTypingField(event.target)) {
         event.preventDefault();
+
+        if (isNavOpen) {
+          closeNav();
+        }
+
         openSearch();
         return;
       }
 
-      if (!isOpen) {
+      if (event.key === "Escape") {
+        if (isOpen) {
+          closeSearch();
+          return;
+        }
+
+        if (isNavOpen) {
+          closeNav();
+        }
+
         return;
       }
 
-      if (event.key === "Escape") {
-        closeSearch();
+      if (!isOpen) {
         return;
       }
 

@@ -20,8 +20,55 @@
       </span>
     </span>
   </span>
-  <a href="{{ '/archive/' | relative_url }}">Nav</a>
-  <a href="{{ '/' | relative_url }}">Home</a>
-  <a href="{{ '/about/' | relative_url }}">About</a>
+  <a href="{{ '/archive/' | relative_url }}" class="archive-nav-trigger" aria-expanded="false">Nav</a>
+  <a href="{{ '/' | relative_url }}" class="archive-topnav-link">Home</a>
+  <a href="{{ '/about/' | relative_url }}" class="archive-topnav-link">About</a>
+  <div class="archive-nav-overlay" aria-hidden="true">
+    <nav class="archive-nav-panel home-nav" aria-label="Site navigation">
+      <ul class="home-nav-list archive-nav-list">
+        <li class="home-nav-item">
+          <a class="home-nav-link" href="{{ '/' | relative_url }}">
+            <span class="home-nav-label">Home</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/about/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/about.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">About</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/archive/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/archive.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">Archive</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/writing/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/writing.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">Writing</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/building/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/building.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">Building</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/notes/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/notes.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">Notes</span>
+          </a>
+        </li>
+        <li class="home-nav-item">
+          <a class="home-nav-link home-nav-link--icon" href="{{ '/misc/' | relative_url }}">
+            <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/marginalia.png');" aria-hidden="true"></span>
+            <span class="home-nav-label">Marginalia</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <div class="search-dropdown"></div>
 </div>
