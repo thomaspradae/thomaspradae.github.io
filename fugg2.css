@@ -3041,6 +3041,7 @@ font-family: 'Inter', sans-serif;
   position: static;   /* overrides your earlier absolute */
   margin: 0;
   line-height: 0.95;
+  color: #180023;
 }
 
 .archive-section-icon{
