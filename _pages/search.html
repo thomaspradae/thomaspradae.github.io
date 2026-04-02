@@ -40,10 +40,10 @@ permalink: /search/
 
     <div class="archive-card">
       <section
-        class="search-page-shell js-search-page"
+        class="search-page-shell js-search-page-rich"
         data-search-index-url="{{ '/search-index.json' | relative_url }}">
         <p class="search-page-lede">
-          Search across writing, building, notes, and marginalia from one place.
+          Search ideas, themes, and sections across writing, building, notes, and marginalia.
         </p>
 
         <div class="search-page-input-row">
@@ -60,6 +60,7 @@ permalink: /search/
     </div>
   </div>
   {% include search_assets.html %}
+  <script src="{{ '/assets/js/search-page.js' | relative_url }}"></script>
 </body>
 
 </html>
