@@ -30,15 +30,23 @@ layout: default
 
         {% case post_type_key %}
           {% when 'writing' %}
+            {% assign post_type_url = '/writing/' %}
             {% assign post_type_icon = '/assets/images/resources/writing.png' %}
             {% assign post_type_icon_dark = '/assets/images/resources/writing_white.png' %}
           {% when 'building' %}
+            {% assign post_type_url = '/building/' %}
             {% assign post_type_icon = '/assets/images/resources/building.png' %}
             {% assign post_type_icon_dark = '/assets/images/resources/building_white.png' %}
           {% when 'misc' %}
+            {% assign post_type_url = '/misc/' %}
             {% assign post_type_icon = '/assets/images/resources/misc.png' %}
             {% assign post_type_icon_dark = '/assets/images/resources/misc_white.png' %}
+          {% when 'notes' %}
+            {% assign post_type_url = '/notes/' %}
+            {% assign post_type_icon = '/assets/images/resources/notes.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/notes_white.png' %}
           {% else %}
+            {% assign post_type_url = '/notes/' %}
             {% assign post_type_icon = '/assets/images/resources/notes.png' %}
             {% assign post_type_icon_dark = '/assets/images/resources/notes_white.png' %}
         {% endcase %}
@@ -141,19 +149,21 @@ layout: default
                 <p class="meta-label">type</p>
         
                 <p class="post-meta-section-text">
-                  <span class="post-meta-section-chip">
-                    <img
-                      src="{{ post_type_icon }}"
-                      alt=""
-                      class="post-meta-section-icon post-meta-section-icon--light"
-                      aria-hidden="true">
-                    <img
-                      src="{{ post_type_icon_dark }}"
-                      alt=""
-                      class="post-meta-section-icon post-meta-section-icon--dark"
-                      aria-hidden="true">
-                    <span>{{ post_type_label }}</span>
-                  </span>
+                  <a class="post-meta-section-link" href="{{ post_type_url | relative_url }}">
+                    <span class="post-meta-section-chip">
+                      <img
+                        src="{{ post_type_icon }}"
+                        alt=""
+                        class="post-meta-section-icon post-meta-section-icon--light"
+                        aria-hidden="true">
+                      <img
+                        src="{{ post_type_icon_dark }}"
+                        alt=""
+                        class="post-meta-section-icon post-meta-section-icon--dark"
+                        aria-hidden="true">
+                      <span>{{ post_type_label }}</span>
+                    </span>
+                  </a>
                 </p>
               </div>
             </div>
@@ -182,19 +192,21 @@ layout: default
                   <p class="meta-label">type</p>
 
                   <p class="post-meta-section-text">
-                    <span class="post-meta-section-chip">
-                      <img
-                        src="{{ post_type_icon }}"
-                        alt=""
-                        class="post-meta-section-icon post-meta-section-icon--light"
-                        aria-hidden="true">
-                      <img
-                        src="{{ post_type_icon_dark }}"
-                        alt=""
-                        class="post-meta-section-icon post-meta-section-icon--dark"
-                        aria-hidden="true">
-                      <span>{{ post_type_label }}</span>
-                    </span>
+                    <a class="post-meta-section-link" href="{{ post_type_url | relative_url }}">
+                      <span class="post-meta-section-chip">
+                        <img
+                          src="{{ post_type_icon }}"
+                          alt=""
+                          class="post-meta-section-icon post-meta-section-icon--light"
+                          aria-hidden="true">
+                        <img
+                          src="{{ post_type_icon_dark }}"
+                          alt=""
+                          class="post-meta-section-icon post-meta-section-icon--dark"
+                          aria-hidden="true">
+                        <span>{{ post_type_label }}</span>
+                      </span>
+                    </a>
                   </p>
                 </div>
               </div>
