@@ -205,13 +205,13 @@ blockquote p{
 /* ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 ::-moz-selection { 
-    color: red;
-    background: yellow;
+    color: var(--background-color);
+    background: var(--contrast-color);
   }
   
 ::selection {
 color: var(--background-color);
-background: var(--main-accent);
+background: var(--contrast-color);
 }
 
 /* ------------------------------------------------------------------ */
