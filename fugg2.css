@@ -1550,7 +1550,7 @@ img + em {
 
 .post-meta-tags .tag-pill:hover,
 .tags-holder .tag-pill:hover {
-  background-color: var(--tag-accent);
+  background-color: #d7d7d7;
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
