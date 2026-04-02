@@ -1728,7 +1728,8 @@ body.theme-dark .post-meta-section-icon--dark {
 }
 
 .breadcrumbs a:hover {
-    color: var(--main-accent);
+    color: var(--contrast-color);
+    text-decoration: none;
 }
 
 /* FOOTNOTES BLOCK */
@@ -3227,6 +3228,27 @@ body.nav-open .archive-nav-overlay{
 .archive-nav-panel .home-nav-link:focus-visible{
   color: var(--contrast-color);
   text-decoration: none;
+}
+
+.layout-post .post-top .post-meta-container-left-side,
+.layout-post .post-top > .post-intro.post,
+.layout-post .post-top > .post-metadata,
+.layout-post .post-body-content,
+.layout-post .post-stage > #left-toc.left-toc,
+.layout-post .right-gutter{
+  transition: filter 0.22s ease, opacity 0.22s ease;
+}
+
+body.nav-open.layout-post .post-top .post-meta-container-left-side,
+body.nav-open.layout-post .post-top > .post-intro.post,
+body.nav-open.layout-post .post-top > .post-metadata,
+body.nav-open.layout-post .post-body-content,
+body.nav-open.layout-post .post-stage > #left-toc.left-toc,
+body.nav-open.layout-post .right-gutter{
+  filter: blur(var(--search-blur));
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
 }
 
 body.search-open .archive-card{

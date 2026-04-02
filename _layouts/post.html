@@ -65,16 +65,63 @@ layout: default
                     {% when 'notes' %}
                       <a href="/notes/">← Back to notes</a>
                     {% when 'misc' %}
-                      <a href="/misc.html">← Back to misc</a>
+                      <a href="/misc.html">← Back to marginalia</a>
                     {% else %}
                       <a href="/">← Back to home</a>
                   {% endcase %}
                 </section>
               </div>
     
-              <div class="post-meta-container-right-side">
-                <a class="internal-link" href="https://thomaspradae.github.io">Home</a>
-                <a class="internal-link" href="https://thomaspradae.github.io/about.html">About</a>
+              <div class="post-meta-container-right-side archive-topnav js-post-nav">
+                <a href="{{ '/' | relative_url }}" class="archive-topnav-link">Home</a>
+                <a href="{{ '/archive/' | relative_url }}" class="archive-nav-trigger" aria-expanded="false">Nav</a>
+                <div class="archive-nav-overlay" aria-hidden="true">
+                  <nav class="archive-nav-panel home-nav" aria-label="Site navigation">
+                    <ul class="home-nav-list archive-nav-list">
+                      <li class="home-nav-item">
+                        <a class="home-nav-link" href="{{ '/' | relative_url }}">
+                          <span class="home-nav-label">Home</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/about/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/about.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">About</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/archive/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/archive.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">Archive</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/writing/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/writing.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">Writing</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/building/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/building.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">Building</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/notes/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/notes.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">Notes</span>
+                        </a>
+                      </li>
+                      <li class="home-nav-item">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/misc/' | relative_url }}">
+                          <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/marginalia.png');" aria-hidden="true"></span>
+                          <span class="home-nav-label">Marginalia</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
               <div class="mobile-post-menu-shell" aria-hidden="true">
                 <button
@@ -278,3 +325,67 @@ layout: default
 <script src="/assets/js/toc.js" defer></script>
 <script src="/assets/js/toc-scrollspy.js" defer></script>
 <script src="/assets/js/footnotes-to-gutter.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.querySelector(".js-post-nav");
+
+    if (!root) {
+      return;
+    }
+
+    var navTrigger = root.querySelector(".archive-nav-trigger");
+    var navOverlay = root.querySelector(".archive-nav-overlay");
+    var navPanel = root.querySelector(".archive-nav-panel");
+    var firstNavLink = navPanel ? navPanel.querySelector("a") : null;
+
+    if (!navTrigger || !navOverlay || !navPanel) {
+      return;
+    }
+
+    function openNav(event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      document.body.classList.add("nav-open");
+      navTrigger.setAttribute("aria-expanded", "true");
+      navOverlay.setAttribute("aria-hidden", "false");
+
+      requestAnimationFrame(function () {
+        if (firstNavLink) {
+          firstNavLink.focus();
+        }
+      });
+    }
+
+    function closeNav() {
+      document.body.classList.remove("nav-open");
+      navTrigger.setAttribute("aria-expanded", "false");
+      navOverlay.setAttribute("aria-hidden", "true");
+    }
+
+    navTrigger.addEventListener("click", function (event) {
+      if (document.body.classList.contains("nav-open")) {
+        event.preventDefault();
+        closeNav();
+        return;
+      }
+
+      openNav(event);
+    });
+
+    navOverlay.addEventListener("click", function (event) {
+      if (navPanel.contains(event.target)) {
+        return;
+      }
+
+      closeNav();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && document.body.classList.contains("nav-open")) {
+        closeNav();
+      }
+    });
+  });
+</script>
