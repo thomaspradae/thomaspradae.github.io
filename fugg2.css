@@ -1621,12 +1621,17 @@ img + em {
     font-weight: 300;
     font-style: italic;
     text-transform: lowercase;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
 }
 
 .post-meta-section-chip {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
 }
 
 .post-meta-section-link {
@@ -2472,6 +2477,9 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 
 .post-top .post-meta-section-text {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
