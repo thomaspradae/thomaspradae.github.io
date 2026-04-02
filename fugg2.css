@@ -2382,7 +2382,7 @@ div[class^="language-"].highlighter-rouge,
   background: #d8d8d8;
   pointer-events: none;
   z-index: 0;
-  transition: background 0.15s ease, opacity 0.28s ease;
+  transition: background 0.35s ease, opacity 0.28s ease;
 }
 
 .post-stage > #left-toc.left-toc .toc-item::after{
@@ -2408,7 +2408,7 @@ div[class^="language-"].highlighter-rouge,
   color: var(--backup-text-color-v2);
   text-decoration: none;
   opacity: 0;
-  transition: opacity 0.28s ease, color 0.15s ease;
+  transition: opacity 0.28s ease, color 0.35s ease;
   line-height: 1.3;
   overflow: hidden;
   display: -webkit-box;
