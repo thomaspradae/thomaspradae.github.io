@@ -1557,7 +1557,6 @@ img + em {
 .post-meta-tags .tag-pill:hover .tag-pill-dot,
 .tags-holder .tag-pill:hover .tag-pill-dot {
   background-color: var(--tag-accent-dark);
-  border-color: var(--tag-accent);
 }
 
 .post-meta-tags .tag-pill:hover .tag-pill-label,
