@@ -1643,13 +1643,14 @@ img + em {
 
 .page-content .post-meta-section-chip .post-meta-section-icon {
     display: block;
-    width: 0.85rem;
-    min-width: 0.85rem;
-    max-width: 0.85rem;
-    height: 0.85rem;
+    width: 0.72rem !important;
+    min-width: 0.72rem;
+    max-width: none !important;
+    height: auto !important;
     object-fit: contain;
-    flex-shrink: 0;
-    margin: 0;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    opacity: 0.8;
 }
 
 .post-meta-section-icon--dark {
@@ -2481,10 +2482,10 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
 }
 
 .post-top .post-meta-section-icon {
-  width: 0.8rem;
-  min-width: 0.8rem;
-  max-width: 0.8rem;
-  height: 0.8rem;
+  width: 0.72rem !important;
+  min-width: 0.72rem;
+  max-width: none !important;
+  height: auto !important;
 }
 
 .post-top > .post-header,
