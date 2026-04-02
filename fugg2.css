@@ -1623,6 +1623,32 @@ img + em {
     text-transform: lowercase;
 }
 
+.post-meta-section-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.post-meta-section-icon {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.post-meta-section-icon--dark {
+    display: none;
+}
+
+body.theme-dark .post-meta-section-icon--light {
+    display: none;
+}
+
+body.theme-dark .post-meta-section-icon--dark {
+    display: block;
+}
+
 .breadcrumbs {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
@@ -2437,6 +2463,11 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > 
   text-transform: none;
   color: rgb(0, 62, 231);
   line-height: 0.9;
+}
+
+.post-top .post-meta-section-icon {
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .post-top > .post-header,

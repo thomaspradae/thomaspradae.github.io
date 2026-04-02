@@ -19,6 +19,30 @@ layout: default
 
       <!-- KEEP #main EXACTLY AS YOUR POST CONTAINER (so sidenotes rules still match) -->
       <div id="main" class="post">
+        {% assign post_type_key = page.collection | default: 'notes' %}
+        {% if page.section_label %}
+          {% assign post_type_label = page.section_label %}
+        {% elsif page.collection %}
+          {% assign post_type_label = page.collection | capitalize %}
+        {% else %}
+          {% assign post_type_label = 'Notes' %}
+        {% endif %}
+
+        {% case post_type_key %}
+          {% when 'writing' %}
+            {% assign post_type_icon = '/assets/images/resources/writing.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/writing_white.png' %}
+          {% when 'building' %}
+            {% assign post_type_icon = '/assets/images/resources/building.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/building_white.png' %}
+          {% when 'misc' %}
+            {% assign post_type_icon = '/assets/images/resources/misc.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/misc_white.png' %}
+          {% else %}
+            {% assign post_type_icon = '/assets/images/resources/notes.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/notes_white.png' %}
+        {% endcase %}
+
         <div class="post-top">
           <!-- TOP NAV + BREADCRUMBS -->
           <div class="post-header">
@@ -117,13 +141,19 @@ layout: default
                 <p class="meta-label">type</p>
         
                 <p class="post-meta-section-text">
-                  {% if page.section_label %}
-                    {{ page.section_label }}
-                  {% elsif page.collection %}
-                    {{ page.collection | capitalize }}
-                  {% else %}
-                    Notes
-                  {% endif %}
+                  <span class="post-meta-section-chip">
+                    <img
+                      src="{{ post_type_icon }}"
+                      alt=""
+                      class="post-meta-section-icon post-meta-section-icon--light"
+                      aria-hidden="true">
+                    <img
+                      src="{{ post_type_icon_dark }}"
+                      alt=""
+                      class="post-meta-section-icon post-meta-section-icon--dark"
+                      aria-hidden="true">
+                    <span>{{ post_type_label }}</span>
+                  </span>
                 </p>
               </div>
             </div>
@@ -152,13 +182,19 @@ layout: default
                   <p class="meta-label">type</p>
 
                   <p class="post-meta-section-text">
-                    {% if page.section_label %}
-                      {{ page.section_label }}
-                    {% elsif page.collection %}
-                      {{ page.collection | capitalize }}
-                    {% else %}
-                      Notes
-                    {% endif %}
+                    <span class="post-meta-section-chip">
+                      <img
+                        src="{{ post_type_icon }}"
+                        alt=""
+                        class="post-meta-section-icon post-meta-section-icon--light"
+                        aria-hidden="true">
+                      <img
+                        src="{{ post_type_icon_dark }}"
+                        alt=""
+                        class="post-meta-section-icon post-meta-section-icon--dark"
+                        aria-hidden="true">
+                      <span>{{ post_type_label }}</span>
+                    </span>
                   </p>
                 </div>
               </div>
