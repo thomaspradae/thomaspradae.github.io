@@ -1797,6 +1797,23 @@ body.theme-dark .post-meta-section-icon--dark {
   text-decoration: none;
 }
 
+@media (min-width: 1025px) {
+  .layout-post #main.post sup[role="doc-noteref"] {
+    position: relative;
+    top: -0.45em;
+    vertical-align: baseline;
+    line-height: 0;
+  }
+
+  .layout-post #main.post sup[role="doc-noteref"] .footnote {
+    display: inline-block;
+    font-size: 0.72rem;
+    line-height: 1;
+    padding-left: 0;
+    margin-left: 0.08rem;
+  }
+}
+
 .inline-footnote {
   display: inline-block;
   width: calc(100% - 1.5rem);
