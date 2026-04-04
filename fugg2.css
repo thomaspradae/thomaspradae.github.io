@@ -418,8 +418,9 @@ transform: scale(1);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    --post-meta-nav-size: 0.75rem;
+    --post-meta-nav-size: 0.9rem;
     --post-meta-nav-color: var(--text-color);
+    --post-meta-nav-weight: 500;
 }
 
 .post-metadata-container {
@@ -1671,7 +1672,7 @@ body.theme-dark .post-meta-section-icon--dark {
 
 .breadcrumbs {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: var(--post-meta-nav-weight);
     font-size: var(--post-meta-nav-size);
     color: var(--post-meta-nav-color);
     text-align: left;
@@ -1722,13 +1723,17 @@ body.theme-dark .post-meta-section-icon--dark {
 
 .breadcrumbs a{
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.12em;
     font-size: inherit;
+    font-weight: inherit;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
 }
 
 .breadcrumbs a:hover {
     color: var(--contrast-color);
-    text-decoration: none;
+    text-decoration-color: currentColor;
 }
 
 /* FOOTNOTES BLOCK */
@@ -3155,7 +3160,10 @@ font-family: 'Inter', sans-serif;
 
 .archive-topnav a{
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.12em;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
 }
 
 .archive-nav-trigger{
@@ -3165,12 +3173,13 @@ font-family: 'Inter', sans-serif;
 .archive-topnav a:-webkit-any-link:hover,
 .archive-topnav a:any-link:hover{
   color: #000000;
-  text-decoration: none;
+  text-decoration-color: currentColor;
 }
 
 .post-meta-container .archive-topnav {
   font-size: var(--post-meta-nav-size);
   color: var(--post-meta-nav-color);
+  font-weight: var(--post-meta-nav-weight);
 }
 
 .post-meta-container .archive-topnav a:-webkit-any-link:hover,
@@ -3178,7 +3187,7 @@ font-family: 'Inter', sans-serif;
 .post-meta-container .archive-topnav a:focus-visible,
 .post-meta-container .breadcrumbs a:focus-visible {
   color: var(--contrast-color);
-  text-decoration: none;
+  text-decoration-color: currentColor;
 }
 
 .archive-card,
