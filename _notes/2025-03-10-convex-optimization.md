@@ -12,7 +12,7 @@ tags:
 excerpt: 
 ---
 
-## (0.0.0) - What is convexity?
+## What is convexity?
 
 A function \\( f \\) is convex if the line segment between any two points on its graph lies above (or on) the graph:
 
@@ -20,7 +20,7 @@ A function \\( f \\) is convex if the line segment between any two points on its
 
 Visually: the function is bowl-shaped. No local minima that aren't global minima. This is the property that makes optimization tractable. If your loss function is convex, gradient descent will find the global minimum. If it's not (as in deep learning), you're in the wilderness — gradient descent will find *a* minimum, but there are no guarantees it's the best one.
 
-## (1.0.0) - Gradient descent on convex functions
+## Gradient descent on convex functions
 
 For a convex, differentiable function \\( f \\), gradient descent with step size \\( \alpha \\):
 
@@ -30,7 +30,7 @@ converges to the global minimum at a rate of \\( O(1/t) \\) for general convex f
 
 The step size matters: too large and you overshoot; too small and convergence is glacial. For strongly convex functions with Lipschitz-continuous gradients, the optimal step size is \\( \alpha = 1/L \\) where \\( L \\) is the Lipschitz constant of the gradient.
 
-## (2.0.0) - Examples in ML
+## Examples in ML
 
 Several ML problems are convex (or can be made convex):
 
@@ -41,7 +41,7 @@ Several ML problems are convex (or can be made convex):
 
 Deep learning is *not* convex. The loss landscape of a neural network has saddle points, plateaus, and many local minima. The fact that SGD works anyway is one of the great empirical mysteries of modern ML.
 
-## (3.0.0) - Lagrangian duality
+## Lagrangian duality
 
 Every constrained optimization problem has a dual problem. For a convex problem with constraints \\( g_i(x) \leq 0 \\):
 
@@ -51,6 +51,6 @@ Every constrained optimization problem has a dual problem. For a convex problem 
 
 For convex problems, **strong duality** holds: the primal and dual optima are equal. This is used extensively in SVMs (the dual formulation is where kernel tricks happen) and in constrained reinforcement learning.
 
-## (4.0.0) - Key takeaway
+## Key takeaway
 
 Convexity is the line between problems we can solve reliably and problems we can only approximately solve. If you can formulate your problem as convex, do it — you get global optimality guarantees, well-understood convergence rates, and robust algorithms. If you can't (deep learning, most interesting problems), know that you're giving up those guarantees and plan accordingly.

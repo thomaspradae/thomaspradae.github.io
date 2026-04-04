@@ -12,11 +12,11 @@ tags:
 excerpt: 
 ---
 
-## (0.0.0) - Why this exists
+## Why this exists
 
 Linear algebra courses teach everything. ML needs specific things. This is an attempt to distill the overlap: the concepts and operations that come up again and again in machine learning, with just enough theory to understand *why* they work, and not so much that you forget what you came for.
 
-## (1.0.0) - Vectors and dot products
+## Vectors and dot products
 
 A vector is a list of numbers. In ML, it usually represents a data point (a feature vector), a set of weights, or a gradient.
 
@@ -24,7 +24,7 @@ The dot product of two vectors \\( \mathbf{a} \cdot \mathbf{b} = \sum_i a_i b_i 
 
 Geometric interpretation: \\( \mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos\theta \\). When the dot product is large and positive, the vectors point in similar directions. When it's zero, they're orthogonal (independent). When it's negative, they point in opposing directions.
 
-## (2.0.0) - Matrix multiplication
+## Matrix multiplication
 
 A matrix is a collection of vectors. Multiplying a matrix by a vector \\( \mathbf{y} = A\mathbf{x} \\) applies a linear transformation: rotation, scaling, projection, or some combination.
 
@@ -32,7 +32,7 @@ In ML, the weight matrix of a linear layer *is* the transformation. When you tra
 
 Key property: matrix multiplication is associative but NOT commutative. \\( AB \neq BA \\) in general. This matters when you're implementing backpropagation and the order of your transposes determines whether you get the correct gradient or garbage.
 
-## (3.0.0) - Eigenvalues and eigenvectors
+## Eigenvalues and eigenvectors
 
 An eigenvector of matrix \\( A \\) is a vector that, when \\( A \\) is applied to it, only gets scaled (not rotated):
 
@@ -45,7 +45,7 @@ Where this shows up:
 - **Graph algorithms:** PageRank is the dominant eigenvector of the web's link matrix.
 - **Stability analysis:** The eigenvalues of the Jacobian of a dynamical system tell you whether equilibria are stable.
 
-## (4.0.0) - Singular Value Decomposition (SVD)
+## Singular Value Decomposition (SVD)
 
 Any matrix \\( A \\) can be decomposed as \\( A = U\Sigma V^T \\), where \\( U \\) and \\( V \\) are orthogonal matrices and \\( \Sigma \\) is diagonal with non-negative entries (the singular values).
 
@@ -54,7 +54,7 @@ SVD is the Swiss Army knife of linear algebra:
 - **Pseudoinverse:** When \\( A \\) isn't square or isn't invertible, the SVD gives you the best least-squares solution.
 - **Noise reduction:** Small singular values often correspond to noise. Truncating them denoises the data.
 
-## (5.0.0) - The gradient is a vector
+## The gradient is a vector
 
 This sounds obvious but it's worth stating: the gradient \\( \nabla f \\) is a vector that points in the direction of steepest ascent. Gradient descent moves in the opposite direction. Every optimization algorithm in ML is, at its core, deciding how to use the gradient vector to update the parameter vector.
 

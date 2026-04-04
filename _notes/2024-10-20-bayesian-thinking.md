@@ -12,7 +12,7 @@ tags:
 excerpt: 
 ---
 
-## (0.0.0) - The core idea
+## The core idea
 
 Bayesian thinking is about updating beliefs in light of evidence. You start with a prior belief (how likely you think something is before seeing data), observe evidence, and compute a posterior belief (how likely it is after seeing data). The mechanism is Bayes' theorem:
 
@@ -24,7 +24,7 @@ Where:
 - \\( P(H) \\) — prior: probability of H before seeing evidence
 - \\( P(E) \\) — marginal likelihood: probability of seeing this evidence under all hypotheses
 
-## (1.0.0) - A concrete example
+## A concrete example
 
 You take a medical test. The test is 99% accurate (both sensitivity and specificity). You test positive. What's the probability you actually have the disease?
 
@@ -42,13 +42,13 @@ Less than 1%. A positive result on a 99% accurate test, and there's still only a
 
 This single example has permanently changed how I think about test results, news headlines, and any claim that doesn't specify its base rate.
 
-## (2.0.0) - Priors matter
+## Priors matter
 
 The most philosophically interesting part: the prior. Frequentists object to Bayesian methods partly because the prior is "subjective." And it is. Two people with different priors will reach different posteriors from the same evidence.
 
 But here's the thing: with enough evidence, the prior washes out. Two people with wildly different priors, given the same large dataset, will converge to very similar posteriors. The prior is a starting point, not a destination. And at least the Bayesian framework makes the starting point *explicit*, which is more honest than pretending you don't have one.
 
-## (3.0.0) - Bayesian updating as a way of life
+## Bayesian updating as a way of life
 
 Outside of formal statistics, Bayesian thinking is a mental framework:
 

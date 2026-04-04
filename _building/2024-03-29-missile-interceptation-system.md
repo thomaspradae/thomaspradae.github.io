@@ -16,7 +16,7 @@ This post is intentionally **dense**: lists, blockquotes, math, tables, images w
 
 [^kitchen-sink]: Meta-footnote: this paragraph exists to stress-test [footnotes-to-gutter.js](/assets/js/footnotes-to-gutter.js), sidenotes, and long footnote bodies. Inline check: `python -m pip install -e .`
 
-## (0.0.0) - Overview
+## Overview
 
 The project is a 3D-ish intercept simulation: incoming threats move along ballistic-ish arcs; a defender learns *when* to launch and *how* to steer mid-course corrections so the interceptor meets the threat. Think less “production missile defense” and more “gym environment where I can iterate on reward shaping without filing export paperwork.”[^disclaimer]
 
@@ -30,7 +30,7 @@ Unordered laundry list of what actually exists in the repo today:
 
 [^drag]: Drag is not “real” yet — it is a scalar fudge you tune until trajectories *look* plausible: `drag_coeff * velocity ** 2` with clamps.
 
-### (0.1.0) - What “done” means (for now)
+### What “done” means (for now)
 
 1. Reproducible training runs with a fixed seed.
 2. Intercept rate above random on a held-out threat distribution.
@@ -46,7 +46,7 @@ Nested blockquote, because why not:
 > > Make it run. Make it right. Make it fast.  
 > > (I’m still somewhere between one and two.)
 
-## (1.0.0) - Log and Notes
+## Log and Notes
 
 A longer, messier stream of thoughts + experiments lives in the dedicated notes page: [missile interception — log + notes](/notes/missile-interception-system-log-and-notes). Below is the “executive summary” version with **figures**.
 
@@ -63,7 +63,7 @@ A longer, messier stream of thoughts + experiments lives in the dedicated notes 
 
 </div>
 
-### (1.1.0) - Vocabulary (definition list)
+### Vocabulary (definition list)
 
 Kramdown-style definitions — handy for glossaries:
 
@@ -78,7 +78,7 @@ Threat
 
 [^mdp]: If you want the formalism: [MDP](https://en.wikipedia.org/wiki/Markov_decision_process). Implementation detail: my state is *not* Markov yet — there’s hidden history in the integrator unless I augment the observation.
 
-## (2.0.0) - Simulation sketch (code)
+## Simulation sketch (code)
 
 ### Python — environment step (toy)
 
@@ -155,7 +155,7 @@ void main() {
 }
 ```
 
-## (3.0.0) - Reward hacking (ordered list of failure modes)
+## Reward hacking (ordered list of failure modes)
 
 1. Agent learns to stall just inside the success radius without intercepting — *looks* good in logs, *is* cowardice.
 2. Huge terminal reward causes value explosions; advantage estimates go brrr.
@@ -171,7 +171,7 @@ Table: **what I thought vs what the metrics said**
 | Week 3 | “Penalize crash” | Learned to do nothing |
 | Week 4 | “Tune penalties” | Finally something like intercept |
 
-## (4.0.0) - Links, footnotes, and cross-refs
+## Links, footnotes, and cross-refs
 
 - Internal: [writing index](/writing/) · [this site’s notes](/notes/)
 - External resources I keep reopening: [Spinning Up in Deep RL](https://spinningup.openai.com/en/latest/) · [Stable-Baselines3 docs](https://stable-baselines3.readthedocs.io/)
@@ -180,7 +180,7 @@ Reward shaping sketch (don’t copy-paste blindly):[^reward-snippet]
 
 [^reward-snippet]: \(r_t = -\alpha \|p_{\text{int}} - p_{\text{threat}}\|_2 + \beta \mathbb{1}_{\text{hit}}\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
 
-## (5.0.0) - Screenshot archaeology
+## Screenshot archaeology
 
 Sometimes the most “real” artifact is a random screengrab from a late night:
 

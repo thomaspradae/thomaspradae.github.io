@@ -16,7 +16,7 @@ This page is the “theory” version of the topic; for applied RL framing, see 
 
 [^scope]: Scope: intuition + definitions + a few lines of code — not a full course. For depth: Cover & Thomas, *Elements of Information Theory*.
 
-## (0.0.0) - Shannon entropy
+## Shannon entropy
 
 Shannon's central question (1948): how do you quantify information? His answer: information is the *reduction of uncertainty*. If I tell you something you already knew, I've given you zero information. If I tell you something surprising, I've given you a lot.
 
@@ -57,7 +57,7 @@ print(entropy_bits([0.5, 0.5]))          # 1.0
 print(entropy_bits([0.99, 0.01]))        # ~0.0808
 ```
 
-## (1.0.0) - Cross-entropy
+## Cross-entropy
 
 The cross-entropy between a true distribution \( p \) and a model distribution \( q \):
 
@@ -80,7 +80,7 @@ def ce_loss(logits: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
     return F.cross_entropy(logits, target)  # log-softmax + NLL, stabilized internally
 ```
 
-## (2.0.0) - KL divergence
+## KL divergence
 
 The Kullback-Leibler divergence measures how different \( q \) is from \( p \):
 
@@ -99,7 +99,7 @@ Nested blockquote, because this point confuses everyone at least once:
 >
 > > If you swap which distribution sits “under the expectation,” you get a different objective — not “the same thing but tweaked.”
 
-## (3.0.0) - Mutual information
+## Mutual information
 
 The mutual information between two variables \( X \) and \( Y \):
 
@@ -109,7 +109,7 @@ It measures how much knowing one variable reduces uncertainty about the other. I
 
 This shows up in feature selection (which features carry the most information about the target), representation learning (InfoNCE loss), and decision trees (information gain is mutual information between a feature and the class label).
 
-## (4.0.0) - Figure: classic RL diagram (caption pattern)
+## Figure: classic RL diagram (caption pattern)
 
 Cross-linking visuals helps when you’re bouncing between “information theory” and “agents in environments”:
 
@@ -119,7 +119,7 @@ Cross-linking visuals helps when you’re bouncing between “information theory
 ![Screenshot snippet used in older notes](/assets/images/posts/Screenshot%202024-05-30%20180322.png)
 *Legacy screenshot kept around to test PNG + caption styling on long pages.*
 
-## (5.0.0) - Why this matters
+## Why this matters
 
 Shannon's framework provides a rigorous language for talking about learning. Training a model is reducing entropy. Overfitting is memorizing noise instead of structure. Compression and prediction are the same problem viewed from different angles (a good predictor is a good compressor, and vice versa). Information theory doesn't tell you *how* to learn, but it tells you what learning *means*.
 

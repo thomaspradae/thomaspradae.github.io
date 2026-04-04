@@ -12,11 +12,11 @@ tags:
 excerpt: 
 ---
 
-## (0.0.0) - Overview
+## Overview
 
 The Web Audio API gives you access to the raw frequency and time-domain data of any audio playing in the browser. An `AnalyserNode` performs a real-time FFT (Fast Fourier Transform) and hands you an array of frequency magnitudes at 60fps. The question is what to do with that array.
 
-## (1.0.0) - Architecture
+## Architecture
 
 The signal chain:
 
@@ -28,7 +28,7 @@ AudioSource → AnalyserNode → (visualization)
 
 The analyser sits on a branch — it taps the signal without modifying it. I configure it with `fftSize: 2048`, which gives me 1024 frequency bins. Each bin represents a frequency band, with the spacing determined by the sample rate (typically 44.1kHz). So each bin spans about 43Hz.
 
-## (2.0.0) - Visualization modes
+## Visualization modes
 
 **Waveform:** The simplest — plot `getByteTimeDomainData()` as a line. This gives you the raw waveform, which is satisfying for percussive music but kind of boring for sustained tones.
 
@@ -38,7 +38,7 @@ The analyser sits on a branch — it taps the signal without modifying it. I con
 
 **Particle field:** 500 particles whose behavior is driven by frequency bands. Low frequencies control gravity. Mid frequencies control velocity. High frequencies control color temperature. The result is a particle system that "dances" — not randomly, but in response to the actual harmonic content of the music. Rhythmic music produces rhythmic motion. Ambient music produces slow drifts.
 
-## (3.0.0) - Challenges
+## Challenges
 
 **Latency.** The analyser introduces a small delay (one FFT window, ~23ms at 2048 samples). For visualization this is imperceptible. For anything requiring sync with video, it matters.
 
