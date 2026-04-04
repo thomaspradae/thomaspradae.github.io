@@ -1737,6 +1737,16 @@ body.theme-dark .post-meta-section-icon--dark {
     text-decoration: none;
 }
 
+.post-meta-container .archive-topnav > a {
+    color: red !important;
+    transition: color 12s linear !important;
+}
+
+.post-meta-container .archive-topnav > a:hover,
+.post-meta-container .archive-topnav > a:focus-visible {
+    color: #000000 !important;
+}
+
 /* FOOTNOTES BLOCK */
 .footnotes {
   border-top: 0.0125rem solid var(--lightest-text);
@@ -2020,7 +2030,7 @@ div[class^="language-"].highlighter-rouge,
 .highlighter-rouge code {
   font-family: 'SF Mono Nerd', monospace;
   font-size: 0.9rem;
-  line-height: 0.8;
+  line-height: 1.4;
   color: #222222;
   background: transparent;
   border: 0;
