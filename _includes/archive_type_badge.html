@@ -1,0 +1,41 @@
+{%- assign archive_type_key = include.collection | default: "archive" -%}
+{%- assign archive_type_label = archive_type_key -%}
+{%- assign archive_type_icon = "archive" -%}
+
+{%- case archive_type_key -%}
+  {%- when "writing" -%}
+    {%- assign archive_type_label = "writing" -%}
+    {%- assign archive_type_icon = "writing" -%}
+  {%- when "building" -%}
+    {%- assign archive_type_label = "building" -%}
+    {%- assign archive_type_icon = "building" -%}
+  {%- when "notes" -%}
+    {%- assign archive_type_label = "notes" -%}
+    {%- assign archive_type_icon = "notes" -%}
+  {%- when "misc" -%}
+    {%- assign archive_type_label = "marginalia" -%}
+    {%- assign archive_type_icon = "marginalia" -%}
+{%- endcase -%}
+
+<span class="archive-type">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="
+        /assets/images/resources/normalized/16/{{ archive_type_icon }}.webp 1x,
+        /assets/images/resources/normalized/24/{{ archive_type_icon }}.webp 2x,
+        /assets/images/resources/normalized/32/{{ archive_type_icon }}.webp 3x">
+    <img
+      src="/assets/images/resources/normalized/24/{{ archive_type_icon }}.png"
+      srcset="
+        /assets/images/resources/normalized/16/{{ archive_type_icon }}.png 1x,
+        /assets/images/resources/normalized/24/{{ archive_type_icon }}.png 2x,
+        /assets/images/resources/normalized/32/{{ archive_type_icon }}.png 3x"
+      alt=""
+      class="archive-type-icon"
+      width="24"
+      height="24"
+      aria-hidden="true">
+  </picture>
+  <span class="archive-type-label">{{ archive_type_label }}</span>
+</span>

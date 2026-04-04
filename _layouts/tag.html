@@ -48,16 +48,8 @@ layout: compress
             {{ post.title }}
           </a>
 
-          <!-- TYPE column -->
-          <span class="archive-type">
-            {%- case post.collection -%}
-              {%- when "writing" -%}writing
-              {%- when "building" -%}building
-              {%- when "notes" -%}notes
-              {%- when "misc" -%}misc
-              {%- else -%}{{ post.collection }}
-            {%- endcase -%}
-          </span>
+	          <!-- TYPE column -->
+	          {% include archive_type_badge.html collection=post.collection %}
 
           <!-- Tags -->
           <span class="archive-meta">

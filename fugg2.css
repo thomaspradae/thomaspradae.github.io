@@ -3936,7 +3936,13 @@ min-width: 0;
   height: auto;
   flex: 0 0 auto;
   display: block;
-  opacity: 0.8;
+  opacity: 0.3;
+  transition: opacity 0.22s ease;
+}
+
+.archive-item:hover .archive-type-icon,
+.archive-item:focus-within .archive-type-icon{
+  opacity: 1;
 }
 
 .archive-meta{
