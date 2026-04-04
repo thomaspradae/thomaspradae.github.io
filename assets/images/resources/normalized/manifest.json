@@ -1,0 +1,54 @@
+{
+  "source_dir": "assets/images/resources",
+  "output_dir": "assets/images/resources/normalized",
+  "canvas_size": 512,
+  "safe_fraction": 0.85,
+  "small_sizes": [10, 16, 24, 32],
+  "items": [
+    {
+      "source": "writing.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "about.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "marginalia.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "building.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "notes.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "jesus.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "home.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "archive.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    },
+    {
+      "source": "mnt.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
+    }
+  ]
+}
