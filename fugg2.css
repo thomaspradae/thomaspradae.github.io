@@ -3169,6 +3169,7 @@ font-family: 'Inter', sans-serif;
 
 .archive-card,
 .archive-title-group,
+.archive-header > .archive-section-title,
 .archive-topnav > .search-slot,
 .archive-topnav > a:not(.archive-nav-trigger){
   transition: filter 0.22s ease, opacity 0.22s ease;
@@ -3176,6 +3177,7 @@ font-family: 'Inter', sans-serif;
 
 body.nav-open .archive-card,
 body.nav-open .archive-title-group,
+body.nav-open .archive-header > .archive-section-title,
 body.nav-open .archive-topnav > .search-slot,
 body.nav-open .archive-topnav > a:not(.archive-nav-trigger){
   filter: blur(var(--search-blur));
