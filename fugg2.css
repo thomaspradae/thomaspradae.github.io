@@ -1482,7 +1482,6 @@ img + em {
   height: 0.625rem;
   border-radius: 999px;
   background-color: var(--tag-accent-light);
-  border: 0.125rem solid var(--background-color);
   flex-shrink: 0;
 
   transition:
