@@ -29,12 +29,25 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_MANIFEST,
         help=f"Path to the JSON manifest. Defaults to {DEFAULT_MANIFEST}.",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Overwrite existing rendered assets. By default, build only adds missing files.",
+    )
     return parser.parse_args()
 
 
 def load_manifest(path: Path) -> dict:
     data = json.loads(path.read_text())
-    required = ("source_dir", "output_dir", "canvas_size", "safe_fraction", "small_sizes", "items")
+    required = (
+        "source_dir",
+        "output_dir",
+        "canvas_size",
+        "safe_fraction",
+        "small_sizes",
+        "formats",
+        "items",
+    )
     missing = [key for key in required if key not in data]
     if missing:
         missing_str = ", ".join(missing)
@@ -190,9 +203,17 @@ def normalize_image(
     return master
 
 
-def write_png(path: Path, image: Image.Image) -> None:
+def write_image(path: Path, image: Image.Image, *, format_name: str, overwrite: bool) -> None:
+    if path.exists() and not overwrite:
+        return
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    image.save(path, format="PNG", optimize=True, compress_level=9)
+    if format_name == "PNG":
+        image.save(path, format="PNG", optimize=True, compress_level=9)
+    elif format_name == "WEBP":
+        image.save(path, format="WEBP", lossless=True, method=6)
+    else:
+        raise ValueError(f"Unsupported output format: {format_name}")
 
 
 def write_report_csv(path: Path, rows: list[dict]) -> None:
@@ -347,13 +368,14 @@ def build_row(
     return row
 
 
-def render_outputs(manifest: dict) -> list[dict]:
+def render_outputs(manifest: dict, *, overwrite: bool) -> list[dict]:
     cwd = Path.cwd()
     source_dir = resolve_configured_path(manifest["source_dir"], cwd)
     output_dir = resolve_configured_path(manifest["output_dir"], cwd)
     canvas_size = int(manifest["canvas_size"])
     safe_fraction = float(manifest["safe_fraction"])
     small_sizes = [int(size) for size in manifest["small_sizes"]]
+    formats = [str(fmt).upper() for fmt in manifest["formats"]]
 
     rows = []
     for entry in manifest["items"]:
@@ -375,15 +397,22 @@ def render_outputs(manifest: dict) -> list[dict]:
                 scale_adjust=scale_adjust,
             )
 
-        master_path = output_dir / "masters" / f"{source_path.stem}.master.png"
-        write_png(master_path, master_image)
+        master_paths = {}
+        for format_name in formats:
+            extension = format_name.lower()
+            master_variant_path = output_dir / "masters" / f"{source_path.stem}.master.{extension}"
+            write_image(master_variant_path, master_image, format_name=format_name, overwrite=overwrite)
+            master_paths[format_name] = master_variant_path
 
         for size in small_sizes:
             variant = master_image.resize((size, size), RESAMPLE)
-            variant_path = output_dir / str(size) / source_path.name
-            write_png(variant_path, variant)
+            for format_name in formats:
+                extension = format_name.lower()
+                variant_path = output_dir / str(size) / f"{source_path.stem}.{extension}"
+                write_image(variant_path, variant, format_name=format_name, overwrite=overwrite)
 
         master_stats = analyze_image(master_image)
+        master_path = master_paths.get("PNG") or next(iter(master_paths.values()))
         rows.append(
             build_row(
                 entry=entry,
@@ -444,7 +473,7 @@ def main() -> None:
     manifest = load_manifest(manifest_path)
 
     if args.command == "build":
-        rows = render_outputs(manifest)
+        rows = render_outputs(manifest, overwrite=args.force)
     else:
         rows = audit_only(manifest)
 

@@ -2,7 +2,7 @@
 
 - Canvas size: `512`
 - Safe fraction: `0.85`
-- Small sizes: `10, 16, 24, 32`
+- Small sizes: `10, 16, 24, 32, 64`
 
 | Icon | Class | Source | Visible % | Semi % | Max Luma | Master | Master Visible % |
 | --- | --- | --- | ---: | ---: | ---: | --- | ---: |
