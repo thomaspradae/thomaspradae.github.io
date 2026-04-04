@@ -78,7 +78,7 @@ If this renders as checkboxes, great. If not, it still reads as bullets — that
 ```bash
 HISTFILE=~/.zsh_history
 # macOS / Linux: adjust path; zsh uses different files sometimes
-tail -n 200 "$HISTFILE" | awk '{print $2}' | sort | uniq -c | sort -nr | head
+tail -n 200 "\\( HISTFILE" | awk '{print  \\)2}' | sort | uniq -c | sort -nr | head
 ```
 
 ### JavaScript — one-off “which day was I productive?” joke
