@@ -1564,7 +1564,7 @@ img + em {
 
 .post-meta-tags .tag-pill:hover .tag-pill-label,
 .tags-holder .tag-pill:hover .tag-pill-label {
-  color: var(--background-color);
+  color: var(--contrast-color);
 }
 
 /* Don't inherit global link hover styles inside tag pills */
