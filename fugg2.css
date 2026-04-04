@@ -1721,7 +1721,8 @@ body.theme-dark .post-meta-section-icon--dark {
   align-items: flex-start;
 }
 
-.breadcrumbs a{
+.post-meta-container .breadcrumbs a,
+.post-meta-container .archive-topnav > a{
     color: inherit;
     text-decoration: none;
     font-size: inherit;
@@ -1729,7 +1730,10 @@ body.theme-dark .post-meta-section-icon--dark {
     transition: color 0.3s ease;
 }
 
-.breadcrumbs a:hover {
+.post-meta-container .breadcrumbs a:hover,
+.post-meta-container .breadcrumbs a:focus-visible,
+.post-meta-container .archive-topnav > a:hover,
+.post-meta-container .archive-topnav > a:focus-visible {
     color: var(--contrast-color);
     text-decoration: none;
 }
