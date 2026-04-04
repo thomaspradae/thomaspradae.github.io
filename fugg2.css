@@ -1723,17 +1723,15 @@ body.theme-dark .post-meta-section-icon--dark {
 
 .breadcrumbs a{
     color: inherit;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 0.12em;
+    text-decoration: none;
     font-size: inherit;
     font-weight: inherit;
-    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .breadcrumbs a:hover {
     color: var(--contrast-color);
-    text-decoration-color: currentColor;
+    text-decoration: none;
 }
 
 /* FOOTNOTES BLOCK */
@@ -3160,10 +3158,8 @@ font-family: 'Inter', sans-serif;
 
 .archive-topnav a{
   color: inherit;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.12em;
-  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .archive-nav-trigger{
@@ -3173,7 +3169,7 @@ font-family: 'Inter', sans-serif;
 .archive-topnav a:-webkit-any-link:hover,
 .archive-topnav a:any-link:hover{
   color: #000000;
-  text-decoration-color: currentColor;
+  text-decoration: none;
 }
 
 .post-meta-container .archive-topnav {
@@ -3187,7 +3183,7 @@ font-family: 'Inter', sans-serif;
 .post-meta-container .archive-topnav a:focus-visible,
 .post-meta-container .breadcrumbs a:focus-visible {
   color: var(--contrast-color);
-  text-decoration-color: currentColor;
+  text-decoration: none;
 }
 
 .archive-card,
