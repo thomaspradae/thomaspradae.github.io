@@ -153,13 +153,14 @@
         text-transform: uppercase;
       }
 
-      .hudNameIcon{
-        display: none;
-        flex: none;
-        width: 0.85rem;
-        height: 0.85rem;
-        object-fit: contain;
-      }
+	      .hudNameIcon{
+	        display: none;
+	        flex: none;
+	        width: 0.85rem;
+	        height: 0.85rem;
+	        object-fit: contain;
+	        opacity: 0.3;
+	      }
 
       .hudNameIcon.is-visible{
         display: block;
@@ -515,29 +516,42 @@ function loadImage(url){
     hudAlt.textContent = (altM == null) ? "" : `+${Math.round(altM)} m`;
   }
 
-  function setHoveredName(name){
-    hudNameText.textContent = name ? name.toUpperCase() : "";
-    hudNameIcon.classList.remove("is-visible", "hudNameIcon--peak");
+	  function setHoveredName(name){
+	    hudNameText.textContent = name ? name.toUpperCase() : "";
+	    hudNameIcon.classList.remove("is-visible", "hudNameIcon--peak");
 
-    if (!name) {
-      hudNameIcon.removeAttribute("src");
-      return;
-    }
+	    function setHudIcon(iconName, peak = false) {
+	      hudNameIcon.src = `/assets/images/resources/normalized/16/${iconName}.webp`;
+	      hudNameIcon.srcset = [
+	        `/assets/images/resources/normalized/16/${iconName}.webp 1x`,
+	        `/assets/images/resources/normalized/24/${iconName}.webp 1.5x`,
+	        `/assets/images/resources/normalized/32/${iconName}.webp 2x`
+	      ].join(", ");
+	      hudNameIcon.classList.add("is-visible");
+	      if (peak) {
+	        hudNameIcon.classList.add("hudNameIcon--peak");
+	      }
+	    }
 
-    if (name.includes("Monserrate")) {
-      hudNameIcon.src = "/assets/images/resources/jesus.png";
-      hudNameIcon.classList.add("is-visible");
-      return;
-    }
+	    if (!name) {
+	      hudNameIcon.removeAttribute("src");
+	      hudNameIcon.removeAttribute("srcset");
+	      return;
+	    }
 
-    if (name.includes("Aguanoso") || name.includes("Alto de la Viga")) {
-      hudNameIcon.src = "/assets/images/resources/mnt.png";
-      hudNameIcon.classList.add("is-visible", "hudNameIcon--peak");
-      return;
-    }
+	    if (name.includes("Monserrate")) {
+	      setHudIcon("jesus");
+	      return;
+	    }
 
-    hudNameIcon.removeAttribute("src");
-  }
+	    if (name.includes("Aguanoso") || name.includes("Alto de la Viga")) {
+	      setHudIcon("mnt", true);
+	      return;
+	    }
+
+	    hudNameIcon.removeAttribute("src");
+	    hudNameIcon.removeAttribute("srcset");
+	  }
 
   // initialize immediately
   setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
