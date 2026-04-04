@@ -663,14 +663,14 @@ function loadImage(url){
     hillAlpha: 0.85,
     overlayAlpha: 1.0,
     revealSoftness: 0.35,
-    bleedStrength: 0.65,
+    bleedStrength: 4.0,
     bleedRadiusPx: 1.5,
-    radiusPx: 40,   // smaller brush for small view
-    featherPx: 22,
+    radiusPx: 80,   // smaller brush for small view
+    featherPx: 120,
     decay: 0.965,
-    diffusion: 0.20,
-    noiseAmp: 0.25,
-    noiseFreq: 2.2,
+    diffusion: 1000000.0,
+    noiseAmp: 2.5,
+    noiseFreq: 5.5,
   };
 
   let inside = false;
