@@ -12,9 +12,9 @@ tags:
 excerpt: 
 ---
 
-This page is the “theory” version of the topic; for applied RL framing, see the [Hugging Face Deep RL notes](/notes/hugging-face-rl-course). This revision adds **Python**, **tables**, **images**, and **footnotes** so you can see how math-heavy posts look when they’re not pretending to be short.[^scope]
+This page is the “theory” version of the topic; for applied RL framing, see the [Hugging Face Deep RL notes](/notes/hugging-face-rl-course). This revision adds **Python**, **tables**, **images**, and **footnotes** so you can see how math-heavy posts look when they’re not pretending to be short.[^1]
 
-[^scope]: Scope: intuition + definitions + a few lines of code — not a full course. For depth: Cover & Thomas, *Elements of Information Theory*.
+[^1]: Scope: intuition + definitions + a few lines of code — not a full course. For depth: Cover & Thomas, *Elements of Information Theory*.
 
 ## Shannon entropy
 
@@ -35,9 +35,9 @@ Entropy is maximized when all outcomes are equally likely (maximum uncertainty) 
 | 0.01 | ~0.081 | also boring (symmetry) |
 | 0.0 or 1.0 | 0 | deterministic |
 
-> **Takeaway:** “surprise” and “information” are the same currency — measured in bits when you use \(\log_2\).[^bits]
+> **Takeaway:** “surprise” and “information” are the same currency — measured in bits when you use \(\log_2\).[^2]
 
-[^bits]: You can use nats (\(\ln\)) instead; ML papers often implicitly use nats when they write `log` without specifying a base.
+[^2]: You can use nats (\(\ln\)) instead; ML papers often implicitly use nats when they write `log` without specifying a base.
 
 ### Tiny Python sanity check
 
@@ -67,9 +67,9 @@ This is the loss function used in virtually all classification tasks in ML. When
 
 ### Numerical hygiene (footnote-sized lecture)
 
-In code, you rarely compute `log(0)` directly — you clamp, or you use the built-in stabilized loss.[^logsumexp]
+In code, you rarely compute `log(0)` directly — you clamp, or you use the built-in stabilized loss.[^3]
 
-[^logsumexp]: See [log-sum-exp trick](https://en.wikipedia.org/wiki/LogSumExp) — related to how softmax + cross-entropy are implemented safely in frameworks.
+[^3]: See [log-sum-exp trick](https://en.wikipedia.org/wiki/LogSumExp) — related to how softmax + cross-entropy are implemented safely in frameworks.
 
 ```python
 import torch
@@ -125,11 +125,11 @@ Shannon's framework provides a rigorous language for talking about learning. Tra
 
 ### Checklist: translating theory to debugging questions
 
-1. **Calibration:** Are my predicted probabilities meaningful — or just ranking scores?[^cal]
+1. **Calibration:** Are my predicted probabilities meaningful — or just ranking scores?[^4]
 2. **Bottlenecks:** Is mutual information between representation and label actually non-trivial?
 3. **Regularization:** Am I penalizing *capacity* or penalizing *noise fitting* — different fixes.
 
-[^cal]: Calibration is not the same as accuracy — see [calibration (statistics)](https://en.wikipedia.org/wiki/Calibration_(statistics)).
+[^4]: Calibration is not the same as accuracy — see [calibration (statistics)](https://en.wikipedia.org/wiki/Calibration_(statistics)).
 
 ```bash
 # Not information theory — just the vibe of "measure everything"

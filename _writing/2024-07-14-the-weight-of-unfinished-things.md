@@ -11,9 +11,9 @@ tags:
 excerpt: 
 ---
 
-There's a shelf in my room that functions less as storage and more as an indictment. Fourteen books, give or take, each one started with the kind of conviction that only lasts about forty pages. A bookmark wedged between chapters three and four of *Gödel, Escher, Bach*. A dog-eared copy of *The Brothers Karamazov* that I swore I'd finish during the semester break. A highlighted-to-death introduction to measure theory that I now use to level my desk.[^measure-zero]
+There's a shelf in my room that functions less as storage and more as an indictment. Fourteen books, give or take, each one started with the kind of conviction that only lasts about forty pages. A bookmark wedged between chapters three and four of *Gödel, Escher, Bach*. A dog-eared copy of *The Brothers Karamazov* that I swore I'd finish during the semester break. A highlighted-to-death introduction to measure theory that I now use to level my desk.[^1]
 
-[^measure-zero]: Not a joke about measure theory — okay, *slightly* a joke. For actual intuition: [Measure (mathematics)](https://en.wikipedia.org/wiki/Measure_(mathematics)). Inline ritual: `open book → read 10 pages → feel virtuous → close book`.
+[^1]: Not a joke about measure theory — okay, *slightly* a joke. For actual intuition: [Measure (mathematics)](https://en.wikipedia.org/wiki/Measure_(mathematics)). Inline ritual: `open book → read 10 pages → feel virtuous → close book`.
 
 It's not laziness. Or maybe it is. I can't tell anymore.
 
@@ -41,9 +41,9 @@ Nested, because the inner voice also nests:
 1. Finishing is a skill separate from talent.
 2. Shame is a bad optimizer — it changes behavior, but rarely in the direction you think.
 3. “Discipline” without design is just self-punishment with a spreadsheet.
-4. Sometimes the unfinished thing is a *bookmark* for a version of you that no longer exists — and that’s allowed.[^bookmark]
+4. Sometimes the unfinished thing is a *bookmark* for a version of you that no longer exists — and that’s allowed.[^2]
 
-[^bookmark]: Related: [Sunk cost](https://en.wikipedia.org/wiki/Sunk_cost) — not always applicable to creative work, but worth keeping in the mental toolbox.
+[^2]: Related: [Sunk cost](https://en.wikipedia.org/wiki/Sunk_cost) — not always applicable to creative work, but worth keeping in the mental toolbox.
 
 ## Figures (images + captions)
 
@@ -105,6 +105,6 @@ The alternative is paralysis. Never starting because you might not finish. Never
 
 I'm writing this instead of finishing three other things. The irony isn't lost on me. But maybe the act of naming it — naming the weight, dragging it into the light — is itself a kind of completion. Not of the thing, but of the feeling.
 
-Small victories. I'll take it. If you want a pointless stress-test for footnotes with code and links, here is one.[^footnote-code]
+Small victories. I'll take it. If you want a pointless stress-test for footnotes with code and links, here is one.[^3]
 
-[^footnote-code]: Thanks for reading. This footnote exists to test **code in footnotes**: `grep -R "TODO" .` and a link: [Field notes home](/).
+[^3]: Thanks for reading. This footnote exists to test **code in footnotes**: `grep -R "TODO" .` and a link: [Field notes home](/).

@@ -12,23 +12,23 @@ tags:
 excerpt: The code is pretty straight forward, we start off our simulation once a new point is generated, and we keep some track of time, I'm not sure how to fucking do this lol, as, I think we could maybe try and have discrete values, but the question might be how discrete, meaning, with each pass of time, and also, wondering, how time will pass, u see, when looking at the slider, this is basically what we need, but the thing is that how I see it, is that this is some sort of loop, and you keep it moving.
 ---
 
-This post is intentionally **dense**: lists, blockquotes, math, tables, images with captions, and footnotes that link out (and even sneak in a line of code). If the layout survives this, it survives anything.[^kitchen-sink]
+This post is intentionally **dense**: lists, blockquotes, math, tables, images with captions, and footnotes that link out (and even sneak in a line of code). If the layout survives this, it survives anything.[^1]
 
-[^kitchen-sink]: Meta-footnote: this paragraph exists to stress-test [footnotes-to-gutter.js](/assets/js/footnotes-to-gutter.js), sidenotes, and long footnote bodies. Inline check: `python -m pip install -e .`
+[^1]: Meta-footnote: this paragraph exists to stress-test [footnotes-to-gutter.js](/assets/js/footnotes-to-gutter.js), sidenotes, and long footnote bodies. Inline check: `python -m pip install -e .`
 
 ## Overview
 
-The project is a 3D-ish intercept simulation: incoming threats move along ballistic-ish arcs; a defender learns *when* to launch and *how* to steer mid-course corrections so the interceptor meets the threat. Think less “production missile defense” and more “gym environment where I can iterate on reward shaping without filing export paperwork.”[^disclaimer]
+The project is a 3D-ish intercept simulation: incoming threats move along ballistic-ish arcs; a defender learns *when* to launch and *how* to steer mid-course corrections so the interceptor meets the threat. Think less “production missile defense” and more “gym environment where I can iterate on reward shaping without filing export paperwork.”[^2]
 
-[^disclaimer]: Not a weapons system. Toy research code. If you need real intercept math, start with [proportional navigation](https://en.wikipedia.org/wiki/Proportional_navigation) and a proper aerospace textbook — e.g. Zarchan, *Tactical and Strategic Missile Guidance*.
+[^2]: Not a weapons system. Toy research code. If you need real intercept math, start with [proportional navigation](https://en.wikipedia.org/wiki/Proportional_navigation) and a proper aerospace textbook — e.g. Zarchan, *Tactical and Strategic Missile Guidance*.
 
 Unordered laundry list of what actually exists in the repo today:
 
-- **Simulation core:** discrete time steps, configurable gravity, drag hacks[^drag], noisy sensors.
+- **Simulation core:** discrete time steps, configurable gravity, drag hacks[^3], noisy sensors.
 - **Policy:** started with a hand-tuned PD-ish baseline, moving toward PPO/SAC-style updates (see log).
 - **Visualization:** WebGL preview + offline GIF exports for debugging angles and bone rig stupidity.
 
-[^drag]: Drag is not “real” yet — it is a scalar fudge you tune until trajectories *look* plausible: `drag_coeff * velocity ** 2` with clamps.
+[^3]: Drag is not “real” yet — it is a scalar fudge you tune until trajectories *look* plausible: `drag_coeff * velocity ** 2` with clamps.
 
 ### What “done” means (for now)
 
@@ -68,7 +68,7 @@ A longer, messier stream of thoughts + experiments lives in the dedicated notes 
 Kramdown-style definitions — handy for glossaries:
 
 RL loop
-: Agent observes state \(s_t\), emits action \(a_t\), environment returns \(s_{t+1}\) and reward \(r_t\). Rinse[^mdp].
+: Agent observes state \(s_t\), emits action \(a_t\), environment returns \(s_{t+1}\) and reward \(r_t\). Rinse[^4].
 
 Interceptor
 : The controllable object trying to meet the threat; not assumed to have unlimited lateral acceleration.
@@ -76,7 +76,7 @@ Interceptor
 Threat
 : Anything you want to not reach the protected volume — modeled as a point mass first, fancier later.
 
-[^mdp]: If you want the formalism: [MDP](https://en.wikipedia.org/wiki/Markov_decision_process). Implementation detail: my state is *not* Markov yet — there’s hidden history in the integrator unless I augment the observation.
+[^4]: If you want the formalism: [MDP](https://en.wikipedia.org/wiki/Markov_decision_process). Implementation detail: my state is *not* Markov yet — there’s hidden history in the integrator unless I augment the observation.
 
 ## Simulation sketch (code)
 
@@ -176,9 +176,9 @@ Table: **what I thought vs what the metrics said**
 - Internal: [writing index](/writing/) · [this site’s notes](/notes/)
 - External resources I keep reopening: [Spinning Up in Deep RL](https://spinningup.openai.com/en/latest/) · [Stable-Baselines3 docs](https://stable-baselines3.readthedocs.io/)
 
-Reward shaping sketch (don’t copy-paste blindly):[^reward-snippet]
+Reward shaping sketch (don’t copy-paste blindly):[^5]
 
-[^reward-snippet]: \(r_t = -\alpha \|p_{\text{int}} - p_{\text{threat}}\|_2 + \beta \mathbb{1}_{\text{hit}}\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
+[^5]: \(r_t = -\alpha \|p_{\text{int}} - p_{\text{threat}}\|_2 + \beta \mathbb{1}_{\text{hit}}\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
 
 ## Screenshot archaeology
 

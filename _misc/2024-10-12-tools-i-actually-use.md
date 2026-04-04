@@ -10,9 +10,9 @@ tags:
 excerpt: 
 ---
 
-The internet is full of "tools I use" posts that are basically affiliate-link farms. This isn't that. These are the things I open every single day, verified by my shell history — and this revision exists to **stress-test** the blog: lists inside blockquotes, tables, fenced code in several languages, task lists, and footnotes that contain both `inline code` and [links](https://example.com).[^meta]
+The internet is full of "tools I use" posts that are basically affiliate-link farms. This isn't that. These are the things I open every single day, verified by my shell history — and this revision exists to **stress-test** the blog: lists inside blockquotes, tables, fenced code in several languages, task lists, and footnotes that contain both `inline code` and [links](https://example.com).[^1]
 
-[^meta]: Yes, `example.com` is a placeholder — RFC 2606 reserves it for documentation. Real links in real posts; this one is deliberately boring.
+[^1]: Yes, `example.com` is a placeholder — RFC 2606 reserves it for documentation. Real links in real posts; this one is deliberately boring.
 
 ## The honest stack (short form)
 
@@ -119,9 +119,9 @@ yak shave
 
 ## Footnote with link + code (the “whole nine yards”)
 
-Sometimes I need to remember the exact install line without Googling again:[^uv-install]
+Sometimes I need to remember the exact install line without Googling again:[^2]
 
-[^uv-install]: `uv` self-install (check upstream docs for changes): `curl -LsSf https://astral.sh/uv/install.sh | sh` — official site: [astral.sh/uv](https://astral.sh/uv). If that script ever changes, don’t trust a blog from the past; trust the docs.
+[^2]: `uv` self-install (check upstream docs for changes): `curl -LsSf https://astral.sh/uv/install.sh | sh` — official site: [astral.sh/uv](https://astral.sh/uv). If that script ever changes, don’t trust a blog from the past; trust the docs.
 
 And sometimes I need to remember how to *undo* my own mess:
 
