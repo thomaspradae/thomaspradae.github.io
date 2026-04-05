@@ -1028,8 +1028,11 @@ a:any-link:hover{
     margin-top: 8vh;
 }
 
-/* When image has a caption, drop its bottom margin so caption sits snug */
-.page-content img:has(+ em) {
+/* When media/table has a caption, drop its bottom margin so caption sits snug */
+.page-content img:has(+ em),
+.page-content img:has(+ p > em:only-child),
+.page-content table:has(+ em),
+.page-content table:has(+ p > em:only-child) {
     margin-bottom: 0;
 }
 
@@ -1067,8 +1070,9 @@ a:any-link:hover{
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-/* Image captions: *italic text* after an image in Markdown becomes <em> */
-img + em {
+/* Captions/footers: italic text after media or tables in Markdown */
+img + em,
+table + em {
     display: block;
     font-style: normal;
     font-family: 'Crimson Pro', serif;
@@ -1078,14 +1082,37 @@ img + em {
     margin-top: 0.7rem;
 }
 
-/* Optional figure numbering: add .figures-counted to post body, set figure_count: true in front matter */
-.figures-counted {
-    counter-reset: figure-counter;
+img + p:has(> em:only-child),
+table + p:has(> em:only-child) {
+    margin-top: 0.7rem;
+    margin-bottom: 2rem;
 }
 
-.figures-counted img + em::before {
+img + p > em:only-child,
+table + p > em:only-child {
+    display: block;
+    font-style: normal;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: var(--backup-text-color-v3);
+}
+
+/* Optional figure numbering: add .figures-counted to post body, set figure_count: true in front matter */
+.figures-counted {
+    counter-reset: figure-counter table-counter;
+}
+
+.figures-counted img + em::before,
+.figures-counted img + p > em:only-child::before {
     counter-increment: figure-counter;
     content: "Figure " counter(figure-counter) " — ";
+    font-weight: 600;
+}
+
+.figures-counted table + em::before,
+.figures-counted table + p > em:only-child::before {
+    counter-increment: table-counter;
+    content: "Table " counter(table-counter) " — ";
     font-weight: 600;
 }
 
