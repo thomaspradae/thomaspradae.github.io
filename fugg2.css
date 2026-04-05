@@ -1041,6 +1041,7 @@ img + em {
     font-size: 1rem;
     color: var(--backup-text-color-v3);
     margin-bottom: 2rem;
+    margin-top: 0.7rem;
 }
 
 /* Optional figure numbering: add .figures-counted to post body, set figure_count: true in front matter */
