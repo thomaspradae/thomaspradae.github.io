@@ -181,6 +181,43 @@ Reward shaping sketch (don’t copy-paste blindly):[^5]
 
 [^5]: \(r_t = -\alpha \|p_{\text{int}} - p_{\text{threat}}\|_2 + \beta \mathbb{1}_{\text{hit}}\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
 
+## Table stress tests (long cells, code, TeX, dollars)
+
+| Symptom | Likely cause | Quick check |
+| --- | --- | --- |
+| Loss goes `nan` after ~2k steps | Bad learning rate or `log(0)` in policy | `torch.isfinite(loss).all()`; clamp `logits` |
+| Interceptor orbits forever | Distance-only shaping with no terminal intercept term | Inspect \(\mathbb{E}[r_T]\) vs shaped \(\sum \gamma^k r_k\) |
+| Policy ignores threat | Observation normalization off or wrong frame | Print `obs.min()`, `obs.max()` each eval |
+
+*Footer: three-column layout with inline code and inline math \( \mathbb{E}[\cdot] \).*
+
+| Budget line item | Amount | Notes |
+| --- | --- | --- |
+| GPU hours | \$\(12\)/hr spot × 40h | Escaped dollars for spreadsheet brain |
+| Coffee | \$\(4.50\) × 2/day × 30 | Same — `\$` not math |
+| Emotional damage | Priceless | Long text cell: this row exists to see whether a joking label plus a medium-length explanation still wraps cleanly when the table is full-width and the type is Crimson Pro at ~1.1rem. If anything clips or the baseline looks wrong, that’s a signal to tweak `td` padding or `vertical-align`. |
+
+*Footer: currency + a deliberately verbose third column.*
+
+<div class="figures-counted" markdown="1">
+
+| Integrator | Update | Stability |
+| --- | --- | --- |
+| Euler | `v += a*dt; x += v*dt` | Meh |
+| Semi-implicit | `v += a*dt; x += v*dt` (order swap) | Better energy |
+| RK4 | four `k` stages | Overkill for this prototype |
+
+*Counted block: first table should get “Table 1 —” if your CSS counter is active.*
+
+| Constraint | Expression | Code |
+| --- | --- | --- |
+| Speed cap | \(\|v\| \leq v_{\max}\) | `v = v * min(1.0, v_max / (torch.norm(v)+1e-8))` |
+| No-fly | altitude \(h \geq h_{\min}\) | `penalty = torch.relu(h_min - h) ** 2` |
+
+*Second table in same block — should read “Table 2 —”.*
+
+</div>
+
 ## Screenshot archaeology
 
 Sometimes the most “real” artifact is a random screengrab from a late night:

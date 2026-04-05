@@ -166,12 +166,6 @@
         display: block;
       }
 
-      .hudNameIcon--peak{
-        width: 0.38rem;
-        height: 0.38rem;
-        margin-top: 0.2rem;
-      }
-
       .hudRight{
         display: flex;
         gap: 10px;          /* knob: spacing between items */
@@ -518,9 +512,9 @@ function loadImage(url){
 
 	  function setHoveredName(name){
 	    hudNameText.textContent = name ? name.toUpperCase() : "";
-	    hudNameIcon.classList.remove("is-visible", "hudNameIcon--peak");
+	    hudNameIcon.classList.remove("is-visible");
 
-	    function setHudIcon(iconName, peak = false) {
+	    function setHudIcon(iconName) {
 	      hudNameIcon.src = `/assets/images/resources/normalized/16/${iconName}.webp`;
 	      hudNameIcon.srcset = [
 	        `/assets/images/resources/normalized/16/${iconName}.webp 1x`,
@@ -528,9 +522,6 @@ function loadImage(url){
 	        `/assets/images/resources/normalized/32/${iconName}.webp 2x`
 	      ].join(", ");
 	      hudNameIcon.classList.add("is-visible");
-	      if (peak) {
-	        hudNameIcon.classList.add("hudNameIcon--peak");
-	      }
 	    }
 
 	    if (!name) {
@@ -545,7 +536,7 @@ function loadImage(url){
 	    }
 
 	    if (name.includes("Aguanoso") || name.includes("Alto de la Viga")) {
-	      setHudIcon("mnt", true);
+	      setHudIcon("mnt");
 	      return;
 	    }
 

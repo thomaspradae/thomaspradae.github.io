@@ -63,6 +63,39 @@ The internet is full of "tools I use" posts that are basically affiliate-link fa
 | `fd` | Speed | Respects `.gitignore` by default |
 | Kitty | GPU | Font rendering that doesn’t look like 2009 |
 
+*Small comparison table — baseline caption pattern after a table.*
+
+## Table stress: wide cells, code, math, dollars
+
+| Kind | Example |
+| --- | --- |
+| Inline code | `rg --files \| head`, `sed -E 's/foo/bar/g'`, `` `nested` `` |
+| Inline TeX | KL: \(D_{\mathrm{KL}}(p\|q)\); entropy \(H\) in bits: \(-\sum p_i \log_2 p_i\) |
+| Dollar signs (escaped) | MSRP \$\(299\) — \$\(49\)/mo — use backslash-dollar so parsers don’t treat `\$...` as math |
+| Long prose in one cell | This cell is intentionally long: you’re checking line-height, wrapping, border alignment, and whether the row still feels readable when someone pastes a whole paragraph of rationale, caveats, and “by the way” clauses that should have been footnotes but weren’t. |
+
+*Footer: mixed modalities in one table — inline code, TeX-style math \(H(X)\), and literal currency via `\$`.*
+
+<div class="figures-counted" markdown="1">
+
+| Step | Command | What it does |
+| --- | --- | --- |
+| 1 | `git rebase -i HEAD~3` | Interactive rebase; editor opens for `pick` / `squash` / `reword`. |
+| 2 | `git commit --amend --no-edit` | Amend last commit message or files without opening editor. |
+| 3 | `diff <(git show :2:file) <(git show :3:file)` | Compare stages during conflict (bash process substitution). |
+
+*Numbered table prefix (Table 1, Table 2, …) only inside `.figures-counted` — see `fugg2.css`.*
+
+| Env var | Typical value | Note |
+| --- | --- | --- |
+| `PATH` | `/usr/local/bin:\$HOME/.local/bin` | Escaped `\$` so it’s not math. |
+| `EDITOR` | `nvim` or `code --wait` | Inline code in cells. |
+| `HISTFILE` | `\$HOME/.zsh_history` | Another `\$HOME` sanity check. |
+
+*Second table in the same counted block — table counter should increment.*
+
+</div>
+
 ## Task list (GFM-style — if your pipeline supports it)
 
 If this renders as checkboxes, great. If not, it still reads as bullets — that’s fine.
@@ -79,7 +112,7 @@ If this renders as checkboxes, great. If not, it still reads as bullets — that
 ```bash
 HISTFILE=~/.zsh_history
 # macOS / Linux: adjust path; zsh uses different files sometimes
-tail -n 200 "\\( HISTFILE" | awk '{print  \\)2}' | sort | uniq -c | sort -nr | head
+tail -n 200 "$HISTFILE" | awk '{print $2}' | sort | uniq -c | sort -nr | head
 ```
 
 ### JavaScript — one-off “which day was I productive?” joke

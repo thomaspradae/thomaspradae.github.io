@@ -141,6 +141,42 @@ for p in [0.5, 0.9, 0.99]:
 PY
 ```
 
+## Table stress (entropy, code, dollars)
+
+| Object | Definition | One-liner |
+| --- | --- | --- |
+| Entropy | \(H(X) = -\sum_x p(x)\log p(x)\) | `-(p * p.log()).sum()` in PyTorch |
+| Cross-entropy | \(H(p,q) = -\sum_x p(x)\log q(x)\) | `F.cross_entropy(logits, y)` |
+| KL | \(D_{\mathrm{KL}}(p\|q) = H(p,q) - H(p)\) | often implicit in training |
+
+*Footer: all three columns mix TeX and backticks.*
+
+| Paper / book | Price (fake) | Why it’s in the pile |
+| --- | --- | --- |
+| Cover & Thomas | \$\(45\) used | Chapters 2–8 — treat as reference, not a novel |
+| MacKay (free PDF) | \$\(0\) | Download, grep, love |
+| This note | \$\(0\) + your time | Long cell: information theory is the language for “how surprised should I be” and “how wrong is my model,” and tables are where you compare definitions side-by-side without scrolling three screens of prose. |
+
+*Footer: literal `\$` for fake prices + long third column.*
+
+<div class="figures-counted" markdown="1">
+
+| \(p\) | \(H_2(p)\) bits | `python` |
+| --- | --- | --- |
+| 0.5 | 1.0 | `-sum(p*log2(p) for p in [0.5,0.5])` |
+| 0.9 | \(\approx 0.469\) | `entropy_bits([0.9, 0.1])` from earlier |
+
+*Counted tables: expect “Table 1 —”.*
+
+| Symbol | Meaning |
+| --- | --- |
+| \(\log\) | default base in ML is often natural log (nats); bits need \(\log_2\) |
+| \(\mathbb{1}\{\cdot\}\) | indicator — 1 if true, else 0 |
+
+*Second caption in block — “Table 2 —”.*
+
+</div>
+
 ---
 
 **Further reading (external):** MacKay’s *Information Theory, Inference, and Learning Algorithms* (free PDF) — famously readable. For ML-heavy treatment: Bishop’s *Pattern Recognition and ML* (chapters on entropy/KL in discrete settings).
