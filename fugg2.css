@@ -1982,7 +1982,7 @@ h6 {
 /* inline code only */
 :not(pre) > code {
   font-family: 'SF Mono Nerd', monospace;
-  font-size: 0.88em;
+  font-size: 0.8em;
   line-height: 1;
   color: #222222;
   background: #f3f3ef;
