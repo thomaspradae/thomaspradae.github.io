@@ -8,6 +8,7 @@ summary:
 tags:
   - tools
 excerpt: 
+last_modified_at: 2026-02-28
 ---
 
 The internet is full of "tools I use" posts that are basically affiliate-link farms. This isn't that. These are the things I open every single day, verified by my shell history — and this revision exists to **stress-test** the blog: lists inside blockquotes, tables, fenced code in several languages, task lists, and footnotes that contain both `inline code` and [links](https://example.com).[^1]

@@ -10,6 +10,7 @@ tags:
   - information theory
   - notes
 excerpt: 
+last_modified_at: 2026-04-01
 ---
 
 This page is the “theory” version of the topic; for applied RL framing, see the [Hugging Face Deep RL notes](/notes/hugging-face-rl-course). This revision adds **Python**, **tables**, **images**, and **footnotes** so you can see how math-heavy posts look when they’re not pretending to be short.[^1]

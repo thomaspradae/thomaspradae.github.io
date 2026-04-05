@@ -9,6 +9,7 @@ tags:
   - personal
   - reflection
 excerpt: 
+last_modified_at: 2026-03-18
 ---
 
 There's a shelf in my room that functions less as storage and more as an indictment. Fourteen books, give or take, each one started with the kind of conviction that only lasts about forty pages. A bookmark wedged between chapters three and four of *Gödel, Escher, Bach*. A dog-eared copy of *The Brothers Karamazov* that I swore I'd finish during the semester break. A highlighted-to-death introduction to measure theory that I now use to level my desk.[^1]
