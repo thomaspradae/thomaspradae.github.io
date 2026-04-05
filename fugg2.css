@@ -1481,6 +1481,7 @@ img + em {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 999px;
+  border: 0.125rem solid var(--background-color);
   background-color: var(--tag-accent-light);
   flex-shrink: 0;
 
