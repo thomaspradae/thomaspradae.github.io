@@ -1033,6 +1033,40 @@ a:any-link:hover{
     margin-bottom: 0;
 }
 
+.page-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-weight: 400;
+    font-size: 1.35rem;
+    font-family: 'Crimson Pro', serif;
+    line-height: 1.4;
+    color: var(--backup-text-color);
+}
+
+.page-content th,
+.page-content td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 0.0625rem solid var(--lightest-text);
+    text-align: left;
+    vertical-align: top;
+    font: inherit;
+    color: inherit;
+}
+
+.page-content thead th {
+    font-weight: 400;
+    color: var(--backup-text-color);
+}
+
+.page-content tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.page-content tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
 /* Image captions: *italic text* after an image in Markdown becomes <em> */
 img + em {
     display: block;
