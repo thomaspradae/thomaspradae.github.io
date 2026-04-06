@@ -17,6 +17,13 @@
   let listenersBound = false;
   let resizeObserver = null;
 
+  function setBodyFlag(className, shouldHave) {
+    const hasClass = document.body.classList.contains(className);
+    if (hasClass !== shouldHave) {
+      document.body.classList.toggle(className, shouldHave);
+    }
+  }
+
   function collectState() {
     const toc = document.querySelector(SEL.toc);
     const rail = document.querySelector(SEL.rail);
@@ -34,7 +41,13 @@
       article,
       title: document.querySelector(SEL.title),
       tocItemEls: Array.from(toc.querySelectorAll(".toc-item")),
-      cachedMetrics: []
+      cachedMetrics: [],
+      railMetrics: null,
+      titleMetrics: null,
+      headingMetrics: [],
+      linkById: new Map(),
+      activeHeadingId: null,
+      snakeTop: null
     };
   }
 
@@ -50,39 +63,39 @@
   }
 
   function updateTOCState() {
-    const body = document.body;
-    const firstTitle = state?.title || document.querySelector(SEL.title);
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    if (!hasScrolledOnce && (window.scrollY || document.documentElement.scrollTop) > 6) {
+    if (!hasScrolledOnce && scrollY > 6) {
       hasScrolledOnce = true;
     }
 
-    body.classList.toggle("toc-open", !hasScrolledOnce);
-    body.classList.toggle("toc-collapsed", hasScrolledOnce);
+    setBodyFlag("toc-open", !hasScrolledOnce);
+    setBodyFlag("toc-collapsed", hasScrolledOnce);
 
-    if (firstTitle) {
-      const rect = firstTitle.getBoundingClientRect();
-      const titleFullyGone = rect.bottom <= 0;
-
-      body.classList.toggle("title-hidden", !titleFullyGone);
-      body.classList.toggle("title-toc-visible", titleFullyGone);
+    if (state?.titleMetrics) {
+      const titleFullyGone = state.titleMetrics.bottom <= scrollY;
+      setBodyFlag("title-hidden", !titleFullyGone);
+      setBodyFlag("title-toc-visible", titleFullyGone);
     } else {
-      body.classList.remove("title-hidden");
-      body.classList.remove("title-toc-visible");
+      setBodyFlag("title-hidden", false);
+      setBodyFlag("title-toc-visible", false);
     }
   }
 
-  function computeSnakeTarget() {
-    if (!state?.rail || !state.main) return null;
+  function measureRailMetrics() {
+    if (!state?.rail || !state.main) {
+      if (state) state.railMetrics = null;
+      return;
+    }
 
     const railRect = state.rail.getBoundingClientRect();
     const railHeight = railRect.height;
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const mainRect = state.main.getBoundingClientRect();
+
+    const articleTop = mainRect.top + scrollY;
     const articleHeight = state.main.offsetHeight;
     const viewportHeight = window.innerHeight;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-    const mainRect = state.main.getBoundingClientRect();
-    const articleTop = mainRect.top + scrollY;
     const scrollStart = articleTop;
     const scrollEnd = articleTop + articleHeight - viewportHeight;
     const scrollRange = Math.max(1, scrollEnd - scrollStart);
@@ -93,12 +106,27 @@
     );
 
     const maxTop = Math.max(0, railHeight - snakeHeight);
-    const progress = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
 
-    return {
-      snakeTop: progress * maxTop,
-      snakeHeight
+    state.railMetrics = {
+      railHeight,
+      articleTop,
+      articleHeight,
+      viewportHeight,
+      scrollStart,
+      scrollEnd,
+      scrollRange,
+      snakeHeight,
+      maxTop
     };
+  }
+
+  function computeSnakeTop() {
+    if (!state?.railMetrics) return 0;
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const { scrollStart, scrollRange, maxTop } = state.railMetrics;
+    const progress = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
+    return progress * maxTop;
   }
 
   function measureCachedMetrics() {
@@ -169,37 +197,86 @@
     });
   }
 
-  function applySingleSnake(target) {
-    if (!state?.snake || !target) return;
-    state.snake.style.transform = `translateY(${target.snakeTop}px)`;
-    state.snake.style.height = `${target.snakeHeight}px`;
+  function measureHeadingMetrics() {
+    if (!state?.article || !state?.toc) {
+      if (state) {
+        state.headingMetrics = [];
+        state.linkById = new Map();
+      }
+      return;
+    }
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    state.headingMetrics = Array.from(state.article.querySelectorAll(SEL.headings))
+      .filter((heading) => heading.id)
+      .map((heading) => ({
+        id: heading.id,
+        top: heading.getBoundingClientRect().top + scrollY
+      }));
+
+    state.linkById = new Map(
+      Array.from(state.toc.querySelectorAll('a[href^="#"]'))
+        .map((link) => [decodeURIComponent(link.hash.slice(1)), link])
+    );
+
+    state.toc.querySelectorAll("a.toc-active").forEach((link) => link.classList.remove("toc-active"));
+  }
+
+  function measureTitleMetrics() {
+    if (!state?.title) {
+      if (state) state.titleMetrics = null;
+      return;
+    }
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const rect = state.title.getBoundingClientRect();
+
+    state.titleMetrics = {
+      top: rect.top + scrollY,
+      bottom: rect.bottom + scrollY
+    };
+  }
+
+  function updateRailGeometry() {
+    if (!state?.snake || !state?.railMetrics) return;
+
+    const nextHeight = `${state.railMetrics.snakeHeight}px`;
+    if (state.snake.style.height !== nextHeight) {
+      state.snake.style.height = nextHeight;
+    }
   }
 
   function updateRailProgress() {
-    if (!state?.snake) return;
-    applySingleSnake(computeSnakeTarget());
+    if (!state?.snake || !state?.railMetrics) return;
+
+    const snakeTop = computeSnakeTop();
+    if (state.snakeTop !== null && Math.abs(state.snakeTop - snakeTop) < 0.1) return;
+
+    state.snakeTop = snakeTop;
+    state.snake.style.transform = `translate3d(0, ${snakeTop}px, 0)`;
   }
 
   function updateActiveLink() {
-    if (!state?.toc || !state.article) return;
-
-    const headings = Array.from(state.article.querySelectorAll(SEL.headings)).filter((heading) => heading.id);
-    if (!headings.length) return;
+    if (!state?.toc || !state.headingMetrics.length) return;
 
     const probeY = window.scrollY + 140;
-    let active = null;
+    let activeId = null;
 
-    for (const heading of headings) {
-      const top = heading.getBoundingClientRect().top + window.scrollY;
-      if (top <= probeY) active = heading;
+    for (const heading of state.headingMetrics) {
+      if (heading.top <= probeY) activeId = heading.id;
       else break;
     }
 
-    state.toc.querySelectorAll("a.toc-active").forEach((link) => link.classList.remove("toc-active"));
-    if (!active) return;
+    if (state.activeHeadingId === activeId) return;
 
-    const link = state.toc.querySelector(`a[href="#${CSS.escape(active.id)}"]`);
-    if (link) link.classList.add("toc-active");
+    if (state.activeHeadingId) {
+      state.linkById.get(state.activeHeadingId)?.classList.remove("toc-active");
+    }
+
+    state.activeHeadingId = activeId;
+    if (!activeId) return;
+
+    state.linkById.get(activeId)?.classList.add("toc-active");
   }
 
   function observePendingImages() {
@@ -244,6 +321,10 @@
 
     measureCachedMetrics();
     renderGapCovers();
+    measureTitleMetrics();
+    measureHeadingMetrics();
+    measureRailMetrics();
+    updateRailGeometry();
     observePendingImages();
     bindObservers();
     scheduleUpdate();
