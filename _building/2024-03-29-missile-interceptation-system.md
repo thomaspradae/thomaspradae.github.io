@@ -218,6 +218,130 @@ Reward shaping sketch (don’t copy-paste blindly):[^5]
 
 </div>
 
+## Extreme table torture
+
+Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modalities. If anything looks off, tweak `.page-content table` in `fugg2.css` — not your prose.
+
+### Absurdly wide grid (12 columns × 17 data rows)
+
+| **C0** | **C1** | **C2** | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `row_00` | \(x_{0,1}\) | `np.float32` | v0_3 | v0_4 | `pow(2,0)` | v0_6 | v0_7 | v0_8 | v0_9 | v0_10 | v0_11 |
+| `row_01` | \(x_{1,1}\) | `torch.Tensor` | v1_3 | v1_4 | v1_5 | v1_6 | v1_7 | v1_8 | v1_9 | v1_10 | v1_11 |
+| `row_02` | \(x_{2,1}\) | `torch.Tensor` | v2_3 | v2_4 | v2_5 | v2_6 | v2_7 | v2_8 | v2_9 | v2_10 | v2_11 |
+| `row_03` | \(x_{3,1}\) | `np.float32` | v3_3 | v3_4 | v3_5 | v3_6 | v3_7 | v3_8 | v3_9 | v3_10 | v3_11 |
+| `row_04` | \(x_{4,1}\) | `torch.Tensor` | v4_3 | v4_4 | `pow(2,4)` | v4_6 | v4_7 | v4_8 | v4_9 | v4_10 | v4_11 |
+| `row_05` | \(x_{5,1}\) | `torch.Tensor` | v5_3 | v5_4 | v5_5 | v5_6 | v5_7 | v5_8 | v5_9 | v5_10 | v5_11 |
+| `row_06` | \(x_{6,1}\) | `np.float32` | v6_3 | v6_4 | v6_5 | v6_6 | v6_7 | v6_8 | v6_9 | v6_10 | v6_11 |
+| `row_07` | \(x_{7,1}\) | `torch.Tensor` | v7_3 | v7_4 | v7_5 | v7_6 | v7_7 | v7_8 | v7_9 | v7_10 | Mega-cell: word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word … |
+| `row_08` | \(x_{8,1}\) | `torch.Tensor` | v8_3 | v8_4 | `pow(2,0)` | v8_6 | v8_7 | v8_8 | v8_9 | v8_10 | v8_11 |
+| `row_09` | \(x_{9,1}\) | `np.float32` | v9_3 | v9_4 | v9_5 | v9_6 | v9_7 | v9_8 | v9_9 | v9_10 | v9_11 |
+| `row_10` | \(x_{10,1}\) | `torch.Tensor` | v10_3 | v10_4 | v10_5 | v10_6 | v10_7 | v10_8 | v10_9 | v10_10 | v10_11 |
+| `row_11` | \(x_{11,1}\) | `torch.Tensor` | v11_3 | v11_4 | v11_5 | v11_6 | v11_7 | v11_8 | v11_9 | v11_10 | v11_11 |
+| `row_12` | \(x_{12,1}\) | `np.float32` | v12_3 | v12_4 | `pow(2,4)` | v12_6 | v12_7 | v12_8 | v12_9 | v12_10 | v12_11 |
+| `row_13` | \(x_{13,1}\) | `torch.Tensor` | v13_3 | v13_4 | v13_5 | v13_6 | v13_7 | v13_8 | v13_9 | v13_10 | v13_11 |
+| `row_14` | \(x_{14,1}\) | `torch.Tensor` | v14_3 | v14_4 | v14_5 | v14_6 | v14_7 | v14_8 | v14_9 | v14_10 | v14_11 |
+| `row_15` | \(x_{15,1}\) | `np.float32` | v15_3 | v15_4 | v15_5 | v15_6 | v15_7 | v15_8 | v15_9 | v15_10 | v15_11 |
+| `row_16` | \(x_{16,1}\) | `torch.Tensor` | v16_3 | v16_4 | `pow(2,0)` | v16_6 | v16_7 | v16_8 | v16_9 | v16_10 | v16_11 |
+
+*Wide grid footer — check overflow-x, cell padding, and last-column long text.*
+
+### Absurdly tall runbook (4 columns × 54 data rows)
+
+| # | Status | Command / token | Note |
+| --- | --- | --- | --- |
+| 0 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 0` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 0 |
+| 1 | `WARN` | `pytest -q tests/test_001.py` | tick 1 |
+| 2 | `FAIL` | `pytest -q tests/test_002.py` | tick 2 |
+| 3 | `SKIP` | `pytest -q tests/test_003.py` | tick 3 |
+| 4 | `OK` | `pytest -q tests/test_004.py` | tick 4 |
+| 5 | `WARN` | `torchrun --nproc_per_node=2 train.py --seed 5` | tick 5 |
+| 6 | `FAIL` | `pytest -q tests/test_006.py` | tick 6 |
+| 7 | `SKIP` | `pytest -q tests/test_007.py` | tick 7 |
+| 8 | `OK` | `pytest -q tests/test_008.py` | tick 8 |
+| 9 | `WARN` | `pytest -q tests/test_009.py` | tick 9 |
+| 10 | `FAIL` | `torchrun --nproc_per_node=2 train.py --seed 10` | tick 10 |
+| 11 | `SKIP` | `pytest -q tests/test_011.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 11 |
+| 12 | `OK` | `pytest -q tests/test_012.py` | tick 12 |
+| 13 | `WARN` | `pytest -q tests/test_013.py` | tick 13 |
+| 14 | `FAIL` | `pytest -q tests/test_014.py` | tick 14 |
+| 15 | `SKIP` | `torchrun --nproc_per_node=2 train.py --seed 15` | tick 15 |
+| 16 | `OK` | `pytest -q tests/test_016.py` | tick 16 |
+| 17 | `WARN` | `pytest -q tests/test_017.py` | tick 17 |
+| 18 | `FAIL` | `pytest -q tests/test_018.py` | tick 18 |
+| 19 | `SKIP` | `pytest -q tests/test_019.py` | tick 19 |
+| 20 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 20` | tick 20 |
+| 21 | `WARN` | `pytest -q tests/test_021.py` | tick 21 |
+| 22 | `FAIL` | `pytest -q tests/test_022.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 22 |
+| 23 | `SKIP` | `pytest -q tests/test_023.py` | Long note: lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, end. |
+| 24 | `OK` | `pytest -q tests/test_024.py` | tick 24 |
+| 25 | `WARN` | `torchrun --nproc_per_node=2 train.py --seed 25` | tick 25 |
+| 26 | `FAIL` | `pytest -q tests/test_026.py` | tick 26 |
+| 27 | `SKIP` | `pytest -q tests/test_027.py` | tick 27 |
+| 28 | `OK` | `pytest -q tests/test_028.py` | tick 28 |
+| 29 | `WARN` | `pytest -q tests/test_029.py` | tick 29 |
+| 30 | `FAIL` | `torchrun --nproc_per_node=2 train.py --seed 30` | tick 30 |
+| 31 | `SKIP` | `pytest -q tests/test_031.py` | tick 31 |
+| 32 | `OK` | `pytest -q tests/test_032.py` | tick 32 |
+| 33 | `WARN` | `pytest -q tests/test_033.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 33 |
+| 34 | `FAIL` | `pytest -q tests/test_034.py` | tick 34 |
+| 35 | `SKIP` | `torchrun --nproc_per_node=2 train.py --seed 35` | tick 35 |
+| 36 | `OK` | `pytest -q tests/test_036.py` | tick 36 |
+| 37 | `WARN` | `pytest -q tests/test_037.py` | tick 37 |
+| 38 | `FAIL` | `pytest -q tests/test_038.py` | tick 38 |
+| 39 | `SKIP` | `pytest -q tests/test_039.py` | tick 39 |
+| 40 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 40` | tick 40 |
+| 41 | `WARN` | `pytest -q tests/test_041.py` | tick 41 |
+| 42 | `FAIL` | `pytest -q tests/test_042.py` | tick 42 |
+| 43 | `SKIP` | `pytest -q tests/test_043.py` | tick 43 |
+| 44 | `OK` | `pytest -q tests/test_044.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 44 |
+| 45 | `WARN` | `torchrun --nproc_per_node=2 train.py --seed 45` | tick 45 |
+| 46 | `FAIL` | `pytest -q tests/test_046.py` | tick 46 |
+| 47 | `SKIP` | `pytest -q tests/test_047.py` | tick 47 |
+| 48 | `OK` | `pytest -q tests/test_048.py` | tick 48 |
+| 49 | `WARN` | `pytest -q tests/test_049.py` | tick 49 |
+| 50 | `FAIL` | `torchrun --nproc_per_node=2 train.py --seed 50` | tick 50 |
+| 51 | `SKIP` | `pytest -q tests/test_051.py` | tick 51 |
+| 52 | `OK` | `pytest -q tests/test_052.py` | tick 52 |
+| 53 | `WARN` | `pytest -q tests/test_053.py` | tick 53 |
+
+*Tall runbook footer — row hover, alternating statuses, one obese note row.*
+
+### Dense numeric matrix (16 × 16, every cell filled)
+
+|  | **0** | **1** | **2** | **3** | **4** | **5** | **6** | **7** | **8** | **9** | **10** | **11** | **12** | **13** | **14** | **15** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **0** | 0 | 17 | 34 | 51 | 68 | 85 | 102 | 119 | 136 | 153 | 170 | 187 | 204 | 221 | 238 | 255 |
+| **1** | 31 | 48 | 65 | 82 | 99 | 116 | 133 | 150 | 167 | 184 | 201 | 218 | 235 | 252 | 269 | 286 |
+| **2** | 62 | 79 | 96 | 113 | 130 | 147 | 164 | 181 | 198 | 215 | 232 | 249 | 266 | 283 | 300 | 317 |
+| **3** | 93 | 110 | 127 | 144 | 161 | 178 | 195 | 212 | 229 | 246 | 263 | 280 | 297 | 314 | 331 | 348 |
+| **4** | 124 | 141 | 158 | 175 | 192 | 209 | 226 | 243 | 260 | 277 | 294 | 311 | 328 | 345 | 362 | 379 |
+| **5** | 155 | 172 | 189 | 206 | 223 | 240 | 257 | 274 | 291 | 308 | 325 | 342 | 359 | 376 | 393 | 410 |
+| **6** | 186 | 203 | 220 | 237 | 254 | 271 | 288 | 305 | 322 | 339 | 356 | 373 | 390 | 407 | 424 | 441 |
+| **7** | 217 | 234 | 251 | 268 | 285 | 302 | 319 | 336 | 353 | 370 | 387 | 404 | 421 | 438 | 455 | 472 |
+| **8** | 248 | 265 | 282 | 299 | 316 | 333 | 350 | 367 | 384 | 401 | 418 | 435 | 452 | 469 | 486 | 503 |
+| **9** | 279 | 296 | 313 | 330 | 347 | 364 | 381 | 398 | 415 | 432 | 449 | 466 | 483 | 500 | 517 | 534 |
+| **10** | 310 | 327 | 344 | 361 | 378 | 395 | 412 | 429 | 446 | 463 | 480 | 497 | 514 | 531 | 548 | 565 |
+| **11** | 341 | 358 | 375 | 392 | 409 | 426 | 443 | 460 | 477 | 494 | 511 | 528 | 545 | 562 | 579 | 596 |
+| **12** | 372 | 389 | 406 | 423 | 440 | 457 | 474 | 491 | 508 | 525 | 542 | 559 | 576 | 593 | 610 | 627 |
+| **13** | 403 | 420 | 437 | 454 | 471 | 488 | 505 | 522 | 539 | 556 | 573 | 590 | 607 | 624 | 641 | 658 |
+| **14** | 434 | 451 | 468 | 485 | 502 | 519 | 536 | 553 | 570 | 587 | 604 | 621 | 638 | 655 | 672 | 689 |
+| **15** | 465 | 482 | 499 | 516 | 533 | 550 | 567 | 584 | 601 | 618 | 635 | 652 | 669 | 686 | 703 | 720 |
+
+*Dense matrix footer — typography at small sizes, column alignment, thead vs tbody.*
+
+### Mixed chaos (empty cells, long strings — pipes only as delimiters)
+
+| A | B | C |
+| --- | --- | --- |
+|  | `single-space` | (empty first column) |
+| `pipe-in-code-ok` | `grep a\\|b file` | or-op in regex |
+| U+1F680 | Not an emoji font test | just characters |
+| xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | short | `mid` |
+| short | yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy | `tail` |
+
+*Chaos footer — empty cells, code with pipe characters inside backticks, ultra-long strings.*
+
 ## Screenshot archaeology
 
 Sometimes the most “real” artifact is a random screengrab from a late night:
