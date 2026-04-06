@@ -2391,7 +2391,7 @@ div[class^="language-"].highlighter-rouge,
 .gutter-note-body p {
   margin: 0;
   font-family: 'Crimson Pro', serif;
-  font-size: 0.925rem;
+  font-size: 0.95rem;
   line-height: 1.35;
   color: var(--backup-text-color-v2);
 }
