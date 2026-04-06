@@ -54,9 +54,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:slug
-  misc: 
+  marginalia: 
     output: true
-    permalink: /misc/:slug
+    permalink: /marginalia/:slug
 
 defaults:
   -

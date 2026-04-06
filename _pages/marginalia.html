@@ -1,7 +1,7 @@
 ---
 layout: compress
 title: Marginalia
-permalink: /misc/
+permalink: /marginalia/
 ---
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ permalink: /misc/
       </div>
     
       {% include archive_search_nav.html
-        scope="misc"
+        scope="marginalia"
         scope_label="Marginalia"
         placeholder="Search in Marginalia..."
       %}
@@ -42,8 +42,8 @@ permalink: /misc/
     
     <div class="archive-card">
       <ul class="archive-list" data-cols="3">
-        {% assign misc_posts = site.misc | sort: "date" | reverse %}
-        {% for post in misc_posts %}
+        {% assign marginalia_posts = site.marginalia | sort: "date" | reverse %}
+        {% for post in marginalia_posts %}
         <li class="archive-item">
           <a class="archive-title" href="{{ post.url | relative_url }}">
             {{ post.title }}

@@ -1,6 +1,6 @@
 ---
 layout: post
-path: /_misc/
+path: /_marginalia/
 share: true
 title: Tools I actually use every day
 description: Not aspirational tools. Not tools I installed once. Tools I actually use — plus config snippets, tables, and footnotes.

@@ -5,7 +5,7 @@
     writing: "Writing",
     building: "Building",
     notes: "Notes",
-    misc: "Marginalia"
+    marginalia: "Marginalia"
   };
   var FUSE_CONFIG = {
     includeScore: true,
@@ -68,7 +68,7 @@
   }
 
   function sanitizeScope(scope) {
-    if (scope === "writing" || scope === "building" || scope === "notes" || scope === "misc") {
+    if (scope === "writing" || scope === "building" || scope === "notes" || scope === "marginalia") {
       return scope;
     }
 
@@ -293,7 +293,7 @@
       { value: "writing", label: "Writing" },
       { value: "building", label: "Building" },
       { value: "notes", label: "Notes" },
-      { value: "misc", label: "Marginalia" }
+      { value: "marginalia", label: "Marginalia" }
     ];
   }
 

@@ -2498,50 +2498,17 @@ div[class^="language-"].highlighter-rouge,
   transition: background 0.35s ease, opacity 0.28s ease;
 }
 
-.post-stage > #left-toc.left-toc .toc-snake{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 20px;
-  background: var(--contrast-color);
-  opacity: 1;
-  pointer-events: none;
-  z-index: 0;
-  transform: translateY(0);
-  will-change: transform, height;
-  transition:
-    transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.14s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s ease;
-}
-
-.post-stage > #left-toc.left-toc .toc-gap-layer{
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.post-stage > #left-toc.left-toc .toc-gap-cover{
-  position: absolute;
-  left: 0;
-  width: 4px;
-  background: var(--background-color);
-}
-
 .post-stage > #left-toc.left-toc .toc-item::after{
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  height: 0;
+  top: var(--snake-top, 0px);
+  height: var(--snake-h, 0px);
   width: 2px;
   background: var(--contrast-color);
   pointer-events: none;
   z-index: 0;
-  opacity: 0;
+  transition: top 0.08s ease-out, height 0.08s ease-out, opacity 0.28s ease;
 }
 
 .post-stage > #left-toc.left-toc .toc-item:hover::before{
@@ -2593,10 +2560,6 @@ body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child > a{
   transform: translateY(6px);
 }
 
-body.title-hidden .post-stage > #left-toc.left-toc .toc-snake{
-  opacity: 0;
-}
-
 body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::before,
 body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::after{
   opacity: 0;
@@ -2606,10 +2569,6 @@ body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::after{
 body.title-toc-visible .post-stage > #left-toc.left-toc .toc-item:first-child > a{
   opacity: 1;
   transform: translateY(0);
-}
-
-body.title-toc-visible .post-stage > #left-toc.left-toc .toc-snake{
-  opacity: 1;
 }
 
 /* keep scrollspy color behavior */

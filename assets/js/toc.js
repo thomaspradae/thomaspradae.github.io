@@ -1,5 +1,4 @@
-// assets/js/toc.js — experiment-style TOC builder
-console.log("[TOC] script loaded (experiment)");
+// assets/js/toc.js — TOC builder
 
 const MOBILE_POST_MENU_QUERY = "(max-width: 1024px)";
 const DEBUG_MOBILE_POST_MENU = true;
@@ -111,6 +110,27 @@ function createDesktopTOCList(sections) {
   });
 
   return list;
+}
+
+function ensureDesktopTOCRailLayers(tocContainer) {
+  const rail = tocContainer?.closest(".toc-rail");
+  if (!rail || !tocContainer) return;
+
+  let snake = rail.querySelector(".toc-snake");
+  if (!snake) {
+    snake = document.createElement("div");
+    snake.className = "toc-snake";
+    snake.setAttribute("aria-hidden", "true");
+    rail.insertBefore(snake, tocContainer);
+  }
+
+  let gapLayer = rail.querySelector(".toc-gap-layer");
+  if (!gapLayer) {
+    gapLayer = document.createElement("div");
+    gapLayer.className = "toc-gap-layer";
+    gapLayer.setAttribute("aria-hidden", "true");
+    rail.insertBefore(gapLayer, tocContainer);
+  }
 }
 
 function createMobileTOCList(sections, closeMenu) {
@@ -258,6 +278,7 @@ function buildTOC() {
   if (tocContainer) {
     tocContainer.innerHTML = "";
     tocContainer.appendChild(createDesktopTOCList(sections));
+    ensureDesktopTOCRailLayers(tocContainer);
     document.dispatchEvent(new CustomEvent("toc:built", { detail: { tocContainer } }));
   }
 

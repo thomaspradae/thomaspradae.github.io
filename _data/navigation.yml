@@ -9,8 +9,8 @@ links:
   url: /writing.html
 - title: Notes
   url: /notes.html
-- title: Miscellaneous
-  url: /misc.html
+- title: Marginalia
+  url: /marginalia
 - title: Search
   url: /search
 - title: Github
@@ -20,5 +20,5 @@ links:
 - title: Rss
   url: /atom.xml
 - title: FOR
-  url: /misc.html
+  url: /marginalia
   

@@ -1,31 +1,57 @@
-// assets/js/toc-scrollspy.js — experiment-style snake + state
+// assets/js/toc-scrollspy.js — single-element snake + state
 (() => {
   const SEL = {
     toc: "#left-toc.left-toc",
     rail: "#left-toc.left-toc .toc-rail",
+    snake: "#left-toc.left-toc .toc-snake",
+    gapLayer: "#left-toc.left-toc .toc-gap-layer",
     main: "#main.post",
     body: "#main.post .post-body-content",
     headings: "h2, h3, h4, h5, h6",
     title: ".page-title"
   };
 
-  let tocItemEls = [];
+  let state = null;
   let railRAF = null;
   let hasScrolledOnce = false;
+  let listenersBound = false;
+  let resizeObserver = null;
 
-  const scheduleUpdate = () => {
-    if (railRAF) return;
+  function collectState() {
+    const toc = document.querySelector(SEL.toc);
+    const rail = document.querySelector(SEL.rail);
+    const main = document.querySelector(SEL.main);
+    const article = document.querySelector(SEL.body);
+
+    if (!toc || !rail || !main || !article) return null;
+
+    return {
+      toc,
+      rail,
+      snake: document.querySelector(SEL.snake),
+      gapLayer: document.querySelector(SEL.gapLayer),
+      main,
+      article,
+      title: document.querySelector(SEL.title),
+      tocItemEls: Array.from(toc.querySelectorAll(".toc-item")),
+      cachedMetrics: []
+    };
+  }
+
+  function scheduleUpdate() {
+    if (railRAF || !state) return;
+
     railRAF = requestAnimationFrame(() => {
       railRAF = null;
       updateTOCState();
       updateRailProgress();
       updateActiveLink();
     });
-  };
+  }
 
   function updateTOCState() {
     const body = document.body;
-    const firstTitle = document.querySelector(SEL.title);
+    const firstTitle = state?.title || document.querySelector(SEL.title);
 
     if (!hasScrolledOnce && (window.scrollY || document.documentElement.scrollTop) > 6) {
       hasScrolledOnce = true;
@@ -46,103 +72,190 @@
     }
   }
 
-  function updateRailProgress() {
-    const toc = document.querySelector(SEL.toc);
-    const rail = document.querySelector(SEL.rail);
-    const main = document.querySelector(SEL.main);
-    if (!toc || !rail || !main) return;
+  function computeSnakeTarget() {
+    if (!state?.rail || !state.main) return null;
 
-    tocItemEls = Array.from(toc.querySelectorAll(".toc-item"));
-    if (!tocItemEls.length) return;
-
-    const railRect = rail.getBoundingClientRect();
+    const railRect = state.rail.getBoundingClientRect();
     const railHeight = railRect.height;
-
-    const articleHeight = main.offsetHeight;
+    const articleHeight = state.main.offsetHeight;
     const viewportHeight = window.innerHeight;
     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
-    const mainRect = main.getBoundingClientRect();
+    const mainRect = state.main.getBoundingClientRect();
     const articleTop = mainRect.top + scrollY;
     const scrollStart = articleTop;
     const scrollEnd = articleTop + articleHeight - viewportHeight;
     const scrollRange = Math.max(1, scrollEnd - scrollStart);
 
-    const snakeH = Math.min(
+    const snakeHeight = Math.min(
       railHeight,
       Math.max(20, (viewportHeight / Math.max(1, articleHeight)) * railHeight)
     );
 
-    const maxTop = Math.max(0, railHeight - snakeH);
-    const t = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
-    const snakeTop = t * maxTop;
-    const snakeBot = snakeTop + snakeH;
+    const maxTop = Math.max(0, railHeight - snakeHeight);
+    const progress = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
 
-    for (const el of tocItemEls) {
-      const r = el.getBoundingClientRect();
-      const itTop = r.top - railRect.top;
-      const itBot = r.bottom - railRect.top;
+    return {
+      snakeTop: progress * maxTop,
+      snakeHeight
+    };
+  }
 
-      const overlapTop = Math.max(itTop, snakeTop);
-      const overlapBot = Math.min(itBot, snakeBot);
-      const overlapH = Math.max(0, overlapBot - overlapTop);
-
-      if (overlapH <= 0) {
-        el.style.setProperty("--snake-h", "0px");
-        continue;
-      }
-
-      el.style.setProperty("--snake-top", (overlapTop - itTop) + "px");
-      el.style.setProperty("--snake-h", overlapH + "px");
+  function measureCachedMetrics() {
+    if (!state?.rail || !state.tocItemEls.length) {
+      if (state) state.cachedMetrics = [];
+      return;
     }
+
+    const railTop = state.rail.getBoundingClientRect().top;
+    state.cachedMetrics = state.tocItemEls.map((element) => {
+      const rect = element.getBoundingClientRect();
+      const top = rect.top - railTop;
+      const height = rect.height;
+
+      return {
+        element,
+        top,
+        bottom: top + height,
+        height
+      };
+    });
+  }
+
+  function renderGapCovers() {
+    if (!state?.gapLayer || !state.rail) return;
+
+    state.gapLayer.innerHTML = "";
+    if (!state.cachedMetrics.length) return;
+
+    const railHeight = state.rail.getBoundingClientRect().height;
+    const covers = [];
+
+    const first = state.cachedMetrics[0];
+    if (first.top > 0) {
+      covers.push({ top: 0, height: first.top });
+    }
+
+    for (let i = 0; i < state.cachedMetrics.length - 1; i += 1) {
+      const current = state.cachedMetrics[i];
+      const next = state.cachedMetrics[i + 1];
+      const gapHeight = next.top - current.bottom;
+
+      if (gapHeight > 0) {
+        covers.push({ top: current.bottom, height: gapHeight });
+      }
+    }
+
+    const last = state.cachedMetrics[state.cachedMetrics.length - 1];
+    if (last.bottom < railHeight) {
+      covers.push({ top: last.bottom, height: railHeight - last.bottom });
+    }
+
+    covers.forEach((cover) => {
+      const element = document.createElement("div");
+      element.className = "toc-gap-cover";
+      element.style.top = `${cover.top}px`;
+      element.style.height = `${cover.height}px`;
+      state.gapLayer.appendChild(element);
+    });
+  }
+
+  function applySingleSnake(target) {
+    if (!state?.snake || !target) return;
+    state.snake.style.transform = `translateY(${target.snakeTop}px)`;
+    state.snake.style.height = `${target.snakeHeight}px`;
+  }
+
+  function updateRailProgress() {
+    if (!state?.snake) return;
+    applySingleSnake(computeSnakeTarget());
   }
 
   function updateActiveLink() {
-    const toc = document.querySelector(SEL.toc);
-    const article = document.querySelector(SEL.body);
-    if (!toc || !article) return;
+    if (!state?.toc || !state.article) return;
 
-    const headings = Array.from(article.querySelectorAll(SEL.headings)).filter(h => h.id);
+    const headings = Array.from(state.article.querySelectorAll(SEL.headings)).filter((heading) => heading.id);
     if (!headings.length) return;
 
     const probeY = window.scrollY + 140;
     let active = null;
 
-    for (const h of headings) {
-      const top = h.getBoundingClientRect().top + window.scrollY;
-      if (top <= probeY) active = h;
+    for (const heading of headings) {
+      const top = heading.getBoundingClientRect().top + window.scrollY;
+      if (top <= probeY) active = heading;
       else break;
     }
 
-    toc.querySelectorAll("a.toc-active").forEach(a => a.classList.remove("toc-active"));
+    state.toc.querySelectorAll("a.toc-active").forEach((link) => link.classList.remove("toc-active"));
     if (!active) return;
 
-    const link = toc.querySelector(`a[href="#${CSS.escape(active.id)}"]`);
+    const link = state.toc.querySelector(`a[href="#${CSS.escape(active.id)}"]`);
     if (link) link.classList.add("toc-active");
   }
 
-  function init() {
-    scheduleUpdate();
+  function observePendingImages() {
+    if (!state?.main) return;
 
-    const main = document.querySelector(SEL.main);
-    if (!main) return;
+    state.main.querySelectorAll("img").forEach((img) => {
+      if (img.complete || img.dataset.tocSnakeObserved === "true") return;
 
-    const ro = new ResizeObserver(scheduleUpdate);
-    ro.observe(main);
-
-    main.querySelectorAll("img").forEach(img => {
-      if (!img.complete) img.addEventListener("load", scheduleUpdate, { once: true });
+      img.dataset.tocSnakeObserved = "true";
+      img.addEventListener("load", refreshState, { once: true });
     });
-
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
   }
 
-  document.addEventListener("toc:built", init);
+  function bindObservers() {
+    if (!state) return;
+
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+    }
+
+    if (typeof ResizeObserver === "undefined") return;
+
+    resizeObserver = new ResizeObserver(() => {
+      refreshState();
+    });
+
+    resizeObserver.observe(state.main);
+    resizeObserver.observe(state.rail);
+  }
+
+  function bindGlobalListeners() {
+    if (listenersBound) return;
+    listenersBound = true;
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", refreshState);
+  }
+
+  function refreshState() {
+    state = collectState();
+    if (!state) return;
+
+    measureCachedMetrics();
+    renderGapCovers();
+    observePendingImages();
+    bindObservers();
+    scheduleUpdate();
+  }
+
+  function bootstrap() {
+    bindGlobalListeners();
+    refreshState();
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(refreshState).catch(() => {});
+    }
+
+    window.addEventListener("load", refreshState, { once: true });
+  }
+
+  document.addEventListener("toc:built", refreshState);
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", bootstrap, { once: true });
   } else {
-    init();
+    bootstrap();
   }
 })();

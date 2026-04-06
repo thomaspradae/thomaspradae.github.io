@@ -1,7 +1,7 @@
 {%- assign search_docs = site.writing
   | concat: site.building
   | concat: site.notes
-  | concat: site.misc
+  | concat: site.marginalia
   | sort: "date"
   | reverse
 -%}
@@ -9,7 +9,7 @@
 {%- for doc in search_docs -%}
   {%- assign category_label = doc.collection -%}
   {%- case doc.collection -%}
-    {%- when "misc" -%}
+    {%- when "marginalia" -%}
       {%- assign category_label = "marginalia" -%}
   {%- endcase -%}
   {

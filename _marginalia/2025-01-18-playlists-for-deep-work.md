@@ -1,6 +1,6 @@
 ---
 layout: post
-path: /_misc/
+path: /_marginalia/
 share: true
 title: Playlists for deep work
 description: Music that helps me focus, organized by vibe.

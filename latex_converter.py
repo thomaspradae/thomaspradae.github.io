@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 
 
-POST_FOLDERS = ("_building", "_notes", "_writing", "_misc")
+POST_FOLDERS = ("_building", "_notes", "_writing", "_marginalia")
 PLACEHOLDER_TEMPLATE = "@@CODEX_LATEX_PLACEHOLDER_{}@@"
 
 LINK_PATTERN = re.compile(

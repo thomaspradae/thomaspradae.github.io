@@ -37,10 +37,10 @@ layout: default
             {% assign post_type_url = '/building/' %}
             {% assign post_type_icon = '/assets/images/resources/normalized/16/building.png' %}
             {% assign post_type_icon_dark = '/assets/images/resources/normalized/16/building.png' %}
-          {% when 'misc' %}
-            {% assign post_type_url = '/misc/' %}
-            {% assign post_type_icon = '/assets/images/resources/misc.png' %}
-            {% assign post_type_icon_dark = '/assets/images/resources/misc.png' %}
+          {% when 'marginalia' %}
+            {% assign post_type_url = '/marginalia/' %}
+            {% assign post_type_icon = '/assets/images/resources/marginalia.png' %}
+            {% assign post_type_icon_dark = '/assets/images/resources/marginalia.png' %}
           {% when 'notes' %}
             {% assign post_type_url = '/notes/' %}
             {% assign post_type_icon = '/assets/images/resources/normalized/16/notes.png' %}
@@ -64,8 +64,8 @@ layout: default
                       <a href="/writing/">← Back to writing</a>
                     {% when 'notes' %}
                       <a href="/notes/">← Back to notes</a>
-                    {% when 'misc' %}
-                      <a href="/misc.html">← Back to marginalia</a>
+                    {% when 'marginalia' %}
+                      <a href="/marginalia">← Back to marginalia</a>
                     {% else %}
                       <a href="/">← Back to home</a>
                   {% endcase %}
@@ -115,7 +115,7 @@ layout: default
                         </a>
                       </li>
                       <li class="home-nav-item">
-                        <a class="home-nav-link home-nav-link--icon" href="{{ '/misc/' | relative_url }}">
+                        <a class="home-nav-link home-nav-link--icon" href="{{ '/marginalia/' | relative_url }}">
                           <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/marginalia.png');" aria-hidden="true"></span>
                           <span class="home-nav-label">Marginalia</span>
                         </a>
@@ -268,7 +268,7 @@ layout: default
         <article class="post-body post-body-content">
           {{ content }}
 
-          {% assign all_posts = site.writing | concat: site.building | concat: site.notes | concat: site.misc | sort: "date" %}
+          {% assign all_posts = site.writing | concat: site.building | concat: site.notes | concat: site.marginalia | sort: "date" %}
           {% assign prev_post = nil %}
           {% assign next_post = nil %}
           {% assign last_post = nil %}

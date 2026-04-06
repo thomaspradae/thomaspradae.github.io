@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-POSTS_DIRS = ["_building", "_notes", "_writing", "_misc"]
+POSTS_DIRS = ["_building", "_notes", "_writing", "_marginalia"]
 
 for folder in POSTS_DIRS:
     for path in Path(folder).rglob("*.md"):

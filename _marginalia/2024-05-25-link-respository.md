@@ -1,6 +1,6 @@
 ---
 layout: post
-path: /_misc/
+path: /_marginalia/
 share: true
 title: Link Repository
 description: Keep losing my stuff, gonna try saving it here

@@ -1,6 +1,6 @@
 ---
 layout: post
-path: /_misc/
+path: /_marginalia/
 share: true
 title: Things I changed my mind about
 description: A running list. Updated occasionally.

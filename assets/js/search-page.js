@@ -4,7 +4,7 @@
     writing: "Writing",
     building: "Building",
     notes: "Notes",
-    misc: "Marginalia"
+    marginalia: "Marginalia"
   };
   var GROUP_ORDER = ["topic", "piece", "section"];
   var ALL_KIND = "";
@@ -132,7 +132,7 @@
   }
 
   function sanitizeScope(value) {
-    return ["writing", "building", "notes", "misc"].indexOf(value) !== -1 ? value : ALL_SCOPE;
+    return ["writing", "building", "notes", "marginalia"].indexOf(value) !== -1 ? value : ALL_SCOPE;
   }
 
   function sanitizeKind(value) {
@@ -268,7 +268,7 @@
       { value: "writing", label: "Writing" },
       { value: "building", label: "Building" },
       { value: "notes", label: "Notes" },
-      { value: "misc", label: "Marginalia" }
+      { value: "marginalia", label: "Marginalia" }
     ];
   }
 
