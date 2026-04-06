@@ -178,6 +178,10 @@ body[data-snake-variant="single"].toc-lab-page {
   z-index: 1;
 }
 
+.post-stage > #left-toc.left-toc .toc-item::before {
+  z-index: 2;
+}
+
 .toc-lab-page .lab-gap-cover {
   position: absolute;
   left: 0;

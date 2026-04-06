@@ -2494,7 +2494,7 @@ div[class^="language-"].highlighter-rouge,
   width: 1px;
   background: #d8d8d8;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   transition: background 0.35s ease, opacity 0.28s ease;
 }
 
@@ -2597,7 +2597,6 @@ body.title-hidden .post-stage > #left-toc.left-toc .toc-snake{
   opacity: 0;
 }
 
-body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::before,
 body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::after{
   opacity: 0;
 }
