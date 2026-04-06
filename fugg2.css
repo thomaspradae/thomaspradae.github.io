@@ -1036,8 +1036,34 @@ a:any-link:hover{
     margin-bottom: 0;
 }
 
+/* ── table scroll wrapper (injected by tables.js) ──────────────────── */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--lightest-text);
+    border-radius: 3px;
+}
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--backup-text-color-v3);
+}
+
+.table-wrapper table {
+    margin: 0;
+}
+
 .page-content table {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
     font-weight: 400;
@@ -1058,6 +1084,10 @@ a:any-link:hover{
 }
 
 .page-content thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--background-color);
     font-weight: 700;
     color: var(--backup-text-color);
 }
@@ -1072,7 +1102,8 @@ a:any-link:hover{
 
 /* Captions/footers: italic text after media or tables in Markdown */
 img + em,
-table + em {
+table + em,
+.table-wrapper + em {
     display: block;
     font-style: normal;
     font-family: 'Crimson Pro', serif;
@@ -1083,13 +1114,15 @@ table + em {
 }
 
 img + p:has(> em:only-child),
-table + p:has(> em:only-child) {
+table + p:has(> em:only-child),
+.table-wrapper + p:has(> em:only-child) {
     margin-top: 0.7rem;
     margin-bottom: 2rem;
 }
 
 img + p > em:only-child,
-table + p > em:only-child {
+table + p > em:only-child,
+.table-wrapper + p > em:only-child {
     display: block;
     font-style: normal;
     font-family: 'Crimson Pro', serif;
@@ -1110,7 +1143,9 @@ table + p > em:only-child {
 }
 
 .figures-counted table + em::before,
-.figures-counted table + p > em:only-child::before {
+.figures-counted table + p > em:only-child::before,
+.figures-counted .table-wrapper + em::before,
+.figures-counted .table-wrapper + p > em:only-child::before {
     counter-increment: table-counter;
     content: "Table " counter(table-counter) " — ";
     font-weight: 600;
