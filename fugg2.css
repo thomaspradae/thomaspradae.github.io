@@ -658,10 +658,12 @@ a:any-link:hover{
     overflow: hidden;
     background-color: var(--background-color);
 
-    display: grid;
-    grid-template-rows: 1fr auto 1fr auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
     align-items: center;
     padding: 2rem 2rem 1.5rem 2rem;
+    justify-content: center;
 }
 
 /* hero mark — big barely-visible "field notes" */
