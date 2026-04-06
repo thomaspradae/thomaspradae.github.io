@@ -131,6 +131,12 @@
     const railHeight = state.rail.getBoundingClientRect().height;
     const covers = [];
 
+    state.cachedMetrics.forEach((metric) => {
+      if (metric.element.classList.contains("toc-title-item")) {
+        covers.push({ top: metric.top, height: metric.height });
+      }
+    });
+
     const first = state.cachedMetrics[0];
     if (first.top > 0) {
       covers.push({ top: 0, height: first.top });
