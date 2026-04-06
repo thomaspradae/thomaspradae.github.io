@@ -15,12 +15,10 @@ FENCED_CODE_PATTERN = re.compile(r"```[\s\S]*?```|~~~[\s\S]*?~~~")
 INLINE_CODE_PATTERN = re.compile(r"`[^`\n]*`")
 
 DISPLAY_DOLLAR_PATTERN = re.compile(r"(?s)(?<!\\)\$\$(.+?)(?<!\\)\$\$")
-DISPLAY_DOUBLE_BRACKET_PATTERN = re.compile(r"(?s)\\\\\[(.+?)\\\\\]")
-DISPLAY_SINGLE_BRACKET_PATTERN = re.compile(r"(?s)\\\[(.+?)\\\]")
+DISPLAY_BRACKET_PATTERN = re.compile(r"(?s)(?<!\\)\\+\[(.+?)(?<!\\)\\+\]")
 
 INLINE_DOLLAR_PATTERN = re.compile(r"(?<!\\)\$(?!\$)([^\n$]+?)(?<!\\)\$(?!\$)")
-INLINE_DOUBLE_PAREN_PATTERN = re.compile(r"\\\\\((.+?)\\\\\)")
-INLINE_SINGLE_PAREN_PATTERN = re.compile(r"\\\((.+?)\\\)")
+INLINE_PAREN_PATTERN = re.compile(r"(?<!\\)\\+\((.+?)(?<!\\)\\+\)")
 
 CURRENCY_INLINE_MATH_PATTERN = re.compile(
     r"\\\$\s*\\\\\(\s*([0-9][0-9.,]*)\s*\\\\\)"
@@ -84,12 +82,10 @@ def format_inline(body):
 
 def normalize_math(text):
     text = DISPLAY_DOLLAR_PATTERN.sub(lambda m: format_display(m.group(1)), text)
-    text = DISPLAY_DOUBLE_BRACKET_PATTERN.sub(lambda m: format_display(m.group(1)), text)
-    text = DISPLAY_SINGLE_BRACKET_PATTERN.sub(lambda m: format_display(m.group(1)), text)
+    text = DISPLAY_BRACKET_PATTERN.sub(lambda m: format_display(m.group(1)), text)
 
     text = INLINE_DOLLAR_PATTERN.sub(lambda m: format_inline(m.group(1)), text)
-    text = INLINE_DOUBLE_PAREN_PATTERN.sub(lambda m: format_inline(m.group(1)), text)
-    text = INLINE_SINGLE_PAREN_PATTERN.sub(lambda m: format_inline(m.group(1)), text)
+    text = INLINE_PAREN_PATTERN.sub(lambda m: format_inline(m.group(1)), text)
 
     # Repair old escaped-currency cases like `\$\(45\)` -> `\$45`.
     text = CURRENCY_INLINE_MATH_PATTERN.sub(r"\\$\1", text)

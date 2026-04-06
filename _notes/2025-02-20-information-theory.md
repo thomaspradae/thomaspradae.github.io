@@ -23,7 +23,7 @@ Shannon's central question (1948): how do you quantify information? His answer: 
 
 Formally, the entropy of a random variable \\(X\\) with possible outcomes \\(x_1, \dots, x_n\\):
 
-\\\[H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)\\\]
+\\[H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)\\]
 
 Entropy is maximized when all outcomes are equally likely (maximum uncertainty) and minimized (zero) when the outcome is deterministic. For a fair coin: \\(H = -2 \times 0.5 \log_2(0.5) = 1\\) bit. For a biased coin (99% heads): \\(H \approx 0.08\\) bits. The biased coin carries less information per flip because you already know what's probably going to happen.
 
@@ -62,7 +62,7 @@ print(entropy_bits([0.99, 0.01]))        # ~0.0808
 
 The cross-entropy between a true distribution \\(p\\) and a model distribution \\(q\\):
 
-\\\[H(p, q) = -\sum_{i} p(x_i) \log q(x_i)\\\]
+\\[H(p, q) = -\sum_{i} p(x_i) \log q(x_i)\\]
 
 This is the loss function used in virtually all classification tasks in ML. When \\(q = p\\), cross-entropy equals entropy (the minimum). When \\(q\\) diverges from \\(p\\), cross-entropy increases. Training minimizes cross-entropy, which pushes the model's predicted distribution toward the true distribution.
 
@@ -85,7 +85,7 @@ def ce_loss(logits: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
 
 The Kullback-Leibler divergence measures how different \\(q\\) is from \\(p\\):
 
-\\\[D_{KL}(p \&#124; q) = \sum_{i} p(x_i) \log \frac{p(x_i)}{q(x_i)} = H(p, q) - H(p)\\\]
+\\[D_{KL}(p \&#124; q) = \sum_{i} p(x_i) \log \frac{p(x_i)}{q(x_i)} = H(p, q) - H(p)\\]
 
 Since \\(H(p)\\) is constant with respect to \\(q\\), minimizing cross-entropy is equivalent to minimizing KL divergence. This is why cross-entropy is used as a loss: it's a proxy for "how wrong is the model."
 
@@ -104,7 +104,7 @@ Nested blockquote, because this point confuses everyone at least once:
 
 The mutual information between two variables \\(X\\) and \\(Y\\):
 
-\\\[I(X; Y) = H(X) - H(X&#124;Y) = H(Y) - H(Y&#124;X)\\\]
+\\[I(X; Y) = H(X) - H(X&#124;Y) = H(Y) - H(Y&#124;X)\\]
 
 It measures how much knowing one variable reduces uncertainty about the other. If \\(X\\) and \\(Y\\) are independent, \\(I(X;Y) = 0\\). If knowing \\(X\\) completely determines \\(Y\\), then \\(I(X;Y) = H(Y)\\).
 
