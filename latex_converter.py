@@ -23,6 +23,10 @@ INLINE_PAREN_PATTERN = re.compile(r"(?<!\\)\\+\((.+?)(?<!\\)\\+\)")
 CURRENCY_INLINE_MATH_PATTERN = re.compile(
     r"\\\$\s*\\\\\(\s*([0-9][0-9.,]*)\s*\\\\\)"
 )
+PURE_INLINE_MATH_PATTERN = re.compile(r"^\s*(?:\\+\(.+?\\+\)|\\+\[.+?\\+\])\s*$")
+TABLE_DIVIDER_PATTERN = re.compile(
+    r"^\s*\|?(?:\s*:?-{3,}:?\s*\|)+(?:\s*:?-{3,}:?\s*)\|?\s*$"
+)
 
 
 def convert_links(text):
@@ -93,6 +97,61 @@ def normalize_math(text):
     return text
 
 
+def split_table_row(line):
+    stripped = line.strip()
+    if "|" not in stripped:
+        return None
+
+    if stripped.startswith("|"):
+        stripped = stripped[1:]
+    if stripped.endswith("|"):
+        stripped = stripped[:-1]
+
+    return [cell.strip() for cell in stripped.split("|")]
+
+
+def join_table_row(cells):
+    return "| " + " | ".join(cells) + " |"
+
+
+def wrap_mathjax_table_headers(text):
+    lines = text.splitlines()
+
+    for index in range(len(lines) - 1):
+        if not TABLE_DIVIDER_PATTERN.match(lines[index + 1]):
+            continue
+
+        header_cells = split_table_row(lines[index])
+        divider_cells = split_table_row(lines[index + 1])
+
+        if not header_cells or not divider_cells:
+            continue
+        if len(header_cells) != len(divider_cells):
+            continue
+
+        updated_cells = []
+        changed = False
+
+        for cell in header_cells:
+            if "table-header-mathjax" in cell:
+                updated_cells.append(cell)
+                continue
+
+            if PURE_INLINE_MATH_PATTERN.match(cell):
+                updated_cells.append(
+                    f'<span class="table-header-mathjax">{cell}</span>'
+                )
+                changed = True
+                continue
+
+            updated_cells.append(cell)
+
+        if changed:
+            lines[index] = join_table_row(updated_cells)
+
+    return "\n".join(lines)
+
+
 def convert_file(file_path):
     print(f"Processing file: {file_path}")
     content = file_path.read_text(encoding="utf-8")
@@ -104,6 +163,7 @@ def convert_file(file_path):
     content = protect_sections(content, INLINE_CODE_PATTERN, protected_sections)
 
     content = normalize_math(content)
+    content = wrap_mathjax_table_headers(content)
     content = convert_links(content)
     content = restore_sections(content, protected_sections)
 

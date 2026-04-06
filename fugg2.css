@@ -1038,22 +1038,31 @@ a:any-link:hover{
 
 /* ── table scroll wrapper (injected by tables.js) ──────────────────── */
 .table-wrapper {
-    overflow-x: auto;
     margin: 2rem 0;
+    overflow-x: visible;
+}
+
+.table-wrapper:has(+ em),
+.table-wrapper:has(+ p > em:only-child) {
+    margin-bottom: 0;
+}
+
+.table-wrapper--scrollable {
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
-.table-wrapper::-webkit-scrollbar {
+.table-wrapper--scrollable::-webkit-scrollbar {
     height: 6px;
 }
-.table-wrapper::-webkit-scrollbar-track {
+.table-wrapper--scrollable::-webkit-scrollbar-track {
     background: transparent;
 }
-.table-wrapper::-webkit-scrollbar-thumb {
+.table-wrapper--scrollable::-webkit-scrollbar-thumb {
     background: var(--lightest-text);
     border-radius: 3px;
 }
-.table-wrapper::-webkit-scrollbar-thumb:hover {
+.table-wrapper--scrollable::-webkit-scrollbar-thumb:hover {
     background: var(--backup-text-color-v3);
 }
 
@@ -1062,8 +1071,7 @@ a:any-link:hover{
 }
 
 .page-content table {
-    width: max-content;
-    min-width: 100%;
+    width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
     font-weight: 400;
@@ -1071,6 +1079,11 @@ a:any-link:hover{
     font-family: 'Crimson Pro', serif;
     line-height: 1.4;
     color: var(--backup-text-color);
+}
+
+.page-content table.table--scrollable {
+    width: max-content;
+    min-width: 100%;
 }
 
 .page-content th,
@@ -1090,6 +1103,13 @@ a:any-link:hover{
     background-color: var(--background-color);
     font-weight: 700;
     color: var(--backup-text-color);
+}
+
+.page-content thead th.table-header-mathjax mjx-container,
+.page-content thead th.table-header-mathjax mjx-container *,
+.page-content thead th .table-header-mathjax mjx-container,
+.page-content thead th .table-header-mathjax mjx-container * {
+    font-weight: 700 !important;
 }
 
 .page-content tbody tr {
