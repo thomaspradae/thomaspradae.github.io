@@ -2551,6 +2551,10 @@ div[class^="language-"].highlighter-rouge,
   background: var(--background-color);
 }
 
+.post-stage > #left-toc.left-toc .toc-gap-cover--title-item{
+  background: linear-gradient(90deg, transparent 0 1px, var(--background-color) 1px 100%);
+}
+
 .post-stage > #left-toc.left-toc .toc-item::after{
   content: "";
   position: absolute;

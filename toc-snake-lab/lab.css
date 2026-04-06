@@ -189,6 +189,10 @@ body[data-snake-variant="single"].toc-lab-page {
   background: var(--background-color);
 }
 
+.toc-lab-page .lab-gap-cover--title-item {
+  background: linear-gradient(90deg, transparent 0 1px, var(--background-color) 1px 100%);
+}
+
 body[data-snake-variant="current"] .lab-snake,
 body[data-snake-variant="tuned"] .lab-snake {
   display: none;

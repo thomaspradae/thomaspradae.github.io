@@ -133,7 +133,7 @@
 
     state.cachedMetrics.forEach((metric) => {
       if (metric.element.classList.contains("toc-title-item")) {
-        covers.push({ top: metric.top, height: metric.height });
+        covers.push({ top: metric.top, height: metric.height, type: "title-item" });
       }
     });
 
@@ -160,6 +160,9 @@
     covers.forEach((cover) => {
       const element = document.createElement("div");
       element.className = "toc-gap-cover";
+      if (cover.type === "title-item") {
+        element.classList.add("toc-gap-cover--title-item");
+      }
       element.style.top = `${cover.top}px`;
       element.style.height = `${cover.height}px`;
       state.gapLayer.appendChild(element);
