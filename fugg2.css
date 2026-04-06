@@ -1885,7 +1885,7 @@ body.theme-dark .post-meta-section-icon--dark {
 
   .layout-post #main.post sup[role="doc-noteref"] .footnote {
     display: inline-block;
-    font-size: 0.72rem;
+    font-size: 0.95rem;
     line-height: 1;
     padding-left: 0;
     margin-left: 0.08rem;
