@@ -16,13 +16,13 @@ excerpt:
 
 Bayesian thinking is about updating beliefs in light of evidence. You start with a prior belief (how likely you think something is before seeing data), observe evidence, and compute a posterior belief (how likely it is after seeing data). The mechanism is Bayes' theorem:
 
-\\[ P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)} \\]
+\\\[P(H&#124;E) = \frac{P(E&#124;H) \cdot P(H)}{P(E)}\\\]
 
 Where:
-- \\( P(H|E) \\) — posterior: probability of hypothesis H given evidence E
-- \\( P(E|H) \\) — likelihood: probability of seeing this evidence if H is true
-- \\( P(H) \\) — prior: probability of H before seeing evidence
-- \\( P(E) \\) — marginal likelihood: probability of seeing this evidence under all hypotheses
+- \\\(P(H&#124;E)\\\) — posterior: probability of hypothesis H given evidence E
+- \\\(P(E&#124;H)\\\) — likelihood: probability of seeing this evidence if H is true
+- \\\(P(H)\\\) — prior: probability of H before seeing evidence
+- \\\(P(E)\\\) — marginal likelihood: probability of seeing this evidence under all hypotheses
 
 ## A concrete example
 
@@ -31,12 +31,12 @@ You take a medical test. The test is 99% accurate (both sensitivity and specific
 Intuition says 99%. Bayes says: *it depends on the base rate.*
 
 If the disease affects 1 in 10,000 people:
-- \\( P(H) = 0.0001 \\) (prior)
-- \\( P(E|H) = 0.99 \\) (true positive rate)
-- \\( P(E|\neg H) = 0.01 \\) (false positive rate)
-- \\( P(E) = P(E|H)P(H) + P(E|\neg H)P(\neg H) = 0.99 \times 0.0001 + 0.01 \times 0.9999 \approx 0.010098 \\)
+- \\\(P(H) = 0.0001\\\) (prior)
+- \\\(P(E&#124;H) = 0.99\\\) (true positive rate)
+- \\\(P(E&#124;\neg H) = 0.01\\\) (false positive rate)
+- \\\(P(E) = P(E&#124;H)P(H) + P(E&#124;\neg H)P(\neg H) = 0.99 \times 0.0001 + 0.01 \times 0.9999 \approx 0.010098\\\)
 
-\\[ P(H|E) = \frac{0.99 \times 0.0001}{0.010098} \approx 0.0098 \\]
+\\\[P(H&#124;E) = \frac{0.99 \times 0.0001}{0.010098} \approx 0.0098\\\]
 
 Less than 1%. A positive result on a 99% accurate test, and there's still only a ~1% chance you have the disease. The base rate dominates.
 

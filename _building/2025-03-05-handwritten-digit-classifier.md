@@ -44,9 +44,9 @@ a3 = softmax(z3)               # output probabilities
 
 This is where it gets real. The chain rule applied layer by layer, working backward from the loss. The loss is cross-entropy:
 
-\\[ L = -\frac{1}{N}\sum_{i}\sum_{c} y_{ic} \log(\hat{y}_{ic}) \\]
+\\\[L = -\frac{1}{N}\sum_{i}\sum_{c} y_{ic} \log(\hat{y}_{ic})\\\]
 
-The gradient of cross-entropy with respect to the softmax input is pleasantly simple: \\( \hat{y} - y \\). From there, each layer's gradient depends on the downstream gradient, the local Jacobian, and the cached activations from the forward pass.
+The gradient of cross-entropy with respect to the softmax input is pleasantly simple: \\\(\hat{y} - y\\\). From there, each layer's gradient depends on the downstream gradient, the local Jacobian, and the cached activations from the forward pass.
 
 The hardest part was getting the shapes right. When your gradient has shape `(64, 128)` but it should be `(128, 64)`, you stare at your chain rule derivation for twenty minutes before realizing you forgot a transpose. This happened four times.
 

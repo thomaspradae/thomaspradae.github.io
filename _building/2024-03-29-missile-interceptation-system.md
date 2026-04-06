@@ -69,7 +69,7 @@ A longer, messier stream of thoughts + experiments lives in the dedicated notes 
 Kramdown-style definitions — handy for glossaries:
 
 RL loop
-: Agent observes state \(s_t\), emits action \(a_t\), environment returns \(s_{t+1}\) and reward \(r_t\). Rinse[^4].
+: Agent observes state \\(s_t\\), emits action \\(a_t\\), environment returns \\(s_{t+1}\\) and reward \\(r_t\\). Rinse[^4].
 
 Interceptor
 : The controllable object trying to meet the threat; not assumed to have unlimited lateral acceleration.
@@ -179,22 +179,22 @@ Table: **what I thought vs what the metrics said**
 
 Reward shaping sketch (don’t copy-paste blindly):[^5]
 
-[^5]: \(r_t = -\alpha \|p_{\text{int}} - p_{\text{threat}}\|_2 + \beta \mathbb{1}_{\text{hit}}\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
+[^5]: \\(r_t = -\alpha \&#124;p_{\text{int}} - p_{\text{threat}}\&#124;_2 + \beta \mathbb{1}_{\text{hit}}\\). In code: `reward = -alpha * dist + beta * float(hit)`. Compare with [Hugging Face RL notes](/notes/hugging-face-rl-course) for the bigger picture.
 
 ## Table stress tests (long cells, code, TeX, dollars)
 
 | Symptom | Likely cause | Quick check |
 | --- | --- | --- |
 | Loss goes `nan` after ~2k steps | Bad learning rate or `log(0)` in policy | `torch.isfinite(loss).all()`; clamp `logits` |
-| Interceptor orbits forever | Distance-only shaping with no terminal intercept term | Inspect \(\mathbb{E}[r_T]\) vs shaped \(\sum \gamma^k r_k\) |
+| Interceptor orbits forever | Distance-only shaping with no terminal intercept term | Inspect \\(\mathbb{E}[r_T]\\) vs shaped \\(\sum \gamma^k r_k\\) |
 | Policy ignores threat | Observation normalization off or wrong frame | Print `obs.min()`, `obs.max()` each eval |
 
-*Footer: three-column layout with inline code and inline math \( \mathbb{E}[\cdot] \).*
+*Footer: three-column layout with inline code and inline math \\(\mathbb{E}[\cdot]\\).*
 
 | Budget line item | Amount | Notes |
 | --- | --- | --- |
-| GPU hours | \$\(12\)/hr spot × 40h | Escaped dollars for spreadsheet brain |
-| Coffee | \$\(4.50\) × 2/day × 30 | Same — `\$` not math |
+| GPU hours | \$12/hr spot × 40h | Escaped dollars for spreadsheet brain |
+| Coffee | \$4.50 × 2/day × 30 | Same — `\$` not math |
 | Emotional damage | Priceless | Long text cell: this row exists to see whether a joking label plus a medium-length explanation still wraps cleanly when the table is full-width and the type is Crimson Pro at ~1.1rem. If anything clips or the baseline looks wrong, that’s a signal to tweak `td` padding or `vertical-align`. |
 
 *Footer: currency + a deliberately verbose third column.*
@@ -211,8 +211,8 @@ Reward shaping sketch (don’t copy-paste blindly):[^5]
 
 | Constraint | Expression | Code |
 | --- | --- | --- |
-| Speed cap | \(\|v\| \leq v_{\max}\) | `v = v * min(1.0, v_max / (torch.norm(v)+1e-8))` |
-| No-fly | altitude \(h \geq h_{\min}\) | `penalty = torch.relu(h_min - h) ** 2` |
+| Speed cap | \\(\&#124;v\&#124; \leq v_{\max}\\) | `v = v * min(1.0, v_max / (torch.norm(v)+1e-8))` |
+| No-fly | altitude \\(h \geq h_{\min}\\) | `penalty = torch.relu(h_min - h) ** 2` |
 
 *Second table in same block — should read “Table 2 —”.*
 

@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - '**/*.md'
+      - 'latex_converter.py'
+      - '.github/workflows/main.yml'
+  workflow_dispatch:
 
 jobs:
   process-markdown:

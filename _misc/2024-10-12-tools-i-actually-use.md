@@ -70,11 +70,11 @@ The internet is full of "tools I use" posts that are basically affiliate-link fa
 | Kind | Example |
 | --- | --- |
 | Inline code | `rg --files \| head`, `sed -E 's/foo/bar/g'`, `` `nested` `` |
-| Inline TeX | KL: \(D_{\mathrm{KL}}(p\|q)\); entropy \(H\) in bits: \(-\sum p_i \log_2 p_i\) |
-| Dollar signs (escaped) | MSRP \$\(299\) — \$\(49\)/mo — use backslash-dollar so parsers don’t treat `\$...` as math |
+| Inline TeX | KL: \\(D_{\mathrm{KL}}(p\&#124;q)\\); entropy \\(H\\) in bits: \\(-\sum p_i \log_2 p_i\\) |
+| Dollar signs (escaped) | MSRP \$299 — \$49/mo — use backslash-dollar so parsers don’t treat `\$...` as math |
 | Long prose in one cell | This cell is intentionally long: you’re checking line-height, wrapping, border alignment, and whether the row still feels readable when someone pastes a whole paragraph of rationale, caveats, and “by the way” clauses that should have been footnotes but weren’t. |
 
-*Footer: mixed modalities in one table — inline code, TeX-style math \(H(X)\), and literal currency via `\$`.*
+*Footer: mixed modalities in one table — inline code, TeX-style math \\(H(X)\\), and literal currency via `\$`.*
 
 <div class="figures-counted" markdown="1">
 

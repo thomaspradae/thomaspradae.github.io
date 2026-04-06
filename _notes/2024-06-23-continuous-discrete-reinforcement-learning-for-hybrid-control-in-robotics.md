@@ -49,16 +49,14 @@ A framework to:
 #### 1.1.1 Markov Decision Processes (MDPs)
 An MDP is defined as:
 
-\[
-(\mathcal{S}, \mathcal{A}, P, R, \gamma)
-\]
+\\[(\mathcal{S}, \mathcal{A}, P, R, \gamma)\\]
 
 Where:
-- \( \mathcal{S} \): state space
-- \( \mathcal{A} \): action space
-- \( P \): transition dynamics
-- \( R \): reward function
-- \( \gamma \): discount factor
+- \\(\mathcal{S}\\): state space
+- \\(\mathcal{A}\\): action space
+- \\(P\\): transition dynamics
+- \\(R\\): reward function
+- \\(\gamma\\): discount factor
 
 ##### 1.1.1.1 Important note
 This already quietly assumes a **single action space**.
@@ -67,7 +65,7 @@ This already quietly assumes a **single action space**.
 
 ### 1.2 Continuous control
 #### 1.2.1 Policy gradients
-A policy \( \pi_\theta(a \mid s) \) outputs parameters of a continuous distribution.
+A policy \\(\pi_\theta(a \mid s)\\) outputs parameters of a continuous distribution.
 
 #### 1.2.2 Common algorithms
 - DDPG
@@ -75,18 +73,14 @@ A policy \( \pi_\theta(a \mid s) \) outputs parameters of a continuous distribut
 - SAC
 
 All assume:
-\[
-a \in \mathbb{R}^n
-\]
+\\[a \in \mathbb{R}^n\\]
 
 ---
 
 ### 1.3 Discrete control
 #### 1.3.1 Q-learning
 Action selection via:
-\[
-a = \arg\max_a Q(s, a)
-\]
+\\[a = \arg\max_a Q(s, a)\\]
 
 #### 1.3.2 DQN and friends
 - Works well for discrete action sets
@@ -98,13 +92,11 @@ a = \arg\max_a Q(s, a)
 ### 2.1 Definition
 A hybrid action is:
 
-\[
-a = (a_d, a_c)
-\]
+\\[a = (a_d, a_c)\\]
 
 Where:
-- \( a_d \in \mathcal{A}_d \) (discrete)
-- \( a_c \in \mathcal{A}_c \subset \mathbb{R}^n \)
+- \\(a_d \in \mathcal{A}_d\\) (discrete)
+- \\(a_c \in \mathcal{A}_c \subset \mathbb{R}^n\\)
 
 ---
 
@@ -126,9 +118,7 @@ Where:
 ### 3.1 Factorized policy
 The policy is decomposed as:
 
-\[
-\pi(a_d, a_c \mid s) = \pi_d(a_d \mid s)\,\pi_c(a_c \mid s, a_d)
-\]
+\\[\pi(a_d, a_c \mid s) = \pi_d(a_d \mid s)\,\pi_c(a_c \mid s, a_d)\\]
 
 This is the key move.
 
@@ -158,9 +148,7 @@ Conditioned on:
 
 ### 4.2 Critic structure
 #### 4.2.1 Q-function
-\[
-Q(s, a_d, a_c)
-\]
+\\[Q(s, a_d, a_c)\\]
 
 #### 4.2.2 Why this matters
 The critic evaluates **joint actions**, preserving coupling.
@@ -171,9 +159,7 @@ The critic evaluates **joint actions**, preserving coupling.
 ### 5.1 Objective
 Maximize expected return:
 
-\[
-\mathbb{E}_{\pi_d, \pi_c}\left[\sum_t \gamma^t r_t\right]
-\]
+\\[\mathbb{E}_{\pi_d, \pi_c}\left[\sum_t \gamma^t r_t\right]\\]
 
 ---
 
@@ -275,11 +261,9 @@ Probably.
 ---
 
 ## Appendix A: Equations Dump
-\[
-\nabla_\theta J(\theta) =
+\\[\nabla_\theta J(\theta) =
 \mathbb{E}\left[\nabla_\theta \log \pi_d(a_d \mid s)
-+ \nabla_\theta \log \pi_c(a_c \mid s, a_d)\right]
-\]
++ \nabla_\theta \log \pi_c(a_c \mid s, a_d)\right]\\]
 
 ---
 
