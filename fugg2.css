@@ -677,7 +677,7 @@ a:any-link:hover{
 .footer-mark {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: clamp(6rem, 15vw, 16rem);
+    font-size: 21rem;
     line-height: 0.85;
     color: var(--backup-text-color-v5);
     white-space: nowrap;
@@ -726,6 +726,7 @@ a:any-link:hover{
 /* HUD column - no label, just time/city/weather like other columns */
 .footer-group--hud {
     grid-template-columns: 0 max-content;
+    row-gap: 0.15rem;
 }
 
 .footer-group-label--empty {
