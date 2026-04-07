@@ -678,7 +678,7 @@ a:any-link:hover{
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 21rem;
-    line-height: 0.85;
+    line-height: 0.4;
     color: var(--backup-text-color-v5);
     white-space: nowrap;
     user-select: none;
