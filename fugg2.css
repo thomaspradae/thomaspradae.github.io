@@ -676,7 +676,7 @@ a:any-link:hover{
 
 .footer-mark {
     font-family: 'Inter', sans-serif;
-    font-weight: 900;
+    font-weight: 700;
     font-size: clamp(6rem, 15vw, 16rem);
     line-height: 0.85;
     color: var(--backup-text-color-v5);
