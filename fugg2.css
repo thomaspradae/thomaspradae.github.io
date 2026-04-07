@@ -742,11 +742,6 @@ a:any-link:hover{
     font-variant-numeric: tabular-nums;
 }
 
-.weather-pending {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
 /* ascii art stage */
 .ascii-footer-wrapper {
     grid-row: 2;

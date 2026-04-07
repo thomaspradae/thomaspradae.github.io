@@ -6,7 +6,19 @@ function tzStr(d) {
     return 'UTC' + s + pad2(Math.floor(a / 60)) + pad2(a % 60);
 }
 
+const DEFAULT_WEATHER_LABEL = 'Bogotá 16°';
+
+function setWeatherLabel(label) {
+    const weatherEl = document.getElementById('bogota-weather');
+    const hudCityEl = document.getElementById('hudCity');
+    [weatherEl, hudCityEl].forEach(function(el) {
+        if (el) { el.textContent = label; }
+    });
+}
+
 function fetchWeatherData() {
+    setWeatherLabel(DEFAULT_WEATHER_LABEL);
+
     fetch('https://api.open-meteo.com/v1/forecast?latitude=4.6097&longitude=-74.0817&hourly=temperature_2m&timezone=America%2FBogota')
     .then(response => response.json())
     .then(data => {
@@ -14,23 +26,13 @@ function fetchWeatherData() {
         const hourIndex = Math.min(bogotaHour, data.hourly.temperature_2m.length - 1);
         const currentTemperature = Math.round(data.hourly.temperature_2m[hourIndex]);
 
-        const label = `Bogotá ${currentTemperature}°`;
-        const weatherEl = document.getElementById('bogota-weather');
-        const hudCityEl = document.getElementById('hudCity');
-        [weatherEl, hudCityEl].forEach(function(el) {
-            if (el) { el.textContent = label; el.classList.remove('weather-pending'); }
-        });
+        setWeatherLabel(`Bogotá ${currentTemperature}°`);
 
         tickFooterHud();
         setInterval(tickFooterHud, 250);
     })
     .catch(() => {
-        const fallback = 'Bogotá —°';
-        const weatherEl = document.getElementById('bogota-weather');
-        const hudCityEl = document.getElementById('hudCity');
-        [weatherEl, hudCityEl].forEach(function(el) {
-            if (el) { el.textContent = fallback; el.classList.remove('weather-pending'); }
-        });
+        setWeatherLabel(DEFAULT_WEATHER_LABEL);
         tickFooterHud();
         setInterval(tickFooterHud, 250);
     });
