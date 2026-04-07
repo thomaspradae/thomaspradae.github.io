@@ -805,6 +805,7 @@ a:any-link:hover{
     justify-content: center;
     gap: 4.5rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
 }
 
 @keyframes footerMobileReveal {
