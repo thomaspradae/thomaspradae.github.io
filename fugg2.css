@@ -726,7 +726,6 @@ a:any-link:hover{
 /* HUD column - no label, just time/city/weather like other columns */
 .footer-group--hud {
     grid-template-columns: 0 max-content;
-    row-gap: 0.15rem;
 }
 
 .footer-group-label--empty {
@@ -773,7 +772,7 @@ a:any-link:hover{
     font-family: monospace;
     font-size: 0.15rem;
     line-height: 0.82;
-    color: #c6c6c6;
+    color: #000;
 }
 
 .ascii-footer span {
@@ -786,15 +785,15 @@ a:any-link:hover{
     }
 }
 
-.ascii-footer.hl-0 .t0 { color: #8fbed8; }
-.ascii-footer.hl-1 .t1 { color: #d0e8f2; }
-.ascii-footer.hl-2 .t2 { color: #a2d2e8; }
-.ascii-footer.hl-3 .t3 { color: #6fb8dc; }
-.ascii-footer.hl-4 .t4 { color: #5ba4cc; }
-.ascii-footer.hl-5 .t5 { color: #3d8ab8; }
-.ascii-footer.hl-6 .t6 { color: #2e6ea4; }
-.ascii-footer.hl-7 .t7 { color: #1e4d78; }
-.ascii-footer.hl-8 .t8 { color: #163d5c; }
+.ascii-footer.hl-0 .t0 { color: #000; }
+.ascii-footer.hl-1 .t1 { color: #000; }
+.ascii-footer.hl-2 .t2 { color: #000; }
+.ascii-footer.hl-3 .t3 { color: #000; }
+.ascii-footer.hl-4 .t4 { color: #000; }
+.ascii-footer.hl-5 .t5 { color: #000; }
+.ascii-footer.hl-6 .t6 { color: #000; }
+.ascii-footer.hl-7 .t7 { color: #000; }
+.ascii-footer.hl-8 .t8 { color: #000; }
 
 /* bottom nav row */
 .footer-bottom-nav {
