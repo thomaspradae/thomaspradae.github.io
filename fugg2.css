@@ -746,54 +746,23 @@ a:any-link:hover{
     transition: opacity 0.2s ease;
 }
 
-/* ascii art stage */
-.ascii-footer-wrapper {
-    grid-row: 2;
-
-    align-self: center;
-    justify-self: center;
-
+/* footer centerpiece */
+.footer-centerpiece {
     width: 100%;
+    flex: 0 0 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin: 0;
     overflow: hidden;
     padding: 2rem 0;
 }
 
-.ascii-footer-wrapper pre,
-.ascii-footer {
-    margin: 0;
-    white-space: pre;
-    text-align: left;
-    display: inline-block;
-    font-family: monospace;
-    font-size: 0.15rem;
-    line-height: 0.82;
-    color: #000;
+.footer-centerpiece-image {
+    display: block;
+    width: clamp(2.75rem, 5vw, 4rem);
+    height: auto;
 }
-
-.ascii-footer span {
-    transition: color 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .ascii-footer span {
-        transition: none;
-    }
-}
-
-.ascii-footer.hl-0 .t0 { color: #000; }
-.ascii-footer.hl-1 .t1 { color: #000; }
-.ascii-footer.hl-2 .t2 { color: #000; }
-.ascii-footer.hl-3 .t3 { color: #000; }
-.ascii-footer.hl-4 .t4 { color: #000; }
-.ascii-footer.hl-5 .t5 { color: #000; }
-.ascii-footer.hl-6 .t6 { color: #000; }
-.ascii-footer.hl-7 .t7 { color: #000; }
-.ascii-footer.hl-8 .t8 { color: #000; }
 
 /* bottom nav row */
 .footer-bottom-nav {
@@ -876,16 +845,14 @@ a:any-link:hover{
         gap: 1.25rem;
     }
 
-    .ascii-footer-wrapper {
+    .footer-centerpiece {
         width: 100%;
-        overflow-x: auto;
         justify-content: center;
+        padding: 1.5rem 0;
     }
 
-    .ascii-footer-wrapper pre,
-    .ascii-footer {
-        font-size: 0.1rem;
-        line-height: 0.8;
+    .footer-centerpiece-image {
+        width: clamp(2.5rem, 12vw, 3.5rem);
     }
 }
 
