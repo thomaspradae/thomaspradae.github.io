@@ -11,19 +11,6 @@ function ensureTableWrapper(table) {
   return wrapper;
 }
 
-function longestTokenLength(table) {
-  let longest = 0;
-
-  table.querySelectorAll("th, td").forEach((cell) => {
-    const tokens = (cell.textContent || "").match(/[^\s]+/g) || [];
-    tokens.forEach((token) => {
-      longest = Math.max(longest, token.length);
-    });
-  });
-
-  return longest;
-}
-
 function isMathOnlyHeader(th) {
   const rawSource = th.dataset.tableHeaderSource || th.textContent || "";
   if (!th.dataset.tableHeaderSource) {
@@ -51,18 +38,7 @@ function markMathHeaders(table) {
 }
 
 function shouldUseScrollableLayout(table, wrapper) {
-  const firstRow = table.tHead?.rows?.[0] || table.rows[0];
-  const columnCount = firstRow?.cells?.length || 0;
-  const availableWidth = wrapper.clientWidth || table.parentElement?.clientWidth || 0;
-  const widthPerColumn = columnCount > 0 ? availableWidth / columnCount : availableWidth;
-  const hasRealOverflow = table.scrollWidth > wrapper.clientWidth + 1;
-  const longestToken = longestTokenLength(table);
-  const isColumnHeavy =
-    columnCount >= 5 ||
-    (columnCount >= 4 && widthPerColumn < 170) ||
-    (columnCount >= 3 && widthPerColumn < 118 && longestToken >= 22);
-
-  return hasRealOverflow || isColumnHeavy;
+  return table.scrollWidth > wrapper.clientWidth + 1;
 }
 
 function updateTablePresentation(table) {

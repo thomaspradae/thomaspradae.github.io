@@ -682,7 +682,7 @@ a:any-link:hover{
     color: var(--backup-text-color-v5);
     white-space: nowrap;
     user-select: none;
-}.1
+}
 
 /* each section: label aligned with first item of list */
 .footer-group {
@@ -1049,6 +1049,7 @@ a:any-link:hover{
 
 .table-wrapper--scrollable {
     overflow-x: auto;
+    overflow-y: clip;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -1066,7 +1067,7 @@ a:any-link:hover{
     background: var(--backup-text-color-v3);
 }
 
-.table-wrapper table {
+.page-content .table-wrapper table {
     margin: 0;
 }
 
@@ -1082,8 +1083,7 @@ a:any-link:hover{
 }
 
 .page-content table.table--scrollable {
-    width: max-content;
-    min-width: 100%;
+    width: 100%;
 }
 
 .page-content th,
@@ -1094,6 +1094,8 @@ a:any-link:hover{
     vertical-align: top;
     font: inherit;
     color: inherit;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .page-content thead th {
