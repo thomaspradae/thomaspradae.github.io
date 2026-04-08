@@ -7,8 +7,9 @@
 -%}
 [
 {%- for doc in search_docs -%}
-  {%- assign category_label = doc.collection -%}
-  {%- case doc.collection -%}
+  {%- assign category_key = doc.section | default: doc.collection -%}
+  {%- assign category_label = category_key -%}
+  {%- case category_key -%}
     {%- when "marginalia" -%}
       {%- assign category_label = "marginalia" -%}
   {%- endcase -%}
@@ -18,7 +19,7 @@
     "excerpt": {{ doc.excerpt | default: doc.description | default: doc.content | strip_html | strip_newlines | strip | truncate: 240 | jsonify }},
     "body": {{ doc.content | strip_html | strip_newlines | strip | jsonify }},
     "url": {{ doc.url | relative_url | jsonify }},
-    "category": {{ doc.collection | jsonify }},
+    "category": {{ category_key | jsonify }},
     "category_label": {{ category_label | jsonify }},
     "tags": {% if doc.tags and doc.tags.size > 0 %}{{ doc.tags | jsonify }}{% else %}[]{% endif %},
     "date": {{ doc.date | date: "%Y-%m-%d" | jsonify }}

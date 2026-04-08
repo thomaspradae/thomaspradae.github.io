@@ -76,3 +76,31 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  -
+    scope:
+      path: ""
+      type: "writing"
+    values:
+      layout: "post"
+      section: "writing"
+  -
+    scope:
+      path: ""
+      type: "building"
+    values:
+      layout: "post"
+      section: "building"
+  -
+    scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "post"
+      section: "notes"
+  -
+    scope:
+      path: ""
+      type: "marginalia"
+    values:
+      layout: "post"
+      section: "marginalia"

@@ -50,6 +50,13 @@ permalink: /marginalia/
           </a>
 
           <span class="archive-meta">
+            {%- assign editorial_collection = post.editorial_collection | default: post.data.collection | default: post.collection_name -%}
+            {%- if editorial_collection != blank -%}
+              {% include editorial_collection_link.html value=editorial_collection class="archive-collection-link" %}
+              {%- if post.tags and post.tags.size > 0 -%}
+                <span class="archive-meta-separator">/</span>
+              {%- endif -%}
+            {%- endif -%}
             {%- if post.tags and post.tags.size > 0 -%}
               <span class="tags-holder tags-holder--archive">
                 {% for tag in post.tags %}

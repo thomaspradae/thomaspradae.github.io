@@ -1,0 +1,9 @@
+{%- assign editorial_collection_value = include.value | default: include.collection_name | default: include.collection -%}
+{%- if editorial_collection_value and editorial_collection_value != "" -%}
+  {%- assign editorial_collection_slug = editorial_collection_value | slugify -%}
+  <a
+    class="{{ include.class | default: 'collection-link' }}"
+    href="{{ '/collections/' | append: editorial_collection_slug | append: '/' | relative_url }}">
+    {{ editorial_collection_value }}
+  </a>
+{%- endif -%}

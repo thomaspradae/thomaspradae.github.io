@@ -19,9 +19,12 @@ layout: default
 
       <!-- KEEP #main EXACTLY AS YOUR POST CONTAINER (so sidenotes rules still match) -->
       <div id="main" class="post">
-        {% assign post_type_key = page.collection | default: 'notes' %}
+        {% assign editorial_collection = page.editorial_collection | default: page.data.collection | default: page.collection_name %}
+        {% assign post_type_key = page.section | default: page.collection | default: 'notes' %}
         {% if page.section_label %}
           {% assign post_type_label = page.section_label %}
+        {% elsif page.section %}
+          {% assign post_type_label = page.section | capitalize %}
         {% elsif page.collection %}
           {% assign post_type_label = page.collection | capitalize %}
         {% else %}
@@ -57,7 +60,7 @@ layout: default
             <div class="post-meta-container">
               <div class="post-meta-container-left-side">
                 <section class="breadcrumbs">
-                  {% case page.collection %}
+                  {% case post_type_key %}
                     {% when 'building' %}
                       <a href="/building">← Back to building</a>
                     {% when 'writing' %}
@@ -177,18 +180,30 @@ layout: default
                     </time>
                   </div>
                 {% endif %}
-                <!-- COLUMN 3: TAGS -->
-                <div class="post-meta-tags">
-                  <p class="meta-label">tags</p>
-          
-                  <div class="tags-holder">
-                    {% for tag in page.tags %}
-                      {% assign tag_slug = tag | slugify %}
-                      <a class="internal-link tag-pill tag-pill--{{ tag_slug }}" href="/tag/{{ tag | replace: ' ', '-' }}">
-                        <span class="tag-pill-dot"></span>
-                        <span class="tag-pill-label">{{ tag }}</span>
-                      </a>
-                    {% endfor %}
+                <!-- COLUMN 3: COLLECTION + TAGS -->
+                <div class="post-meta-taxonomy">
+                  {% if editorial_collection != blank %}
+                    <div class="post-meta-collection">
+                      <p class="meta-label">collection</p>
+
+                      <div class="collection-holder">
+                        {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  <div class="post-meta-tags">
+                    <p class="meta-label">tags</p>
+
+                    <div class="tags-holder">
+                      {% for tag in page.tags %}
+                        {% assign tag_slug = tag | slugify %}
+                        <a class="internal-link tag-pill tag-pill--{{ tag_slug }}" href="/tag/{{ tag | replace: ' ', '-' }}">
+                          <span class="tag-pill-dot"></span>
+                          <span class="tag-pill-label">{{ tag }}</span>
+                        </a>
+                      {% endfor %}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -248,6 +263,16 @@ layout: default
                   </p>
                 </div>
               </div>
+
+              {% if editorial_collection != blank %}
+                <div class="post-meta-collection">
+                  <p class="meta-label">collection</p>
+
+                  <div class="collection-holder">
+                    {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
+                  </div>
+                </div>
+              {% endif %}
 
               <div class="post-meta-tags">
                 <p class="meta-label">tags</p>

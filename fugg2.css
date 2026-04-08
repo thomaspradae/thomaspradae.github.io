@@ -1675,6 +1675,71 @@ table + p > em:only-child,
   filter: brightness(1.05);
 }
 
+.post-meta-taxonomy{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+}
+
+.post-meta-collection,
+.post-meta-tags{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+}
+
+.collection-holder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+}
+
+.collection-link{
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: lowercase;
+    color: var(--backup-text-color-v2);
+    text-decoration: none;
+    transition: color 0.22s ease;
+}
+
+.collection-link:hover,
+.collection-link:focus-visible{
+    color: var(--contrast-color);
+    text-decoration: none;
+}
+
+.archive-collection-link{
+    display: inline;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.2;
+    text-transform: lowercase;
+    color: var(--backup-text-color-v3);
+    text-decoration: none;
+    transition: color 0.22s ease;
+}
+
+.archive-collection-link:hover,
+.archive-collection-link:focus-visible{
+    color: var(--contrast-color);
+    text-decoration: none;
+}
+
+.archive-meta-separator{
+    display: inline-block;
+    margin: 0 0.4rem 0 0.15rem;
+    color: var(--backup-text-color-v3);
+}
+
 .post-meta-tags .tag-pill:hover .tag-pill-dot,
 .tags-holder .tag-pill:hover .tag-pill-dot {
   background-color: var(--tag-accent-dark);
@@ -4101,6 +4166,10 @@ body.search-open .search-actions{
   padding: 0.4rem 0;
 }
 
+.archive-item--empty{
+  gap: 0;
+}
+
 /* Critical: allow flex items to shrink; prevents overflow */
 .archive-title,
 .archive-type,
@@ -4117,6 +4186,12 @@ min-width: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
+}
+
+.archive-title--empty{
+  white-space: normal;
+  color: var(--backup-text-color-v3);
+  font-style: italic;
 }
 
 .archive-type{
@@ -4824,10 +4899,19 @@ align-items: center;
         width: 100%;
     }
 
+    .layout-post .post-meta-mobile > .post-meta-collection {
+        width: 100%;
+    }
+
     .layout-post .post-meta-tags .tags-holder {
         opacity: 1;
         display: inline;
         gap: 0;
+    }
+
+    .layout-post .post-meta-collection .collection-link {
+        font-size: 0.95rem;
+        color: var(--backup-text-color-v3);
     }
 
     .layout-post .post-meta-tags .tag-pill {

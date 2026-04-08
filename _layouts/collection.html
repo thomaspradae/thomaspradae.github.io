@@ -1,0 +1,98 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>collection: {{ page.title | default: page.collection_name | escape }} - Thomas Prada's "field notes"</title>
+  <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/fugg2.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
+  <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
+</head>
+
+<body class="archive-page">
+  <div class="archive-wrapper">
+    <div class="archive-header">
+      <h2 class="archive-section-title"><span class="archive-section-title-prefix">collection: </span>{{ page.title | default: page.collection_name | escape }}</h2>
+
+      {% include archive_search_nav.html
+        scope=""
+        scope_label="Archive"
+        placeholder="Search everywhere..."
+      %}
+    </div>
+
+    <div class="archive-card">
+      <ul class="archive-list" data-cols="4">
+        {%- assign collection_value = page.collection_name | default: page.title -%}
+        {%- assign collection_slug = collection_value | slugify -%}
+        {%- assign all_docs = site.writing
+          | concat: site.building
+          | concat: site.notes
+          | concat: site.marginalia
+          | sort: "date"
+          | reverse
+        -%}
+        {%- assign collection_count = 0 -%}
+
+        {% for post in all_docs %}
+          {%- assign editorial_collection = post.editorial_collection | default: post.data.collection | default: post.collection_name -%}
+          {%- assign editorial_collection_slug = editorial_collection | slugify -%}
+          {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
+            {%- assign collection_count = collection_count | plus: 1 -%}
+          {% endif %}
+        {% endfor %}
+
+        {% if collection_count == 0 %}
+          <li class="archive-item archive-item--empty">
+            <span class="archive-title archive-title--empty">Nothing filed under this collection yet.</span>
+          </li>
+        {% else %}
+          {% for post in all_docs %}
+            {%- assign editorial_collection = post.editorial_collection | default: post.data.collection | default: post.collection_name -%}
+            {%- assign editorial_collection_slug = editorial_collection | slugify -%}
+            {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
+              {%- assign post_section = post.section | default: post.collection -%}
+              <li class="archive-item">
+                <a class="archive-title" href="{{ post.url | relative_url }}">
+                  {{ post.title }}
+                </a>
+
+                {% include archive_type_badge.html collection=post_section %}
+
+                <span class="archive-meta">
+                  {%- if post.tags and post.tags.size > 0 -%}
+                    <span class="tags-holder tags-holder--archive">
+                      {% for tag in post.tags %}
+                        {% assign tag_slug = tag | slugify %}
+                        <a class="internal-link tag-pill tag-pill--{{ tag_slug }}"
+                           href="/tag/{{ tag | replace: ' ', '-' }}/">
+                          <span class="tag-pill-dot"></span>
+                          <span class="tag-pill-label">{{ tag }}</span>
+                        </a>
+                      {% endfor %}
+                    </span>
+                  {%- endif -%}
+                </span>
+
+                <span class="archive-date">
+                  {{ post.date | date: "%Y.%m" }}
+                </span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  {% include search_assets.html %}
+</body>
+
+</html>
