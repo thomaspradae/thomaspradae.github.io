@@ -193,9 +193,7 @@ layout: default
                     {% endfor %}
                   </div>
                 </div>
-              </div>
 
-              <div class="post-meta-row post-meta-row--bottom{% if editorial_collection == blank %} post-meta-row--single{% endif %}">
                 <div class="post-meta-section">
                   <p class="meta-label">type</p>
 
@@ -212,17 +210,19 @@ layout: default
                     </a>
                   </p>
                 </div>
-
-                {% if editorial_collection != blank %}
-                  <div class="post-meta-collection">
-                    <p class="meta-label">collection</p>
-
-                    <div class="collection-holder">
-                      {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
-                    </div>
-                  </div>
-                {% endif %}
               </div>
+
+              {% if editorial_collection != blank %}
+              <div class="post-meta-row post-meta-row--bottom">
+                <div class="post-meta-collection">
+                  <p class="meta-label">collection</p>
+
+                  <div class="collection-holder">
+                    {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
+                  </div>
+                </div>
+              </div>
+              {% endif %}
             </div>
 
             <div class="post-meta-mobile">
@@ -279,13 +279,13 @@ layout: default
                 </div>
 
                 {% if editorial_collection != blank %}
-                  <div class="post-meta-collection">
-                    <p class="meta-label">collection</p>
+                <div class="post-meta-collection">
+                  <p class="meta-label">collection</p>
 
-                    <div class="collection-holder">
-                      {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
-                    </div>
+                  <div class="collection-holder">
+                    {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
                   </div>
+                </div>
                 {% endif %}
               </div>
             </div>

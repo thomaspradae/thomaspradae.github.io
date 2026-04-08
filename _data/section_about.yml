@@ -1,6 +1,6 @@
 archive:
   eyebrow: "about archive"
-  title: "This is the whole map."
+  title: "Everything on this site, in one place."
   lede: "Archive is the least romantic page on the site and maybe the most useful one."
   paragraphs:
     - >-
@@ -32,7 +32,7 @@ archive:
 
 writing:
   eyebrow: "about writing"
-  title: "This is where the sentences have to earn their keep."
+  title: "Essays. Longer form. Finished thoughts."
   lede: "The pieces here are more deliberate than the stuff in marginalia and less technical than the notes."
   paragraphs:
     - >-
