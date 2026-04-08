@@ -8,7 +8,7 @@ layout: compress
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>collection: {{ page.title | default: page.collection_name | escape }} - Thomas Prada's "field notes"</title>
+  <title>collection: {{ page.title | default: page.editorial_collection | escape }} - Thomas Prada's "field notes"</title>
   <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
   <link rel="stylesheet" href="/fugg2.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -20,7 +20,7 @@ layout: compress
 <body class="archive-page">
   <div class="archive-wrapper">
     <div class="archive-header">
-      <h2 class="archive-section-title"><span class="archive-section-title-prefix">collection: </span>{{ page.title | default: page.collection_name | escape }}</h2>
+      <h2 class="archive-section-title"><span class="archive-section-title-prefix">collection: </span>{{ page.title | default: page.editorial_collection | escape }}</h2>
 
       {% include archive_search_nav.html
         scope=""
@@ -31,7 +31,7 @@ layout: compress
 
     <div class="archive-card">
       <ul class="archive-list" data-cols="4">
-        {%- assign collection_value = page.collection_name | default: page.title -%}
+        {%- assign collection_value = page.editorial_collection | default: page.title -%}
         {%- assign collection_slug = collection_value | slugify -%}
         {%- assign all_docs = site.writing
           | concat: site.building
@@ -43,7 +43,7 @@ layout: compress
         {%- assign collection_count = 0 -%}
 
         {% for post in all_docs %}
-          {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
+          {%- assign editorial_collection = post.editorial_collection -%}
           {%- assign editorial_collection_slug = editorial_collection | slugify -%}
           {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
             {%- assign collection_count = collection_count | plus: 1 -%}
@@ -56,7 +56,7 @@ layout: compress
           </li>
         {% else %}
           {% for post in all_docs %}
-            {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
+            {%- assign editorial_collection = post.editorial_collection -%}
             {%- assign editorial_collection_slug = editorial_collection | slugify -%}
             {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
               {%- assign post_section = post.section | default: post.collection -%}

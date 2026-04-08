@@ -51,12 +51,12 @@ permalink: /collections/
 
         {% for collection_page in sorted_pages %}
           {% if collection_page.url != '/collections/' and collection_page.url contains '/collections/' %}
-            {%- assign collection_value = collection_page.collection_name | default: collection_page.title -%}
+            {%- assign collection_value = collection_page.editorial_collection | default: collection_page.title -%}
             {%- assign collection_slug = collection_value | slugify -%}
             {%- assign collection_count = 0 -%}
 
             {% for post in all_docs %}
-              {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
+              {%- assign editorial_collection = post.editorial_collection -%}
               {%- assign editorial_collection_slug = editorial_collection | slugify -%}
               {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
                 {%- assign collection_count = collection_count | plus: 1 -%}
