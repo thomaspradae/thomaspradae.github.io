@@ -50,7 +50,7 @@ permalink: /marginalia/
           </a>
 
           <span class="archive-meta">
-            {%- assign editorial_collection = post.editorial_collection | default: post.data.collection | default: post.collection_name -%}
+            {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
             {%- if editorial_collection != blank -%}
               {% include editorial_collection_link.html value=editorial_collection class="archive-collection-link" %}
               {%- if post.tags and post.tags.size > 0 -%}

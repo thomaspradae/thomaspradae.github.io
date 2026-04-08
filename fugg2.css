@@ -1691,13 +1691,6 @@ table + p > em:only-child,
   filter: brightness(1.05);
 }
 
-.post-meta-taxonomy{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.9rem;
-}
-
 .post-meta-collection,
 .post-meta-tags{
     text-align: left;
@@ -1782,35 +1775,49 @@ table + p > em:only-child,
 .post-metadata .meta {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
-/* Row: [ dates ] [ section blurb ] side by side */
 .post-meta-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* 3 equal tracks = your black columns */
-    column-gap: 2rem;                       /* the “salmon” distance between blocks */
+    column-gap: 2rem;
+    row-gap: 0.75rem;
     align-items: flex-start;
 }
 
+.post-meta-row--top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.post-meta-row--bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.post-meta-row--bottom.post-meta-row--single {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 .post-meta-date {
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;   /* push date + "last edited" to bottom */
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .post-meta-last-modified {
     text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .post-meta-section {
     text-align: left;
     display: flex;
-    justify-content: flex-end;   /* move "Notes" toward the right if you like */
-    align-items: flex-end;       /* bottom-align the text itself */
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .post-meta-section-text {
@@ -4904,7 +4911,8 @@ align-items: center;
 
     .layout-post .post-meta-mobile-row .post-meta-date,
     .layout-post .post-meta-mobile-row .post-meta-last-modified,
-    .layout-post .post-meta-mobile-row .post-meta-section {
+    .layout-post .post-meta-mobile-row .post-meta-section,
+    .layout-post .post-meta-mobile-row .post-meta-collection {
         flex: 0 0 auto;
         text-align: left;
         justify-content: flex-start;
@@ -4917,6 +4925,11 @@ align-items: center;
 
     .layout-post .post-meta-mobile > .post-meta-collection {
         width: 100%;
+    }
+
+    .layout-post .post-meta-mobile-row--bottom {
+        display: flex;
+        gap: 1.5rem;
     }
 
     .layout-post .post-meta-tags .tags-holder {

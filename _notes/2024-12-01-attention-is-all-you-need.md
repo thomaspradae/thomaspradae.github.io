@@ -5,7 +5,7 @@ share: true
 title: "Attention Is All You Need - paper breakdown"
 description: Notes on the 2017 transformer paper. Multi-head attention, positional encoding, and why this changed everything.
 summary: 
-collection: paper replications
+collection_name: paper replications
 tags:
   - ml
   - transformers

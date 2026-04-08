@@ -5,7 +5,7 @@ share: true
 title: Continuous-Discrete Reinforcement Learning for Hybrid Control in Robotics (paper) [NOTES]
 description: tryna found out how to handle hybrid action spaces
 summary:
-collection: paper replications
+collection_name: paper replications
 tags:
   - ml
   - reinforcement learning

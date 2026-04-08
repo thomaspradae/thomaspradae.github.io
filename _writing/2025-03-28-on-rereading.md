@@ -5,7 +5,7 @@ share: true
 title: On rereading
 description: 
 summary: 
-collection: book reviews
+collection_name: book reviews
 tags:
   - reflection
 excerpt: 

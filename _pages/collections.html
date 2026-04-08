@@ -1,0 +1,80 @@
+---
+layout: compress
+title: Collections
+permalink: /collections/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | escape }} - Thomas Prada's "field notes"</title>
+  <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/fugg2.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
+  <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
+</head>
+
+<body class="archive-page">
+  <div class="archive-wrapper">
+    <div class="archive-header">
+      <div class="archive-title-group">
+        <h2 class="archive-section-title">Collections</h2>
+        <img
+          src="/assets/images/resources/archive.png"
+          alt=""
+          class="archive-section-icon"
+          aria-hidden="true">
+      </div>
+
+      {% include archive_search_nav.html
+        scope=""
+        scope_label="Archive"
+        placeholder="Search everywhere..."
+      %}
+    </div>
+
+    <div class="archive-card">
+      <ul class="archive-list" data-cols="2">
+        {%- assign all_docs = site.writing
+          | concat: site.building
+          | concat: site.notes
+          | concat: site.marginalia
+          | sort: "date"
+          | reverse
+        -%}
+        {%- assign collection_pages = site.pages | where_exp: "item", "item.url != '/collections/' and item.url contains '/collections/'" | sort: "title" -%}
+
+        {% for collection_page in collection_pages %}
+          {%- assign collection_value = collection_page.collection_name | default: collection_page.title -%}
+          {%- assign collection_slug = collection_value | slugify -%}
+          {%- assign collection_count = 0 -%}
+
+          {% for post in all_docs %}
+            {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
+            {% if editorial_collection != blank and editorial_collection | slugify == collection_slug %}
+              {%- assign collection_count = collection_count | plus: 1 -%}
+            {% endif %}
+          {% endfor %}
+
+          <li class="archive-item">
+            <a class="archive-title" href="{{ collection_page.url | relative_url }}">
+              {{ collection_value }}
+            </a>
+
+            <span class="archive-date">
+              {{ collection_count }} entr{% if collection_count != 1 %}ies{% else %}y{% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% include search_assets.html %}
+</body>
+
+</html>
