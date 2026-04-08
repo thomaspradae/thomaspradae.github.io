@@ -474,6 +474,10 @@
     var separator = root.querySelector(".search-actions-sep");
     var closeButton = root.querySelector(".search-close");
     var dropdown = root.querySelector(".search-dropdown");
+    var aboutTrigger = root.querySelector(".about-trigger");
+    var aboutOverlay = root.querySelector(".archive-about-overlay");
+    var aboutPanel = root.querySelector(".archive-about-panel");
+    var aboutCloseButton = root.querySelector(".archive-about-close");
     var navTrigger = root.querySelector(".archive-nav-trigger");
     var navOverlay = root.querySelector(".archive-nav-overlay");
     var navPanel = root.querySelector(".archive-nav-panel");
@@ -507,6 +511,44 @@
       state.kbIndex = -1;
     }
 
+    function openAbout(event) {
+      if (!aboutTrigger || !aboutOverlay) {
+        return;
+      }
+
+      if (event) {
+        event.preventDefault();
+      }
+
+      if (document.body.classList.contains("search-open")) {
+        closeSearch();
+      }
+
+      if (document.body.classList.contains("nav-open")) {
+        closeNav();
+      }
+
+      document.body.classList.add("about-open");
+      aboutTrigger.setAttribute("aria-expanded", "true");
+      aboutOverlay.setAttribute("aria-hidden", "false");
+
+      requestAnimationFrame(function () {
+        if (aboutCloseButton) {
+          aboutCloseButton.focus();
+        }
+      });
+    }
+
+    function closeAbout() {
+      if (!aboutTrigger || !aboutOverlay) {
+        return;
+      }
+
+      document.body.classList.remove("about-open");
+      aboutTrigger.setAttribute("aria-expanded", "false");
+      aboutOverlay.setAttribute("aria-hidden", "true");
+    }
+
     function openNav(event) {
       if (!navTrigger || !navOverlay) {
         return;
@@ -518,6 +560,10 @@
 
       if (document.body.classList.contains("search-open")) {
         closeSearch();
+      }
+
+      if (document.body.classList.contains("about-open")) {
+        closeAbout();
       }
 
       document.body.classList.add("nav-open");
@@ -630,6 +676,10 @@
         closeNav();
       }
 
+      if (document.body.classList.contains("about-open")) {
+        closeAbout();
+      }
+
       document.body.classList.add("search-open");
       trigger.setAttribute("aria-expanded", "true");
 
@@ -656,6 +706,26 @@
 
     trigger.addEventListener("click", openSearch);
 
+    if (aboutTrigger && aboutOverlay) {
+      aboutTrigger.addEventListener("click", function (event) {
+        if (document.body.classList.contains("about-open")) {
+          event.preventDefault();
+          closeAbout();
+          return;
+        }
+
+        openAbout(event);
+      });
+
+      aboutOverlay.addEventListener("click", function (event) {
+        if (aboutPanel && aboutPanel.contains(event.target)) {
+          return;
+        }
+
+        closeAbout();
+      });
+    }
+
     if (navTrigger && navOverlay) {
       navTrigger.addEventListener("click", function (event) {
         if (document.body.classList.contains("nav-open")) {
@@ -680,6 +750,12 @@
       closeSearch();
     });
 
+    if (aboutCloseButton) {
+      aboutCloseButton.addEventListener("click", function () {
+        closeAbout();
+      });
+    }
+
     clearButton.addEventListener("click", function () {
       input.value = "";
       input.focus();
@@ -694,6 +770,19 @@
     });
 
     document.addEventListener("click", function (event) {
+      if (document.body.classList.contains("about-open") && aboutOverlay && aboutPanel) {
+        if (aboutTrigger && aboutTrigger.contains(event.target)) {
+          return;
+        }
+
+        if (aboutPanel.contains(event.target)) {
+          return;
+        }
+
+        closeAbout();
+        return;
+      }
+
       if (document.body.classList.contains("nav-open") && navOverlay && navPanel) {
         if (navTrigger && navTrigger.contains(event.target)) {
           return;
@@ -718,12 +807,17 @@
     document.addEventListener("keydown", function (event) {
       var isOpen = document.body.classList.contains("search-open");
       var isNavOpen = document.body.classList.contains("nav-open");
+      var isAboutOpen = document.body.classList.contains("about-open");
 
       if ((event.key === "/" || (event.metaKey && event.key.toLowerCase() === "k")) && !isOpen && !isTypingField(event.target)) {
         event.preventDefault();
 
         if (isNavOpen) {
           closeNav();
+        }
+
+        if (isAboutOpen) {
+          closeAbout();
         }
 
         openSearch();
@@ -733,6 +827,11 @@
       if (event.key === "Escape") {
         if (isOpen) {
           closeSearch();
+          return;
+        }
+
+        if (isAboutOpen) {
+          closeAbout();
           return;
         }
 

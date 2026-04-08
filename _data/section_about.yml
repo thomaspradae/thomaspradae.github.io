@@ -1,0 +1,143 @@
+archive:
+  eyebrow: "about archive"
+  title: "This is the whole map."
+  lede: "Archive is the least romantic page on the site and maybe the most useful one."
+  paragraphs:
+    - >-
+      Everything ends up here eventually. If the homepage is the front door and
+      the section pages are neighborhoods, archive is me dumping the city map on
+      the table and saying look, pick a street.
+    - >-
+      I use this when I do not want mood or curation getting in the way. Just
+      title, type, tags, date. No performance. No hand-holding. If you already
+      know roughly what you want, this is usually the fastest route.
+    - >-
+      If you are new and have no idea where to start, the links below are a
+      decent cross-section of how my brain tends to split itself up around
+      here.
+  recommended_label: "a few good entry points"
+  recommended:
+    - title: "On rereading"
+      url: "/writing/on-rereading/"
+      note: "the reflective / literary side"
+    - title: "Procedural terrain in WebGL"
+      url: "/building/procedural-terrain-webgl/"
+      note: "the making-things side"
+    - title: "Attention Is All You Need - paper breakdown"
+      url: "/notes/attention-is-all-you-need/"
+      note: "the technical note-taking side"
+    - title: "Bookshelf - 2024"
+      url: "/marginalia/bookshelf-2024/"
+      note: "the looser, side-door stuff"
+
+writing:
+  eyebrow: "about writing"
+  title: "This is where the sentences have to earn their keep."
+  lede: "The pieces here are more deliberate than the stuff in marginalia and less technical than the notes."
+  paragraphs:
+    - >-
+      Usually these start as a line in my phone, a bad mood, or a thought that
+      keeps following me around until I sit down and deal with it properly.
+    - >-
+      I come here when I want shape, rhythm, and a piece that can stand on its
+      own. Not just an observation, not just a note-to-self, but something with
+      a beginning, a turn, and an ending.
+    - >-
+      A lot of it circles the same obsessions: books, memory, loneliness,
+      discipline, desire, and whatever it is that makes a person try again on a
+      Tuesday morning.
+  recommended_label: "start here"
+  recommended:
+    - title: "On rereading"
+      url: "/writing/on-rereading/"
+      note: "books, memory, and the unpleasant fact that you also change"
+    - title: "No one is coming to save you"
+      url: "/writing/no-one-is-coming-to-save-you/"
+      note: "probably the clearest statement of the whole attitude here"
+    - title: "Sickness unto death"
+      url: "/writing/sickness-unto-death/"
+      note: "moodier, heavier, still honest"
+
+building:
+  eyebrow: "about building"
+  title: "Where I stop romanticizing the idea and actually build the thing."
+  lede: "Projects, experiments, and the occasional self-inflicted technical headache."
+  paragraphs:
+    - >-
+      This section is for things that needed a repo, not just a paragraph.
+      Sometimes that means a finished project. Sometimes it means a glorified
+      lab notebook with a nicer haircut.
+    - >-
+      I like building stuff that teaches me something on the way: graphics, ML,
+      search, simulations, weird browser toys, things that probably would have
+      been easier if I had picked a calmer hobby.
+    - >-
+      If writing is where I try to name the thing, building is where I try to
+      make it fail in public until it becomes real.
+  recommended_label: "a few favorites"
+  recommended:
+    - title: "Procedural terrain in WebGL"
+      url: "/building/procedural-terrain-webgl/"
+      note: "graphics, math, and me refusing to leave the browser alone"
+    - title: "Personal search engine"
+      url: "/building/personal-search-engine/"
+      note: "an obvious project for someone who hoards notes"
+    - title: "Bogota bus network"
+      url: "/building/bogota-bus-network/"
+      note: "maps, transit, and local obsession"
+
+notes:
+  eyebrow: "about notes"
+  title: "This is the working memory."
+  lede: "Paper breakdowns, math notes, course notes, and explanations I wrote so I would stop forgetting them."
+  paragraphs:
+    - >-
+      These are less polished than the essays and more coherent than the loose
+      scraps in marginalia. The point is not elegance. The point is that future
+      me can come back and not have to relearn everything from zero.
+    - >-
+      A lot of this is me translating technical material into language I can
+      actually think with. If a paper only made sense after I rewrote it in
+      blunt English, it probably belongs here.
+    - >-
+      If you like the site most when it gets nerdy, this is probably your
+      section.
+  recommended_label: "start with these"
+  recommended:
+    - title: "Attention Is All You Need - paper breakdown"
+      url: "/notes/attention-is-all-you-need/"
+      note: "the kind of paper note I wish I always had on hand"
+    - title: "Information theory"
+      url: "/notes/information-theory/"
+      note: "one of those topics that gets clearer only after you rewrite it"
+    - title: "Notes on Gödel, Escher, Bach"
+      url: "/notes/godel-escher-bach/"
+      note: "the books-and-math crossover zone"
+
+marginalia:
+  eyebrow: "about marginalia"
+  title: "The side pocket."
+  lede: "Loose ends, reading notes, links, tools, playlists, small things I wanted to keep without pretending they were essays."
+  paragraphs:
+    - >-
+      Marginalia is for the stuff that does not want a grand entrance.
+      Fragments, lists, annotations, and the residue around the more formal
+      work.
+    - >-
+      Some of my favorite pages live here, honestly. It is a little less
+      performative. More like opening the notebook to the part with underlines,
+      arrows, and coffee stains.
+    - >-
+      If the rest of the site is me trying to be legible, this is me leaving
+      the desk messy on purpose.
+  recommended_label: "good places to wander"
+  recommended:
+    - title: "Bookshelf - 2024"
+      url: "/marginalia/bookshelf-2024/"
+      note: "not reviews, just the reading residue"
+    - title: "Tools I actually use"
+      url: "/marginalia/tools-i-actually-use/"
+      note: "the practical / opinionated corner"
+    - title: "Things I changed my mind about"
+      url: "/marginalia/things-i-changed-my-mind-about/"
+      note: "small revisions of the self"
