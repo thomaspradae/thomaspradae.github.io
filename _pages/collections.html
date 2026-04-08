@@ -47,29 +47,32 @@ permalink: /collections/
           | sort: "date"
           | reverse
         -%}
-        {%- assign collection_pages = site.pages | where_exp: "item", "item.url != '/collections/' and item.url contains '/collections/'" | sort: "title" -%}
+        {%- assign sorted_pages = site.pages | sort: "title" -%}
 
-        {% for collection_page in collection_pages %}
-          {%- assign collection_value = collection_page.collection_name | default: collection_page.title -%}
-          {%- assign collection_slug = collection_value | slugify -%}
-          {%- assign collection_count = 0 -%}
+        {% for collection_page in sorted_pages %}
+          {% if collection_page.url != '/collections/' and collection_page.url contains '/collections/' %}
+            {%- assign collection_value = collection_page.collection_name | default: collection_page.title -%}
+            {%- assign collection_slug = collection_value | slugify -%}
+            {%- assign collection_count = 0 -%}
 
-          {% for post in all_docs %}
-            {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
-            {% if editorial_collection != blank and editorial_collection | slugify == collection_slug %}
-              {%- assign collection_count = collection_count | plus: 1 -%}
-            {% endif %}
-          {% endfor %}
+            {% for post in all_docs %}
+              {%- assign editorial_collection = post.collection_name | default: post.editorial_collection -%}
+              {%- assign editorial_collection_slug = editorial_collection | slugify -%}
+              {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
+                {%- assign collection_count = collection_count | plus: 1 -%}
+              {% endif %}
+            {% endfor %}
 
-          <li class="archive-item">
-            <a class="archive-title" href="{{ collection_page.url | relative_url }}">
-              {{ collection_value }}
-            </a>
+            <li class="archive-item">
+              <a class="archive-title" href="{{ collection_page.url | relative_url }}">
+                {{ collection_value }}
+              </a>
 
-            <span class="archive-date">
-              {{ collection_count }} entr{% if collection_count != 1 %}ies{% else %}y{% endif %}
-            </span>
-          </li>
+              <span class="archive-date">
+                {{ collection_count }} entr{% if collection_count != 1 %}ies{% else %}y{% endif %}
+              </span>
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
