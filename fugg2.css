@@ -3504,10 +3504,8 @@ body.nav-open .archive-nav-overlay{
 .archive-about-overlay{
   position: fixed;
   inset: 0;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  padding: 50vh var(--archive-gutter) 0 var(--archive-gutter);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.22s ease;
@@ -3542,13 +3540,8 @@ body.about-open .archive-about-overlay{
 }
 
 .archive-about-panel{
-  width: min(54rem, calc(100vw - (2 * var(--archive-gutter))));
-  max-height: min(78vh, 46rem);
-  overflow-y: auto;
-  padding: clamp(1.5rem, 2vw, 2.25rem);
+  width: auto;
   background: transparent;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   transform: translateY(0.5rem);
   transition: transform 0.22s ease;
 }
