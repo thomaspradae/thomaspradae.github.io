@@ -15,6 +15,7 @@
 | home.png | tonal-outlier | 910x820 | 70.21 | 21.01 | 255.00 | 512x512 | 46.52 |
 | archive.png | alpha-mask | 248x267 | 51.14 | 0.58 | 0.00 | 512x512 | 39.85 |
 | mnt.png | alpha-mask | 612x378 | 50.29 | 35.42 | 0.00 | 512x512 | 22.45 |
+| fam.png | binary-mask | 345x363 | 42.23 | 0.00 | 0.00 | 512x512 | 33.43 |
 
 ## Tonal Outliers
 

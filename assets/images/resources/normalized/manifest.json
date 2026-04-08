@@ -50,6 +50,11 @@
       "source": "mnt.png",
       "tone_mode": "force_black",
       "scale_adjust": 1.0
+    },
+    {
+      "source": "fam.png",
+      "tone_mode": "force_black",
+      "scale_adjust": 1.0
     }
   ]
 }
