@@ -1083,7 +1083,14 @@ a:any-link:hover{
 }
 
 .page-content table.table--scrollable {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
+}
+
+.page-content table.table--scrollable td {
+    max-width: 22rem;
+    max-height: 10rem;
+    overflow: hidden;
 }
 
 .page-content th,
@@ -1105,6 +1112,15 @@ a:any-link:hover{
     background-color: var(--background-color);
     font-weight: 700;
     color: var(--backup-text-color);
+}
+
+.thead--stuck {
+    position: relative;
+    z-index: 3;
+}
+
+.thead--stuck th {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .page-content thead th.table-header-mathjax mjx-container,
