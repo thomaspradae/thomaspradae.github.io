@@ -3517,8 +3517,6 @@ body.about-open{
 }
 
 body.about-open .archive-card,
-body.about-open .archive-title-group,
-body.about-open .archive-header > .archive-section-title,
 body.about-open .archive-topnav > .search-slot,
 body.about-open .archive-topnav > a:not(.about-trigger){
   filter: blur(var(--search-blur));
