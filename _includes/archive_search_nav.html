@@ -8,6 +8,13 @@
   data-search-placeholder="{{ include.placeholder | default: 'Search everywhere...' }}"
   data-search-index-url="{{ '/search-index.json' | relative_url }}"
   data-search-results-url="{{ '/search/' | relative_url }}">
+  {% if about %}
+    <a href="#about-{{ include.about_key }}" class="archive-topnav-link about-trigger" aria-expanded="false">
+      {{ include.about_label | default: 'About' }}
+    </a>
+  {% else %}
+    <a href="https://thomaspradae.github.io/about" class="archive-topnav-link">About</a>
+  {% endif %}
   <span class="search-slot">
     <a href="{{ '/search/' | relative_url }}" class="search-trigger" aria-expanded="false">Search</a>
     <span class="search-bar">
@@ -25,13 +32,6 @@
   </span>
   <a href="{{ '/archive/' | relative_url }}" class="archive-nav-trigger" aria-expanded="false">Nav</a>
   <a href="{{ '/' | relative_url }}" class="archive-topnav-link">Home</a>
-  {% if about %}
-    <a href="#about-{{ include.about_key }}" class="archive-topnav-link about-trigger" aria-expanded="false">
-      {{ include.about_label | default: 'About' }}
-    </a>
-  {% else %}
-    <a href="https://thomaspradae.github.io/about" class="archive-topnav-link">About</a>
-  {% endif %}
   <div class="archive-nav-overlay" aria-hidden="true">
     <nav class="archive-nav-panel home-nav" aria-label="Site navigation">
       <ul class="home-nav-list archive-nav-list">
