@@ -193,7 +193,9 @@ layout: default
                     {% endfor %}
                   </div>
                 </div>
+              </div>
 
+              <div class="post-meta-row post-meta-row--bottom{% unless page.editorial_collection %} post-meta-row--single{% endunless %}">
                 <div class="post-meta-section">
                   <p class="meta-label">type</p>
 
@@ -210,19 +212,17 @@ layout: default
                     </a>
                   </p>
                 </div>
-              </div>
 
-              {% if editorial_collection != blank %}
-              <div class="post-meta-row post-meta-row--bottom">
-                <div class="post-meta-collection">
-                  <p class="meta-label">collection</p>
+                {% if page.editorial_collection %}
+                  <div class="post-meta-collection">
+                    <p class="meta-label">collection</p>
 
-                  <div class="collection-holder">
-                    {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
+                    <div class="collection-holder">
+                      {% include editorial_collection_link.html value=editorial_collection class="collection-link" %}
+                    </div>
                   </div>
-                </div>
+                {% endif %}
               </div>
-              {% endif %}
             </div>
 
             <div class="post-meta-mobile">
@@ -278,7 +278,7 @@ layout: default
                   </p>
                 </div>
 
-                {% if editorial_collection != blank %}
+                {% if page.editorial_collection %}
                 <div class="post-meta-collection">
                   <p class="meta-label">collection</p>
 
