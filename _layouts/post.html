@@ -19,7 +19,7 @@ layout: default
 
       <!-- KEEP #main EXACTLY AS YOUR POST CONTAINER (so sidenotes rules still match) -->
       <div id="main" class="post">
-        {% assign editorial_collection = page.collection_name | default: page.editorial_collection %}
+        {% assign editorial_collection = page.collection_name | default: page.editorial_collection | strip %}
         {% assign post_type_key = page.section | default: page.collection | default: 'notes' %}
         {% if page.section_label %}
           {% assign post_type_label = page.section_label %}
