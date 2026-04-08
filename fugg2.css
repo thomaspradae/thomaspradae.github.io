@@ -3565,7 +3565,6 @@ body.about-open .archive-about-panel{
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 0.95;
   color: #180023;
-  max-width: 14ch;
 }
 
 .archive-about-close{
