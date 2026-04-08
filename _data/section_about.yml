@@ -1,5 +1,4 @@
 archive:
-  eyebrow: "about archive"
   title: "Everything on this site, in one place."
   lede: "Archive is the least romantic page on the site and maybe the most useful one."
   paragraphs:
@@ -31,7 +30,6 @@ archive:
       note: "the looser, side-door stuff"
 
 writing:
-  eyebrow: "about writing"
   title: "Essays. Longer form. Finished thoughts."
   lede: "The pieces here are more deliberate than the stuff in marginalia and less technical than the notes."
   paragraphs:
@@ -59,7 +57,6 @@ writing:
       note: "moodier, heavier, still honest"
 
 building:
-  eyebrow: "about building"
   title: "Where I stop romanticizing the idea and actually build the thing."
   lede: "Projects, experiments, and the occasional self-inflicted technical headache."
   paragraphs:
@@ -87,7 +84,6 @@ building:
       note: "maps, transit, and local obsession"
 
 notes:
-  eyebrow: "about notes"
   title: "This is the working memory."
   lede: "Paper breakdowns, math notes, course notes, and explanations I wrote so I would stop forgetting them."
   paragraphs:
@@ -115,7 +111,6 @@ notes:
       note: "the books-and-math crossover zone"
 
 marginalia:
-  eyebrow: "about marginalia"
   title: "The side pocket."
   lede: "Loose ends, reading notes, links, tools, playlists, small things I wanted to keep without pretending they were essays."
   paragraphs:

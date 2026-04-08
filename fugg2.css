@@ -3553,14 +3553,6 @@ body.about-open .archive-about-panel{
   gap: 1.25rem;
 }
 
-.archive-about-eyebrow{
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--backup-text-color-v3);
-}
-
 .archive-about-head{
   display: flex;
   align-items: flex-start;
