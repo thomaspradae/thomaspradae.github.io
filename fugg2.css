@@ -3546,9 +3546,7 @@ body.about-open .archive-about-overlay{
   max-height: min(78vh, 46rem);
   overflow-y: auto;
   padding: clamp(1.5rem, 2vw, 2.25rem);
-  border: 1px solid rgba(24, 0, 35, 0.08);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2rem 4rem rgba(24, 0, 35, 0.08);
+  background: transparent;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   transform: translateY(0.5rem);
