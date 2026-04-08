@@ -3608,7 +3608,6 @@ body.about-open .archive-about-panel{
 .archive-about-copy{
   display: grid;
   gap: 0.95rem;
-  max-width: 43rem;
 }
 
 .archive-about-copy p{
