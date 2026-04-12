@@ -90,15 +90,13 @@
           </div>
 
           {% if about.lede %}
-            <p class="archive-about-lede">{{ about.lede }}</p>
+            <p>{{ about.lede }}</p>
           {% endif %}
 
           {% if about.paragraphs %}
-            <div class="archive-about-copy">
-              {% for paragraph in about.paragraphs %}
-                <p>{{ paragraph }}</p>
-              {% endfor %}
-            </div>
+            {% for paragraph in about.paragraphs %}
+              <p>{{ paragraph }}</p>
+            {% endfor %}
           {% endif %}
 
           {% if about.recommended %}
