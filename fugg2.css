@@ -3562,9 +3562,9 @@ body.about-open .archive-about-panel{
 
 .archive-about-title{
   margin: 0;
-  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-size: 2rem;
   line-height: 0.95;
-  color: #180023;
+  color: var(--backup-text-color-v3);
 }
 
 .archive-about-close{
