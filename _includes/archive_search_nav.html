@@ -103,16 +103,11 @@
           {% if about.recommended %}
             <div class="archive-about-block">
               <p>{{ about.recommended_label | default: 'Start here' }}</p>
-              <ul class="archive-about-links">
-                {% for item in about.recommended %}
-                  <li class="archive-about-link-item">
-                    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                    {% if item.note %}
-                      <p>{{ item.note }}</p>
-                    {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
+              {% for item in about.recommended %}
+                <p>
+                  <a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% if item.note %}: {{ item.note }}{% endif %}
+                </p>
+              {% endfor %}
             </div>
           {% endif %}
         </div>
