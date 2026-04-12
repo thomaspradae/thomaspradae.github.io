@@ -40,39 +40,47 @@ permalink: /collections/
           | sort: "date"
           | reverse
         -%}
-        {%- assign sorted_pages = site.pages | sort: "title" -%}
 
-        {% for collection_page in sorted_pages %}
-          {% if collection_page.url != '/collections/' and collection_page.url contains '/collections/' %}
-            {%- assign collection_value = collection_page.editorial_collection | default: collection_page.title -%}
-            {%- assign collection_slug = collection_value | slugify -%}
-            {%- assign collection_count = 0 -%}
-            {%- assign latest_date = nil -%}
+        {%- assign collection_names = "" | split: "" -%}
+        {% for doc in all_docs %}
+          {%- assign ec = doc.editorial_collection | strip -%}
+          {%- if ec != blank and ec != "" -%}
+            {%- unless collection_names contains ec -%}
+              {%- assign collection_names = collection_names | push: ec -%}
+            {%- endunless -%}
+          {%- endif -%}
+        {% endfor %}
+        {%- assign collection_names = collection_names | sort -%}
 
-            {% for post in all_docs %}
-              {%- assign ec = post.editorial_collection | slugify -%}
-              {% if ec == collection_slug %}
-                {%- assign collection_count = collection_count | plus: 1 -%}
-                {% if latest_date == nil %}
-                  {%- assign latest_date = post.date -%}
-                {% endif %}
+        {% for cname in collection_names %}
+          {%- assign cslug = cname | slugify -%}
+          {%- assign ccount = 0 -%}
+          {%- assign clatest = nil -%}
+
+          {% for doc in all_docs %}
+            {%- assign ec = doc.editorial_collection | strip -%}
+            {%- assign ecslug = ec | slugify -%}
+            {% if ecslug == cslug %}
+              {%- assign ccount = ccount | plus: 1 -%}
+              {% if clatest == nil %}
+                {%- assign clatest = doc.date -%}
               {% endif %}
-            {% endfor %}
+            {% endif %}
+          {% endfor %}
 
-            <li class="archive-item">
-              <a class="archive-title" href="{{ collection_page.url | relative_url }}">
-                {{ collection_value }}
-              </a>
+          <li class="archive-item">
+            <a class="archive-title" href="/collections/{{ cslug }}/">
+              {{ cname }}
+            </a>
 
-              <span class="archive-meta">
-                {{ collection_count }} post{% if collection_count != 1 %}s{% endif %}
-              </span>
+            <span class="archive-meta">
+              {{ ccount }} post{% if ccount != 1 %}s{% endif %}
+            </span>
 
-              <span class="archive-date">
-                {% if latest_date %}{{ latest_date | date: "%Y.%m" }}{% endif %}
-              </span>
-            </li>
-          {% endif %}
+            <span class="archive-date">
+              {% if clatest %}{{ clatest | date: "%Y.%m" }}{% endif %}
+            </span>
+          </li>
         {% endfor %}
       </ul>
     </div>
