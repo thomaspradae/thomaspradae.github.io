@@ -499,20 +499,66 @@ transform: scale(1);
     transition: color 0.3s ease;
 }
 
-/* Yes */
+/* ---- 404 PAGE ---- */
 
-.fourofour-text p{
+.fourohfour {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
     text-align: center;
-    color: var(--contrast-color);
 }
 
-.page-content .fourofour-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0vh;
+.fourohfour-code {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8rem, 22vw, 18rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--backup-text-color-v5);
+    letter-spacing: -0.04em;
+    user-select: none;
+    margin-bottom: 1.5rem;
+}
+
+.fourohfour-body {
+    max-width: 28rem;
+}
+
+.fourohfour-message {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--backup-text-color-v2);
+    line-height: 1.5;
+    margin: 0 0 0.4rem;
+}
+
+.fourohfour-message--quiet {
+    color: var(--backup-text-color-v3);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.fourohfour-nav {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+}
+
+.fourohfour-nav a {
+    color: var(--backup-text-color-v3);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.fourohfour-nav a:hover {
+    color: var(--contrast-color);
+    text-decoration: none;
 }
 
 body {
@@ -4310,6 +4356,11 @@ min-width: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 0.9rem;
+}
+
+/* Collections index: names come from front matter; avoid all-lowercase display */
+body.page-collections-index .archive-list a.archive-title:any-link {
+  text-transform: capitalize;
 }
 
 .archive-title--empty{
