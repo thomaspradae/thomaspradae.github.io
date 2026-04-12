@@ -1,0 +1,87 @@
+---
+layout: compress
+title: Tags
+permalink: /tags/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | escape }} - Thomas Prada's "field notes"</title>
+  <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/fugg2.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+
+<body class="archive-page">
+  <div class="archive-wrapper">
+    <div class="archive-header">
+      <div class="archive-title-group">
+        <h2 class="archive-section-title">Tags</h2>
+      </div>
+
+      {% include archive_search_nav.html
+        scope=""
+        scope_label="Archive"
+        placeholder="Search everywhere..."
+      %}
+    </div>
+
+    <div class="archive-card">
+      <ul class="archive-list" data-cols="3">
+        {%- assign all_docs = site.writing
+          | concat: site.building
+          | concat: site.notes
+          | concat: site.marginalia
+          | sort: "date"
+          | reverse
+        -%}
+
+        {%- assign tag_names = "" | split: "" -%}
+        {% for doc in all_docs %}
+          {% for t in doc.tags %}
+            {%- unless tag_names contains t -%}
+              {%- assign tag_names = tag_names | push: t -%}
+            {%- endunless -%}
+          {% endfor %}
+        {% endfor %}
+        {%- assign tag_names = tag_names | sort -%}
+
+        {% for tag in tag_names %}
+          {%- assign tag_count = 0 -%}
+          {%- assign tag_latest = nil -%}
+
+          {% for doc in all_docs %}
+            {% if doc.tags contains tag %}
+              {%- assign tag_count = tag_count | plus: 1 -%}
+              {% if tag_latest == nil %}
+                {%- assign tag_latest = doc.date -%}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          <li class="archive-item">
+            <a class="archive-title" href="/tag/{{ tag | slugify }}/">
+              {{ tag }}
+            </a>
+
+            <span class="archive-meta">
+              {{ tag_count }} post{% if tag_count != 1 %}s{% endif %}
+            </span>
+
+            <span class="archive-date">
+              {% if tag_latest %}{{ tag_latest | date: "%Y.%m" }}{% endif %}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% include search_assets.html %}
+</body>
+
+</html>

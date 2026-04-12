@@ -15,8 +15,6 @@ permalink: /collections/
   <link rel="stylesheet" href="/fugg2.css">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
-  <link rel="preload" href="/assets/images/resources/FINAL_V4_.gif" as="image">
 </head>
 
 <body class="archive-page">
@@ -24,11 +22,6 @@ permalink: /collections/
     <div class="archive-header">
       <div class="archive-title-group">
         <h2 class="archive-section-title">Collections</h2>
-        <img
-          src="/assets/images/resources/archive.png"
-          alt=""
-          class="archive-section-icon"
-          aria-hidden="true">
       </div>
 
       {% include archive_search_nav.html
@@ -39,7 +32,7 @@ permalink: /collections/
     </div>
 
     <div class="archive-card">
-      <ul class="archive-list" data-cols="2">
+      <ul class="archive-list" data-cols="3">
         {%- assign all_docs = site.writing
           | concat: site.building
           | concat: site.notes
@@ -54,12 +47,15 @@ permalink: /collections/
             {%- assign collection_value = collection_page.editorial_collection | default: collection_page.title -%}
             {%- assign collection_slug = collection_value | slugify -%}
             {%- assign collection_count = 0 -%}
+            {%- assign latest_date = nil -%}
 
             {% for post in all_docs %}
-              {%- assign editorial_collection = post.editorial_collection -%}
-              {%- assign editorial_collection_slug = editorial_collection | slugify -%}
-              {% if editorial_collection != blank and editorial_collection_slug == collection_slug %}
+              {%- assign ec = post.editorial_collection | slugify -%}
+              {% if ec == collection_slug %}
                 {%- assign collection_count = collection_count | plus: 1 -%}
+                {% if latest_date == nil %}
+                  {%- assign latest_date = post.date -%}
+                {% endif %}
               {% endif %}
             {% endfor %}
 
@@ -68,8 +64,12 @@ permalink: /collections/
                 {{ collection_value }}
               </a>
 
+              <span class="archive-meta">
+                {{ collection_count }} post{% if collection_count != 1 %}s{% endif %}
+              </span>
+
               <span class="archive-date">
-                {{ collection_count }} entr{% if collection_count != 1 %}ies{% else %}y{% endif %}
+                {% if latest_date %}{{ latest_date | date: "%Y.%m" }}{% endif %}
               </span>
             </li>
           {% endif %}
