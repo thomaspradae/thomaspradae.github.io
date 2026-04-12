@@ -101,14 +101,10 @@
           {% endif %}
 
           {% if about.recommended %}
-            <div class="archive-about-block">
-              <p>{{ about.recommended_label | default: 'Start here' }}</p>
+            <p>If you do not know where to start, start with
               {% for item in about.recommended %}
-                <p>
-                  <a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% if item.note %}: {{ item.note }}{% endif %}
-                </p>
-              {% endfor %}
-            </div>
+                {% if forloop.last and forloop.length > 1 %}; or {% elsif forloop.index > 1 %}; {% endif %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% if item.note %}, {{ item.note }}{% endif %}{% endfor %}.
+            </p>
           {% endif %}
         </div>
       </article>

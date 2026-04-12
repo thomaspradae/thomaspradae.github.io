@@ -3549,8 +3549,7 @@ body.about-open .archive-about-panel{
 }
 
 .archive-about-panel-inner{
-  display: grid;
-  gap: 1.25rem;
+  display: block;
 }
 
 .archive-about-head{
@@ -3558,6 +3557,7 @@ body.about-open .archive-about-panel{
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .archive-about-title{
@@ -3587,13 +3587,6 @@ body.about-open .archive-about-panel{
 
 .archive-about-panel p{
   margin: 0;
-}
-
-.archive-about-block{
-  display: grid;
-  gap: 0.85rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(24, 0, 35, 0.08);
 }
 
 .archive-nav-panel{

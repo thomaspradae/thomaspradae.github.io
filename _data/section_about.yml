@@ -10,24 +10,19 @@ archive:
       I use this when I do not want mood or curation getting in the way. Just
       title, type, tags, date. No performance. No hand-holding. If you already
       know roughly what you want, this is usually the fastest route.
-    - >-
-      If you are new and have no idea where to start, the links below are a
-      decent cross-section of how my brain tends to split itself up around
-      here.
-  recommended_label: "a few good entry points"
   recommended:
     - title: "On rereading"
       url: "/writing/on-rereading/"
-      note: "the reflective / literary side"
+      note: "where I write through the reflective, literary side of the site"
     - title: "Procedural terrain in WebGL"
       url: "/building/procedural-terrain-webgl/"
-      note: "the making-things side"
+      note: "where I make the browser do the making-things side"
     - title: "Attention Is All You Need - paper breakdown"
       url: "/notes/attention-is-all-you-need/"
-      note: "the technical note-taking side"
+      note: "where I turn a technical paper into something I can actually think with"
     - title: "Bookshelf - 2024"
       url: "/marginalia/bookshelf-2024/"
-      note: "the looser, side-door stuff"
+      note: "where I keep the looser, side-door stuff"
 
 writing:
   title: "Essays. Longer form. Finished thoughts."
@@ -44,17 +39,16 @@ writing:
       A lot of it circles the same obsessions: books, memory, loneliness,
       discipline, desire, and whatever it is that makes a person try again on a
       Tuesday morning.
-  recommended_label: "start here"
   recommended:
     - title: "On rereading"
       url: "/writing/on-rereading/"
-      note: "books, memory, and the unpleasant fact that you also change"
+      note: "where I write about books, memory, and the unpleasant fact that you also change"
     - title: "No one is coming to save you"
       url: "/writing/no-one-is-coming-to-save-you/"
-      note: "probably the clearest statement of the whole attitude here"
+      note: "where I say the whole attitude most plainly"
     - title: "Sickness unto death"
       url: "/writing/sickness-unto-death/"
-      note: "moodier, heavier, still honest"
+      note: "where I let the writing get moodier, heavier, and still honest"
 
 building:
   title: "Where I stop romanticizing the idea and actually build the thing."
@@ -71,17 +65,16 @@ building:
     - >-
       If writing is where I try to name the thing, building is where I try to
       make it fail in public until it becomes real.
-  recommended_label: "a few favorites"
   recommended:
     - title: "Procedural terrain in WebGL"
       url: "/building/procedural-terrain-webgl/"
-      note: "graphics, math, and me refusing to leave the browser alone"
+      note: "where I mess with graphics, math, and the browser"
     - title: "Personal search engine"
       url: "/building/personal-search-engine/"
-      note: "an obvious project for someone who hoards notes"
+      note: "where I build the obvious project for someone who hoards notes"
     - title: "Bogota bus network"
       url: "/building/bogota-bus-network/"
-      note: "maps, transit, and local obsession"
+      note: "where I follow maps, transit, and local obsession"
 
 notes:
   title: "This is the working memory."
@@ -98,17 +91,16 @@ notes:
     - >-
       If you like the site most when it gets nerdy, this is probably your
       section.
-  recommended_label: "start with these"
   recommended:
     - title: "Attention Is All You Need - paper breakdown"
       url: "/notes/attention-is-all-you-need/"
-      note: "the kind of paper note I wish I always had on hand"
+      note: "where I make the kind of paper note I wish I always had on hand"
     - title: "Information theory"
       url: "/notes/information-theory/"
-      note: "one of those topics that gets clearer only after you rewrite it"
+      note: "where I rewrite one of those topics until it gets clearer"
     - title: "Notes on Gödel, Escher, Bach"
       url: "/notes/godel-escher-bach/"
-      note: "the books-and-math crossover zone"
+      note: "where I wander into the books-and-math crossover zone"
 
 marginalia:
   title: "The side pocket."
@@ -125,14 +117,13 @@ marginalia:
     - >-
       If the rest of the site is me trying to be legible, this is me leaving
       the desk messy on purpose.
-  recommended_label: "good places to wander"
   recommended:
     - title: "Bookshelf - 2024"
       url: "/marginalia/bookshelf-2024/"
-      note: "not reviews, just the reading residue"
+      note: "where I keep the reading residue, not reviews"
     - title: "Tools I actually use"
       url: "/marginalia/tools-i-actually-use/"
-      note: "the practical / opinionated corner"
+      note: "where I keep the practical, opinionated corner"
     - title: "Things I changed my mind about"
       url: "/marginalia/things-i-changed-my-mind-about/"
-      note: "small revisions of the self"
+      note: "where I keep the small revisions of the self"
