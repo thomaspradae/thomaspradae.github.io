@@ -747,6 +747,7 @@ a:any-link:hover{
     align-items: center;
     gap: 0.8rem;
     flex-wrap: wrap;
+    justify-content: left;
 }
 
 .footer-friends-image {
