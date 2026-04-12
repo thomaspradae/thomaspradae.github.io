@@ -3585,19 +3585,15 @@ body.about-open .archive-about-panel{
   color: var(--contrast-color);
 }
 
+.archive-about-panel :where(p, li, ul){
+  margin: 0;
+}
+
 .archive-about-block{
   display: grid;
   gap: 0.85rem;
   padding-top: 0.5rem;
   border-top: 1px solid rgba(24, 0, 35, 0.08);
-}
-
-.archive-about-block-label{
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--backup-text-color-v3);
 }
 
 .archive-about-links{

@@ -89,19 +89,20 @@
             <button type="button" class="archive-about-close" aria-label="Close about panel">esc</button>
           </div>
 
-          {% if about.lede %}
-            <p>{{ about.lede }}</p>
-          {% endif %}
-
+          {% assign about_body = about.lede | default: "" %}
           {% if about.paragraphs %}
             {% for paragraph in about.paragraphs %}
-              <p>{{ paragraph }}</p>
+              {% assign about_body = about_body | append: " " | append: paragraph %}
             {% endfor %}
+          {% endif %}
+          {% assign about_body = about_body | strip %}
+          {% if about_body != "" %}
+            <p>{{ about_body }}</p>
           {% endif %}
 
           {% if about.recommended %}
             <div class="archive-about-block">
-              <div class="archive-about-block-label">{{ about.recommended_label | default: 'Start here' }}</div>
+              <p>{{ about.recommended_label | default: 'Start here' }}</p>
               <ul class="archive-about-links">
                 {% for item in about.recommended %}
                   <li class="archive-about-link-item">
