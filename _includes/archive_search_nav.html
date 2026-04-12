@@ -97,11 +97,11 @@
           {% endif %}
           {% assign about_body = about_body | strip %}
           {% if about_body != "" %}
-            <p>{{ about_body }}</p>
+            <p class="archive-about-copy">{{ about_body }}</p>
           {% endif %}
 
           {% if about.recommended %}
-            <p>If you do not know where to start, start with
+            <p class="archive-about-recommended">If you do not know where to start, start with
               {% for item in about.recommended %}
                 {% if forloop.last and forloop.length > 1 %}; or {% elsif forloop.index > 1 %}; {% endif %}<a href="{{ item.url | relative_url }}">{{ item.title }}</a>{% if item.note %}, {{ item.note }}{% endif %}{% endfor %}.
             </p>
