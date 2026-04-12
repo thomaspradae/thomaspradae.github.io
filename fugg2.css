@@ -3571,9 +3571,7 @@ body.about-open{
   overflow: hidden;
 }
 
-body.about-open .archive-card,
-body.about-open .archive-topnav > .search-slot,
-body.about-open .archive-topnav > a:not(.about-trigger){
+body.about-open .archive-card{
   filter: blur(var(--search-blur));
   opacity: 0.18;
   pointer-events: none;
