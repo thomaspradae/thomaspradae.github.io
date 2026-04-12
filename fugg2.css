@@ -746,7 +746,6 @@ a:any-link:hover{
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    margin-top: 0.35rem;
     flex-wrap: wrap;
 }
 
