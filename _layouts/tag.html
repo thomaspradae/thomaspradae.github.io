@@ -57,9 +57,6 @@ layout: compress
             {%- assign editorial_collection = post.editorial_collection | strip -%}
             {%- if editorial_collection != blank and editorial_collection != "/" -%}
               {% include editorial_collection_link.html value=editorial_collection class="archive-collection-link" %}
-              {%- if post.tags and post.tags.size > 0 -%}
-                <span class="archive-meta-separator">/</span>
-              {%- endif -%}
             {%- endif -%}
             {%- if post.tags and post.tags.size > 0 -%}
               <span class="tags-holder tags-holder--archive">

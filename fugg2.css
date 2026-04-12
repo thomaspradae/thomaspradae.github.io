@@ -751,10 +751,11 @@ a:any-link:hover{
 }
 
 .footer-friends-image {
-    width: 3rem;
-    height: 3rem;
+    width: 1.8rem;
+    height: 1.8rem;
     object-fit: contain;
     flex: 0 0 auto;
+    opacity: 0.35;
 }
 
 .footer-friends-links {
@@ -770,6 +771,15 @@ a:any-link:hover{
 
 .footer-friends-links a {
     white-space: nowrap;
+    color: #d7d7d7;
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.footer-friends-links a:hover {
+    color: var(--contrast-color);
 }
 
 /* ascii art stage */
@@ -1734,6 +1744,7 @@ table + p > em:only-child,
     text-transform: lowercase;
     color: var(--backup-text-color-v3);
     text-decoration: none;
+    margin-right: 0.4rem;
     transition: color 0.22s ease;
 }
 
@@ -1744,9 +1755,7 @@ table + p > em:only-child,
 }
 
 .archive-meta-separator{
-    display: inline-block;
-    margin: 0 0.4rem 0 0.15rem;
-    color: var(--backup-text-color-v3);
+    display: none !important;
 }
 
 .post-meta-tags .tag-pill:hover .tag-pill-dot,
