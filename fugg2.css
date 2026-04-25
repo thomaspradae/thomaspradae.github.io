@@ -3578,6 +3578,10 @@ body.about-open .archive-card{
   user-select: none;
 }
 
+body.about-open .archive-topnav{
+  z-index: 260;
+}
+
 body.about-open .about-trigger{
   position: relative;
   z-index: 260;
