@@ -415,9 +415,10 @@ transform: scale(1);
 }
 
 .minimal-home-shell {
+    --minimal-home-offset: clamp(3.45rem, 5.2vw, 6.4rem);
     min-height: 100vh;
     margin: 0;
-    padding: clamp(3rem, 5.2vh, 3.75rem) clamp(2.5rem, 5.7vw, 7rem);
+    padding: var(--minimal-home-offset);
     box-sizing: border-box;
 }
 
@@ -444,7 +445,7 @@ transform: scale(1);
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.24rem;
     width: fit-content;
 }
 
@@ -523,7 +524,7 @@ transform: scale(1);
 
 @media (max-width: 600px) {
     .minimal-home-shell {
-        padding: 3rem 2rem;
+        --minimal-home-offset: 1.8rem;
     }
 
     .minimal-home-mark {
@@ -1828,7 +1829,7 @@ table + p > em:only-child,
   /* `--tag-accent` is set by the `.tag-pill--<slug>` rules above. Using a
      fallback here (instead of redeclaring `--tag-accent` directly) keeps the
      per-tag classes from being clobbered by this higher-specificity rule. */
-  --tag-accent-light: color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 50%, #ffffff 50%);
+  --tag-accent-light: color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 68%, #ffffff 32%);
   --tag-accent-rich:  color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 92%, #000000 8%);
   --tag-accent-dark:  color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 80%, #000000 20%);
 
