@@ -127,3 +127,24 @@ marginalia:
     - title: "Things I changed my mind about"
       url: "/marginalia/things-i-changed-my-mind-about/"
       note: "where I keep the small revisions of the self"
+
+tags:
+  title: "All the little handles."
+  lede: "Tags are the quiet indexing layer under the site."
+  paragraphs:
+    - >-
+      They are not a perfect taxonomy, because perfect taxonomies are usually a
+      lie, but they are useful when a thought keeps showing up in different
+      rooms. This is where the recurring subjects gather: technical obsessions,
+      moods, habits, books, places, and the small categories I keep inventing
+      because I need somewhere to put a thing.
+
+collections:
+  title: "Longer shelves for related pieces."
+  lede: "Collections are for threads that became bigger than one post."
+  paragraphs:
+    - >-
+      Some pieces belong together even when they live in different sections.
+      This page keeps those constellations in one place: paper replications,
+      reading projects, recurring questions, and anything else that starts to
+      feel like a folder rather than a tag.

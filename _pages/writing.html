@@ -12,7 +12,7 @@ permalink: /writing/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | escape }} - Thomas Prada's "field notes"</title>
     <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
-    <link rel="stylesheet" href="/fugg2.css">  
+    <link rel="stylesheet" href="/fugg2.css?v=archive-format-2">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <link rel="preload" href="/assets/images/resources/FINAL_V1_DARK.gif" as="image">
@@ -22,26 +22,15 @@ permalink: /writing/
 
 <body class="archive-page">
   <div class="archive-wrapper">
-    <!-- Add section title here -->
-    <div class="archive-header">
-      <div class="archive-title-group">
-        <h2 class="archive-section-title">writing</h2>
-        <img
-          src="/assets/images/resources/writing.png"
-          alt=""
-          class="archive-section-icon"
-          aria-hidden="true">
-      </div>
-    
-      {% include archive_search_nav.html
-        scope="writing"
-        scope_label="Writing"
-        placeholder="Search in Writing..."
+    {% include archive_site_nav.html active="writing" %}
+    <h1 class="archive-format-title">Writing</h1>
+
+    <div class="archive-body">
+      {% include archive_index_intro.html
         about_key="writing"
-        about_label="About Writing"
+        icon="writing"
+        label="About Writing"
       %}
-    </div>
-    
     <div class="archive-card">
       <ul class="archive-list" data-cols="3">
         {% assign writing_posts = site.writing | sort: "date" | reverse %}
@@ -77,6 +66,7 @@ permalink: /writing/
         </li>
         {% endfor %}
       </ul>
+    </div>
     </div>
   </div>
   {% include search_assets.html %}

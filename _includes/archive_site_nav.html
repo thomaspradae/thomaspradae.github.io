@@ -1,0 +1,50 @@
+{%- assign active = include.active | default: "" -%}
+<nav class="archive-site-nav" aria-label="Primary">
+  <a class="archive-site-nav-mark" href="{{ '/' | relative_url }}" aria-label="Home">
+    <img
+      src="/assets/images/resources/normalized/masters/home.master.webp"
+      alt=""
+      width="910"
+      height="820"
+      decoding="async">
+  </a>
+
+  <ul class="archive-site-nav-list">
+    <li class="archive-site-nav-item{% if active == 'about' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/about/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/about.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">About</span>
+      </a>
+    </li>
+    <li class="archive-site-nav-item{% if active == 'archive' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/archive/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/archive.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">Archive</span>
+      </a>
+    </li>
+    <li class="archive-site-nav-item{% if active == 'writing' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/writing/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/writing.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">Writing</span>
+      </a>
+    </li>
+    <li class="archive-site-nav-item{% if active == 'building' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/building/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/building.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">Building</span>
+      </a>
+    </li>
+    <li class="archive-site-nav-item{% if active == 'notes' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/notes/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/notes.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">Notes</span>
+      </a>
+    </li>
+    <li class="archive-site-nav-item{% if active == 'marginalia' %} is-active{% endif %}">
+      <a class="archive-site-nav-link" href="{{ '/marginalia/' | relative_url }}">
+        <span class="archive-site-nav-icon" style="--icon-url: url('/assets/images/resources/marginalia.png');" aria-hidden="true"></span>
+        <span class="archive-site-nav-label">Marginalia</span>
+      </a>
+    </li>
+  </ul>
+</nav>

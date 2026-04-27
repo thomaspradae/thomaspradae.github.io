@@ -1,0 +1,25 @@
+{%- assign intro_icon = include.icon | default: include.about_key | default: "archive" -%}
+{%- assign intro_copy = include.body | default: "" -%}
+
+{%- if include.about_key -%}
+  {%- assign about = site.data.section_about[include.about_key] -%}
+  {%- if about -%}
+    {%- assign intro_copy = about.lede | default: "" -%}
+    {%- if about.paragraphs -%}
+      {%- for paragraph in about.paragraphs -%}
+        {%- assign intro_copy = intro_copy | append: " " | append: paragraph -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+<aside class="archive-index-intro" aria-label="{{ include.label | default: 'About this index' }}">
+  <img
+    src="/assets/images/resources/{{ intro_icon }}.png"
+    alt=""
+    class="archive-index-intro-icon"
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
+  <p class="archive-index-intro-copy">{{ intro_copy | strip }}</p>
+</aside>
