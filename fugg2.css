@@ -1697,9 +1697,11 @@ table + p > em:only-child,
 
 /* base: stacked balls like avatars */
 .tags-holder .tag-pill {
-  --tag-accent: var(--tag-accent-default);
-  --tag-accent-light: color-mix(in srgb, var(--tag-accent) 25%, #ffffff 75%);
-  --tag-accent-dark:  color-mix(in srgb, var(--tag-accent) 80%, #000000 20%);
+  /* `--tag-accent` is set by the `.tag-pill--<slug>` rules above. Using a
+     fallback here (instead of redeclaring `--tag-accent` directly) keeps the
+     per-tag classes from being clobbered by this higher-specificity rule. */
+  --tag-accent-light: color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 25%, #ffffff 75%);
+  --tag-accent-dark:  color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 80%, #000000 20%);
 
   position: relative;
   display: inline-flex;
@@ -3393,7 +3395,7 @@ margin-left: 0;
   
 .archive-item:hover .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
-background-color: var(--tag-accent);
+background-color: var(--tag-accent, var(--tag-accent-default));
 }
 
 .archive-item:hover .tags-holder .tag-pill-label {
@@ -3419,7 +3421,7 @@ margin-left: 0;
 }
 .archive-item:focus-within .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
-background-color: var(--tag-accent);
+background-color: var(--tag-accent, var(--tag-accent-default));
 }
 .archive-item:focus-within .tags-holder .tag-pill-label {
 max-width: 8rem;
