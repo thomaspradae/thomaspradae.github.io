@@ -408,6 +408,134 @@ transform: scale(1);
   text-decoration: none;
 }
 
+/* Minimal top-left home */
+.home-minimal-page {
+    min-height: 100vh;
+    background: var(--background-color);
+}
+
+.minimal-home-shell {
+    min-height: 100vh;
+    margin: 0;
+    padding: clamp(3rem, 5.2vh, 3.75rem) clamp(2.5rem, 5.7vw, 7rem);
+    box-sizing: border-box;
+}
+
+.minimal-home-corner {
+    width: fit-content;
+}
+
+.minimal-home-mark {
+    width: clamp(1.45rem, 1.7vw, 1.85rem);
+    max-width: none;
+    height: auto;
+    display: block;
+    margin: 0 0 clamp(1.85rem, 2.2vw, 2.4rem) 0;
+}
+
+.minimal-home-nav {
+    text-align: left;
+    line-height: 1;
+}
+
+.minimal-home-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: fit-content;
+}
+
+.minimal-home-nav-item {
+    margin: 0;
+    color: #c8c8c8;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.08rem, 1.15vw, 1.35rem);
+    line-height: 1;
+}
+
+.minimal-home-nav-link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    transform: none;
+    transition: color 160ms ease;
+}
+
+.minimal-home-nav-icon {
+    width: 0;
+    height: 1.05em;
+    flex: 0 0 auto;
+    margin-right: 0;
+    overflow: hidden;
+    background-color: currentColor;
+    opacity: 0;
+    -webkit-mask-image: var(--icon-url);
+    mask-image: var(--icon-url);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transform: scale(0.85);
+    transition: width 180ms ease, margin-right 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.minimal-home-nav-label {
+    line-height: 1;
+}
+
+.minimal-home-nav-link:-webkit-any-link,
+.minimal-home-nav-link:any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.minimal-home-nav-link:hover,
+.minimal-home-nav-link:focus-visible,
+.minimal-home-nav-link:-webkit-any-link:hover,
+.minimal-home-nav-link:any-link:hover {
+    color: var(--contrast-color);
+    transform: none;
+    text-decoration: none;
+}
+
+.minimal-home-nav-link:hover .minimal-home-nav-icon,
+.minimal-home-nav-link:focus-visible .minimal-home-nav-icon {
+    width: 1.05em;
+    margin-right: 0.7rem;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.minimal-home-nav-link:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 0.2rem;
+}
+
+@media (max-width: 600px) {
+    .minimal-home-shell {
+        padding: 3rem 2rem;
+    }
+
+    .minimal-home-mark {
+        width: 1.35rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .minimal-home-nav-item {
+        font-size: 1.18rem;
+    }
+}
+
 .post-header {
     margin-bottom: 5vh;
     margin-top: 5vh;
@@ -1700,7 +1828,8 @@ table + p > em:only-child,
   /* `--tag-accent` is set by the `.tag-pill--<slug>` rules above. Using a
      fallback here (instead of redeclaring `--tag-accent` directly) keeps the
      per-tag classes from being clobbered by this higher-specificity rule. */
-  --tag-accent-light: color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 25%, #ffffff 75%);
+  --tag-accent-light: color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 50%, #ffffff 50%);
+  --tag-accent-rich:  color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 92%, #000000 8%);
   --tag-accent-dark:  color-mix(in srgb, var(--tag-accent, var(--tag-accent-default)) 80%, #000000 20%);
 
   position: relative;
@@ -3395,7 +3524,7 @@ margin-left: 0;
   
 .archive-item:hover .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
-background-color: var(--tag-accent, var(--tag-accent-default));
+background-color: var(--tag-accent-rich);
 }
 
 .archive-item:hover .tags-holder .tag-pill-label {
@@ -3421,7 +3550,7 @@ margin-left: 0;
 }
 .archive-item:focus-within .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
-background-color: var(--tag-accent, var(--tag-accent-default));
+background-color: var(--tag-accent-rich);
 }
 .archive-item:focus-within .tags-holder .tag-pill-label {
 max-width: 8rem;

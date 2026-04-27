@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Prada's "field notes"</title>
+    <link rel="icon" href="/assets/images/resources/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/fugg2.css">
+    <link rel="preconnect" href="https://api.open-meteo.com">
+    <style>
+      .heroCol{
+        width: 420px;         /* same as your map hero width */
+        margin: 0 auto;       /* centers the whole column */
+      }
+
+      .inspectCard{
+        position: relative;
+        width: 100%;          /* was 420px */
+        aspect-ratio: 910 / 820;
+        background:#fff;
+        border-radius: 12px;
+        overflow:hidden;
+        user-select:none;
+      }
+
+      #gl{
+        position:absolute; inset:0;
+        width:100%; height:100%;
+        display:block;
+      }
+
+      #pointsLayer{
+        position:absolute;
+        inset:0;
+        pointer-events:none;   /* layer ignores mouse */
+        z-index: 20;
+      }
+
+      .pt{
+        position:absolute;
+        width:35px; height:35px;
+        border-radius:999px;
+        transform: translate(-50%, -50%); /* center on its coordinate */
+        pointer-events: auto;            /* IMPORTANT: allow hover */
+        z-index: 20;
+      }
+
+      #pointsLayer .pt{
+        pointer-events:auto;   /* points accept mouse */
+      }
+
+      #cursorLabel{
+        position:absolute;
+        padding: 4px 6px;
+        font-size: 12px;
+        font-family: 'Inter', sans-serif;
+        background: rgba(0,0,0,0.65);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 8px;
+        pointer-events:none;
+        white-space:nowrap;
+        display:none;
+        z-index:30;
+      }
+
+      .inspectHud{
+        position: fixed;
+
+        /* height from top of the page (viewport) */
+        top: 2vh;
+
+        /* center horizontally */
+        left: 50%;
+        transform: translateX(-50%);
+
+        /* match home-shell overall width:
+           home-shell max-width (42rem) + left/right padding (2rem + 2rem) = 46rem */
+        width: min(46rem, 100vw);
+
+        /* match the home-shell padding so text lines up with your column */
+        padding: 0 2rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+
+        background: transparent;
+        border: none;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        line-height: 1.15;
+        color: #bebebe;
+
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      @media (max-width: 600px){
+        .inspectHud{
+          width: 100vw;
+          padding: 0;
+          left: 0;
+          transform: none;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 0.2rem;
+        }
+
+        .inspectHud .hudRight {
+          order: 1;
+          justify-content: center;
+        }
+
+        .inspectHud .hudLeft {
+          order: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.2rem;
+        }
+
+        .inspectHud .hudTopLine {
+          justify-content: center;
+        }
+      }
+
+      .hudLeft{ min-width: 0; } /* allow wrapping in name */
+      .hudTopLine{
+        display: flex;
+        gap: 10px;          /* knob: spacing between items */
+        white-space: nowrap;
+      }
+      .hudName{
+        margin-top: 2px;
+        max-width: 28ch;
+        min-height: calc(1.15em * 2);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.25rem;
+      }
+
+      .hudNameText{
+        min-width: 0;
+        overflow: hidden;             /* avoid pushing HUD taller */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-transform: uppercase;
+      }
+
+	      .hudNameIcon{
+	        display: none;
+	        flex: none;
+	        width: 0.85rem;
+	        height: 0.85rem;
+	        object-fit: contain;
+	        opacity: 0.3;
+	      }
+
+      .hudNameIcon.is-visible{
+        display: block;
+      }
+
+      .hudRight{
+        display: flex;
+        gap: 10px;          /* knob: spacing between items */
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        opacity: 0.9;
+      }
+    </style>
+</head>
+
+<body class="home-page">
+    <main class="home-shell">
+      <div id="hud" class="inspectHud"></div>
+      <figure class="home-mark">
+        <div class="heroCol">
+          <div id="wrap" class="inspectCard">
+            <canvas id="gl"></canvas>
+            <div id="pointsLayer"></div>
+            <div id="cursorLabel"></div>
+          </div>
+
+          <header class="home-hero">
+            <div class="titleStack">
+              <h1 class="home-title">"field notes"</h1>
+            
+              <img class="scribble-name" src="/assets/images/resources/hand/name.png" alt="">
+              <!-- <img class="scribble-sub"  src="assets/images/resources/hand/subtitle.png" alt=""> -->
+            </div>
+          </header>
+      
+          <nav class="home-nav" aria-label="Primary">
+            <ul class="home-nav-list">
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="https://thomaspradae.github.io/about">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/about.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">About</span>
+                </a>
+              </li>
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="/archive">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/archive.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">Archive</span>
+                </a>
+              </li>
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="/writing">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/writing.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">Writing</span>
+                </a>
+              </li>
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="/building">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/building.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">Building</span>
+                </a>
+              </li>
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="/notes">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/notes.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">Notes</span>
+                </a>
+              </li>
+              <li class="home-nav-item">
+                <a class="home-nav-link home-nav-link--icon" href="/marginalia">
+                  <span class="home-nav-icon" style="--icon-url: url('/assets/images/resources/marginalia.png');" aria-hidden="true"></span>
+                  <span class="home-nav-label">Marginalia</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </figure>
+    </main>
+  
+    <script src="/weather.js"></script>
+    <script>
+/* ====== CONFIG ====== */
+const TARGET_W = 910, TARGET_H = 820;  // "final pixel space" for georef + DEM
+const BASE = "/bogota";                // assets live at /bogota/... on GitHub Pages
+const clamp = (x,a,b)=>Math.min(b,Math.max(a,x));
+
+/* ---------------- DEM + mapping (same as yours) ---------------- */
+function demSampleBilinear(q, gw, gh, gx, gy, nodata) {
+  const x0 = Math.floor(gx), y0 = Math.floor(gy);
+  const x1 = x0 + 1, y1 = y0 + 1;
+  if (x0 < 0 || y0 < 0 || x1 >= gw || y1 >= gh) return null;
+  const i00 = y0*gw + x0, i10 = y0*gw + x1;
+  const i01 = y1*gw + x0, i11 = y1*gw + x1;
+  const a=q[i00], b=q[i10], c=q[i01], d=q[i11];
+  if (a===nodata || b===nodata || c===nodata || d===nodata) return null;
+  const fx = gx - x0, fy = gy - y0;
+  const wa=(1-fx)*(1-fy), wb=fx*(1-fy), wc=(1-fx)*fy, wd=fx*fy;
+  return wa*a + wb*b + wc*c + wd*d;
+}
+
+function finalPxToLonLat(u, v, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const sx = t.pre_squish_W / t.out_W;
+  const sy = t.pre_squish_H / t.out_H;
+  const xc = u * sx, yc = v * sy;
+  const xr = xc + t.crop_x0, yr = yc + t.crop_y0;
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const xPure = xr - t.rot_tx, yPure = yr - t.rot_ty;
+  const dx = xPure - cx, dy = yPure - cy;
+  const xs = cosA * dx - sinA * dy + cx;
+  const ys = sinA * dx + cosA * dy + cy;
+  return { lon: g.lon0 + xs * g.dlon, lat: g.lat0 + ys * g.dlat };
+}
+
+function lonLatToFinalPx(pt, meta) {
+  const g = meta.geotiff, t = meta.pixel_transforms;
+  const xs = (pt.lon - g.lon0) / g.dlon;
+  const ys = (pt.lat - g.lat0) / g.dlat;
+  const W = g.src_W, H = g.src_H;
+  const cx = (W - 1) / 2.0, cy = (H - 1) / 2.0;
+  const cosA = Math.cos(t.rot_rad), sinA = Math.sin(t.rot_rad);
+  const dx = xs - cx, dy = ys - cy;
+  const xPure = cosA * dx + sinA * dy + cx;
+  const yPure = -sinA * dx + cosA * dy + cy;
+  const xr = xPure + t.rot_tx, yr = yPure + t.rot_ty;
+  const xc = xr - t.crop_x0, yc = yr - t.crop_y0;
+  const sx = t.out_W / t.pre_squish_W;
+  const sy = t.out_H / t.pre_squish_H;
+  return { u: xc * sx, v: yc * sy };
+}
+
+/* ---------------- WebGL helpers ---------------- */
+const VS = `
+attribute vec2 aPos;
+varying vec2 vUv;
+void main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos,0.0,1.0); }
+`;
+
+const FS_MASK_UPDATE = `precision mediump float;
+varying vec2 vUv;
+uniform sampler2D uPrev;
+uniform vec2 uResPx;
+uniform vec2 uPointerPx;
+uniform float uTime;
+uniform float uRadiusPx;
+uniform float uFeatherPx;
+uniform float uDecay;
+uniform float uDiffusion;
+uniform float uNoiseAmp;
+uniform float uNoiseFreq;
+float hash21(vec2 p){ p=fract(p*vec2(123.34,345.45)); p+=dot(p,p+34.345); return fract(p.x*p.y); }
+float noise(vec2 p){
+  vec2 i=floor(p), f=fract(p);
+  float a=hash21(i), b=hash21(i+vec2(1,0)), c=hash21(i+vec2(0,1)), d=hash21(i+vec2(1,1));
+  vec2 u=f*f*(3.0-2.0*f);
+  return mix(a,b,u.x) + (c-a)*u.y*(1.0-u.x) + (d-b)*u.x*u.y;
+}
+void main(){
+  float prev=texture2D(uPrev,vUv).r;
+  vec2 texel=1.0/uResPx;
+  float n0=texture2D(uPrev,vUv+vec2(texel.x,0)).r;
+  float n1=texture2D(uPrev,vUv-vec2(texel.x,0)).r;
+  float n2=texture2D(uPrev,vUv+vec2(0,texel.y)).r;
+  float n3=texture2D(uPrev,vUv-vec2(0,texel.y)).r;
+  float blur=(prev+n0+n1+n2+n3)/5.0;
+  float base=mix(prev,blur,clamp(uDiffusion,0.0,1.0))*clamp(uDecay,0.0,1.0);
+
+  vec2 px=vUv*uResPx;
+  float d=distance(px,uPointerPx);
+
+  float nn=noise(vUv*uNoiseFreq+vec2(uTime*0.05,-uTime*0.03));
+  float wobble=(nn-0.5)*2.0*uNoiseAmp*(uRadiusPx*0.25);
+
+  float r=uRadiusPx+wobble;
+  float f=max(1.0,uFeatherPx);
+  float t=1.0-smoothstep(r-f,r,d);
+  t=pow(t,1.35);
+
+  float outv=max(base,t);
+  gl_FragColor=vec4(outv,outv,outv,1.0);
+}
+`;
+
+const FS_COMPOSITE = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+varying vec2 vUv;
+uniform sampler2D uHill;
+uniform sampler2D uOverlay;
+uniform sampler2D uMask;
+uniform float uHillAlpha;
+uniform float uOverlayAlpha;
+uniform float uRevealSoftness;
+uniform float uBleedStrength;
+uniform float uBleedRadiusPx;
+uniform vec2 uResPx;
+float lum(vec3 c){ return dot(c, vec3(0.3333333)); }
+void main(){
+  vec3 paper=vec3(1.0);
+  vec4 hill4=texture2D(uHill,vUv);
+  vec3 hill=hill4.rgb;
+  float hillA=hill4.a;
+
+  float hl=pow(clamp(lum(hill),0.0,1.0),0.85);
+  vec3 base=mix(paper,vec3(hl),clamp(uHillAlpha,0.0,1.0));
+
+  float a=smoothstep(0.0,0.1,hillA);
+  vec3 col=mix(paper,base,a);
+
+  float m=texture2D(uMask,vUv).r;
+  float reveal=smoothstep(0.0,max(0.0001,uRevealSoftness),m);
+
+  vec4 ov=texture2D(uOverlay,vUv);
+  float ovA=ov.a*uOverlayAlpha;
+
+  vec2 texel=1.0/uResPx;
+  vec2 o=texel*max(0.0,uBleedRadiusPx);
+  float a0=texture2D(uOverlay,vUv).a;
+  float a1=texture2D(uOverlay,vUv+vec2( o.x,0)).a;
+  float a2=texture2D(uOverlay,vUv+vec2(-o.x,0)).a;
+  float a3=texture2D(uOverlay,vUv+vec2(0, o.y)).a;
+  float a4=texture2D(uOverlay,vUv+vec2(0,-o.y)).a;
+  float bleedA=(a0+a1+a2+a3+a4)/5.0;
+
+  col=mix(col, col*(0.6+0.4*ov.rgb), bleedA*uBleedStrength*reveal*a);
+  col=mix(col, ov.rgb, ovA*reveal*a);
+
+  gl_FragColor=vec4(col,1.0);
+}
+`;
+
+function createShader(gl, type, src){
+  const sh=gl.createShader(type);
+  gl.shaderSource(sh,src);
+  gl.compileShader(sh);
+  if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS)){
+    const log=gl.getShaderInfoLog(sh);
+    gl.deleteShader(sh);
+    throw new Error(log);
+  }
+  return sh;
+}
+function createProgram(gl, vsSrc, fsSrc){
+  const vs=createShader(gl,gl.VERTEX_SHADER,vsSrc);
+  const fs=createShader(gl,gl.FRAGMENT_SHADER,fsSrc);
+  const p=gl.createProgram();
+  gl.attachShader(p,vs); gl.attachShader(p,fs);
+  gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS)){
+    const log=gl.getProgramInfoLog(p);
+    gl.deleteProgram(p);
+    throw new Error(log);
+  }
+  gl.deleteShader(vs); gl.deleteShader(fs);
+  return p;
+}
+function createTex(gl,w,h,data,linear=true){
+  const tex=gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D,tex);
+  gl.pixelStorei(gl.UNPACK_ALIGNMENT,1);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,linear?gl.LINEAR:gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,linear?gl.LINEAR:gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,w,h,0,gl.RGBA,gl.UNSIGNED_BYTE,data);
+  gl.bindTexture(gl.TEXTURE_2D,null);
+  return tex;
+}
+function texFromImage(gl,img){
+  const tex=gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D,tex);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,1);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+  gl.bindTexture(gl.TEXTURE_2D,null);
+  return tex;
+}
+function makeFBO(gl,tex){
+  const fb=gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER,fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+  return fb;
+}
+function loadImage(url){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.crossOrigin="anonymous";
+    img.src=url;
+    img.onload=()=>resolve(img);
+    img.onerror=reject;
+  });
+}
+
+/* ---------------- main ---------------- */
+(async function main(){
+  const wrap = document.getElementById("wrap");
+  const canvas = document.getElementById("gl");
+  const hud = document.getElementById("hud");
+  const pointsLayer = document.getElementById("pointsLayer");
+  const cursorLabel = document.getElementById("cursorLabel");
+
+  hud.innerHTML = `
+    <div class="hudLeft">
+      <div class="hudTopLine" id="hudTopLine">
+        <span id="hudLat"></span>
+        <span id="hudLon"></span>
+        <span id="hudAlt"></span>
+      </div>
+      <div class="hudName" id="hudName">
+        <span class="hudNameText" id="hudNameText"></span>
+        <img class="hudNameIcon" id="hudNameIcon" alt="" aria-hidden="true">
+      </div>
+    </div>
+    <div class="hudRight" id="hudRight">
+      <span id="hudCity">Bogotá 16°</span>
+      <span id="hudTime"></span>
+      <span id="hudTz"></span>
+    </div>
+  `;
+  const hudTopLine = hud.querySelector("#hudTopLine");
+  const hudNameText = hud.querySelector("#hudNameText");
+  const hudNameIcon = hud.querySelector("#hudNameIcon");
+  const hudRight = hud.querySelector("#hudRight");
+  const hudLat = hud.querySelector("#hudLat");
+  const hudLon = hud.querySelector("#hudLon");
+  const hudAlt = hud.querySelector("#hudAlt");
+  const hudCity = hud.querySelector("#hudCity");
+  const hudTime = hud.querySelector("#hudTime");
+  const hudTz = hud.querySelector("#hudTz");
+
+  // ===== default readout (shown when not hovering) =====
+  const DEFAULT_LAT = 4.5796;
+  const DEFAULT_LON = -74.0575;
+  const DEFAULT_ALT_M = 3150;
+
+  function setHud(lat, lon, altM){
+    hudLat.textContent = `+${lat.toFixed(4)}`;
+    hudLon.textContent = `${lon.toFixed(4)}`;
+    hudAlt.textContent = (altM == null) ? "" : `+${Math.round(altM)} m`;
+  }
+
+	  function setHoveredName(name){
+	    hudNameText.textContent = name ? name.toUpperCase() : "";
+	    hudNameIcon.classList.remove("is-visible");
+
+	    function setHudIcon(iconName) {
+	      hudNameIcon.src = `/assets/images/resources/normalized/16/${iconName}.webp`;
+	      hudNameIcon.srcset = [
+	        `/assets/images/resources/normalized/16/${iconName}.webp 1x`,
+	        `/assets/images/resources/normalized/24/${iconName}.webp 1.5x`,
+	        `/assets/images/resources/normalized/32/${iconName}.webp 2x`
+	      ].join(", ");
+	      hudNameIcon.classList.add("is-visible");
+	    }
+
+	    if (!name) {
+	      hudNameIcon.removeAttribute("src");
+	      hudNameIcon.removeAttribute("srcset");
+	      return;
+	    }
+
+	    if (name.includes("Monserrate")) {
+	      setHudIcon("jesus");
+	      return;
+	    }
+
+	    if (name.includes("Aguanoso") || name.includes("Alto de la Viga")) {
+	      setHudIcon("mnt");
+	      return;
+	    }
+
+	    hudNameIcon.removeAttribute("src");
+	    hudNameIcon.removeAttribute("srcset");
+	  }
+
+  // initialize immediately
+  setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
+
+  function pad2(n){ return String(n).padStart(2,"0"); }
+  function tzStr(d){
+    const off = -d.getTimezoneOffset();     // minutes east of UTC
+    const s = off >= 0 ? "+" : "-";
+    const a = Math.abs(off);
+    return `${s}${pad2(Math.floor(a/60))}${pad2(a%60)}`;
+  }
+  function tickClock(){
+    const d = new Date();
+    const t = `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+    hudTime.textContent = t;
+    hudTz.textContent = tzStr(d);
+  }
+  // hudCity starts with a plausible default and weather.js replaces it when live data arrives
+  tickClock();
+  setInterval(tickClock, 250);
+
+  let showOverlay = true; // you can remove overlay later if you want
+
+  const [demMeta, rotMeta, pts] = await Promise.all([
+    fetch(`${BASE}/debug_steps1_5/dem_512x512_i16.json`, {cache:"no-store"}).then(r=>r.json()),
+    fetch(`${BASE}/debug_steps1_5/bounds_rotcrop.json`, {cache:"no-store"}).then(r=>r.json()),
+    fetch(`${BASE}/points.json`, {cache:"no-store"}).then(r=>r.json()),
+  ]);
+  const buf = await fetch(`${BASE}/debug_steps1_5/dem_512x512_i16.bin`, {cache:"no-store"}).then(r=>r.arrayBuffer());
+  const demQ = new Int16Array(buf);
+
+  // view size (actual on-page size)
+  const rect0 = wrap.getBoundingClientRect();
+  const VIEW_W = rect0.width;
+  const VIEW_H = rect0.height;
+
+  // points positioned as percentages (scales with card)
+  const pointUV = (pts.points || []).map(p => ({
+    ...p,
+    ...lonLatToFinalPx({ lon: p.lon, lat: p.lat }, rotMeta)
+  }));
+
+  for (const p of pointUV) {
+    const el = document.createElement("div");
+    el.className = "pt";
+
+    // percent positioning -> scales perfectly with the card
+    el.style.left = (100 * (p.u / (TARGET_W - 1))) + "%";
+    el.style.top  = (100 * (p.v / (TARGET_H - 1))) + "%";
+
+    pointsLayer.appendChild(el);
+
+    // hover label (name)
+    el.addEventListener("mouseenter", () => {
+      setHoveredName(p.name);
+    });
+
+    el.addEventListener("mouseleave", () => {
+      setHoveredName(null);
+    });
+  }
+
+  // WebGL init at view size
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  canvas.width  = Math.floor(VIEW_W * dpr);
+  canvas.height = Math.floor(VIEW_H * dpr);
+
+  const gl = canvas.getContext("webgl", { premultipliedAlpha:false, antialias:true });
+  if(!gl) throw new Error("WebGL not available");
+
+  const progMask = createProgram(gl, VS, FS_MASK_UPDATE);
+  const progComp = createProgram(gl, VS, FS_COMPOSITE);
+
+  const vbo = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, +1,-1, -1,+1, +1,+1]), gl.STATIC_DRAW);
+
+  function drawQuad(prog){
+    const aPos = gl.getAttribLocation(prog, "aPos");
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    gl.disableVertexAttribArray(aPos);
+  }
+
+  const [hillImg, ovImg] = await Promise.all([
+    loadImage(`${BASE}/debug_steps1_5/hillshade_paper_rotcrop.webp`),
+    loadImage(`${BASE}/overlay.webp`),
+  ]);
+  const texHill = texFromImage(gl, hillImg);
+  const texOverlay = texFromImage(gl, ovImg);
+
+  const W = canvas.width, H = canvas.height;
+  const zero = new Uint8Array(W*H*4);
+  const texMaskA = createTex(gl, W, H, zero, true);
+  const texMaskB = createTex(gl, W, H, zero, true);
+  const fbA = makeFBO(gl, texMaskA);
+  const fbB = makeFBO(gl, texMaskB);
+
+  const uPrev = gl.getUniformLocation(progMask, "uPrev");
+  const uResPx = gl.getUniformLocation(progMask, "uResPx");
+  const uPointerPx = gl.getUniformLocation(progMask, "uPointerPx");
+  const uTime = gl.getUniformLocation(progMask, "uTime");
+  const uRadiusPx = gl.getUniformLocation(progMask, "uRadiusPx");
+  const uFeatherPx = gl.getUniformLocation(progMask, "uFeatherPx");
+  const uDecay = gl.getUniformLocation(progMask, "uDecay");
+  const uDiffusion = gl.getUniformLocation(progMask, "uDiffusion");
+  const uNoiseAmp = gl.getUniformLocation(progMask, "uNoiseAmp");
+  const uNoiseFreq = gl.getUniformLocation(progMask, "uNoiseFreq");
+
+  const uHill = gl.getUniformLocation(progComp, "uHill");
+  const uOverlay = gl.getUniformLocation(progComp, "uOverlay");
+  const uMask = gl.getUniformLocation(progComp, "uMask");
+  const uHillAlpha = gl.getUniformLocation(progComp, "uHillAlpha");
+  const uOverlayAlpha = gl.getUniformLocation(progComp, "uOverlayAlpha");
+  const uRevealSoftness = gl.getUniformLocation(progComp, "uRevealSoftness");
+  const uBleedStrength = gl.getUniformLocation(progComp, "uBleedStrength");
+  const uBleedRadiusPx = gl.getUniformLocation(progComp, "uBleedRadiusPx");
+  const uResPx2 = gl.getUniformLocation(progComp, "uResPx");
+
+  const K = {
+    hillAlpha: 0.85,
+    overlayAlpha: 1.0,
+    revealSoftness: 0.35,
+    bleedStrength: 4.0,
+    bleedRadiusPx: 1.5,
+    radiusPx: 80,   // smaller brush for small view
+    featherPx: 120,
+    decay: 0.965,
+    diffusion: 1000000.0,
+    noiseAmp: 2.5,
+    noiseFreq: 5.5,
+  };
+
+  let inside = false;
+  let pxX = -10000, pxY = -10000;
+
+  wrap.addEventListener("mousemove", (e) => {
+    const r = wrap.getBoundingClientRect();
+    const x = clamp(e.clientX - r.left, 0, r.width  - 1); // VIEW px
+    const y = clamp(e.clientY - r.top,  0, r.height - 1); // VIEW px
+
+    inside = true;
+
+    // pointer in GL px (bottom-left origin)
+    pxX = x * dpr;
+    pxY = H - (y * dpr);
+
+    // convert VIEW -> FINAL px for lon/lat/elev
+    const u = (x / r.width)  * (TARGET_W - 1);
+    const v = (y / r.height) * (TARGET_H - 1);
+
+    const {lon, lat} = finalPxToLonLat(u, v, rotMeta);
+
+    const gw = demMeta.w, gh = demMeta.h;
+    const gx = (u + 0.5) * (gw / demMeta.final_w) - 0.5;
+    const gy = (v + 0.5) * (gh / demMeta.final_h) - 0.5;
+    const qv = demSampleBilinear(demQ, gw, gh, gx, gy, demMeta.nodata);
+    let elev = (qv === null) ? null : (qv * demMeta.scale + demMeta.offset);
+    if (elev === null || elev < 1000 || elev > 5000) elev = 3100 + Math.random() * 200;
+
+    setHud(lat, lon, elev);
+  });
+
+  wrap.addEventListener("mouseleave", () => {
+    inside = false;
+    pxX = -10000; pxY = -10000;
+    setHud(DEFAULT_LAT, DEFAULT_LON, DEFAULT_ALT_M);
+    setHoveredName(null);
+  });
+
+  gl.disable(gl.DEPTH_TEST);
+  gl.disable(gl.CULL_FACE);
+
+  let ping = 0;
+  function frame(t){
+    const time = t * 0.001;
+
+    const src = (ping === 0) ? texMaskA : texMaskB;
+    const dst = (ping === 0) ? fbB : fbA;
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst);
+    gl.viewport(0, 0, W, H);
+    gl.useProgram(progMask);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, src);
+    gl.uniform1i(uPrev, 0);
+
+    gl.uniform2f(uResPx, W, H);
+    gl.uniform2f(uPointerPx, inside ? pxX : -10000, inside ? pxY : -10000);
+    gl.uniform1f(uTime, time);
+
+    gl.uniform1f(uRadiusPx, K.radiusPx * dpr);
+    gl.uniform1f(uFeatherPx, K.featherPx * dpr);
+    gl.uniform1f(uDecay, K.decay);
+    gl.uniform1f(uDiffusion, K.diffusion);
+    gl.uniform1f(uNoiseAmp, K.noiseAmp);
+    gl.uniform1f(uNoiseFreq, K.noiseFreq);
+
+    drawQuad(progMask);
+
+    ping = (ping === 0) ? 1 : 0;
+    const curMask = (ping === 0) ? texMaskA : texMaskB;
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, W, H);
+    gl.useProgram(progComp);
+
+    gl.uniform2f(uResPx2, W, H);
+    gl.uniform1f(uHillAlpha, K.hillAlpha);
+    gl.uniform1f(uOverlayAlpha, showOverlay ? K.overlayAlpha : 0.0);
+    gl.uniform1f(uRevealSoftness, K.revealSoftness);
+    gl.uniform1f(uBleedStrength, K.bleedStrength);
+    gl.uniform1f(uBleedRadiusPx, K.bleedRadiusPx * dpr);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texHill);
+    gl.uniform1i(uHill, 0);
+
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, texOverlay);
+    gl.uniform1i(uOverlay, 1);
+
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, curMask);
+    gl.uniform1i(uMask, 2);
+
+    drawQuad(progComp);
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+  </body>
+  
+
+</html>
