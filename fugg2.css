@@ -1613,11 +1613,69 @@ table + p > em:only-child,
 /* TAGS: BALL ➜ PILL ON HOVER (KNOBBED + OPACITY)                     */
 /* ------------------------------------------------------------------ */
 
-/* per-tag accent colors */
-.tag-pill--math { --tag-accent: #4A90E2; }
-.tag-pill--ml { --tag-accent: #B296FF; }
-.tag-pill--personal { --tag-accent: #FFB347; }
-.tag-pill--reading { --tag-accent: #5BCF9B; }
+/* per-tag accent colors — cool-leaning palette, with warm accents for variety.
+   Each tag defines a single full-saturation `--tag-accent`. The pastel rest-state
+   color and the darker pressed-state color are derived automatically below via
+   color-mix() inside `.tags-holder .tag-pill`. */
+
+/* — math / ml family — */
+.tag-pill--math                   { --tag-accent: #4A90E2; } /* steel blue */
+.tag-pill--ml                     { --tag-accent: #6E7CE8; } /* periwinkle */
+.tag-pill--probability            { --tag-accent: #5DAFB0; } /* sage teal */
+.tag-pill--optimization           { --tag-accent: #4ABDB7; } /* turquoise */
+.tag-pill--information-theory     { --tag-accent: #4F95C7; } /* steel blue */
+.tag-pill--transformers           { --tag-accent: #7E6FE6; } /* violet */
+.tag-pill--neural-networks        { --tag-accent: #8C6FE6; } /* purple */
+.tag-pill--reinforcement          { --tag-accent: #8D78D6; } /* mauve */
+.tag-pill--reinforcement-learning { --tag-accent: #9B7AE0; } /* lavender purple */
+.tag-pill--learning               { --tag-accent: #5FAE7E; } /* sage green */
+.tag-pill--deep                   { --tag-accent: #2F4E78; } /* navy */
+
+/* — code / build family — */
+.tag-pill--python                 { --tag-accent: #4A7BB7; } /* python blue */
+.tag-pill--javascript             { --tag-accent: #D9B65A; } /* muted gold */
+.tag-pill--c                      { --tag-accent: #4A6FB8; } /* c++ blue */
+.tag-pill--algorithms             { --tag-accent: #5C6FAB; } /* indigo */
+.tag-pill--coding                 { --tag-accent: #3F6E9E; } /* deep blue */
+.tag-pill--canvas                 { --tag-accent: #4FB3A0; } /* teal */
+.tag-pill--webgl                  { --tag-accent: #4FBDA9; } /* teal-green */
+.tag-pill--web-audio              { --tag-accent: #5BC8DB; } /* cyan */
+.tag-pill--graphics               { --tag-accent: #B27AD9; } /* lavender pink */
+.tag-pill--procedural-generation  { --tag-accent: #5FB99F; } /* seafoam */
+.tag-pill--simulation             { --tag-accent: #4FBDC4; } /* aqua */
+.tag-pill--visualization          { --tag-accent: #C97AB8; } /* magenta */
+.tag-pill--data                   { --tag-accent: #5C9FE0; } /* azure */
+.tag-pill--information-retrieval  { --tag-accent: #5985C9; } /* denim */
+
+/* — physics / hardware — */
+.tag-pill--physics                { --tag-accent: #4F8FE5; } /* electric blue */
+.tag-pill--projectile-physics     { --tag-accent: #D67676; } /* coral */
+.tag-pill--defense-tech           { --tag-accent: #6B7C8C; } /* steel grey */
+.tag-pill--hardware               { --tag-accent: #7B8FA3; } /* steel */
+.tag-pill--raspberry-pi           { --tag-accent: #C95B6E; } /* raspberry */
+.tag-pill--chess                  { --tag-accent: #7A7A8A; } /* slate */
+
+/* — reading / writing family — */
+.tag-pill--paper                  { --tag-accent: #A6A19D; } /* warm grey */
+.tag-pill--paper-notes            { --tag-accent: #B8A07E; } /* tan */
+.tag-pill--book-notes             { --tag-accent: #6B8AB5; } /* slate blue */
+.tag-pill--books                  { --tag-accent: #C49669; } /* warm tan */
+.tag-pill--reading                { --tag-accent: #5BCF9B; } /* mint */
+.tag-pill--philosophy             { --tag-accent: #5C6BC0; } /* indigo */
+.tag-pill--notes                  { --tag-accent: #5BA8C9; } /* sky */
+
+/* — life / personal — */
+.tag-pill--reflection             { --tag-accent: #A89BD9; } /* lavender */
+.tag-pill--personal               { --tag-accent: #E4A66F; } /* peach */
+.tag-pill--rant                   { --tag-accent: #C76970; } /* warm red */
+.tag-pill--daily-note             { --tag-accent: #A6C7E0; } /* soft sky */
+.tag-pill--slop                   { --tag-accent: #7E867A; } /* sage grey */
+.tag-pill--friends                { --tag-accent: #D89AB0; } /* rose */
+.tag-pill--music                  { --tag-accent: #C088C6; } /* orchid */
+.tag-pill--tools                  { --tag-accent: #8E9AA8; } /* cool grey */
+.tag-pill--productivity           { --tag-accent: #5BA887; } /* mint green */
+.tag-pill--links                  { --tag-accent: #6FB5DA; } /* light blue */
+.tag-pill--bogota                 { --tag-accent: #C9805F; } /* terracotta */
 
 /* container */
 .tags-holder {
@@ -3335,6 +3393,7 @@ margin-left: 0;
   
 .archive-item:hover .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
+background-color: var(--tag-accent);
 }
 
 .archive-item:hover .tags-holder .tag-pill-label {
@@ -3360,6 +3419,7 @@ margin-left: 0;
 }
 .archive-item:focus-within .tags-holder .tag-pill-dot {
 margin-right: 0.1rem;
+background-color: var(--tag-accent);
 }
 .archive-item:focus-within .tags-holder .tag-pill-label {
 max-width: 8rem;
