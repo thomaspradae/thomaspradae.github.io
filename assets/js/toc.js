@@ -172,7 +172,19 @@ function initMobilePostMenu(sections) {
   if (!shell || !toggle || !panel || !backdrop || !tocContainer) return;
 
   const isMobileViewport = () => window.matchMedia(MOBILE_POST_MENU_QUERY).matches;
+  const footer = document.querySelector(".site-footer");
   let lastDebugSnapshot = "";
+
+  // Record the in-flow position once, at the top of the post. Switching to
+  // fixed positioning then uses the exact same coordinates instead of the
+  // element's already-scrolled (and sometimes negative) position.
+  const captureHomeAnchor = () => {
+    if (!isMobileViewport() || window.scrollY !== 0) return;
+
+    const rect = shell.getBoundingClientRect();
+    shell.style.setProperty("--mobile-post-menu-sticky-top", `${Math.round(rect.top)}px`);
+    shell.style.setProperty("--mobile-post-menu-sticky-right", `${Math.round(window.innerWidth - rect.right)}px`);
+  };
 
   const closeMenu = () => {
     document.body.classList.remove("mobile-post-menu-open");
@@ -191,8 +203,19 @@ function initMobilePostMenu(sections) {
   };
 
   const syncScrolledState = () => {
-    const isSticky = isMobileViewport() && window.scrollY > 0;
+    if (window.scrollY === 0) {
+      shell.classList.remove("is-sticky");
+      captureHomeAnchor();
+    }
+
+    const footerIsVisible = Boolean(footer && footer.getBoundingClientRect().top <= window.innerHeight);
+    const isSticky = isMobileViewport() && window.scrollY > 0 && !footerIsVisible;
     shell.classList.toggle("is-sticky", isSticky);
+    shell.classList.toggle("is-hidden", footerIsVisible);
+
+    if (footerIsVisible) {
+      closeMenu();
+    }
 
     if (!isMobileViewport()) {
       closeMenu();
@@ -249,6 +272,7 @@ function initMobilePostMenu(sections) {
   }
 
   shell.setAttribute("aria-hidden", "false");
+  captureHomeAnchor();
   syncScrolledState();
 }
 
