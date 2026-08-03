@@ -21,7 +21,7 @@
 
     .line-lab-header {
       max-width: 44rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .line-lab-kicker,
@@ -45,6 +45,50 @@
 
     .line-lab-header p {
       margin: 0 0 0.75rem;
+    }
+
+    .line-lab-controls {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      margin: 0 0 2rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--lightest-text);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .line-lab-button {
+      border: 1px solid var(--lightest-text);
+      background: #ffffff;
+      color: var(--contrast-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      line-height: 1;
+      padding: 0.5rem 0.7rem;
+      cursor: pointer;
+    }
+
+    .line-lab-button:hover {
+      border-color: var(--backup-text-color-v3);
+    }
+
+    .line-lab-range {
+      width: 100%;
+      accent-color: var(--contrast-color);
+    }
+
+    .line-lab-readout {
+      min-width: 4rem;
+      text-align: right;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      color: var(--backup-text-color-v2);
     }
 
     .line-lab-back:any-link {
@@ -82,7 +126,7 @@
         radial-gradient(circle at top right, rgba(0, 0, 0, 0.025), transparent 38%),
         #ffffff;
       padding: 1rem;
-      min-height: 26rem;
+      min-height: 30rem;
       display: flex;
       flex-direction: column;
       gap: 0.95rem;
@@ -116,12 +160,37 @@
 
     .line-preview {
       position: relative;
-      height: 15rem;
+      height: 18rem;
       border: 1px solid var(--lightest-text);
       background:
         linear-gradient(90deg, transparent 0 27px, rgba(0, 0, 0, 0.035) 27px 29px, transparent 29px),
         linear-gradient(180deg, rgba(248, 248, 248, 0.85), #ffffff);
       overflow: hidden;
+    }
+
+    .line-preview::before,
+    .line-preview::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+    }
+
+    .line-preview::before {
+      top: var(--viewport-top, 3rem);
+      height: var(--viewport-height, 7rem);
+      background: rgba(0, 0, 0, 0.025);
+      border-top: 1px solid rgba(0, 0, 0, 0.07);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    }
+
+    .line-preview::after {
+      top: 0.75rem;
+      bottom: 0.75rem;
+      left: calc(var(--line-x) - 0.5px);
+      width: 1px;
+      background: rgba(0, 0, 0, 0.08);
     }
 
     .line-preview-item {
@@ -149,16 +218,31 @@
 
     .line-preview-item:nth-child(3) {
       top: 10.9rem;
-      height: 2.7rem;
+      height: 5.3rem;
     }
 
     .line-preview-snake {
       position: absolute;
       left: calc(var(--line-x) + var(--snake-offset));
-      top: 4.95rem;
+      top: var(--snake-top, 1rem);
       width: var(--snake-width);
-      height: 5.25rem;
+      height: var(--snake-height, 5.25rem);
       background: var(--snake-color);
+      pointer-events: none;
+      z-index: 2;
+      transition:
+        top 0.12s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.12s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .line-preview-marker {
+      position: absolute;
+      right: 0.7rem;
+      top: var(--viewport-top, 3rem);
+      transform: translateY(-50%);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      color: var(--backup-text-color-v3);
       pointer-events: none;
     }
 
@@ -237,13 +321,19 @@
       <h1>Black snake versus grey rail edge</h1>
       <p>
         This page compares the tiny horizontal relationship between the grey TOC segment line and
-        the black moving snake. The lower strip in each card is an 8x zoom of the same line widths.
+        the black moving snake while the same simulated scroll runs across every variant.
       </p>
       <p>
-        Production CSS is not changed here. These are static visual sketches for choosing the cleanest
+        Production CSS is not changed here. These are working mini TOCs for choosing the cleanest
         alignment.
       </p>
     </header>
+
+    <div class="line-lab-controls" aria-label="Simulated scroll controls">
+      <button class="line-lab-button" type="button" data-play-toggle>Pause</button>
+      <input class="line-lab-range" type="range" min="0" max="1000" value="0" data-scroll-range aria-label="Simulated article scroll">
+      <span class="line-lab-readout" data-scroll-readout>0%</span>
+    </div>
 
     <section class="line-lab-grid" aria-label="TOC line alignment variants">
       <article class="line-lab-card" data-variant="current">
@@ -254,6 +344,7 @@
           <div class="line-preview-item">Active section</div>
           <div class="line-preview-item">Next section</div>
           <div class="line-preview-snake"></div>
+          <div class="line-preview-marker">viewport</div>
         </div>
         <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
         <p>The exact current geometry: grey starts at x=0 and black starts at x=0, but black is wider.</p>
@@ -268,6 +359,7 @@
           <div class="line-preview-item">Active section</div>
           <div class="line-preview-item">Next section</div>
           <div class="line-preview-snake"></div>
+          <div class="line-preview-marker">viewport</div>
         </div>
         <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
         <p>Same 2px black weight, shifted half a pixel left so the grey and black center lines match.</p>
@@ -282,6 +374,7 @@
           <div class="line-preview-item">Active section</div>
           <div class="line-preview-item">Next section</div>
           <div class="line-preview-snake"></div>
+          <div class="line-preview-marker">viewport</div>
         </div>
         <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
         <p>Removes the offset completely, but the moving marker loses some of its current visual weight.</p>
@@ -296,6 +389,7 @@
           <div class="line-preview-item">Active section</div>
           <div class="line-preview-item">Next section</div>
           <div class="line-preview-snake"></div>
+          <div class="line-preview-marker">viewport</div>
         </div>
         <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
         <p>Also removes the offset, but the inactive rail becomes visually heavier everywhere.</p>
@@ -310,6 +404,7 @@
           <div class="line-preview-item">Active section</div>
           <div class="line-preview-item">Next section</div>
           <div class="line-preview-snake"></div>
+          <div class="line-preview-marker">viewport</div>
         </div>
         <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
         <p>Same left-edge offset as current, but a less absolute black to see if the shadow feeling drops.</p>
@@ -317,5 +412,67 @@
       </article>
     </section>
   </main>
+  <script>
+    (() => {
+      const previews = Array.from(document.querySelectorAll(".line-preview"));
+      const range = document.querySelector("[data-scroll-range]");
+      const readout = document.querySelector("[data-scroll-readout]");
+      const toggle = document.querySelector("[data-play-toggle]");
+      if (!previews.length || !range || !readout || !toggle) return;
+
+      const railTop = 16;
+      const railBottom = 259;
+      const viewportHeight = 92;
+      const minSnakeHeight = 34;
+      let progress = 0;
+      let playing = true;
+      let lastTime = null;
+
+      function setSimulation(nextProgress) {
+        progress = Math.max(0, Math.min(1, nextProgress));
+        const viewportTop = railTop + ((railBottom - railTop - viewportHeight) * progress);
+        const viewportBottom = viewportTop + viewportHeight;
+        const snakeTop = viewportTop;
+        const snakeHeight = Math.max(minSnakeHeight, viewportBottom - viewportTop);
+
+        previews.forEach((preview) => {
+          preview.style.setProperty("--viewport-top", `${viewportTop}px`);
+          preview.style.setProperty("--viewport-height", `${viewportHeight}px`);
+          preview.style.setProperty("--snake-top", `${snakeTop}px`);
+          preview.style.setProperty("--snake-height", `${snakeHeight}px`);
+        });
+
+        range.value = String(Math.round(progress * 1000));
+        readout.textContent = `${Math.round(progress * 100)}%`;
+      }
+
+      function tick(timestamp) {
+        if (lastTime === null) lastTime = timestamp;
+        const delta = timestamp - lastTime;
+        lastTime = timestamp;
+
+        if (playing) {
+          const next = (progress + (delta / 7000)) % 1;
+          setSimulation(next);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      range.addEventListener("input", () => {
+        playing = false;
+        toggle.textContent = "Play";
+        setSimulation(Number(range.value) / 1000);
+      });
+
+      toggle.addEventListener("click", () => {
+        playing = !playing;
+        toggle.textContent = playing ? "Pause" : "Play";
+      });
+
+      setSimulation(0);
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
