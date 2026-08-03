@@ -2960,8 +2960,9 @@ body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child > a{
   transform: translateY(6px);
 }
 
-body.title-hidden .post-stage > #left-toc.left-toc .toc-snake{
-  opacity: 0;
+body.title-hidden .post-stage > #left-toc.left-toc .toc-title-item{
+  cursor: default;
+  pointer-events: none;
 }
 
 body.title-hidden .post-stage > #left-toc.left-toc .toc-item:first-child::before,

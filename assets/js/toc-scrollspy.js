@@ -78,9 +78,26 @@
       const titleFullyGone = state.titleMetrics.bottom <= scrollY;
       setBodyFlag("title-hidden", !titleFullyGone);
       setBodyFlag("title-toc-visible", titleFullyGone);
+      updateTitleItemDisabled(!titleFullyGone);
     } else {
       setBodyFlag("title-hidden", false);
       setBodyFlag("title-toc-visible", false);
+      updateTitleItemDisabled(false);
+    }
+  }
+
+  function updateTitleItemDisabled(disabled) {
+    const titleItem = state?.toc?.querySelector(".toc-title-item");
+    const titleLink = titleItem?.querySelector("a");
+    if (!titleItem || !titleLink) return;
+
+    titleItem.classList.toggle("toc-title-item-disabled", disabled);
+    titleLink.setAttribute("aria-disabled", disabled ? "true" : "false");
+
+    if (disabled) {
+      titleLink.setAttribute("tabindex", "-1");
+    } else {
+      titleLink.removeAttribute("tabindex");
     }
   }
 
@@ -96,6 +113,7 @@
       state.cachedMetrics.map((metric) => [metric.element, metric])
     );
     const sectionMap = state.sectionSpans
+      .filter((span) => !span.element.classList.contains("toc-title-item"))
       .map((span) => {
         const metric = cachedByElement.get(span.element);
         if (!metric || metric.height <= 0) return null;
@@ -401,6 +419,7 @@
     if (!state) return;
 
     measureTitleMetrics();
+    updateTOCState();
     measureHeadingMetrics();
     measureSectionSpans();
     applySectionFlex();

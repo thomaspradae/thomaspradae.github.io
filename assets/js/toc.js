@@ -131,6 +131,13 @@ function scrollToSection(id) {
   });
 }
 
+function scrollToPageTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
 function createDesktopTOCList(sections) {
   const list = document.createElement("ul");
   list.className = "toc-list";
@@ -152,15 +159,21 @@ function createDesktopTOCList(sections) {
     a.href = `#${s.id}`;
     a.textContent = s.title || `Section ${idx + 1}`;
 
+    const scrollToTarget = () => {
+      if (li.classList.contains("toc-title-item") && document.body.classList.contains("title-hidden")) return;
+      if (isTitleItem) scrollToPageTop();
+      else scrollToSection(s.id);
+    };
+
     a.addEventListener("click", event => {
       event.preventDefault();
-      scrollToSection(s.id);
+      scrollToTarget();
     });
 
     li.appendChild(a);
     li.addEventListener("click", event => {
       if (event.target.closest("a")) return;
-      scrollToSection(s.id);
+      scrollToTarget();
     });
 
     list.appendChild(li);
