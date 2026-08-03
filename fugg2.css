@@ -2985,7 +2985,7 @@ body.title-toc-visible .post-stage > #left-toc.left-toc .toc-snake{
 }
 
 .post-stage > #left-toc.left-toc .toc-item > a[href^="#"]:hover:not(.toc-active){
-  color: var(--main-accent);
+  color: var(--contrast-color);
   text-decoration: none;
 }
 
