@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOC Snake Lab - Article Comparison</title>
+  <link rel="icon" href="./assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./fugg2.css">
+  <style>
+    body.article-toc-lab {
+      margin: 0;
+      background: var(--background-color);
+      color: var(--backup-text-color);
+      overflow: hidden;
+    }
+
+    .article-lab-topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      min-height: 4.75rem;
+      border-bottom: 1px solid var(--lightest-text);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .article-lab-topbar-inner {
+      height: 100%;
+      padding: 0.85rem 1rem;
+      display: grid;
+      grid-template-columns: minmax(12rem, 1fr) auto auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .article-lab-title {
+      min-width: 0;
+    }
+
+    .article-lab-title a:any-link {
+      display: inline-flex;
+      margin-bottom: 0.25rem;
+      color: var(--backup-text-color-v2);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+    }
+
+    .article-lab-title a:hover {
+      color: var(--contrast-color);
+      text-decoration: none;
+    }
+
+    .article-lab-title h1 {
+      margin: 0;
+      color: var(--contrast-color);
+      font-size: 1rem;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .article-lab-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      color: var(--backup-text-color-v2);
+      white-space: nowrap;
+    }
+
+    .article-lab-control select {
+      min-width: 10rem;
+      border: 1px solid var(--lightest-text);
+      background: #ffffff;
+      color: var(--contrast-color);
+      font: inherit;
+      padding: 0.42rem 0.5rem;
+    }
+
+    .article-lab-stage {
+      height: calc(100vh - 4.75rem);
+      margin-top: 4.75rem;
+      display: grid;
+      gap: 1px;
+      background: var(--lightest-text);
+    }
+
+    body[data-mode="all"] .article-lab-stage {
+      grid-template-columns: repeat(5, minmax(22rem, 1fr));
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    body[data-mode="single"] .article-lab-stage {
+      grid-template-columns: minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .article-lab-frame-shell {
+      position: relative;
+      min-width: 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    body[data-mode="single"] .article-lab-frame-shell:not(.is-selected) {
+      display: none;
+    }
+
+    .article-lab-frame-label {
+      position: absolute;
+      left: 0.7rem;
+      top: 0.7rem;
+      z-index: 2;
+      padding: 0.22rem 0.42rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--backup-text-color-v2);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .article-lab-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #ffffff;
+    }
+
+    @media (max-width: 800px) {
+      body.article-toc-lab {
+        overflow: auto;
+      }
+
+      .article-lab-topbar {
+        position: static;
+      }
+
+      .article-lab-topbar-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .article-lab-stage {
+        margin-top: 0;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      body[data-mode="all"] .article-lab-stage,
+      body[data-mode="single"] .article-lab-stage {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+
+      .article-lab-frame-shell {
+        height: 88vh;
+      }
+    }
+  </style>
+</head>
+<body class="article-toc-lab" data-mode="all">
+  <header class="article-lab-topbar">
+    <div class="article-lab-topbar-inner">
+      <div class="article-lab-title">
+        <a href="./index.html">Back to TOC Snake Lab</a>
+        <h1>Actual Article TOC Alignment Comparison</h1>
+      </div>
+
+      <label class="article-lab-control">
+        View
+        <select data-mode-select>
+          <option value="all">All side by side</option>
+          <option value="single">Replace current with selected</option>
+        </select>
+      </label>
+
+      <label class="article-lab-control">
+        Variant
+        <select data-variant-select>
+          <option value="current">Current</option>
+          <option value="centered">Centered 2px</option>
+          <option value="thin">1px snake</option>
+          <option value="wideGrey">2px grey rail</option>
+          <option value="soft">Softer black</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="article-lab-stage" data-stage></main>
+
+  <script>
+    (() => {
+      const articleUrl = "/notes/continuous-discrete-reinforcement-learning-for-hybrid-control-in-robotics/";
+      const stage = document.querySelector("[data-stage]");
+      const modeSelect = document.querySelector("[data-mode-select]");
+      const variantSelect = document.querySelector("[data-variant-select]");
+      if (!stage || !modeSelect || !variantSelect) return;
+
+      const variants = [
+        {
+          key: "current",
+          label: "Current",
+          css: ""
+        },
+        {
+          key: "centered",
+          label: "Centered 2px",
+          css: `
+            .post-stage > #left-toc.left-toc,
+            .post-stage > #left-toc.left-toc .toc-rail { overflow: visible !important; }
+            .post-stage > #left-toc.left-toc .toc-snake,
+            .post-stage > #left-toc.left-toc .toc-item::after { left: -0.5px !important; }
+          `
+        },
+        {
+          key: "thin",
+          label: "1px snake",
+          css: `
+            .post-stage > #left-toc.left-toc .toc-snake,
+            .post-stage > #left-toc.left-toc .toc-item::after { width: 1px !important; }
+          `
+        },
+        {
+          key: "wideGrey",
+          label: "2px grey rail",
+          css: `
+            .post-stage > #left-toc.left-toc .toc-item::before { width: 2px !important; }
+          `
+        },
+        {
+          key: "soft",
+          label: "Softer black",
+          css: `
+            .post-stage > #left-toc.left-toc .toc-snake,
+            .post-stage > #left-toc.left-toc .toc-item::after { background: #111111 !important; }
+          `
+        }
+      ];
+
+      const shells = new Map();
+      const frames = new Map();
+      let syncing = false;
+
+      function injectFrame(frame, variant) {
+        const doc = frame.contentDocument;
+        if (!doc) return;
+
+        const existing = doc.getElementById("article-toc-lab-style");
+        existing?.remove();
+
+        const style = doc.createElement("style");
+        style.id = "article-toc-lab-style";
+        style.textContent = `
+          html { scrollbar-width: thin; }
+          body::before {
+            content: "${variant.label}";
+            position: fixed;
+            top: 0.55rem;
+            left: 0.55rem;
+            z-index: 9999;
+            padding: 0.2rem 0.42rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.9);
+            color: #676767;
+            font: 10px/1.2 Inter, sans-serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            pointer-events: none;
+          }
+          ${variant.css}
+        `;
+        doc.head.appendChild(style);
+
+        frame.contentWindow.addEventListener("scroll", () => syncScrollFrom(frame), { passive: true });
+      }
+
+      function syncScrollFrom(sourceFrame) {
+        if (syncing || document.body.dataset.mode !== "all") return;
+
+        const sourceWindow = sourceFrame.contentWindow;
+        const sourceDoc = sourceFrame.contentDocument?.documentElement;
+        if (!sourceWindow || !sourceDoc) return;
+
+        const maxSource = Math.max(1, sourceDoc.scrollHeight - sourceWindow.innerHeight);
+        const ratio = sourceWindow.scrollY / maxSource;
+
+        syncing = true;
+        frames.forEach((frame) => {
+          if (frame === sourceFrame) return;
+
+          const targetWindow = frame.contentWindow;
+          const targetDoc = frame.contentDocument?.documentElement;
+          if (!targetWindow || !targetDoc) return;
+
+          const maxTarget = Math.max(1, targetDoc.scrollHeight - targetWindow.innerHeight);
+          targetWindow.scrollTo(0, ratio * maxTarget);
+        });
+        window.setTimeout(() => {
+          syncing = false;
+        }, 50);
+      }
+
+      function createFrame(variant) {
+        const shell = document.createElement("section");
+        shell.className = "article-lab-frame-shell";
+        shell.dataset.variant = variant.key;
+
+        const label = document.createElement("div");
+        label.className = "article-lab-frame-label";
+        label.textContent = variant.label;
+
+        const frame = document.createElement("iframe");
+        frame.className = "article-lab-frame";
+        frame.src = articleUrl;
+        frame.title = `${variant.label} TOC variant`;
+        frame.loading = "eager";
+
+        frame.addEventListener("load", () => injectFrame(frame, variant));
+
+        shell.append(label, frame);
+        stage.appendChild(shell);
+        shells.set(variant.key, shell);
+        frames.set(variant.key, frame);
+      }
+
+      function applyMode() {
+        const mode = modeSelect.value;
+        const selected = variantSelect.value;
+        document.body.dataset.mode = mode;
+
+        shells.forEach((shell, key) => {
+          shell.classList.toggle("is-selected", mode === "all" || key === selected);
+        });
+      }
+
+      variants.forEach(createFrame);
+      modeSelect.addEventListener("change", applyMode);
+      variantSelect.addEventListener("change", applyMode);
+      applyMode();
+    })();
+  </script>
+</body>
+</html>
