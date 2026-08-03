@@ -198,7 +198,7 @@
 
   <script>
     (() => {
-      const articleUrl = "/notes/continuous-discrete-reinforcement-learning-for-hybrid-control-in-robotics/";
+      const articleUrl = "/building/missile-interceptation-system";
       const stage = document.querySelector("[data-stage]");
       const modeSelect = document.querySelector("[data-mode-select]");
       const variantSelect = document.querySelector("[data-variant-select]");
@@ -217,6 +217,12 @@
           color: var(--contrast-color);
           text-decoration: none;
         }
+        .gutter-note-body {
+          border-radius: 0.12rem;
+          padding: 0.03rem 0.05rem;
+          margin: -0.03rem -0.05rem;
+        }
+        .gutter-note-body,
         .gutter-note-inner {
           position: relative;
           transition:
@@ -237,7 +243,7 @@
           key: "wash",
           label: "Soft wash",
           css: `
-            .gutter-note.is-footnote-linked .gutter-note-inner {
+            .gutter-note-body.is-footnote-linked {
               background: rgba(245, 245, 245, 0.86);
               box-shadow: 0 0 0 0.38rem rgba(245, 245, 245, 0.86);
             }
@@ -251,11 +257,11 @@
           key: "rule",
           label: "Left rule",
           css: `
-            .gutter-note-inner {
+            .gutter-note-body {
               border-left: 0 solid transparent;
               padding-left: 0;
             }
-            .gutter-note.is-footnote-linked .gutter-note-inner {
+            .gutter-note-body.is-footnote-linked {
               border-left: 2px solid var(--backup-text-color);
               padding-left: 0.55rem;
               background: linear-gradient(90deg, rgba(245, 245, 245, 0.74), transparent 82%);
@@ -270,7 +276,7 @@
           key: "outline",
           label: "Outline",
           css: `
-            .gutter-note.is-footnote-linked .gutter-note-inner {
+            .gutter-note-body.is-footnote-linked {
               box-shadow:
                 0 0 0 1px var(--lightest-text),
                 0 0 0 0.45rem rgba(245, 245, 245, 0.6);
@@ -289,7 +295,7 @@
               color: var(--backup-text-color);
               transform: translateX(-0.12rem);
             }
-            .gutter-note.is-footnote-linked .gutter-note-inner {
+            .gutter-note-body.is-footnote-linked {
               background: linear-gradient(90deg, rgba(245, 245, 245, 0.72), transparent 58%);
             }
             sup[role="doc-noteref"] a.footnote.is-footnote-linked {
@@ -331,9 +337,11 @@
           ref.dataset.footnoteHoverLabBound = "true";
           note.dataset.footnoteHoverLabBound = "true";
 
+          const noteBody = note.querySelector(".gutter-note-body");
           const setActive = (active) => {
             ref.classList.toggle("is-footnote-linked", active);
             note.classList.toggle("is-footnote-linked", active);
+            noteBody?.classList.toggle("is-footnote-linked", active);
           };
 
           ref.addEventListener("mouseenter", () => setActive(true));
