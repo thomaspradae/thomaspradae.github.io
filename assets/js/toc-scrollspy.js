@@ -207,17 +207,18 @@
     }
 
     const scrollY = window.scrollY || document.documentElement.scrollTop;
-    state.headingMetrics = Array.from(state.article.querySelectorAll(SEL.headings))
-      .filter((heading) => heading.id)
-      .map((heading) => ({
-        id: heading.id,
-        top: heading.getBoundingClientRect().top + scrollY
-      }));
-
     state.linkById = new Map(
       Array.from(state.toc.querySelectorAll('a[href^="#"]'))
         .map((link) => [decodeURIComponent(link.hash.slice(1)), link])
     );
+    const visibleHeadingIds = new Set(state.linkById.keys());
+
+    state.headingMetrics = Array.from(state.article.querySelectorAll(SEL.headings))
+      .filter((heading) => heading.id && visibleHeadingIds.has(heading.id))
+      .map((heading) => ({
+        id: heading.id,
+        top: heading.getBoundingClientRect().top + scrollY
+      }));
 
     state.toc.querySelectorAll("a.toc-active").forEach((link) => link.classList.remove("toc-active"));
   }

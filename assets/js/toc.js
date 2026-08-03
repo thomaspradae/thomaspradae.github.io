@@ -2,6 +2,8 @@
 
 const MOBILE_POST_MENU_QUERY = "(max-width: 1024px)";
 const DEBUG_MOBILE_POST_MENU = true;
+const DESKTOP_TOC_MAX_ITEMS_FALLBACK = 19;
+const DESKTOP_TOC_MIN_ITEMS = 4;
 
 function slugifyTOC(s) {
   return s.toLowerCase()
@@ -14,6 +16,61 @@ function slugifyTOC(s) {
 function tocWordCount(text) {
   const m = text.trim().match(/\b[\p{L}\p{N}_']+\b/gu);
   return m ? m.length : 0;
+}
+
+function parsePixelValue(value, fallback) {
+  const parsed = Number.parseFloat(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function measureDesktopTOCMaxItems(tocContainer) {
+  const toc = tocContainer?.closest("#left-toc.left-toc");
+  const rail = tocContainer?.closest(".toc-rail");
+
+  if (!toc || !rail || window.matchMedia(MOBILE_POST_MENU_QUERY).matches) {
+    return DESKTOP_TOC_MAX_ITEMS_FALLBACK;
+  }
+
+  const tocStyle = window.getComputedStyle(toc);
+  const rootStyle = window.getComputedStyle(document.documentElement);
+  const rootFontSize = parsePixelValue(rootStyle.fontSize, 16);
+  const railHeight = rail.getBoundingClientRect().height
+    || Math.max(
+      0,
+      toc.getBoundingClientRect().height
+        - parsePixelValue(tocStyle.paddingTop, 0)
+        - parsePixelValue(tocStyle.paddingBottom, 0)
+    );
+
+  if (!railHeight) return DESKTOP_TOC_MAX_ITEMS_FALLBACK;
+
+  const titleItemHeight = 4.5 * rootFontSize;
+  const itemMinHeight = 28;
+  const itemGap = 8;
+  const nonTitleCapacity = Math.floor((railHeight - titleItemHeight) / (itemMinHeight + itemGap));
+
+  return Math.max(
+    DESKTOP_TOC_MIN_ITEMS,
+    Math.min(DESKTOP_TOC_MAX_ITEMS_FALLBACK, 1 + nonTitleCapacity)
+  );
+}
+
+function reduceSectionsToMaxItems(sections, maxItems) {
+  if (!Number.isFinite(maxItems) || sections.length <= maxItems) return sections;
+
+  const hasTitleItem = sections[0]?.level === 1;
+  const titleSection = hasTitleItem ? sections[0] : null;
+  const headingSections = hasTitleItem ? sections.slice(1) : sections;
+
+  for (let maxLevel = 6; maxLevel >= 2; maxLevel -= 1) {
+    const visibleHeadings = headingSections.filter(section => section.level <= maxLevel);
+    const visibleSections = titleSection ? [titleSection, ...visibleHeadings] : visibleHeadings;
+
+    if (visibleSections.length <= maxItems) return visibleSections;
+  }
+
+  const topLevelSections = headingSections.filter(section => section.level <= 2);
+  return titleSection ? [titleSection, ...topLevelSections] : topLevelSections;
 }
 
 function buildSectionModel(article) {
@@ -286,10 +343,14 @@ function buildTOC() {
   if (!article) return;
   const sections = buildSectionModel(article);
   if (!sections.length) return;
+  const desktopSections = reduceSectionsToMaxItems(
+    sections,
+    measureDesktopTOCMaxItems(tocContainer)
+  );
 
   if (tocContainer) {
     tocContainer.innerHTML = "";
-    tocContainer.appendChild(createDesktopTOCList(sections));
+    tocContainer.appendChild(createDesktopTOCList(desktopSections));
     ensureDesktopTOCRailLayers(tocContainer);
     document.dispatchEvent(new CustomEvent("toc:built", { detail: { tocContainer } }));
   }
@@ -297,8 +358,21 @@ function buildTOC() {
   initMobilePostMenu(sections);
 }
 
+let tocResizeRAF = null;
+
+function scheduleTOCRebuild() {
+  if (tocResizeRAF) return;
+
+  tocResizeRAF = requestAnimationFrame(() => {
+    tocResizeRAF = null;
+    buildTOC();
+  });
+}
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", buildTOC);
 } else {
   buildTOC();
 }
+
+window.addEventListener("resize", scheduleTOCRebuild);
