@@ -185,11 +185,11 @@
       <label class="article-lab-control">
         Variant
         <select data-variant-select>
-          <option value="current">Current</option>
-          <option value="centered">Centered 2px</option>
-          <option value="thin">1px snake</option>
-          <option value="wideGrey">2px grey rail</option>
-          <option value="soft">Softer black</option>
+          <option value="black">Black</option>
+          <option value="tagDefault">#444444</option>
+          <option value="backup">#676767</option>
+          <option value="backupV2">#8D8D8D</option>
+          <option value="backupV3">#B3B3B3</option>
         </select>
       </label>
     </div>
@@ -207,41 +207,40 @@
 
       const variants = [
         {
-          key: "current",
-          label: "Current",
+          key: "black",
+          label: "Black",
           css: ""
         },
         {
-          key: "centered",
-          label: "Centered 2px",
+          key: "tagDefault",
+          label: "#444444",
           css: `
-            .post-stage > #left-toc.left-toc,
-            .post-stage > #left-toc.left-toc .toc-rail { overflow: visible !important; }
             .post-stage > #left-toc.left-toc .toc-snake,
-            .post-stage > #left-toc.left-toc .toc-item::after { left: -0.5px !important; }
+            .post-stage > #left-toc.left-toc .toc-item::after { background: var(--tag-accent-default) !important; }
           `
         },
         {
-          key: "thin",
-          label: "1px snake",
+          key: "backup",
+          label: "#676767",
           css: `
             .post-stage > #left-toc.left-toc .toc-snake,
-            .post-stage > #left-toc.left-toc .toc-item::after { width: 1px !important; }
+            .post-stage > #left-toc.left-toc .toc-item::after { background: var(--backup-text-color) !important; }
           `
         },
         {
-          key: "wideGrey",
-          label: "2px grey rail",
+          key: "backupV2",
+          label: "#8D8D8D",
           css: `
-            .post-stage > #left-toc.left-toc .toc-item::before { width: 2px !important; }
+            .post-stage > #left-toc.left-toc .toc-snake,
+            .post-stage > #left-toc.left-toc .toc-item::after { background: var(--backup-text-color-v2) !important; }
           `
         },
         {
-          key: "soft",
-          label: "Softer black",
+          key: "backupV3",
+          label: "#B3B3B3",
           css: `
             .post-stage > #left-toc.left-toc .toc-snake,
-            .post-stage > #left-toc.left-toc .toc-item::after { background: #111111 !important; }
+            .post-stage > #left-toc.left-toc .toc-item::after { background: var(--backup-text-color-v3) !important; }
           `
         }
       ];
