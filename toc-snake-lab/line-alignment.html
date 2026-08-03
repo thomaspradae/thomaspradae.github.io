@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOC Snake Lab - Line Alignment</title>
+  <link rel="icon" href="./assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./fugg2.css">
+  <style>
+    body.line-alignment-lab {
+      margin: 0;
+      background: var(--background-color);
+      color: var(--backup-text-color);
+    }
+
+    .line-lab-shell {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 4.5rem 2rem 5rem;
+    }
+
+    .line-lab-header {
+      max-width: 44rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .line-lab-kicker,
+    .line-lab-card-label,
+    .line-lab-spec {
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .line-lab-kicker {
+      margin: 0 0 0.5rem;
+      font-size: 0.72rem;
+      color: var(--backup-text-color-v2);
+    }
+
+    .line-lab-header h1 {
+      margin: 0 0 1rem;
+      color: var(--contrast-color);
+    }
+
+    .line-lab-header p {
+      margin: 0 0 0.75rem;
+    }
+
+    .line-lab-back:any-link {
+      display: inline-flex;
+      margin-bottom: 2rem;
+      color: var(--backup-text-color-v2);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .line-lab-back:hover {
+      color: var(--contrast-color);
+      text-decoration: none;
+    }
+
+    .line-lab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .line-lab-card {
+      --line-x: 28px;
+      --grey-width: 1px;
+      --snake-width: 2px;
+      --snake-offset: 0px;
+      --snake-color: var(--contrast-color);
+      --zoom-grey-width: 8px;
+      --zoom-snake-width: 16px;
+      --zoom-snake-offset: 0px;
+      border: 1px solid var(--lightest-text);
+      background:
+        radial-gradient(circle at top right, rgba(0, 0, 0, 0.025), transparent 38%),
+        #ffffff;
+      padding: 1rem;
+      min-height: 26rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .line-lab-card-label {
+      margin: 0;
+      font-size: 0.66rem;
+      color: var(--backup-text-color-v2);
+    }
+
+    .line-lab-card h2 {
+      margin: 0;
+      color: var(--contrast-color);
+      font-size: 1.08rem;
+    }
+
+    .line-lab-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .line-lab-spec {
+      margin-top: auto;
+      padding-top: 0.2rem;
+      font-size: 0.62rem;
+      line-height: 1.45;
+      color: var(--backup-text-color-v3);
+    }
+
+    .line-preview {
+      position: relative;
+      height: 15rem;
+      border: 1px solid var(--lightest-text);
+      background:
+        linear-gradient(90deg, transparent 0 27px, rgba(0, 0, 0, 0.035) 27px 29px, transparent 29px),
+        linear-gradient(180deg, rgba(248, 248, 248, 0.85), #ffffff);
+      overflow: hidden;
+    }
+
+    .line-preview-item {
+      position: absolute;
+      left: var(--line-x);
+      width: 9rem;
+      border-left: var(--grey-width) solid #d8d8d8;
+      padding-left: 0.75rem;
+      color: var(--backup-text-color-v3);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.9rem;
+      line-height: 1.2;
+    }
+
+    .line-preview-item:nth-child(1) {
+      top: 1rem;
+      height: 3.25rem;
+    }
+
+    .line-preview-item:nth-child(2) {
+      top: 4.95rem;
+      height: 5.25rem;
+      color: var(--contrast-color);
+    }
+
+    .line-preview-item:nth-child(3) {
+      top: 10.9rem;
+      height: 2.7rem;
+    }
+
+    .line-preview-snake {
+      position: absolute;
+      left: calc(var(--line-x) + var(--snake-offset));
+      top: 4.95rem;
+      width: var(--snake-width);
+      height: 5.25rem;
+      background: var(--snake-color);
+      pointer-events: none;
+    }
+
+    .line-zoom {
+      position: relative;
+      height: 4.5rem;
+      border: 1px solid var(--lightest-text);
+      background:
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.045) 0 1px, transparent 1px 8px),
+        #fbfbfb;
+      overflow: hidden;
+      --zoom-line-x: 50%;
+    }
+
+    .line-zoom::before,
+    .line-zoom::after {
+      content: "";
+      position: absolute;
+      top: 0.85rem;
+      bottom: 0.85rem;
+    }
+
+    .line-zoom::before {
+      left: var(--zoom-line-x);
+      width: var(--zoom-grey-width);
+      background: #d8d8d8;
+    }
+
+    .line-zoom::after {
+      left: calc(var(--zoom-line-x) + var(--zoom-snake-offset));
+      width: var(--zoom-snake-width);
+      background: var(--snake-color);
+    }
+
+    .line-zoom-label {
+      position: absolute;
+      left: 0.7rem;
+      bottom: 0.55rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      color: var(--backup-text-color-v3);
+    }
+
+    .line-lab-card[data-variant="centered"] {
+      --snake-offset: -0.5px;
+      --zoom-snake-offset: -4px;
+    }
+
+    .line-lab-card[data-variant="thin"] {
+      --snake-width: 1px;
+      --zoom-snake-width: 8px;
+    }
+
+    .line-lab-card[data-variant="wide-grey"] {
+      --grey-width: 2px;
+      --zoom-grey-width: 16px;
+    }
+
+    .line-lab-card[data-variant="soft"] {
+      --snake-color: #111111;
+    }
+
+    @media (max-width: 700px) {
+      .line-lab-shell {
+        padding: 3.5rem 1rem 4rem;
+      }
+    }
+  </style>
+</head>
+<body class="line-alignment-lab">
+  <main class="line-lab-shell">
+    <a class="line-lab-back" href="./index.html">Back to TOC Snake Lab</a>
+
+    <header class="line-lab-header">
+      <p class="line-lab-kicker">Line Alignment Test</p>
+      <h1>Black snake versus grey rail edge</h1>
+      <p>
+        This page compares the tiny horizontal relationship between the grey TOC segment line and
+        the black moving snake. The lower strip in each card is an 8x zoom of the same line widths.
+      </p>
+      <p>
+        Production CSS is not changed here. These are static visual sketches for choosing the cleanest
+        alignment.
+      </p>
+    </header>
+
+    <section class="line-lab-grid" aria-label="TOC line alignment variants">
+      <article class="line-lab-card" data-variant="current">
+        <p class="line-lab-card-label">01 Current</p>
+        <h2>Left edges aligned</h2>
+        <div class="line-preview" aria-hidden="true">
+          <div class="line-preview-item">Title block</div>
+          <div class="line-preview-item">Active section</div>
+          <div class="line-preview-item">Next section</div>
+          <div class="line-preview-snake"></div>
+        </div>
+        <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
+        <p>The exact current geometry: grey starts at x=0 and black starts at x=0, but black is wider.</p>
+        <p class="line-lab-spec">grey 1px, black 2px, black offset 0px</p>
+      </article>
+
+      <article class="line-lab-card" data-variant="centered">
+        <p class="line-lab-card-label">02 Centered</p>
+        <h2>Centers aligned</h2>
+        <div class="line-preview" aria-hidden="true">
+          <div class="line-preview-item">Title block</div>
+          <div class="line-preview-item">Active section</div>
+          <div class="line-preview-item">Next section</div>
+          <div class="line-preview-snake"></div>
+        </div>
+        <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
+        <p>Same 2px black weight, shifted half a pixel left so the grey and black center lines match.</p>
+        <p class="line-lab-spec">grey 1px, black 2px, black offset -0.5px</p>
+      </article>
+
+      <article class="line-lab-card" data-variant="thin">
+        <p class="line-lab-card-label">03 Thin Snake</p>
+        <h2>Equal 1px lines</h2>
+        <div class="line-preview" aria-hidden="true">
+          <div class="line-preview-item">Title block</div>
+          <div class="line-preview-item">Active section</div>
+          <div class="line-preview-item">Next section</div>
+          <div class="line-preview-snake"></div>
+        </div>
+        <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
+        <p>Removes the offset completely, but the moving marker loses some of its current visual weight.</p>
+        <p class="line-lab-spec">grey 1px, black 1px, black offset 0px</p>
+      </article>
+
+      <article class="line-lab-card" data-variant="wide-grey">
+        <p class="line-lab-card-label">04 Wide Grey</p>
+        <h2>Equal 2px lines</h2>
+        <div class="line-preview" aria-hidden="true">
+          <div class="line-preview-item">Title block</div>
+          <div class="line-preview-item">Active section</div>
+          <div class="line-preview-item">Next section</div>
+          <div class="line-preview-snake"></div>
+        </div>
+        <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
+        <p>Also removes the offset, but the inactive rail becomes visually heavier everywhere.</p>
+        <p class="line-lab-spec">grey 2px, black 2px, black offset 0px</p>
+      </article>
+
+      <article class="line-lab-card" data-variant="soft">
+        <p class="line-lab-card-label">05 Softer Black</p>
+        <h2>Keep geometry, soften contrast</h2>
+        <div class="line-preview" aria-hidden="true">
+          <div class="line-preview-item">Title block</div>
+          <div class="line-preview-item">Active section</div>
+          <div class="line-preview-item">Next section</div>
+          <div class="line-preview-snake"></div>
+        </div>
+        <div class="line-zoom" aria-hidden="true"><span class="line-zoom-label">8x edge view</span></div>
+        <p>Same left-edge offset as current, but a less absolute black to see if the shadow feeling drops.</p>
+        <p class="line-lab-spec">grey 1px, black 2px, black offset 0px, black #111</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
