@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOC Snake Lab - Footnote Hover Comparison</title>
+  <link rel="icon" href="./assets/images/resources/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./fugg2.css">
+  <style>
+    body.footnote-hover-lab {
+      margin: 0;
+      background: var(--background-color);
+      color: var(--backup-text-color);
+      overflow: hidden;
+    }
+
+    .footnote-lab-topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      min-height: 4.75rem;
+      border-bottom: 1px solid var(--lightest-text);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .footnote-lab-topbar-inner {
+      height: 100%;
+      padding: 0.85rem 1rem;
+      display: grid;
+      grid-template-columns: minmax(12rem, 1fr) auto auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footnote-lab-title {
+      min-width: 0;
+    }
+
+    .footnote-lab-title a:any-link {
+      display: inline-flex;
+      margin-bottom: 0.25rem;
+      color: var(--backup-text-color-v2);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+    }
+
+    .footnote-lab-title a:hover {
+      color: var(--contrast-color);
+      text-decoration: none;
+    }
+
+    .footnote-lab-title h1 {
+      margin: 0;
+      color: var(--contrast-color);
+      font-size: 1rem;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .footnote-lab-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      color: var(--backup-text-color-v2);
+      white-space: nowrap;
+    }
+
+    .footnote-lab-control select {
+      min-width: 10rem;
+      border: 1px solid var(--lightest-text);
+      background: #ffffff;
+      color: var(--contrast-color);
+      font: inherit;
+      padding: 0.42rem 0.5rem;
+    }
+
+    .footnote-lab-stage {
+      height: calc(100vh - 4.75rem);
+      margin-top: 4.75rem;
+      display: grid;
+      gap: 1px;
+      background: var(--lightest-text);
+    }
+
+    body[data-mode="all"] .footnote-lab-stage {
+      grid-template-columns: repeat(4, minmax(24rem, 1fr));
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    body[data-mode="single"] .footnote-lab-stage {
+      grid-template-columns: minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .footnote-lab-frame-shell {
+      position: relative;
+      min-width: 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    body[data-mode="single"] .footnote-lab-frame-shell:not(.is-selected) {
+      display: none;
+    }
+
+    .footnote-lab-frame-label {
+      position: absolute;
+      left: 0.7rem;
+      top: 0.7rem;
+      z-index: 2;
+      padding: 0.22rem 0.42rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--backup-text-color-v2);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .footnote-lab-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #ffffff;
+    }
+
+    @media (max-width: 800px) {
+      body.footnote-hover-lab {
+        overflow: auto;
+      }
+
+      .footnote-lab-topbar {
+        position: static;
+      }
+
+      .footnote-lab-topbar-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footnote-lab-stage {
+        margin-top: 0;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      body[data-mode="all"] .footnote-lab-stage,
+      body[data-mode="single"] .footnote-lab-stage {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+
+      .footnote-lab-frame-shell {
+        height: 88vh;
+      }
+    }
+  </style>
+</head>
+<body class="footnote-hover-lab" data-mode="all">
+  <header class="footnote-lab-topbar">
+    <div class="footnote-lab-topbar-inner">
+      <div class="footnote-lab-title">
+        <a href="./index.html">Back to TOC Snake Lab</a>
+        <h1>Actual Article Footnote Hover Comparison</h1>
+      </div>
+
+      <label class="footnote-lab-control">
+        View
+        <select data-mode-select>
+          <option value="all">All side by side</option>
+          <option value="single">Replace current with selected</option>
+        </select>
+      </label>
+
+      <label class="footnote-lab-control">
+        Variant
+        <select data-variant-select>
+          <option value="wash">Soft wash</option>
+          <option value="rule">Left rule</option>
+          <option value="outline">Outline</option>
+          <option value="number">Number pulse</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="footnote-lab-stage" data-stage></main>
+
+  <script>
+    (() => {
+      const articleUrl = "/notes/continuous-discrete-reinforcement-learning-for-hybrid-control-in-robotics/";
+      const stage = document.querySelector("[data-stage]");
+      const modeSelect = document.querySelector("[data-mode-select]");
+      const variantSelect = document.querySelector("[data-variant-select]");
+      if (!stage || !modeSelect || !variantSelect) return;
+
+      const baseCss = `
+        sup[role="doc-noteref"] a.footnote {
+          border-radius: 0.18rem;
+          transition:
+            background 0.18s ease,
+            color 0.18s ease,
+            box-shadow 0.18s ease,
+            text-decoration-color 0.18s ease;
+        }
+        sup[role="doc-noteref"] a.footnote.is-footnote-linked {
+          color: var(--contrast-color);
+          text-decoration: none;
+        }
+        .gutter-note-inner {
+          position: relative;
+          transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.2s ease;
+        }
+        .gutter-note-number {
+          transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+        }
+      `;
+
+      const variants = [
+        {
+          key: "wash",
+          label: "Soft wash",
+          css: `
+            .gutter-note.is-footnote-linked .gutter-note-inner {
+              background: rgba(245, 245, 245, 0.86);
+              box-shadow: 0 0 0 0.38rem rgba(245, 245, 245, 0.86);
+            }
+            sup[role="doc-noteref"] a.footnote.is-footnote-linked {
+              background: rgba(245, 245, 245, 0.95);
+              box-shadow: 0 0 0 0.12rem rgba(245, 245, 245, 0.95);
+            }
+          `
+        },
+        {
+          key: "rule",
+          label: "Left rule",
+          css: `
+            .gutter-note-inner {
+              border-left: 0 solid transparent;
+              padding-left: 0;
+            }
+            .gutter-note.is-footnote-linked .gutter-note-inner {
+              border-left: 2px solid var(--backup-text-color);
+              padding-left: 0.55rem;
+              background: linear-gradient(90deg, rgba(245, 245, 245, 0.74), transparent 82%);
+            }
+            sup[role="doc-noteref"] a.footnote.is-footnote-linked {
+              background: rgba(224, 224, 224, 0.42);
+              box-shadow: 0 0 0 0.12rem rgba(224, 224, 224, 0.42);
+            }
+          `
+        },
+        {
+          key: "outline",
+          label: "Outline",
+          css: `
+            .gutter-note.is-footnote-linked .gutter-note-inner {
+              box-shadow:
+                0 0 0 1px var(--lightest-text),
+                0 0 0 0.45rem rgba(245, 245, 245, 0.6);
+              background: rgba(255, 255, 255, 0.78);
+            }
+            sup[role="doc-noteref"] a.footnote.is-footnote-linked {
+              box-shadow: 0 0 0 1px var(--backup-text-color-v3);
+            }
+          `
+        },
+        {
+          key: "number",
+          label: "Number pulse",
+          css: `
+            .gutter-note.is-footnote-linked .gutter-note-number {
+              color: var(--backup-text-color);
+              transform: translateX(-0.12rem);
+            }
+            .gutter-note.is-footnote-linked .gutter-note-inner {
+              background: linear-gradient(90deg, rgba(245, 245, 245, 0.72), transparent 58%);
+            }
+            sup[role="doc-noteref"] a.footnote.is-footnote-linked {
+              background: rgba(245, 245, 245, 0.9);
+              box-shadow: 0 0 0 0.12rem rgba(245, 245, 245, 0.9);
+            }
+          `
+        }
+      ];
+
+      const shells = new Map();
+      const frames = new Map();
+      let syncing = false;
+
+      function noteNumberFromRef(ref) {
+        const href = ref.getAttribute("href") || "";
+        const id = decodeURIComponent(href.slice(1));
+        const match = id.match(/^fn:(.+)$/);
+        return match ? match[1] : ref.textContent.trim();
+      }
+
+      function bindFootnotePairs(doc) {
+        const refs = Array.from(doc.querySelectorAll('sup[role="doc-noteref"] a.footnote[href^="#"]'));
+        const notes = Array.from(doc.querySelectorAll(".gutter-note"));
+        if (!refs.length || !notes.length) return false;
+
+        const notesByNumber = new Map();
+        notes.forEach((note) => {
+          const number = note.querySelector(".gutter-note-number")?.textContent.trim();
+          if (number) notesByNumber.set(number, note);
+        });
+
+        refs.forEach((ref) => {
+          if (ref.dataset.footnoteHoverLabBound === "true") return;
+
+          const note = notesByNumber.get(noteNumberFromRef(ref));
+          if (!note) return;
+
+          ref.dataset.footnoteHoverLabBound = "true";
+          note.dataset.footnoteHoverLabBound = "true";
+
+          const setActive = (active) => {
+            ref.classList.toggle("is-footnote-linked", active);
+            note.classList.toggle("is-footnote-linked", active);
+          };
+
+          ref.addEventListener("mouseenter", () => setActive(true));
+          ref.addEventListener("mouseleave", () => setActive(false));
+          ref.addEventListener("focus", () => setActive(true));
+          ref.addEventListener("blur", () => setActive(false));
+          note.addEventListener("mouseenter", () => setActive(true));
+          note.addEventListener("mouseleave", () => setActive(false));
+          note.addEventListener("focusin", () => setActive(true));
+          note.addEventListener("focusout", () => setActive(false));
+        });
+
+        return true;
+      }
+
+      function injectFrame(frame, variant) {
+        const doc = frame.contentDocument;
+        if (!doc) return;
+
+        const existing = doc.getElementById("footnote-hover-lab-style");
+        existing?.remove();
+
+        const style = doc.createElement("style");
+        style.id = "footnote-hover-lab-style";
+        style.textContent = `
+          html { scrollbar-width: thin; }
+          body::before {
+            content: "${variant.label}";
+            position: fixed;
+            top: 0.55rem;
+            left: 0.55rem;
+            z-index: 9999;
+            padding: 0.2rem 0.42rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.9);
+            color: #676767;
+            font: 10px/1.2 Inter, sans-serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            pointer-events: none;
+          }
+          ${baseCss}
+          ${variant.css}
+        `;
+        doc.head.appendChild(style);
+
+        let attempts = 0;
+        const retry = () => {
+          attempts += 1;
+          if (bindFootnotePairs(doc) || attempts > 40) return;
+          window.setTimeout(retry, 100);
+        };
+        retry();
+
+        frame.contentWindow.addEventListener("scroll", () => syncScrollFrom(frame), { passive: true });
+      }
+
+      function syncScrollFrom(sourceFrame) {
+        if (syncing || document.body.dataset.mode !== "all") return;
+
+        const sourceWindow = sourceFrame.contentWindow;
+        const sourceDoc = sourceFrame.contentDocument?.documentElement;
+        if (!sourceWindow || !sourceDoc) return;
+
+        const maxSource = Math.max(1, sourceDoc.scrollHeight - sourceWindow.innerHeight);
+        const ratio = sourceWindow.scrollY / maxSource;
+
+        syncing = true;
+        frames.forEach((frame) => {
+          if (frame === sourceFrame) return;
+
+          const targetWindow = frame.contentWindow;
+          const targetDoc = frame.contentDocument?.documentElement;
+          if (!targetWindow || !targetDoc) return;
+
+          const maxTarget = Math.max(1, targetDoc.scrollHeight - targetWindow.innerHeight);
+          targetWindow.scrollTo(0, ratio * maxTarget);
+        });
+        window.setTimeout(() => {
+          syncing = false;
+        }, 50);
+      }
+
+      function createFrame(variant) {
+        const shell = document.createElement("section");
+        shell.className = "footnote-lab-frame-shell";
+        shell.dataset.variant = variant.key;
+
+        const label = document.createElement("div");
+        label.className = "footnote-lab-frame-label";
+        label.textContent = variant.label;
+
+        const frame = document.createElement("iframe");
+        frame.className = "footnote-lab-frame";
+        frame.src = articleUrl;
+        frame.title = `${variant.label} footnote hover variant`;
+        frame.loading = "eager";
+
+        frame.addEventListener("load", () => injectFrame(frame, variant));
+
+        shell.append(label, frame);
+        stage.appendChild(shell);
+        shells.set(variant.key, shell);
+        frames.set(variant.key, frame);
+      }
+
+      function applyMode() {
+        const mode = modeSelect.value;
+        const selected = variantSelect.value;
+        document.body.dataset.mode = mode;
+
+        shells.forEach((shell, key) => {
+          shell.classList.toggle("is-selected", mode === "all" || key === selected);
+        });
+      }
+
+      variants.forEach(createFrame);
+      modeSelect.addEventListener("change", applyMode);
+      variantSelect.addEventListener("change", applyMode);
+      applyMode();
+    })();
+  </script>
+</body>
+</html>
