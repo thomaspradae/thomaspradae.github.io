@@ -218,6 +218,7 @@
           text-decoration: none;
         }
         .gutter-note-body {
+          display: block;
           border-radius: 0.12rem;
           padding: 0.03rem 0.05rem;
           margin: -0.03rem -0.05rem;
@@ -230,6 +231,9 @@
             border-color 0.2s ease,
             box-shadow 0.2s ease,
             transform 0.2s ease;
+        }
+        .gutter-note-body p {
+          transition: color 0.2s ease;
         }
         .gutter-note-number {
           transition:
@@ -244,12 +248,14 @@
           label: "Soft wash",
           css: `
             .gutter-note-body.is-footnote-linked {
-              background: rgba(245, 245, 245, 0.86);
-              box-shadow: 0 0 0 0.38rem rgba(245, 245, 245, 0.86);
+              background: rgba(224, 224, 224, 0.36);
+              box-shadow:
+                0 0 0 0.42rem rgba(245, 245, 245, 0.95),
+                inset 0 0 0 1px rgba(224, 224, 224, 0.4);
             }
             sup[role="doc-noteref"] a.footnote.is-footnote-linked {
-              background: rgba(245, 245, 245, 0.95);
-              box-shadow: 0 0 0 0.12rem rgba(245, 245, 245, 0.95);
+              background: rgba(224, 224, 224, 0.45);
+              box-shadow: 0 0 0 0.12rem rgba(224, 224, 224, 0.45);
             }
           `
         },
@@ -258,13 +264,13 @@
           label: "Left rule",
           css: `
             .gutter-note-body {
-              border-left: 0 solid transparent;
-              padding-left: 0;
+              padding-left: 0.65rem;
             }
             .gutter-note-body.is-footnote-linked {
-              border-left: 2px solid var(--backup-text-color);
-              padding-left: 0.55rem;
-              background: linear-gradient(90deg, rgba(245, 245, 245, 0.74), transparent 82%);
+              background: rgba(245, 245, 245, 0.62);
+              box-shadow:
+                inset 2px 0 0 var(--backup-text-color),
+                0 0 0 0.34rem rgba(245, 245, 245, 0.72);
             }
             sup[role="doc-noteref"] a.footnote.is-footnote-linked {
               background: rgba(224, 224, 224, 0.42);
@@ -292,11 +298,15 @@
           label: "Number pulse",
           css: `
             .gutter-note.is-footnote-linked .gutter-note-number {
-              color: var(--backup-text-color);
-              transform: translateX(-0.12rem);
+              color: var(--contrast-color);
+              transform: translateX(-0.12rem) scale(1.08);
             }
             .gutter-note-body.is-footnote-linked {
-              background: linear-gradient(90deg, rgba(245, 245, 245, 0.72), transparent 58%);
+              background: rgba(245, 245, 245, 0.78);
+              box-shadow: 0 0 0 0.32rem rgba(245, 245, 245, 0.78);
+            }
+            .gutter-note-body.is-footnote-linked p {
+              color: var(--backup-text-color);
             }
             sup[role="doc-noteref"] a.footnote.is-footnote-linked {
               background: rgba(245, 245, 245, 0.9);
@@ -329,10 +339,12 @@
         });
 
         refs.forEach((ref) => {
-          if (ref.dataset.footnoteHoverLabBound === "true") return;
-
           const note = notesByNumber.get(noteNumberFromRef(ref));
           if (!note) return;
+          if (
+            ref.dataset.footnoteHoverLabBound === "true" &&
+            note.dataset.footnoteHoverLabBound === "true"
+          ) return;
 
           ref.dataset.footnoteHoverLabBound = "true";
           note.dataset.footnoteHoverLabBound = "true";
@@ -354,6 +366,16 @@
           note.addEventListener("focusout", () => setActive(false));
         });
 
+        return true;
+      }
+
+      function observeFootnotePairs(doc) {
+        const gutter = doc.querySelector(".right-gutter-inner");
+        if (!gutter || gutter.dataset.footnoteHoverLabObserved === "true") return false;
+
+        gutter.dataset.footnoteHoverLabObserved = "true";
+        const observer = new MutationObserver(() => bindFootnotePairs(doc));
+        observer.observe(gutter, { childList: true, subtree: true });
         return true;
       }
 
@@ -391,7 +413,9 @@
         let attempts = 0;
         const retry = () => {
           attempts += 1;
-          if (bindFootnotePairs(doc) || attempts > 40) return;
+          const bound = bindFootnotePairs(doc);
+          const observed = observeFootnotePairs(doc);
+          if ((bound && observed) || attempts > 40) return;
           window.setTimeout(retry, 100);
         };
         retry();
