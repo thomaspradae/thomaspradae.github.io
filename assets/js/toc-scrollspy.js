@@ -45,9 +45,11 @@
       railMetrics: null,
       titleMetrics: null,
       headingMetrics: [],
+      sectionSpans: [],
       linkById: new Map(),
       activeHeadingId: null,
-      snakeTop: null
+      snakeTop: null,
+      snakeHeight: null
     };
   }
 
@@ -90,43 +92,60 @@
 
     const railRect = state.rail.getBoundingClientRect();
     const railHeight = railRect.height;
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    const mainRect = state.main.getBoundingClientRect();
-
-    const articleTop = mainRect.top + scrollY;
-    const articleHeight = state.main.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollStart = articleTop;
-    const scrollEnd = articleTop + articleHeight - viewportHeight;
-    const scrollRange = Math.max(1, scrollEnd - scrollStart);
-
-    const snakeHeight = Math.min(
-      railHeight,
-      Math.max(20, (viewportHeight / Math.max(1, articleHeight)) * railHeight)
+    const cachedByElement = new Map(
+      state.cachedMetrics.map((metric) => [metric.element, metric])
     );
+    const sectionMap = state.sectionSpans
+      .map((span) => {
+        const metric = cachedByElement.get(span.element);
+        if (!metric || metric.height <= 0) return null;
 
-    const maxTop = Math.max(0, railHeight - snakeHeight);
+        return {
+          id: span.id,
+          start: span.start,
+          end: span.end,
+          top: metric.top,
+          bottom: metric.bottom,
+          height: metric.height
+        };
+      })
+      .filter(Boolean);
+    const first = sectionMap[0];
+    const last = sectionMap[sectionMap.length - 1];
 
     state.railMetrics = {
       railHeight,
-      articleTop,
-      articleHeight,
-      viewportHeight,
-      scrollStart,
-      scrollEnd,
-      scrollRange,
-      snakeHeight,
-      maxTop
+      sectionMap,
+      domainStart: first?.start ?? 0,
+      domainEnd: last?.end ?? 0
     };
   }
 
-  function computeSnakeTop() {
-    if (!state?.railMetrics) return 0;
+  function mapDocumentYToRailY(documentY) {
+    if (!state?.railMetrics?.sectionMap.length) return 0;
 
+    const { domainStart, domainEnd, sectionMap } = state.railMetrics;
+    const clampedY = Math.max(domainStart, Math.min(domainEnd, documentY));
+    const section = sectionMap.find((candidate) => clampedY <= candidate.end) || sectionMap[sectionMap.length - 1];
+    const sectionProgress = (clampedY - section.start) / Math.max(1, section.end - section.start);
+
+    return section.top + (sectionProgress * section.height);
+  }
+
+  function computeSnakeBox() {
+    if (!state?.railMetrics) return { top: 0, height: 20 };
+
+    const { railHeight } = state.railMetrics;
     const scrollY = window.scrollY || document.documentElement.scrollTop;
-    const { scrollStart, scrollRange, maxTop } = state.railMetrics;
-    const progress = Math.max(0, Math.min(1, (scrollY - scrollStart) / scrollRange));
-    return progress * maxTop;
+    const viewportTop = scrollY;
+    const viewportBottom = scrollY + window.innerHeight;
+    const mappedTop = mapDocumentYToRailY(viewportTop);
+    const mappedBottom = mapDocumentYToRailY(viewportBottom);
+    const mappedHeight = Math.max(0, mappedBottom - mappedTop);
+    const height = Math.min(railHeight, Math.max(20, mappedHeight));
+    const top = Math.max(0, Math.min(railHeight - height, mappedTop));
+
+    return { top, height };
   }
 
   function measureCachedMetrics() {
@@ -223,6 +242,60 @@
     state.toc.querySelectorAll("a.toc-active").forEach((link) => link.classList.remove("toc-active"));
   }
 
+  function measureSectionSpans() {
+    if (!state?.main || !state.article || !state.tocItemEls.length) {
+      if (state) state.sectionSpans = [];
+      return;
+    }
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const mainRect = state.main.getBoundingClientRect();
+    const articleRect = state.article.getBoundingClientRect();
+    const postNav = state.article.querySelector(".post-nav");
+    const postNavRect = postNav?.getBoundingClientRect();
+    const mainTop = mainRect.top + scrollY;
+    const contentBottom = (postNavRect ? postNavRect.top : articleRect.bottom) + scrollY;
+
+    const spans = state.tocItemEls
+      .map((element) => {
+        const id = element.dataset.target;
+        const target = id ? document.getElementById(id) : null;
+        const targetRect = target?.getBoundingClientRect();
+        const start = targetRect ? targetRect.top + scrollY : mainTop;
+
+        return {
+          element,
+          id,
+          start,
+          end: null,
+          span: 1
+        };
+      })
+      .filter((span) => Number.isFinite(span.start))
+      .sort((a, b) => a.start - b.start);
+
+    spans.forEach((span, index) => {
+      const nextStart = spans[index + 1]?.start;
+      const end = nextStart ?? contentBottom;
+
+      span.end = Math.max(span.start + 1, end);
+      span.span = span.end - span.start;
+    });
+
+    state.sectionSpans = spans;
+  }
+
+  function applySectionFlex() {
+    if (!state?.sectionSpans?.length) return;
+
+    state.sectionSpans.forEach((span) => {
+      if (span.element.classList.contains("toc-title-item")) return;
+
+      span.element.style.flexGrow = String(Math.max(1, span.span / 100));
+      span.element.style.flexBasis = "0px";
+    });
+  }
+
   function measureTitleMetrics() {
     if (!state?.title) {
       if (state) state.titleMetrics = null;
@@ -239,22 +312,29 @@
   }
 
   function updateRailGeometry() {
-    if (!state?.snake || !state?.railMetrics) return;
-
-    const nextHeight = `${state.railMetrics.snakeHeight}px`;
-    if (state.snake.style.height !== nextHeight) {
-      state.snake.style.height = nextHeight;
-    }
+    updateRailProgress();
   }
 
   function updateRailProgress() {
     if (!state?.snake || !state?.railMetrics) return;
 
-    const snakeTop = computeSnakeTop();
-    if (state.snakeTop !== null && Math.abs(state.snakeTop - snakeTop) < 0.1) return;
+    const snakeBox = computeSnakeBox();
+    const nextHeight = `${snakeBox.height}px`;
+    const heightChanged = state.snakeHeight === null || Math.abs(state.snakeHeight - snakeBox.height) >= 0.1;
+    const topChanged = state.snakeTop === null || Math.abs(state.snakeTop - snakeBox.top) >= 0.1;
 
-    state.snakeTop = snakeTop;
-    state.snake.style.transform = `translate3d(0, ${snakeTop}px, 0)`;
+    if (!heightChanged && !topChanged) return;
+
+    state.snakeHeight = snakeBox.height;
+    state.snakeTop = snakeBox.top;
+
+    if (heightChanged && state.snake.style.height !== nextHeight) {
+      state.snake.style.height = nextHeight;
+    }
+
+    if (topChanged) {
+      state.snake.style.transform = `translate3d(0, ${snakeBox.top}px, 0)`;
+    }
   }
 
   function updateActiveLink() {
@@ -320,11 +400,13 @@
     state = collectState();
     if (!state) return;
 
-    measureCachedMetrics();
-    renderGapCovers();
     measureTitleMetrics();
     measureHeadingMetrics();
+    measureSectionSpans();
+    applySectionFlex();
+    measureCachedMetrics();
     measureRailMetrics();
+    renderGapCovers();
     updateRailGeometry();
     observePendingImages();
     bindObservers();
