@@ -2867,7 +2867,7 @@ div[class^="language-"].highlighter-rouge,
   top: 0;
   width: 2px;
   height: 20px;
-  background: var(--contrast-color);
+  background: var(--backup-text-color-v3);
   opacity: 1;
   pointer-events: none;
   z-index: 0;
@@ -2905,7 +2905,7 @@ div[class^="language-"].highlighter-rouge,
   top: 0;
   height: 0;
   width: 2px;
-  background: var(--contrast-color);
+  background: var(--backup-text-color-v3);
   pointer-events: none;
   z-index: 0;
   opacity: 0;

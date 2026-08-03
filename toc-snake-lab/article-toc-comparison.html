@@ -275,6 +275,15 @@
             text-transform: uppercase;
             pointer-events: none;
           }
+          .post-stage > #left-toc.left-toc .toc-item::before {
+            transition:
+              width 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.35s ease,
+              opacity 0.28s ease;
+          }
+          .post-stage > #left-toc.left-toc .toc-item:hover::before {
+            width: 3px;
+          }
           ${variant.css}
         `;
         doc.head.appendChild(style);
