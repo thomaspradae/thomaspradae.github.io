@@ -201,14 +201,7 @@ layout: default
 
                   <p class="post-meta-section-text">
                     <a class="post-meta-section-link" href="{{ post_type_url | relative_url }}">
-                      <span class="post-meta-section-chip">
-                        <img
-                          src="{{ post_type_icon }}"
-                          alt=""
-                          class="post-meta-section-icon"
-                          aria-hidden="true">
-                        <span>{{ post_type_label }}</span>
-                      </span>
+                      {% include archive_type_badge.html collection=post_type_key %}
                     </a>
                   </p>
                 </div>
@@ -266,14 +259,7 @@ layout: default
 
                   <p class="post-meta-section-text">
                     <a class="post-meta-section-link" href="{{ post_type_url | relative_url }}">
-                      <span class="post-meta-section-chip">
-                        <img
-                          src="{{ post_type_icon }}"
-                          alt=""
-                          class="post-meta-section-icon"
-                          aria-hidden="true">
-                        <span>{{ post_type_label }}</span>
-                      </span>
+                      {% include archive_type_badge.html collection=post_type_key %}
                     </a>
                   </p>
                 </div>

@@ -2106,6 +2106,16 @@ table + p > em:only-child,
     text-decoration: none;
 }
 
+.post-meta-section-link:hover .archive-type,
+.post-meta-section-link:focus-visible .archive-type {
+    color: var(--contrast-color);
+}
+
+.post-meta-section-link:hover .archive-type-icon,
+.post-meta-section-link:focus-visible .archive-type-icon {
+    opacity: 1;
+}
+
 .page-content .post-meta-section-chip .post-meta-section-icon {
     display: block;
     width: 0.72rem !important;
