@@ -2258,7 +2258,13 @@ body.theme-dark .post-meta-section-icon--dark {
   font-weight: 300;
   font-size: 0.875rem;
   color: var(--main-accent);
-  transition: text-decoration 0.3s, background-color 0.3s, color 0.3s;
+  transition:
+    text-decoration-color 0.3s,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease,
+    font-weight 0.2s ease,
+    transform 0.2s ease;
   text-decoration: none;
   padding-left: 0.125rem;
 }
@@ -2271,6 +2277,15 @@ body.theme-dark .post-meta-section-icon--dark {
 .footnote.is-inline-footnote-open {
   color: var(--contrast-color);
   text-decoration: none;
+}
+
+.footnote.is-footnote-linked {
+  color: var(--contrast-color);
+  font-weight: 500;
+  text-decoration: none;
+  background: rgba(245, 245, 245, 0.9);
+  box-shadow: 0 0 0 0.12rem rgba(245, 245, 245, 0.9);
+  transform: translateY(-0.02rem) scale(1.05);
 }
 
 @media (min-width: 1025px) {
@@ -2287,6 +2302,7 @@ body.theme-dark .post-meta-section-icon--dark {
     line-height: 1;
     padding-left: 0;
     margin-left: 0.08rem;
+    transform-origin: center bottom;
   }
 }
 
@@ -2783,15 +2799,51 @@ div[class^="language-"].highlighter-rouge,
   color: var(--backup-text-color-v3);
   min-width: 0.9rem;
   line-height: 1.35;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  transform-origin: center;
 }
 
-.gutter-note-body,
+.gutter-note-body {
+  display: block;
+  box-sizing: border-box;
+  border-radius: 0.12rem;
+  padding: 0.03rem 0.05rem;
+  margin: -0.03rem -0.05rem;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--backup-text-color-v2);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
 .gutter-note-body p {
   margin: 0;
   font-family: 'Crimson Pro', serif;
   font-size: 0.95rem;
   line-height: 1.35;
   color: var(--backup-text-color-v2);
+}
+
+.gutter-note-body p {
+  transition: color 0.2s ease;
+}
+
+.gutter-note.is-footnote-linked .gutter-note-number {
+  color: var(--contrast-color);
+  transform: translateX(-0.12rem) scale(1.08);
+}
+
+.gutter-note.is-footnote-linked .gutter-note-body {
+  background: rgba(245, 245, 245, 0.78);
+  box-shadow: 0 0 0 0.32rem rgba(245, 245, 245, 0.78);
+}
+
+.gutter-note.is-footnote-linked .gutter-note-body p {
+  color: var(--backup-text-color);
 }
 
 .gutter-note-body p + p {

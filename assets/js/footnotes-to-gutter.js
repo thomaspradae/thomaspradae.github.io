@@ -97,6 +97,43 @@
     });
   }
 
+  function getLinkedFootnoteId(target) {
+    if (!(target instanceof Element)) return "";
+
+    const ref = target.closest(SEL.refs);
+    if (ref?.dataset.footnoteId) return ref.dataset.footnoteId;
+
+    const note = target.closest(".gutter-note[data-footnote-id]");
+    return note?.dataset.footnoteId || "";
+  }
+
+  function setLinkedFootnote(id, active) {
+    if (!id) return;
+
+    document.querySelectorAll(SEL.refs).forEach(ref => {
+      if (ref.dataset.footnoteId === id) {
+        ref.classList.toggle("is-footnote-linked", active);
+      }
+    });
+
+    document.querySelectorAll(".gutter-note[data-footnote-id]").forEach(note => {
+      if (note.dataset.footnoteId === id) {
+        note.classList.toggle("is-footnote-linked", active);
+      }
+    });
+  }
+
+  function onLinkedFootnoteEnter(event) {
+    setLinkedFootnote(getLinkedFootnoteId(event.target), true);
+  }
+
+  function onLinkedFootnoteLeave(event) {
+    const id = getLinkedFootnoteId(event.target);
+    if (!id || getLinkedFootnoteId(event.relatedTarget) === id) return;
+
+    setLinkedFootnote(id, false);
+  }
+
   function bindInlineRefs(main) {
     main.querySelectorAll(SEL.refs).forEach(ref => {
       if (ref.dataset.inlineFootnoteBound === "true") return;
@@ -218,8 +255,11 @@
       const data = footnoteMap.get(id);
       if (!data) return;
 
+      ref.dataset.footnoteId = id;
+
       const note = document.createElement("div");
       note.className = "gutter-note";
+      note.dataset.footnoteId = id;
       note.style.position = "absolute";
 
       note.innerHTML = `
@@ -295,6 +335,10 @@
     });
 
     window.addEventListener("resize", schedule);
+    document.addEventListener("pointerover", onLinkedFootnoteEnter);
+    document.addEventListener("pointerout", onLinkedFootnoteLeave);
+    document.addEventListener("focusin", onLinkedFootnoteEnter);
+    document.addEventListener("focusout", onLinkedFootnoteLeave);
     document.addEventListener("click", event => {
       if (!isMobile()) return;
       if (!(event.target instanceof Element)) return;
