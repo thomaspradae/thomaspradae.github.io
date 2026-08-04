@@ -2128,6 +2128,16 @@ table + p > em:only-child,
     opacity: 0.8;
 }
 
+.page-content .post-meta-section-chip.archive-type .archive-type-icon {
+    opacity: 0.3;
+    transition: opacity 0.22s ease;
+}
+
+.post-meta-section-link:hover .post-meta-section-chip.archive-type .archive-type-icon,
+.post-meta-section-link:focus-visible .post-meta-section-chip.archive-type .archive-type-icon {
+    opacity: 1;
+}
+
 .post-meta-section-icon--dark {
     display: none;
 }
