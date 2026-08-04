@@ -2257,21 +2257,20 @@ body.theme-dark .post-meta-section-icon--dark {
 .footnote {
   font-weight: 300;
   font-size: 0.875rem;
-  color: var(--main-accent);
+  color: var(--backup-text-color-v2);
   transition:
     text-decoration-color 0.3s,
     background-color 0.2s ease,
     box-shadow 0.2s ease,
     color 0.2s ease,
-    font-weight 0.2s ease,
     transform 0.2s ease;
   text-decoration: none;
   padding-left: 0.125rem;
 }
 
 .footnote:hover {
-  color: var(--secondary-accent);
-  text-decoration: underline;
+  color: var(--backup-text-color);
+  text-decoration: none;
 }
 
 .footnote.is-inline-footnote-open {
@@ -2280,12 +2279,11 @@ body.theme-dark .post-meta-section-icon--dark {
 }
 
 .footnote.is-footnote-linked {
-  color: var(--contrast-color);
-  font-weight: 500;
+  color: var(--backup-text-color);
   text-decoration: none;
   background: rgba(245, 245, 245, 0.9);
   box-shadow: 0 0 0 0.12rem rgba(245, 245, 245, 0.9);
-  transform: translateY(-0.02rem) scale(1.05);
+  transform: translateY(-0.12rem) scale(1.08);
 }
 
 @media (min-width: 1025px) {
