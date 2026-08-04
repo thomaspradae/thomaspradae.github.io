@@ -796,7 +796,7 @@ a:-webkit-any-link {
 } 
 
 a:-webkit-any-link:hover {
-    color: var(--main-accent);
+    color: var(--contrast-color);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -808,7 +808,7 @@ a:any-link{
 }
 
 a:any-link:hover{
-    color: var(--main-accent);
+    color: var(--contrast-color);
     cursor: pointer;
     text-decoration: underline;
 }
@@ -1625,7 +1625,7 @@ table + p > em:only-child,
 }
 
 .internal-link:hover {
-    color: var(--main-accent);
+    color: var(--contrast-color);
 }
 
 .muted{
@@ -2265,7 +2265,7 @@ body.theme-dark .post-meta-section-icon--dark {
 }
 
 .footnotes a:hover {
-  color: var(--main-accent);
+  color: var(--contrast-color);
 }
 
 .reversefootnote {
@@ -2275,7 +2275,7 @@ body.theme-dark .post-meta-section-icon--dark {
 }
 
 .reversefootnote:hover {
-  color: var(--main-accent);
+  color: var(--contrast-color);
   text-decoration: underline;
 }
 
@@ -2372,7 +2372,7 @@ body.theme-dark .post-meta-section-icon--dark {
 }
 
 .inline-footnote a:hover {
-  color: var(--main-accent);
+  color: var(--contrast-color);
 }
 
 .inline-footnote code {
@@ -2878,7 +2878,7 @@ div[class^="language-"].highlighter-rouge,
 }
 
 .gutter-note a:hover {
-  color: var(--main-accent);
+  color: var(--contrast-color);
 }
 
 .gutter-note code {
