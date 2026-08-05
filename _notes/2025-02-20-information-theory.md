@@ -29,7 +29,7 @@ Entropy is maximized when all outcomes are equally likely (maximum uncertainty) 
 
 ### Quick reference — Bernoulli entropy
 
-| \\(P(X=1)\\) | \\(H(X)\\) bits (base-2) | vibe |
+| <span class="table-header-mathjax">\\(P(X=1)\\)</span> | \\(H(X)\\) bits (base-2) | vibe |
 | --- | --- | --- |
 | 0.5 | 1.000 | fair |
 | 0.99 | ~0.081 | boring |
@@ -161,7 +161,7 @@ PY
 
 <div class="figures-counted" markdown="1">
 
-| \\(p\\) | \\(H_2(p)\\) bits | `python` |
+| <span class="table-header-mathjax">\\(p\\)</span> | \\(H_2(p)\\) bits | `python` |
 | --- | --- | --- |
 | 0.5 | 1.0 | `-sum(p*log2(p) for p in [0.5,0.5])` |
 | 0.9 | \\(\approx 0.469\\) | `entropy_bits([0.9, 0.1])` from earlier |

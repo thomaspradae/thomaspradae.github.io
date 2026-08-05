@@ -226,23 +226,23 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 
 | **C0** | **C1** | **C2** | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `row_00` | \(x_{0,1}\) | `np.float32` | v0_3 | v0_4 | `pow(2,0)` | v0_6 | v0_7 | v0_8 | v0_9 | v0_10 | v0_11 |
-| `row_01` | \(x_{1,1}\) | `torch.Tensor` | v1_3 | v1_4 | v1_5 | v1_6 | v1_7 | v1_8 | v1_9 | v1_10 | v1_11 |
-| `row_02` | \(x_{2,1}\) | `torch.Tensor` | v2_3 | v2_4 | v2_5 | v2_6 | v2_7 | v2_8 | v2_9 | v2_10 | v2_11 |
-| `row_03` | \(x_{3,1}\) | `np.float32` | v3_3 | v3_4 | v3_5 | v3_6 | v3_7 | v3_8 | v3_9 | v3_10 | v3_11 |
-| `row_04` | \(x_{4,1}\) | `torch.Tensor` | v4_3 | v4_4 | `pow(2,4)` | v4_6 | v4_7 | v4_8 | v4_9 | v4_10 | v4_11 |
-| `row_05` | \(x_{5,1}\) | `torch.Tensor` | v5_3 | v5_4 | v5_5 | v5_6 | v5_7 | v5_8 | v5_9 | v5_10 | v5_11 |
-| `row_06` | \(x_{6,1}\) | `np.float32` | v6_3 | v6_4 | v6_5 | v6_6 | v6_7 | v6_8 | v6_9 | v6_10 | v6_11 |
-| `row_07` | \(x_{7,1}\) | `torch.Tensor` | v7_3 | v7_4 | v7_5 | v7_6 | v7_7 | v7_8 | v7_9 | v7_10 | Mega-cell: word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word … |
-| `row_08` | \(x_{8,1}\) | `torch.Tensor` | v8_3 | v8_4 | `pow(2,0)` | v8_6 | v8_7 | v8_8 | v8_9 | v8_10 | v8_11 |
-| `row_09` | \(x_{9,1}\) | `np.float32` | v9_3 | v9_4 | v9_5 | v9_6 | v9_7 | v9_8 | v9_9 | v9_10 | v9_11 |
-| `row_10` | \(x_{10,1}\) | `torch.Tensor` | v10_3 | v10_4 | v10_5 | v10_6 | v10_7 | v10_8 | v10_9 | v10_10 | v10_11 |
-| `row_11` | \(x_{11,1}\) | `torch.Tensor` | v11_3 | v11_4 | v11_5 | v11_6 | v11_7 | v11_8 | v11_9 | v11_10 | v11_11 |
-| `row_12` | \(x_{12,1}\) | `np.float32` | v12_3 | v12_4 | `pow(2,4)` | v12_6 | v12_7 | v12_8 | v12_9 | v12_10 | v12_11 |
-| `row_13` | \(x_{13,1}\) | `torch.Tensor` | v13_3 | v13_4 | v13_5 | v13_6 | v13_7 | v13_8 | v13_9 | v13_10 | v13_11 |
-| `row_14` | \(x_{14,1}\) | `torch.Tensor` | v14_3 | v14_4 | v14_5 | v14_6 | v14_7 | v14_8 | v14_9 | v14_10 | v14_11 |
-| `row_15` | \(x_{15,1}\) | `np.float32` | v15_3 | v15_4 | v15_5 | v15_6 | v15_7 | v15_8 | v15_9 | v15_10 | v15_11 |
-| `row_16` | \(x_{16,1}\) | `torch.Tensor` | v16_3 | v16_4 | `pow(2,0)` | v16_6 | v16_7 | v16_8 | v16_9 | v16_10 | v16_11 |
+| `row_00` | \\(x_{0,1}\\) | `np.float32` | v0_3 | v0_4 | `pow(2,0)` | v0_6 | v0_7 | v0_8 | v0_9 | v0_10 | v0_11 |
+| `row_01` | \\(x_{1,1}\\) | `torch.Tensor` | v1_3 | v1_4 | v1_5 | v1_6 | v1_7 | v1_8 | v1_9 | v1_10 | v1_11 |
+| `row_02` | \\(x_{2,1}\\) | `torch.Tensor` | v2_3 | v2_4 | v2_5 | v2_6 | v2_7 | v2_8 | v2_9 | v2_10 | v2_11 |
+| `row_03` | \\(x_{3,1}\\) | `np.float32` | v3_3 | v3_4 | v3_5 | v3_6 | v3_7 | v3_8 | v3_9 | v3_10 | v3_11 |
+| `row_04` | \\(x_{4,1}\\) | `torch.Tensor` | v4_3 | v4_4 | `pow(2,4)` | v4_6 | v4_7 | v4_8 | v4_9 | v4_10 | v4_11 |
+| `row_05` | \\(x_{5,1}\\) | `torch.Tensor` | v5_3 | v5_4 | v5_5 | v5_6 | v5_7 | v5_8 | v5_9 | v5_10 | v5_11 |
+| `row_06` | \\(x_{6,1}\\) | `np.float32` | v6_3 | v6_4 | v6_5 | v6_6 | v6_7 | v6_8 | v6_9 | v6_10 | v6_11 |
+| `row_07` | \\(x_{7,1}\\) | `torch.Tensor` | v7_3 | v7_4 | v7_5 | v7_6 | v7_7 | v7_8 | v7_9 | v7_10 | Mega-cell: word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word … |
+| `row_08` | \\(x_{8,1}\\) | `torch.Tensor` | v8_3 | v8_4 | `pow(2,0)` | v8_6 | v8_7 | v8_8 | v8_9 | v8_10 | v8_11 |
+| `row_09` | \\(x_{9,1}\\) | `np.float32` | v9_3 | v9_4 | v9_5 | v9_6 | v9_7 | v9_8 | v9_9 | v9_10 | v9_11 |
+| `row_10` | \\(x_{10,1}\\) | `torch.Tensor` | v10_3 | v10_4 | v10_5 | v10_6 | v10_7 | v10_8 | v10_9 | v10_10 | v10_11 |
+| `row_11` | \\(x_{11,1}\\) | `torch.Tensor` | v11_3 | v11_4 | v11_5 | v11_6 | v11_7 | v11_8 | v11_9 | v11_10 | v11_11 |
+| `row_12` | \\(x_{12,1}\\) | `np.float32` | v12_3 | v12_4 | `pow(2,4)` | v12_6 | v12_7 | v12_8 | v12_9 | v12_10 | v12_11 |
+| `row_13` | \\(x_{13,1}\\) | `torch.Tensor` | v13_3 | v13_4 | v13_5 | v13_6 | v13_7 | v13_8 | v13_9 | v13_10 | v13_11 |
+| `row_14` | \\(x_{14,1}\\) | `torch.Tensor` | v14_3 | v14_4 | v14_5 | v14_6 | v14_7 | v14_8 | v14_9 | v14_10 | v14_11 |
+| `row_15` | \\(x_{15,1}\\) | `np.float32` | v15_3 | v15_4 | v15_5 | v15_6 | v15_7 | v15_8 | v15_9 | v15_10 | v15_11 |
+| `row_16` | \\(x_{16,1}\\) | `torch.Tensor` | v16_3 | v16_4 | `pow(2,0)` | v16_6 | v16_7 | v16_8 | v16_9 | v16_10 | v16_11 |
 
 *Wide grid footer — check overflow-x, cell padding, and last-column long text.*
 
@@ -250,7 +250,7 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 
 | # | Status | Command / token | Note |
 | --- | --- | --- | --- |
-| 0 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 0` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 0 |
+| 0 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 0` | \\(\sum_{k=1}^{n} k = n(n+1)/2\\) for sanity check 0 |
 | 1 | `WARN` | `pytest -q tests/test_001.py` | tick 1 |
 | 2 | `FAIL` | `pytest -q tests/test_002.py` | tick 2 |
 | 3 | `SKIP` | `pytest -q tests/test_003.py` | tick 3 |
@@ -261,7 +261,7 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 | 8 | `OK` | `pytest -q tests/test_008.py` | tick 8 |
 | 9 | `WARN` | `pytest -q tests/test_009.py` | tick 9 |
 | 10 | `FAIL` | `torchrun --nproc_per_node=2 train.py --seed 10` | tick 10 |
-| 11 | `SKIP` | `pytest -q tests/test_011.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 11 |
+| 11 | `SKIP` | `pytest -q tests/test_011.py` | \\(\sum_{k=1}^{n} k = n(n+1)/2\\) for sanity check 11 |
 | 12 | `OK` | `pytest -q tests/test_012.py` | tick 12 |
 | 13 | `WARN` | `pytest -q tests/test_013.py` | tick 13 |
 | 14 | `FAIL` | `pytest -q tests/test_014.py` | tick 14 |
@@ -272,7 +272,7 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 | 19 | `SKIP` | `pytest -q tests/test_019.py` | tick 19 |
 | 20 | `OK` | `torchrun --nproc_per_node=2 train.py --seed 20` | tick 20 |
 | 21 | `WARN` | `pytest -q tests/test_021.py` | tick 21 |
-| 22 | `FAIL` | `pytest -q tests/test_022.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 22 |
+| 22 | `FAIL` | `pytest -q tests/test_022.py` | \\(\sum_{k=1}^{n} k = n(n+1)/2\\) for sanity check 22 |
 | 23 | `SKIP` | `pytest -q tests/test_023.py` | Long note: lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, end. |
 | 24 | `OK` | `pytest -q tests/test_024.py` | tick 24 |
 | 25 | `WARN` | `torchrun --nproc_per_node=2 train.py --seed 25` | tick 25 |
@@ -283,7 +283,7 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 | 30 | `FAIL` | `torchrun --nproc_per_node=2 train.py --seed 30` | tick 30 |
 | 31 | `SKIP` | `pytest -q tests/test_031.py` | tick 31 |
 | 32 | `OK` | `pytest -q tests/test_032.py` | tick 32 |
-| 33 | `WARN` | `pytest -q tests/test_033.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 33 |
+| 33 | `WARN` | `pytest -q tests/test_033.py` | \\(\sum_{k=1}^{n} k = n(n+1)/2\\) for sanity check 33 |
 | 34 | `FAIL` | `pytest -q tests/test_034.py` | tick 34 |
 | 35 | `SKIP` | `torchrun --nproc_per_node=2 train.py --seed 35` | tick 35 |
 | 36 | `OK` | `pytest -q tests/test_036.py` | tick 36 |
@@ -294,7 +294,7 @@ Pure layout stress: horizontal scroll, vertical scroll, dense grids, mixed modal
 | 41 | `WARN` | `pytest -q tests/test_041.py` | tick 41 |
 | 42 | `FAIL` | `pytest -q tests/test_042.py` | tick 42 |
 | 43 | `SKIP` | `pytest -q tests/test_043.py` | tick 43 |
-| 44 | `OK` | `pytest -q tests/test_044.py` | \( \sum_{k=1}^{n} k = n(n+1)/2 \) for sanity check 44 |
+| 44 | `OK` | `pytest -q tests/test_044.py` | \\(\sum_{k=1}^{n} k = n(n+1)/2\\) for sanity check 44 |
 | 45 | `WARN` | `torchrun --nproc_per_node=2 train.py --seed 45` | tick 45 |
 | 46 | `FAIL` | `pytest -q tests/test_046.py` | tick 46 |
 | 47 | `SKIP` | `pytest -q tests/test_047.py` | tick 47 |

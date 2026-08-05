@@ -23,4 +23,3 @@ And this too is no different. As I wish to sound smart. Be well written. As if s
 I am born now. I can choose now. 
 
 > T
-
