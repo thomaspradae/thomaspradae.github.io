@@ -73,7 +73,7 @@ layout: compress
                       {% for tag in post.tags %}
                         {% assign tag_slug = tag | slugify %}
                         <a class="internal-link tag-pill tag-pill--{{ tag_slug }}"
-                           href="/tag/{{ tag | replace: ' ', '-' }}/">
+                           href="/tag/{{ tag_slug }}/">
                           <span class="tag-pill-dot"></span>
                           <span class="tag-pill-label">{{ tag }}</span>
                         </a>

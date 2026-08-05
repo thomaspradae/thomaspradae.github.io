@@ -1,38 +1,53 @@
-# module Jekyll
-#   class TagPageGenerator < Generator
-#     safe true
+require "set"
 
-#     def generate(site)  
-#       # Initialize an empty array to hold all documents
-#       all_docs = []
-    
-#       # Add posts
-#       all_docs.concat(site.posts.docs)
-    
-#       # Add documents from each specified collection
-#       site.collections.each do |name, collection|
-#         all_docs.concat(collection.docs) if ['building', 'writing', 'notes'].include?(name)
-#       end
-    
-#       # Now `all_docs` contains all the posts and documents from specified collections
-#       tags = all_docs.flat_map { |doc| doc.data['tags'] || [] }.to_set
-#       tags.each do |tag|
-#         site.pages << TagPage.new(site, site.source, tag)
-#       end
-#     end
-#   end
+module Jekyll
+  class TagPageGenerator < Generator
+    safe true
+    priority :low
 
-#   class TagPage < Page
-#     def initialize(site, base, tag)
-#       @site = site
-#       @base = base
-#       @dir  = File.join('tag', tag)
-#       @name = 'index.html'
+    COLLECTIONS = %w[writing building notes marginalia].freeze
 
-#       self.process(@name)
-#       self.read_yaml(File.join(base, '_layouts'), 'tag.html')
-#       self.data['tag'] = tag
-#       self.data['title'] = "Tag: #{tag}"
-#     end
-#   end
-# end
+    def generate(site)
+      all_docs = COLLECTIONS.flat_map do |name|
+        collection = site.collections[name]
+        collection ? collection.docs : []
+      end
+
+      existing_urls = site.pages.map(&:url).to_set
+
+      all_docs.flat_map { |doc| Array(doc.data["tags"]) }.uniq.each do |tag|
+        slug = Jekyll::Utils.slugify(tag.to_s)
+        next if slug.empty?
+        next if File.exist?(File.join(site.source, "tag", "#{slug}.md"))
+
+        url = "/tag/#{slug}/"
+        next if existing_urls.include?(url)
+
+        site.pages << TagPage.new(site, site.source, slug, tag)
+        existing_urls << url
+      end
+    end
+  end
+
+  class TagPage < Page
+    def initialize(site, base, slug, tag)
+      @site = site
+      @base = base
+      @dir = File.join("tag", slug)
+      @name = "index.html"
+
+      process(@name)
+      read_yaml(File.join(base, "_layouts"), "tag.html")
+      data["tag"] = tag
+      data["title"] = titleize(tag)
+    end
+
+    private
+
+    def titleize(tag)
+      return "ML" if tag.to_s.downcase == "ml"
+
+      tag.to_s.split.map(&:capitalize).join(" ")
+    end
+  end
+end

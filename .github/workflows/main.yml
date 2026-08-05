@@ -7,6 +7,7 @@ on:
     paths:
       - '**/*.md'
       - 'latex_converter.py'
+      - 'scripts/sync_tag_pages.py'
       - '.github/workflows/main.yml'
   workflow_dispatch:
 
@@ -23,6 +24,9 @@ jobs:
 
     - name: Run Script
       run: python latex_converter.py
+
+    - name: Sync tag pages
+      run: python scripts/sync_tag_pages.py
 
     - name: Commit and Push Changes
       run: |
